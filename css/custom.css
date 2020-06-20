@@ -121,14 +121,16 @@ svg:not(:root).svg-inline--fa {
 div.gatsby-resp-iframe-wrapper { max-width: 59rem; }
 div.gatsby-highlight { font-size: 1rem; }
 
+.gatsby-resp-image-figure { margin: 0; }
 .gatsby-resp-image-wrapper { cursor: pointer; }
 img.zoomer {
     position: fixed; transition: all 400ms ease 0s; transform-origin: top left;
     object-fit: contain; cursor: pointer;
 }
 
+div.image-block { max-width: 100%; }
 div.image-grid { max-width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; }
-div.image-grid > p { display: none; }
+div.image-block p, div.image-grid p { display: none; }
 div.image-grid > figure { width: 32%; margin: 0 0 20px; }
 
 :not(pre) > code[class*="language-"] { font-size: 18px; background-color: linen; color: #333; }
