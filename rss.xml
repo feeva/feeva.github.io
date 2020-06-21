@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Jun 2020 12:50:10 GMT</lastBuildDate><item><title><![CDATA[WordPress에서 Gatsby로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 WordPress에서 Gatsby로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Jun 2020 13:08:11 GMT</lastBuildDate><item><title><![CDATA[WordPress에서 Gatsby로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 WordPress에서 Gatsby로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
 원하지 않게 시간이 많이 소모되고 있지만 결과적으로 요즘 유행하는 Jamstack에 대해 알아보고 Gatsby 기반의
 정적 사이트 제작에 대해 여러가지를 정리해볼 수 있었다. 아직 진행 중이고 문제도 많아 언제 끝날지 모르지만
 일단 GitHub에 정착하게 되어 글을 올려본다.
@@ -6,7 +6,7 @@
 원하지 않게 시간이 많이 소모되고 있지만 결과적으로 요즘 유행하는 Jamstack에 대해 알아보고 Gatsby 기반의
 정적 사이트 제작에 대해 여러가지를 정리해볼 수 있었다. 아직 진행 중이고 문제도 많아 언제 끝날지 모르지만
 일단 GitHub에 정착하게 되어 글을 올려본다.&lt;/p&gt;
-&lt;p&gt;이 과정에서 내가 얻은 가장 큰 교훈은 하나로 요약할 수 있다. &lt;strong&gt;블로그 이전은 노력과 열성이 필요한 일이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;이 과정에서 내가 얻은 가장 큰 교훈은 하나로 요약할 수 있다. &lt;strong&gt;블로그 이전은 웬만하면 추천하지 않는다.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
     &lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -97,7 +97,7 @@ Jekyll처럼 선택하고 설치하면 금방 블로그를 띄울 수 있음을 
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;gatsby build&lt;/code&gt;로 배포를 위한 산출물을 만듦. &lt;code class=&quot;language-text&quot;&gt;gatsby develop&lt;/code&gt;과 달리 마크다운 페이지에 오류가 있는 경우
 전체 빌드가 중단되므로 오류를 모두 없앤 후 빌드해야 한다.&lt;/li&gt;
 &lt;li&gt;GitHub에 개인 GitHub 페이지 저장소를 만듦(feeva.github.io)&lt;/li&gt;
-&lt;li&gt;산출물을 개인 GitHub 페이지 저장소로 푸시 - 이제 feeva.github.com를 열면 페이지가 나타난다.&lt;/li&gt;
+&lt;li&gt;산출물을 개인 GitHub 페이지 저장소로 푸시 - &lt;code class=&quot;language-text&quot;&gt;gh-pages -d public -b master -r git@github.com:feeva/feeva.github.io.git&lt;/code&gt; 이제 feeva.github.com를 열면 페이지가 나타난다.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;gatsby-lumen-커스터마이징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#gatsby-lumen-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95&quot; aria-label=&quot;gatsby lumen 커스터마이징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Gatsby Lumen 커스터마이징&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://lumen.netlify.app/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;기본 상태의 Lumen&lt;/a&gt;을 보니 원래 워드프레스에 비해 부족한 것이 많았다.
