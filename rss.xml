@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Jun 2020 13:08:11 GMT</lastBuildDate><item><title><![CDATA[WordPress에서 Gatsby로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 WordPress에서 Gatsby로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 22 Jun 2020 14:29:13 GMT</lastBuildDate><item><title><![CDATA[WordPress에서 Gatsby로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 WordPress에서 Gatsby로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
 원하지 않게 시간이 많이 소모되고 있지만 결과적으로 요즘 유행하는 Jamstack에 대해 알아보고 Gatsby 기반의
 정적 사이트 제작에 대해 여러가지를 정리해볼 수 있었다. 아직 진행 중이고 문제도 많아 언제 끝날지 모르지만
 일단 GitHub에 정착하게 되어 글을 올려본다.
@@ -97,12 +97,14 @@ Jekyll처럼 선택하고 설치하면 금방 블로그를 띄울 수 있음을 
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;gatsby build&lt;/code&gt;로 배포를 위한 산출물을 만듦. &lt;code class=&quot;language-text&quot;&gt;gatsby develop&lt;/code&gt;과 달리 마크다운 페이지에 오류가 있는 경우
 전체 빌드가 중단되므로 오류를 모두 없앤 후 빌드해야 한다.&lt;/li&gt;
 &lt;li&gt;GitHub에 개인 GitHub 페이지 저장소를 만듦(feeva.github.io)&lt;/li&gt;
-&lt;li&gt;산출물을 개인 GitHub 페이지 저장소로 푸시 - &lt;code class=&quot;language-text&quot;&gt;gh-pages -d public -b master -r git@github.com:feeva/feeva.github.io.git&lt;/code&gt; 이제 feeva.github.com를 열면 페이지가 나타난다.&lt;/li&gt;
+&lt;li&gt;산출물을 개인 GitHub 페이지 저장소로 푸시 - &lt;code class=&quot;language-text&quot;&gt;gh-pages -d public -b master -r git@github.com:feeva/feeva.github.io.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;이제 &lt;a href=&quot;https://feeva.github.io&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://feeva.github.io&lt;/a&gt; 를 열면 페이지가 나타난다.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;gatsby-lumen-커스터마이징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#gatsby-lumen-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95&quot; aria-label=&quot;gatsby lumen 커스터마이징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Gatsby Lumen 커스터마이징&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://lumen.netlify.app/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;기본 상태의 Lumen&lt;/a&gt;을 보니 원래 워드프레스에 비해 부족한 것이 많았다.
 지금까지 다음과 같이 커스터마이징했다. 커스터마이징 결과는
-(feeva.gatsby-starter-lumen](&lt;a href=&quot;https://github.com/feeva/feeva.gatsby-starter-lumen&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://github.com/feeva/feeva.gatsby-starter-lumen&lt;/a&gt;)으로 GitHub에 올렸다.&lt;/p&gt;
+&lt;a href=&quot;https://github.com/feeva/feeva.gatsby-starter-lumen&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;feeva.gatsby-starter-lumen&lt;/a&gt;
+프로젝트로 GitHub에 올렸다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;시작 페이지 상단에 대형 이미지 배치 - Jekyll Minimal Mistakes 테마의 Hero 이미지 오버레이를 따서
 컴포넌트를 만들어 넣음&lt;/li&gt;
@@ -4480,42 +4482,168 @@ println(&amp;quot;\(total.vowels) vowels and \(total.consonants) consonants&amp;
 이 밖에도 기억도 안나는 미묘한 차이들이 브라우저마다 있다. 삼성 갤럭시 시리즈 일부는 iframe 내부의 단추가 터치되지 않는다든지 노트 II에서는 &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; 태그가 텍스트 입력란처럼 보인다든지 하는 것들도 있었다. 아마도 어떤 특정 상황에서 그러는 것일 테지만 그걸 일일이 찾아 해결할 수가 없어서 더러는 포기하고 더러는 전체적으로 수정하여 원인도 모른 채 해결되기도 했다.
 결국 중요한 건 브라우저별로 쉽게 적용할 수 있는 단순한 형태로 UI를 만들어야 하고 일단 만들면서부터는 실제 테스트를 통해 문제를 찾아내고 수정하는 수 밖에 없는 것 같다. 사람이 테스트하지 않는 이상 알 수 없는 미묘한 것들이니까. 모바일웹이라고, 또 표준을 지키는 브라우저라고 결코 쉬운 게 아님을 알게 된 프로젝트였다.</content:encoded></item><item><title><![CDATA[이미지의 가로세로비를 유지하면서 틀 안에 맞추려면]]></title><description><![CDATA[웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.]]></description><link>http://localhost:8000/posts/이미지의-가로세로비를-유지하면서-틀-안에-맞추려</link><guid isPermaLink="false">http://localhost:8000/posts/이미지의-가로세로비를-유지하면서-틀-안에-맞추려</guid><pubDate>Fri, 28 Feb 2014 02:53:58 GMT</pubDate><content:encoded>&lt;p&gt;웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.&lt;/p&gt;
 &lt;!--more--&gt;
-&lt;p&gt;(2018년 편집: 현재는 IE를 제외하고 대부분의 브라우저가 CSS &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;object-fit&lt;/a&gt;, object-position 속성을 지원하므로 IE를 무시한다면 아래와 같은 과정 없이 CSS 한 줄로 간단히 이미지 크기를 조절할 수 있다.)&lt;/p&gt;
-&lt;p&gt;[caption id=“attachment_1604” align=“aligncenter” width=“347”]&lt;img class=&quot; wp-image-1604 embedded&quot; src=&quot;/uploads/2014/02/aspect_wrong.png&quot; alt=&quot;우리의 영웅 김연아를 이렇게 만들다니...&quot; width=&quot;347&quot; height=&quot;94&quot; /&gt; 우리의 영웅 연아를 이렇게 만들다니…[/caption]&lt;/p&gt;
+&lt;p&gt;(2018년 편집: 현재는 IE를 제외하고 대부분의 브라우저가 CSS &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;object-fit&lt;/a&gt;, object-position 속성을 지원하므로 IE를 무시한다면 아래와 같은 과정 없이 CSS 한 줄로 간단히 이미지 맞춤을 조절할 수 있다.)&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 347px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.089337175792505%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAABJUlEQVQY05WOzUrDQBSF+3o+g6A7N76C4EZ36lIKrnyArixdCCX4V0jwrzSG0uZHk2kmSdtJZyaZCclMxkShW/HA4dx7uHzcTq2UUBTXavrGpO+STQDs0HEsGkVhbFkz9R9JWXXaTL8WRu/isjs8OzKudnfuxk/3IaVUhQBUGKEyAoCt4riAQcCXEBYJhLzpOMW4Ap6X8zwXLacW4hfojZ71m72D68HhvmacHhvjfn8WuC790PUksG1sTyYIOA5p0zbNtOmIP5/jyPepqetLlCSsbrT98P1xBHon5w+ft9rry0CbGkMtklVVUYRYhjEn63X+M6cpyzYbxggpckJ446Lt2l0IsQVKjnGGIYxVzlY4XMAyTRNVFEhx/rfbO8bWDayspRTforBsDSvZIHEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/fab5f9a3f19872833d1c18d61f23b815/2baae/aspect_wrong.webp 347w&quot;
+          sizes=&quot;(max-width: 347px) 100vw, 347px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/fab5f9a3f19872833d1c18d61f23b815/39e45/aspect_wrong.png 347w&quot;
+          sizes=&quot;(max-width: 347px) 100vw, 347px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/fab5f9a3f19872833d1c18d61f23b815/39e45/aspect_wrong.png&quot;
+          alt=&quot;우리의 영웅 김연아를 이렇게 만들다니...&quot;
+          title=&quot;우리의 영웅 김연아를 이렇게 만들다니...&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;우리의 영웅 김연아를 이렇게 만들다니...&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;위 그림은 신문사 사이트에서 갈무리한 것인데 같은 개발자 입장에서 미안하지만 개발자가 좀 덜 신경을 쓴 게 분명하다. 원래 이미지는 다음처럼 세로가 긴 이미지였다.&lt;/p&gt;
-&lt;p&gt;[caption id=“attachment_1623” align=“aligncenter” width=“170”]&lt;img class=&quot;size-full wp-image-1623 embedded &quot; src=&quot;/uploads/2014/02/aspect_good.jpg&quot; alt=&quot;원래는 이렇게 예쁨&quot; width=&quot;170&quot; height=&quot;251&quot; /&gt; 원래는 이렇게 예쁨[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 170px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 147.64705882352942%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAeABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAwUC/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAFtayM6SOyzUlLRqgxg/8QAGxAAAwADAQEAAAAAAAAAAAAAAQIDAAQSIhH/2gAIAQEAAQUCZvDzYBntMkOwTo4Z2+8niXsOH6jQ7GKhC12aM/8A/8QAFxEBAQEBAAAAAAAAAAAAAAAAABEBIf/aAAgBAwEBPwHHFV//xAAYEQACAwAAAAAAAAAAAAAAAAAAARARIf/aAAgBAgEBPwF2bP8A/8QAHhAAAgICAwEBAAAAAAAAAAAAAAERMQIhEiJBYXH/2gAIAQEABj8CfCxRnl9Is6468ZOVeJlpfp2dDk2zg9Qh72iaP//EABkQAQADAQEAAAAAAAAAAAAAAAEAESFBMf/aAAgBAQABPyFjuYWzKw+2cR8UnQotGoLshnREqqeU9itPDYkB0BupZUxdw6V2M1OTUpSjXhP/2gAMAwEAAgADAAAAEO8YTv/EABoRAAICAwAAAAAAAAAAAAAAAAABITEQEUH/2gAIAQMBAT8QVano5lLw/8QAGBEBAAMBAAAAAAAAAAAAAAAAAQARIRD/2gAIAQIBAT8Q2yBSIXz/xAAeEAEBAAIDAAMBAAAAAAAAAAABEQAhMUFRYXGBof/aAAgBAQABPxCAGYlgbL/cISLEC3ezzFJpbqMcRV7oD7OZ94GUekS3Sv7ZkcFQA074x4OJoadE+sJnC7fllyyGuwjo64x6JS3z6/MUSMxgYd++YqWQGzP/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/f7cc0533ae0b68f30c8bc7038dd57fc7/f5310/aspect_good.webp 170w&quot;
+          sizes=&quot;(max-width: 170px) 100vw, 170px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/f7cc0533ae0b68f30c8bc7038dd57fc7/651be/aspect_good.jpg 170w&quot;
+          sizes=&quot;(max-width: 170px) 100vw, 170px&quot;
+          type=&quot;image/jpeg&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/f7cc0533ae0b68f30c8bc7038dd57fc7/651be/aspect_good.jpg&quot;
+          alt=&quot;원래는 이렇게 예쁨&quot;
+          title=&quot;원래는 이렇게 예쁨&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;원래는 이렇게 예쁨&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;사실 어렵지 않은 것인데 오늘은 웹페이지에서 이미지의 가로세로비를 유지하면서 틀 안에 맞추려면 어떻게 해야 하는지 알아보겠다.&lt;/p&gt;
 &lt;p&gt;먼저 기본 개념을 말하자면 다음과 같은 것을 생각해볼 수 있다.&lt;/p&gt;
 &lt;ul&gt;
-    &lt;li&gt;이미지가 로딩되면 자바스크립트로 이미지 본래의 가로, 세로 크기를 구할 수 있다&lt;/li&gt;
-    &lt;li&gt;CSS의 width, height 속성 중 한쪽만 수치 값을 설정하고 다른 쪽은 auto로 하면 비율이 유지된다&lt;/li&gt;
-    &lt;li&gt;CSS의 overflow 속성을 사용해 HTML 요소의 경계 바깥으로 벗어나는 컨텐트를 숨길 수 있다&lt;/li&gt;
-    &lt;li&gt;이미지를 틀에 맞춘다 함은 두 가지 경우가 있다. 틀을 이미지의 뷰포트로서 처리하는 경우와 액자처럼 이미지를 틀 안에 맞춰 넣는 것 같은 경우다.&lt;/li&gt;
+&lt;li&gt;이미지가 로딩되면 자바스크립트로 이미지 본래의 가로, 세로 크기를 구할 수 있다&lt;/li&gt;
+&lt;li&gt;CSS의 &lt;code class=&quot;language-text&quot;&gt;width&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;height&lt;/code&gt; 속성 중 한쪽만 수치 값을 설정하고 다른 쪽은 &lt;code class=&quot;language-text&quot;&gt;auto&lt;/code&gt;로 하면 비율이 유지된다&lt;/li&gt;
+&lt;li&gt;CSS의 &lt;code class=&quot;language-text&quot;&gt;overflow&lt;/code&gt; 속성을 사용해 HTML 요소의 경계 바깥으로 벗어나는 컨텐트를 숨길 수 있다&lt;/li&gt;
+&lt;li&gt;이미지를 틀에 맞춘다 함은 두 가지 경우가 있다. 틀을 이미지의 뷰포트로서 처리하는 경우와 액자처럼 이미지를 틀 안에 맞춰 넣는 것 같은 경우다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;위에서 네번째 개념은 다음과 같은 경우를 말한다. 예시는 4:3 크기의 틀을 가정했다.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;이미지를 맞출 틀 안에 이미지의 &lt;strong&gt;가로, 세로 중 짧은 쪽을 맞춰서&lt;/strong&gt; 틀을 벗어나게 하는 경우. 틀을 벗어나는 이미지 부분은 잘라낸다(숨긴다).&lt;/li&gt;
+&lt;li&gt;이미지를 맞출 틀 안에 이미지의 &lt;strong&gt;가로, 세로 중 짧은 쪽을 맞춰서&lt;/strong&gt; 틀을 벗어나게 하는 경우. 틀을 벗어나는 이미지 부분은 잘라낸다(숨긴다).
+&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 580px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.57142857142858%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAADFklEQVQoz5WRW0yScRjG/x0ucmtra2mzaHWllV3VOll0kcstW2pNLTMxK82O5oehRR+RmaZ5piPWFDI7IKat2TQwhiga8IHk5ymnGBWjrFFqhd+f7w2tLtvs2d6bd+/z2/PuQfsTBrlXCjoV1TVOebHEei9N0FBFZuvkAkGtQnCGvhiy7aKvtKIyNzldXTZnXlz57FlcKWfxXinHP1rq4xMqRWhz+fIAQlJcdLMkPb2Ai0hx72GKHoa+4bdAEslwjUyGpLhI2Be2HkK4B6zxB5UrCwurIDwyG9DMubDQdyGkxkfDntAtsGC+HyCEIChoH0gkdUCkFQsRX2DmNWosIJNXuYtOxzKOZhmTd3in+1FmDMRy9+g2bb8RSJKSiY0bUhiveWIpZxkjyz3HZKXEM4t8F03umICA6B8iUTnw+XlpKDGuLqHicRM8uyvDr8ovsd9UlaxRKsK60lNQlZmnv1DQFqhWN2MRqfAkJgrxhcx8fEuYjrOSeZh/XIgPJfAxcbLCrVJp4Wl9QxoiCCrhgVIF9Zev4jvHYlgJEQ3SHBJrCjIgbNVWfZ2GXWF/a4MaRTdcLnwC4vz7UHs9F7KO8uDIqasgvqKASqkBHB8+goWyZiLiDB0nJGsgP7UIZySJ2ZhYIShvt+LqjBJYFyxobdFiDt1laZJct+piDtWa/IMrjARfaQzfVWb0W3fXGMV7aBKd1+kok7m1vc0Qhbq6B8Jd3xiw2z54el/3sW/6bDDUO4idDhc4R8ab0f+qU6OJcNrfwQBNe2hTB9vfbQXHuyE87voC/RQ1BQSAGQDr/8kAb9cNjT2ok9YiNED3RAwP2sD1ddRjpii2vU0PLAsYuxlv0v6Xkwbnmx6krBlAO3brEWetBu3d34FCQp+jJWuaUViEFp080YmsFjPq0JsQ+sl4wicwwOeRL4y5w4DNBoP3XYcbfkv9J+HUTEsUZd793uH0NmQB2ptuxPv+2OgojI39AKu1S/8X2NKimx6w9FrJ6qLSsmrKQss+fRyR2212uRdQ+UKtfSTOzjk7eTP+HZD4knhavF+PFuJ/fiK2mwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/3cbb3bf2fdfe8db2592da1775bda551d/a3432/aspect_type1.webp 350w,
+/static/3cbb3bf2fdfe8db2592da1775bda551d/4fac6/aspect_type1.webp 580w&quot;
+          sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/3cbb3bf2fdfe8db2592da1775bda551d/13ae7/aspect_type1.png 350w,
+/static/3cbb3bf2fdfe8db2592da1775bda551d/b6272/aspect_type1.png 580w&quot;
+          sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/3cbb3bf2fdfe8db2592da1775bda551d/b6272/aspect_type1.png&quot;
+          alt=&quot;틀이 이미지의 뷰포트처럼 적용되는 경우&quot;
+          title=&quot;틀이 이미지의 뷰포트처럼 적용되는 경우&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;틀이 이미지의 뷰포트처럼 적용되는 경우&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;이미지를 맞출 틀 안에 이미지의 &lt;strong&gt;가로, 세로 중 긴 쪽을 맞춰서&lt;/strong&gt; 틀을 벗어나지 않게 하는 경우. 대신 틀과 이미지의 비율이 안맞으면 여백이 생긴다.
+&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 580px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.142857142857146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsklEQVQY02NgAAINzdUWxsaFK1PSFizqnnBmSVRY9xIv9/pF1jZl6/T1+4oZoMDIcGK2rW3xInv7ypkWViWz7OwqZjk5Vcywtm5Yoq292BimjsHUdEKst5f3/6a25v+Ht6z6f3hGyf+OzID/wSEB/+3tc/bB1Klrxe22c/X8r6au+d/dyf6/ob7efyUl+f96unb/paWyo+AGGhlNCndz9f2fV1T2c25T4+817bW/+4syf7h7+fy3sy3cCFPHzGy9jpGZ8z8vj/CP1tzk3yaamr+Bwt8ZGcX/MzCEhMANNDGZFO7s4v2/uar219GNm34f27T2987FK354+/j/t7XN3wRTl5K4ZF11Ve//8or+n/Mayv4UpxX8Lizo+FFRNOV/kN+aECQvT4p1d/f9P6F/4v8ze4/8v3bkyP/rF6/9DwoI+G9nl7cXpq64cMPO2XNX/Y/Nm/S/uqzuv29Exf+K+mn/Z0xY9z8+emsk3EB1jeVWFuaF670C21bUFaxZtXHO9VVFFZuWm5llbzEy7KuAqdPVbau2tMzYbW6RvcHCKn+TlTUQW6VvMDEp2qumNsMapAYAs4O3vhGE1qEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/53da023aa25b60020152fffea35fbe1e/a3432/aspect_type2.webp 350w,
+/static/53da023aa25b60020152fffea35fbe1e/4fac6/aspect_type2.webp 580w&quot;
+          sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/53da023aa25b60020152fffea35fbe1e/13ae7/aspect_type2.png 350w,
+/static/53da023aa25b60020152fffea35fbe1e/b6272/aspect_type2.png 580w&quot;
+          sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/53da023aa25b60020152fffea35fbe1e/b6272/aspect_type2.png&quot;
+          alt=&quot;이미지를 액자 안에 넣은 것처럼 맞추는 경우&quot;
+          title=&quot;이미지를 액자 안에 넣은 것처럼 맞추는 경우&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;이미지를 액자 안에 넣은 것처럼 맞추는 경우&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;[caption id=“attachment_1609” align=“aligncenter” width=“580”]&lt;img class=&quot;size-full wp-image-1609 embedded &quot; src=&quot;/uploads/2014/02/aspect_type1.png&quot; alt=&quot;틀이 이미지의 뷰포트처럼 적용되는 경우&quot; width=&quot;580&quot; height=&quot;340&quot; /&gt; 틀을 이미지의 뷰포트처럼 맞추는 경우[/caption]&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;이미지를 맞출 틀 안에 이미지의 &lt;strong&gt;가로, 세로 중 긴 쪽을 맞춰서&lt;/strong&gt; 틀을 벗어나지 않게 하는 경우. 대신 틀과 이미지의 비율이 안맞으면 여백이 생긴다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;[caption id=“attachment_1610” align=“aligncenter” width=“580”]&lt;img class=&quot;size-full wp-image-1610 embedded&quot; src=&quot;/uploads/2014/02/aspect_type2.png&quot; alt=&quot;이미지를 액자 안에 넣은 것처럼 맞추는 경우&quot; width=&quot;580&quot; height=&quot;180&quot; /&gt; 이미지를 액자 안에 넣은 것처럼 맞추는 경우[/caption]&lt;/p&gt;
 &lt;p&gt;여기서는 1번을 해보려고 한다. 2번은 1번에 비해 이미지가 작아지고 여백이 생겨 보기가 안 좋다고 생각한다.&lt;/p&gt;
-&lt;p&gt;기본적인 HTML 구조는 &amp;#x3C;div&gt;로 &amp;#x3C;img&gt;를 감싸는 형태가 된다. &amp;#x3C;div&gt;는 원하는 가로세로비를 적용하여 크기를 설정해놓고 overflow: hidden을 주면 되고 &amp;#x3C;img&gt;는 위 1번이나 2번 중 원하는 방식에 따라 크기와 위치를 지정해주면 된다.&lt;/p&gt;
+&lt;p&gt;기본적인 HTML 구조는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;로 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;를 감싸는 형태가 된다. &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;는 원하는 가로세로비를 적용하여 크기를 설정해놓고 &lt;code class=&quot;language-text&quot;&gt;overflow: hidden&lt;/code&gt;을 주면 되고 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;는 위 1번이나 2번 중 원하는 방식에 따라 크기와 위치를 지정해주면 된다.&lt;/p&gt;
 &lt;p&gt;아래는 위 1번에서 첫번째 경우일 때 결과적으로 나와야할 소스 예시다. 틀 크기가 120 x 90일 때 그보다 큰 이미지가 잘려보이도록 하는 것이다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html5&quot;&gt;&lt;pre class=&quot;language-html5&quot;&gt;&lt;code class=&quot;language-html5&quot;&gt;&amp;lt;div style=&amp;quot;width: 120px; height: 90px; overflow: hidden&amp;quot;&amp;gt;
-    &amp;lt;img src=&amp;quot;이미지 경로&amp;quot; style=&amp;quot;width: 120px; height: auto;&amp;quot;&amp;gt;
-&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;두번째 경우는 다음과 같이 돼야할 것이다. 첫번째와 달리 이미지를 가운데 맞추려고 margin-left를 주고 있다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html5&quot;&gt;&lt;pre class=&quot;language-html5&quot;&gt;&lt;code class=&quot;language-html5&quot;&gt;&amp;lt;div style=&amp;quot;width: 120px; height: 90px; overflow: hidden&amp;quot;&amp;gt;
-    &amp;lt;img src=&amp;quot;이미지 경로&amp;quot; style=&amp;quot;width: auto; height: 90px; margin-left: -30px;&amp;quot;&amp;gt;
-&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token style-attr language-css&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt; &lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 120px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 90px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; hidden&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;img&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;이미지 경로&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token style-attr language-css&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt; &lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 120px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; auto&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;두번째 경우는 다음과 같이 돼야할 것이다. 첫번째와 달리 이미지를 가운데 맞추려고 &lt;code class=&quot;language-text&quot;&gt;margin-left&lt;/code&gt;를 주고 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token style-attr language-css&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt; &lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 120px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 90px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; hidden&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;img&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;이미지 경로&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token style-attr language-css&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt; &lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; auto&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 90px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; -30px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;차이가 나는 건 이미지의 크기와 위치다. div의 크기는 사전에 결정돼있고 이미지의 크기는 매번 달라지므로 이미지의 크기와 위치를 처리하기 위해 자바스크립트가 필요하다.&lt;/p&gt;
 &lt;p&gt;이제 다시 처음부터 시작한다고 했을 때(이미지 크기를 모를 때) 원래의 HTML이 다음과 같다면,&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html5&quot;&gt;&lt;pre class=&quot;language-html5&quot;&gt;&lt;code class=&quot;language-html5&quot;&gt;&amp;lt;div style=&amp;quot;width: 120px; height: 90px; overflow: hidden&amp;quot;&amp;gt;
-    &amp;lt;img src=&amp;quot;이미지 경로&amp;quot;&amp;gt;
-&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token style-attr language-css&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt; &lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 120px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 90px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; hidden&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;img&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;이미지 경로&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;자바스크립트를 어떻게 만들어야 할까? 이미지의 크기를 구해서 가로세로비를 구한 다음 바깥의 가로세로비에 따라 조정해주면 된다. 일단 jQuery 같은 외부 라이브러리를 사용하지 않고 해보도록 하자.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; div &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 이미지를 감싸는 div&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; img &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 이미지&lt;/span&gt;
@@ -4533,8 +4661,8 @@ println(&amp;quot;\(total.vowels) vowels and \(total.consonants) consonants&amp;
     &lt;span class=&quot;token comment&quot;&gt;// 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다&lt;/span&gt;
     img&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;style&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cssText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;width: 100%; height: auto; margin-left: 0;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위에서 8 ~ 10행의 수식 계산은 이미지를 좌우로 가운데 맞춤하기 위한 계산이다. &lt;code&gt;div.offsetHeight / divAspect&lt;/code&gt;에서 이미지가 맞춰야할 가로 크기가 나오므로 비율을 맞춰 축소한 이미지의 가로 크기에서 빼고 그 반 값을 &lt;code&gt;margin-left&lt;/code&gt;로 설정하는 것이다.&lt;/p&gt;
-&lt;p&gt;15행의 세로로 길쭉한 이미지에 대해서는 가운데 맞춤을 안하고 있다. 필요하다면 여기도 가운데 맞춤 계산을 해주면 좋을 것이다. 대신 여기서는 &lt;code&gt;margin-left&lt;/code&gt;를 초기화시켜준다. 위 루틴이 웹페이지 초기화 과정에서 딱 한번만 호출된다는 보장이 없기 때문에 매번 호출될 때마다 가급적 모든 값을 설정해주는 것이 좋다.&lt;/p&gt;
+&lt;p&gt;위에서 8 ~ 10행의 수식 계산은 이미지를 좌우로 가운데 맞춤하기 위한 계산이다. &lt;code class=&quot;language-text&quot;&gt;div.offsetHeight / divAspect&lt;/code&gt;에서 이미지가 맞춰야할 가로 크기가 나오므로 비율을 맞춰 축소한 이미지의 가로 크기에서 빼고 그 반 값을 &lt;code class=&quot;language-text&quot;&gt;margin-left&lt;/code&gt;로 설정하는 것이다.&lt;/p&gt;
+&lt;p&gt;15행의 세로로 길쭉한 이미지에 대해서는 가운데 맞춤을 안하고 있다. 필요하다면 여기도 가운데 맞춤 계산을 해주면 좋을 것이다. 대신 여기서는 &lt;code class=&quot;language-text&quot;&gt;margin-left&lt;/code&gt;를 초기화시켜준다. 위 루틴이 웹페이지 초기화 과정에서 딱 한번만 호출된다는 보장이 없기 때문에 매번 호출될 때마다 가급적 모든 값을 설정해주는 것이 좋다.&lt;/p&gt;
 &lt;p&gt;자, 이상으로 마치고 이제 위 소스를 적용한 예시를 아래 링크로 붙인다. 모두들 우리의 영웅 사진은 영웅 답게 보여주도록 하자.&lt;/p&gt;
 &lt;p&gt;[&lt;a title=&quot;예시&quot; href=&quot;http://codepen.io/feeva/pen/ApneC&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;예시 보러 가기&lt;/a&gt;]&lt;/p&gt;</content:encoded></item><item><title><![CDATA[데이터베이스 SQL 특성 비교]]></title><description><![CDATA[(2015년 10월 1일 현황: 구글 문서를 원본으로 하여 파일 내보내기를 통해 페이지를 제공하고 있었는데 현재는 파일 형식이 바뀐 등의 문제로 페이지가 안나오고 있다. 시간 나면 다시 수정해야할 듯...)그 동안 프로젝트를 많이 하다보니 데이터베이스도 여러가지를 사용해봤는데 여러 다른 개발 분야처럼 제품간 차이가 꽤 나는 분야가 바로 이 영역이다. SQL 구문 등에 있어서 크고 작은 여러 차이가 사람을 혼란스럽게 하다보니 2009년에 데이터베이스 SQL 특성 비교 문서를 만든 적이 있다.]]></description><link>http://localhost:8000/posts/데이터베이스-sql-특성-비교</link><guid isPermaLink="false">http://localhost:8000/posts/데이터베이스-sql-특성-비교</guid><pubDate>Mon, 24 Feb 2014 17:37:01 GMT</pubDate><content:encoded>&lt;p&gt;(2015년 10월 1일 현황: 구글 문서를 원본으로 하여 파일 내보내기를 통해 페이지를 제공하고 있었는데 현재는 파일 형식이 바뀐 등의 문제로 페이지가 안나오고 있다. 시간 나면 다시 수정해야할 듯…)&lt;/p&gt;
 &lt;p&gt;그 동안 프로젝트를 많이 하다보니 데이터베이스도 여러가지를 사용해봤는데 여러 다른 개발 분야처럼 제품간 차이가 꽤 나는 분야가 바로 이 영역이다. SQL 구문 등에 있어서 크고 작은 여러 차이가 사람을 혼란스럽게 하다보니 2009년에 데이터베이스 SQL 특성 비교 문서를 만든 적이 있다.&lt;/p&gt;
