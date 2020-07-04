@@ -1,5 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+blockquote {
+    font-family: "Noto Serif KR", serif;
+    text-align: left;
+    font-style: normal;
+    background-color: #fffff0;
+    border: solid 1em #fffff0;
+    border-width: .25em 1em;
+}
+
+table { font-size: 1.1rem; }
+caption {
+    text-align: left;
+    color: silver;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+th {
+    background: SteelBlue;
+    color: white;
+}
+
+th, td {
+    padding: 3px 9px;
+}
+
+tbody tr:nth-child(even) {
+    background: WhiteSmoke;
+}
+  
 small, .small {
     font-size: .75em;
 }
