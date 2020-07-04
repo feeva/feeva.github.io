@@ -164,7 +164,7 @@ div.image-grid { max-width: 100%; display: flex; flex-wrap: wrap; justify-conten
 div.image-block p, div.image-grid p { display: none; }
 div.image-grid > figure { width: 32%; margin: 0 0 20px; }
 
-:not(pre) > code[class*="language-"] { font-size: 18px; background-color: linen; color: #333; }
+:not(pre) > code[class*="language-"] { font-size: .9em; background-color: linen; color: #333; }
 
 /* buymeacoffee */
 .bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}
