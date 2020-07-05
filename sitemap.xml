@@ -3,6 +3,8 @@
 <url> <loc>http://localhost:8000/tags</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/categories</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/프로그램적인-파일-다운로드</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://localhost:8000/posts/html-요소의-가운데-맞춤</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://localhost:8000/posts/워드프레스에서-개츠비로-갈아타다</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/pages/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/pages/contacts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/db-질의-결과를-가로로-펼치기</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -48,7 +50,6 @@
 <url> <loc>http://localhost:8000/posts/자바-5-톰캣-6의-매개변수-파싱-오류</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/짝-프로그래밍의-힘</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/세계-유명인의-머리-스타일</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://localhost:8000/posts/html-요소의-가운데-맞춤</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/네이버-지식인에서-영웅-등급-되다</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/추천-시스템-입문-1강</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/멋진-휴가지-태안</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -109,7 +110,6 @@
 <url> <loc>http://localhost:8000/posts/달인의-추억</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/스프링-부트-리액트-개발-셋업-2018</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/자바에서-데이터-캐시-구현하기</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://localhost:8000/posts/WordPress에서-Gatsby로-갈아타다</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/프로그래밍-글꼴-비교</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/pages/programs/masters/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/posts/계절의-아름다움을-느낄-수-있는-곳-물향기수목원</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -193,6 +193,7 @@
 <url> <loc>http://localhost:8000/tag/개발-능력</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/tag/개발자</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/tag/개인정보-보호</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://localhost:8000/tag/개츠비</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/tag/객체</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/tag/걷기</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://localhost:8000/tag/검증</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
