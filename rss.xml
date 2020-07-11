@@ -1,4 +1,168 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 05 Jul 2020 03:27:16 GMT</lastBuildDate><item><title><![CDATA[워드프레스에서 개츠비로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 워드프레스에서 개츠비(Gatsby)로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 11 Jul 2020 14:55:19 GMT</lastBuildDate><item><title><![CDATA[오라클 클라우드 아키텍트 자격증을 따다]]></title><description><![CDATA[사실 생소한 자격증이었지만 어느날 기회가 왔었다. 한시적으로 오라클 클라우드 인프라스트럭처의 모든 자격증
+시험을 공짜로 제공한다는 것이었다. 그래서 밑져야 본전이라고 Architect Associate 공부를 시작했는데 
+노력에 비해 다행히 합격하게 됐고 오늘은 오라클 클라우드와 자격증 얘기를 해볼까 한다.
+]]></description><link>http://localhost:8000/posts/오라클-클라우드-아키텍트-자격증을-따다</link><guid isPermaLink="false">http://localhost:8000/posts/오라클-클라우드-아키텍트-자격증을-따다</guid><pubDate>Thu, 09 Jul 2020 14:40:00 GMT</pubDate><content:encoded>&lt;p&gt;사실 생소한 자격증이었지만 어느날 기회가 왔었다. 한시적으로 오라클 클라우드 인프라스트럭처의 모든 자격증
+시험을 공짜로 제공한다는 것이었다
+(&lt;a href=&quot;https://www.oracle.com/corporate/blog/free-certifications-oracle-oci-autonomous-033020.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;블로그&lt;/a&gt;).
+그래서 밑져야 본전이라고 &lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/architect-associate.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Architect Associate&lt;/a&gt;
+공부를 시작했는데 노력에 비해 다행히 합격하게 됐고 오늘은 오라클 클라우드와 자격증 얘기를 해볼까 한다.&lt;/p&gt;
+&lt;p&gt;공지는 3월이었지만 내가 알게 된 것은 &lt;a href=&quot;https://www.freecodecamp.org/news/oracle-foundations-associate-certification-cloud-course/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;5월 초였다&lt;/a&gt;.
+원래는 5월 15일까지 시험을 쳐야 한다고 해서
+바로 예약했는데 뭔가 방침이 변경되어 예약은 5월 15일까지 해도 시험은 8월까지 볼 수 있게 되었고 예약을
+조정한 끝에 7월 7일 온라인으로 시험을 쳤다. 한밤중에.&lt;/p&gt;
+&lt;h3 id=&quot;오라클-클라우드-인프라스트럭처oci&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%9D%BC%ED%81%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%9D%B8%ED%94%84%EB%9D%BC%EC%8A%A4%ED%8A%B8%EB%9F%AD%EC%B2%98oci&quot; aria-label=&quot;오라클 클라우드 인프라스트럭처oci permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오라클 클라우드 인프라스트럭처(OCI)&lt;/h3&gt;
+&lt;p&gt;클라우드 업계에서 대세는 Amazon AWS지만 오라클 역시 클라우드 사업에 뛰어든 이후 다양한 서비스를
+개발하고 특히 한국에도 많이 투자를 하고 있음을 알 수 있었다. 또 Amazon이 자신들의 강점인 전자상거래 인프라라는 자산을
+가지고 클라우드 사업을 시작한 것처럼 오라클 역시 자신들의 강점인 데이터베이스를 클라우드에서 유연하게 제공하는 데에
+상당한 노력을 기울이고 있는 인상을 받았다.&lt;/p&gt;
+&lt;p&gt;오라클은 다음과 같은 점을 OCI의 차별화된 강점으로 얘기하고 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;성능 - “Off-box 네트워크 가상화”, 베어 메탈, SSD 스토리지 등&lt;/li&gt;
+&lt;li&gt;다양한 데이터베이스 선택 옵션 - 베어 메탈, 가상 머신, 엑사데이터, RAC 등&lt;/li&gt;
+&lt;li&gt;다양한 오라클 소프트웨어가 클라우드에서 검증됨&lt;/li&gt;
+&lt;li&gt;AWS보다 저렴한 비용&lt;/li&gt;
+&lt;li&gt;성능, 운영 유지 등 SLA 우월&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;아무래도 AWS와 비교를 안해볼 수 없는데 서비스들이 1:1 대응되는 경우가 많다. AWS에서
+네트웍 기본 구성 요소인 가상 프라이빗 클라우드(VPC)를 가상 클라우드 네트웍(VCN)이라고
+한다든지 각종 게이트웨이, 로드밸런싱, 컴퓨트 등의 서비스들이
+거의 유사한 개념으로 제공되고 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.oracle.com/cloud/data-regions.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;
+&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1400px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsSAAALEgHS3X78AAABtklEQVQozy2Si66iMBCGef9322yORw2KcqdAobRQCiio+2GWDGSgc/kveEUaR4Ff5mmRREUSZ9GdL8k9iIILuUhjwnTt+/1elvnxWN779Xpxv19eVeT+4W8thFaqqUut2ufzQdv5509w/u0aOdrhtW22Nzf/dPdPFBBGtW60numUkjVhdEc+GL1Mc1PtU2zf09zrbttWO/RNWTSVAGO9J+U4DJ4si+vpUBYZL3aPfp6mMkvS6K47NY2jG8fJucGYPInS8JbHIQkFfN83x7eLLIWSVcv+Tq3rCv/b+SiypGsbuDDOWRvfrjRr1SgpwUWZB7CqyGgDcG/00LPZ1SKvRIEcaXin1LkR8G1dzY4Uspa1TPRoC06/yAs22ng+loWd0dWXlXD2P2zoQCSLQ1zgiAHbtqF29mUS4RAhsnSnF4dpGCCMFLtCyEMzsOlEc7wAyL5ZNZKY3bQ+nwvXvCzThLdSFFhnlHosM2h7rb8SSETZwduB8DDpcjpwwPjJjZ/Phz+B2cH5eDn+sI0C1gInvPoIROA5ZTvsr1Tme9wBBrcQVqQJa2E7IqDRGE4DBHEIalgDZtT+B+y6XlkWYA3bAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/95f3f78e1e723715042217122e1f4637/a3432/oci-services.webp 350w,
+/static/95f3f78e1e723715042217122e1f4637/426ac/oci-services.webp 700w,
+/static/95f3f78e1e723715042217122e1f4637/7f403/oci-services.webp 1400w,
+/static/95f3f78e1e723715042217122e1f4637/2b065/oci-services.webp 1665w&quot;
+          sizes=&quot;(max-width: 1400px) 100vw, 1400px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/95f3f78e1e723715042217122e1f4637/13ae7/oci-services.png 350w,
+/static/95f3f78e1e723715042217122e1f4637/8c557/oci-services.png 700w,
+/static/95f3f78e1e723715042217122e1f4637/2cefc/oci-services.png 1400w,
+/static/95f3f78e1e723715042217122e1f4637/70ad2/oci-services.png 1665w&quot;
+          sizes=&quot;(max-width: 1400px) 100vw, 1400px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/95f3f78e1e723715042217122e1f4637/2cefc/oci-services.png&quot;
+          alt=&quot;https://www.oracle.com/cloud/data-regions.html&quot;
+          title=&quot;https://www.oracle.com/cloud/data-regions.html&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;https://www.oracle.com/cloud/data-regions.html&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;한국에 대한 투자 및 성과는 다음과 같은 기사로 알 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://zdnet.co.kr/view/?no=20190514135958&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2019년 5월, 오라클, 서울에 데이터 센터 설립&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.yna.co.kr/view/AKR20200507084200017&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2020년 5월, 오라클, 춘천에 두번째 데이터센터 설립&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://biz.chosun.com/site/data/html_dir/2019/11/12/2019111200970.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2020년 11월, 오라클, 아시아 최초 ‘클라우드 혁신 센터’ 설립&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.inews24.com/view/1278754&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2020년 7월, HMM, 오라클 클라우드로 전환&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://it.chosun.com/site/data/html_dir/2020/07/02/2020070202263.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2020년 7월, 오라클, 한국 정보보호관리체계(ISMS) 인증 획득&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.inews24.com/view/1280452&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;2020년 7월, 삼성SDS, 오라클 자율 DB 도입&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;오라클-클라우드-자격증&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%9D%BC%ED%81%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%9E%90%EA%B2%A9%EC%A6%9D&quot; aria-label=&quot;오라클 클라우드 자격증 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오라클 클라우드 자격증&lt;/h3&gt;
+&lt;p&gt;아마존 웹서비스에는 좀더 다양한 자격증이 있지만 오라클 클라우드 인프라는 약간 다른 내용으로
+일반인이 접근하는 자격증은 다음과 같은 것들이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/foundations.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Foundations Certification&lt;/a&gt; - 클라우드 기초&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/architect-associate.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Architect Associate Certification&lt;/a&gt; - 중급 아키텍트&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/operations.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Operations Associate Certification&lt;/a&gt; - 중급 운영&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/developers.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Developer Associate Certification&lt;/a&gt; - 중급 개발자&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/architect-professional.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Architect Profesional Certification&lt;/a&gt; - 고급 아키텍트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;image-block&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.oracle.com/cloud/iaas/training/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;
+&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1115px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 46.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwAwCdASoUAAkAPtFUo0uoJKMhsAgBABoJZwAAUz5AQ2uq5cAA/vPD66dU04mk+c8Q/IgTF6OdbiOsFfjxmqcLV/ws7V1pp/F6dqAA&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/cd2b9c12b4eca99e6b6c5498fb887aad/a3432/cb112-cloud-training-diagram.webp 350w,
+/static/cd2b9c12b4eca99e6b6c5498fb887aad/426ac/cb112-cloud-training-diagram.webp 700w,
+/static/cd2b9c12b4eca99e6b6c5498fb887aad/177a2/cb112-cloud-training-diagram.webp 1115w&quot;
+          sizes=&quot;(max-width: 1115px) 100vw, 1115px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/cd2b9c12b4eca99e6b6c5498fb887aad/a3432/cb112-cloud-training-diagram.webp 350w,
+/static/cd2b9c12b4eca99e6b6c5498fb887aad/426ac/cb112-cloud-training-diagram.webp 700w,
+/static/cd2b9c12b4eca99e6b6c5498fb887aad/177a2/cb112-cloud-training-diagram.webp 1115w&quot;
+          sizes=&quot;(max-width: 1115px) 100vw, 1115px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/cd2b9c12b4eca99e6b6c5498fb887aad/177a2/cb112-cloud-training-diagram.webp&quot;
+          alt=&quot;오라클 클라우드 인프라 자격 인증 유형&quot;
+          title=&quot;오라클 클라우드 인프라 자격 인증 유형&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;오라클 클라우드 인프라 자격 인증 유형&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;오라클-클라우드-자격-시험-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%9D%BC%ED%81%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%9E%90%EA%B2%A9-%EC%8B%9C%ED%97%98-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;오라클 클라우드 자격 시험 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오라클 클라우드 자격 시험 준비&lt;/h3&gt;
+&lt;p&gt;현재는 무료 시험 혜택이 종료되어 초급(Foundations) 자격증은 95 달러, 중급(Associate) 자격증의 경우 150 달러를 내야 하므로
+비용이 아까워서라도 반드시 합격해야 한다. 😉 시험 시간은 초중급은 85분, 고급은 120분이며
+문제 수는 50 ~ 60개, 전부 객관식이다. 외국 시험 답게 답을 두 개나 세 개 고르는 문제가 많이 나온다.
+합격 점수는 자격증에 따라 65% 또는 70%로 정해져 있다.&lt;/p&gt;
+&lt;p&gt;나는 오라클에서 제공하는 무료 학습 자료만 활용했다(위 자격증별 링크).
+동영상 강의(총 9시간 정도)를 1차로 공부하면서 동영상에 딸린 PDF 자료를 주로 공부했으며 연습 문제 30개 정도를 풀고 공부했다.
+연습문제는 실제 시험 문제와 겹치는 게 별로 없지만 비슷한 개념의 질문은 몇 가지가 나왔으며 특히
+부족한 부분을 찾아 다시 공부하는 데는 상당히 도움이 된다. 잘 이해가 안되는 주제를 좀더 자세히 공부하고 싶다면
+오라클 클라우드 인프라의 &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/home.htm&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;공식 문서&lt;/a&gt;를 찾아보는 것도 좋다.
+방대한 양이지만 파일 하나 짜리로 된 PDF &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/pdf/ug/OCI_User_Guide.pdf&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;사용 설명서&lt;/a&gt;도 있다.&lt;/p&gt;
+&lt;p&gt;그런데 한국 사람들에게 가장 어려운 건 영어가 아닐까 생각한다. 자료나 시험 문제가 모두 영어로 돼 있으며 내가 본 시험의 경우
+80여분 동안 60 문제를 풀어야 하므로 IT 분야 전문가이면서 영어를 어느 정도 익숙하게 해야 한다.&lt;/p&gt;
+&lt;p&gt;연습 문제를 예를 들어보자. 짧은 건 아주 짧지만 긴 지문은 다음과 같은 경우가 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your application consists of three Oracle Cloud Infrastructure compute instances
+running behind a public load balancer. You have configured the load balancer to perform
+health checks on these instances, but one of the three instances fails to pass the
+configured health check. Which of the following action will the load balancer perform?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Terminate the instance that failed health check&lt;/li&gt;
+&lt;li&gt;Remove the instance that failed the health check from the backend set&lt;/li&gt;
+&lt;li&gt;Stop sending traffic to the instance that failed health check&lt;/li&gt;
+&lt;li&gt;Stop the instance that failed health check&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;또 동영상 강의 강사가 전부 인도분들이라 인도식 영어 발음을 감안해서 들어야 한다.
+그래도 내가 시험 친 Architect Associate 강사 Rohit Rahi님의 경우 알아듣기 쉬웠으며 설명도 아주 잘 하는 편이라고
+생각된다.&lt;/p&gt;
+&lt;h3 id=&quot;맺음말&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A7%BA%EC%9D%8C%EB%A7%90&quot; aria-label=&quot;맺음말 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;맺음말&lt;/h3&gt;
+&lt;p&gt;클라우드 서비스들이 비슷한 개념들이 많으므로 한 클라우드 자격증을 취득하면서 공부한 것이 다른 클라우드를
+접하는 데 상당히 도움이 된다. 자격증 자체가 직업적인 면에서 직접적으로 도움이 되는 것은 아니지만
+본인을 홍보하거나 취업시 약간의 점수를 추가하는 데는 도움이 될 것이다. 또 당연히 실질적인 경험이
+가장 중요하므로 아무래도 실전에서 클라우드를 겪어보는 게 가장 좋을 것이다.&lt;/p&gt;
+&lt;p&gt;내 경우 우리 회사의 IT 환경이 미약하기 때문에 할 일이 많다. 그 동안 공부한 것이 도움이 될 것으로 보인다.
+다른 자격증도 그랬지만 사실 계속 갈고 닦지 않으면 잊어버리게 된다. 다만 내 경력에 한 줄 더 추가할 수 있게 되었음에
+감사하고자 한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[워드프레스에서 개츠비로 갈아타다]]></title><description><![CDATA[벌써 3주 이상 블로그 환경을 워드프레스에서 개츠비(Gatsby)로 옮기고 있다. 발단은 도메인 문제가 걸린 외부적인 요인인데
 원하지 않게 시간이 많이 소모되고 있지만 결과적으로 요즘 유행하는 Jamstack에 대해 알아보고 개츠비 기반의
 정적 사이트 제작에 대해 여러가지를 정리해볼 수 있었다. 아직 진행 중이고 문제도 많아 언제 끝날지 모르지만
 일단 GitHub에 정착하게 되어 글을 올려본다.
