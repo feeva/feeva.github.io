@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 13 Jul 2020 16:10:23 GMT</lastBuildDate><item><title><![CDATA[오라클 클라우드 아키텍트 자격증을 따다]]></title><description><![CDATA[사실 생소한 자격증이었지만 어느날 기회가 왔었다. 한시적으로 오라클 클라우드 인프라스트럭처의 모든 자격증
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 17 Jul 2020 17:51:08 GMT</lastBuildDate><item><title><![CDATA[오라클 클라우드 아키텍트 자격증을 따다]]></title><description><![CDATA[사실 생소한 자격증이었지만 어느날 기회가 왔었다. 한시적으로 오라클 클라우드 인프라스트럭처의 모든 자격증
 시험을 공짜로 제공한다는 것이었다. 그래서 밑져야 본전이라고 Architect Associate 공부를 시작했는데 
 노력에 비해 다행히 합격하게 됐고 오늘은 오라클 클라우드와 자격증 얘기를 해볼까 한다.
 ]]></description><link>http://localhost:8000/posts/오라클-클라우드-아키텍트-자격증을-따다</link><guid isPermaLink="false">http://localhost:8000/posts/오라클-클라우드-아키텍트-자격증을-따다</guid><pubDate>Thu, 09 Jul 2020 14:40:00 GMT</pubDate><content:encoded>&lt;p&gt;사실 생소한 자격증이었지만 어느날 기회가 왔었다. 한시적으로 오라클 클라우드 인프라스트럭처의 모든 자격증
@@ -3006,39 +3006,97 @@ ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;p&gt;이미 아는 사람은 알겠지만 예를 들자면 easing이 없다면 이러던 것이,&lt;/p&gt;
 &lt;style&gt;
 #box1, #box2 {
-width: 300px; height: 100px; margin: auto; background-color: #eee; border: solid 1px #99f; text-align: center; line-height: 100px; cursor: pointer; margin-bottom: 1em;
+width: 200px; height: 100px; background-color: #eee; border: solid 1px #99f; text-align: center; line-height: 100px; cursor: pointer; margin-bottom: 1em; transition-property: all; transition-duration: 1s; transition-timing-function: linear;
 }
-canvas.graph { width: 200px; height: 140px; }
+#box2 { transition-timing-function: cubic-bezier(0.55, 0, 0.45, 1); }
 &lt;/style&gt;
-&lt;div id=&quot;box1&quot;&gt;눌러보세요&lt;/div&gt;
+&lt;div&gt;
+    &lt;div id=&quot;box1&quot; onclick=&quot;w = this.parentNode.offsetWidth - this.offsetWidth; this.style.transform = this.style.transform ? &apos;&apos; : &apos;translateX(&apos; + w + &apos;px)&apos;&quot;&gt;눌러보세요&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;아래처럼 매끄럽고 자연스러운 느낌의 움직임으로 바뀐다.&lt;/p&gt;
-&lt;div id=&quot;box2&quot;&gt;눌러보세요&lt;/div&gt;
+&lt;div&gt;
+    &lt;div id=&quot;box2&quot; onclick=&quot;w = this.parentNode.offsetWidth - this.offsetWidth; this.style.transform = this.style.transform ? &apos;&apos; : &apos;translateX(&apos; + w + &apos;px)&apos;&quot;&gt;눌러보세요&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;전자는 시작과 끝에서 뭔가 뚝 끊기는 느낌이 드는데 후자는 자연스럽게 시작하고 끝난다. 그리고 두 애니메이션에 걸리는 시간은 동일하다! 차이는 전자는 일정 속도로 움직이는 것이고 후자는 처음과 끝에는 속도를 낮추고 중간에는 속도를 빨리하는 데 있다. 아래는 그러한 움직임을 그래프로 나타낸 것이다. 운동 속도 = (움직인 거리 / 시간), 즉 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mstyle displaystyle=&quot;true&quot; scriptlevel=&quot;0&quot;&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;Δ&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;Δ&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mstyle&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;v = \dfrac{\Delta s}{\Delta t}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot; style=&quot;margin-right:0.03588em;&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:2.04633em;vertical-align:-0.686em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mopen nulldelimiter&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mfrac&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:1.36033em;&quot;&gt;&lt;span style=&quot;top:-2.314em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;Δ&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;t&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.23em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;frac-line&quot; style=&quot;border-bottom-width:0.04em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.677em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:3em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;Δ&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;s&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.686em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mclose nulldelimiter&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;이므로 그래프의 기울기가 속도다. 기울기가 큰 곳은 빠르고 완만한 곳은 느린 부분이 되겠다.&lt;/p&gt;
-&lt;p style=&quot;text-align:center&quot;&gt;&lt;canvas class=&quot;graph&quot; easing=&quot;linear&quot;&gt;&lt;/canvas&gt; &lt;canvas class=&quot;graph&quot; easing=&quot;easeInOutCubic&quot;&gt;&lt;/canvas&gt;&lt;/p&gt;
-&lt;p&gt;(혹시 소스가 필요하다면 이 페이지의 소스 보기를 확인하도록. 자바스크립트 jQuery UI를 활용한 것이다.)&lt;/p&gt;
+&lt;table style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 260px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 99.61538461538461%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABjklEQVQ4y42SW3KCQBRE3V52lF1Yvl/5zIfZh6CWFqVbMLFQgjyDIFHMGYeijILSH1PUcPv2vd1TSZIkCIKf0vA8bw+CvWe7lePxGIbh+XxOSuB0OlGJ2Mdw6Ni2IO92O7cEHMfxfZ+Per0+Go3oIsgMw/n7EHEcIxtFUbfbXS6XMKEIMs24DYvBjpA5G43GbDaDKfUE2bbtB54xKnzOjIkY94zzxDD+Mu3hcBgMBovFgjJGyP6mhjl5sCwLQbKpVqvj8ZgupmnKXwxLx0JlSjmp6Pf7UpPKm5r8nVGjI5fNZhPNbM9rI9Kdb9zGVQQ5Yc7nc+ntfQSp29c5yzwh93o9yaRvbvKU/XthzO9fgEOKosAsenx4hkwlukyY+cEVqWiadpPKPcTz3Oi6YRiel/pRq9VUVeUfOXnFQFwoGxvDdhyZSqvVyvaMn0HsvP5cO67HzJ1OZzKZwJRuP4Vw2/02/e223W7n5vngwYucla/Ny9v7VFVhcrUvDaGsWe7rdLFerXRdl4+2DLCTyf8AJSxmiKuyypsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/702ea43905ea158c53c95227a88f7d7f/079c7/linear.webp 260w&quot;
+          sizes=&quot;(max-width: 260px) 100vw, 260px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/702ea43905ea158c53c95227a88f7d7f/86c28/linear.png 260w&quot;
+          sizes=&quot;(max-width: 260px) 100vw, 260px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/702ea43905ea158c53c95227a88f7d7f/86c28/linear.png&quot;
+          alt=&quot;등속 이동&quot;
+          title=&quot;등속 이동&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;등속 이동&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;/td&gt;&lt;td&gt;
+&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 260px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 99.61538461538461%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACLUlEQVQ4y32TS2/aQBSF+XX9Lf0trBBSAMGCTRFrBKI8hISoaNhWEZtCGlLA2BjH2I4fGNv0m9qkBJyehT2Pe+45d+ZOJooi27ZfL2BaVuA6D7L66eu3h8dfy+fnp8Xi6S9UVZ1Op41GYzgcOo6TCYKA3+l0is4Io4ip5h6+PC4N2/EPnuu6nuex1el07u7u2u02KXzfF2RN04z32BvGq2lGjmOZpmEKIFCtVtEU1kxzv98nZGyHYRjc4HA8HoOAD0bq9fp4PBaONA0+8RgRZKQw5qSBOAij0Qgyg/V6jSYloEdSQWZOnH0DmMTtdrtCocBUlmUikYl3EzJMcU43iA23Wq3JZHI4HCAwfdtNbFPGPg2WZeGzWCxuNpvtdhufUwxd10mXclUxWGex2+0OBoM3wasYQSYN5VkXQASTrOfzeWpmzMpVQFIzIzx4F4i9NJvNXq/HALJ3A4iCTCbS+GfEYw6iVCqRlwA/DVRx3WFE45aVfr9PP8VFGTdIOsw9m0waOwzZwCfNSNDpv8hwDYoiriFOuVgsqJ9q6f6PZP8pb2WFZ4AgE0VREJ/P55VKhcRx/R9B1CxL8ouu45zuQ4quyOVyjNlm0XVcz3G9NIjTltbSVlXpY8zwbniu8MlK2TBt37MiL7XtxT3THL+Xy1qtls1my+XyarWiK/jK641kqlrjh/+5bfspb04oUxul0gyz2YyUjCVJwrbMSeqq+v2nUbjX9vrLe3CXnOsf3xxcNN0frVgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/d0c46a1e4776c2d5aa681275edcc86cf/079c7/bezier.webp 260w&quot;
+          sizes=&quot;(max-width: 260px) 100vw, 260px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/d0c46a1e4776c2d5aa681275edcc86cf/86c28/bezier.png 260w&quot;
+          sizes=&quot;(max-width: 260px) 100vw, 260px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/d0c46a1e4776c2d5aa681275edcc86cf/86c28/bezier.png&quot;
+          alt=&quot;가속/감속 이동&quot;
+          title=&quot;가속/감속 이동&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;가속/감속 이동&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;(혹시 소스가 필요하다면 이 페이지의 소스 보기를 확인하도록.)&lt;/p&gt;
 &lt;p&gt;easing이 들어간 편이 좀더 매끄럽게 느껴지는 이유는 사람이 속도에는 둔감해도 가속도에는 민감하기 때문에 그렇다. 위 두 가지 예에서 전자는 처음과 끝에서 무한대 크기의 가속도가 발생하는데 반해 후자는 가속도가 서서히 높아졌다가 낮아지게 된다. (가속도는 속도의 기울기이므로 위 그래프에서 유추해보자~ 😉 )&lt;/p&gt;
 &lt;p&gt;일상 생활에서는 우리가 가속도를 따지는 일이 별로 없지만(자동차가 100m/s까지 도달하는 데 몇 초가 걸리는지 따지는 정도?) 실제로는 사람이 교통 수단이나 놀이기구를 탄다든가 연장을 쓰거나 힘을 쓸 때 얼마나 매끄럽게 움직이냐, 얼마나 빨리 떨어지냐, 얼마나 힘이 잘 먹히냐 등의 기준이 되는 것이 바로 가속도다. 혹시 뉴턴의 그 유명한 운동의 법칙을 기억한다면 알 수 있는 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;F = ma&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot; style=&quot;margin-right:0.13889em;&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;을 통해서 본다면 &lt;strong&gt;가속도는 곧 힘이기 때문이다&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;속도에는 둔감하고 가속도에는 민감한 예를 들자면 차가 일정한 속도로 달리고 있을 때 우리는 이 차가 얼마나 빨리 움직이는 것인지 잘 모른다. 일정한 속도라면(즉, 가속도가 0이라면) 차안에서 가만히 서있을 수 있다. 하지만 급정거나 급출발하면 어떤가? 아무리 살짝(?) 급정거, 급출발을 해도 우리는 곧바로 느낄 수 있다. 우리 몸이 힘을 맞았기 때문이다.&lt;/p&gt;
 &lt;p&gt;UI 애니메이션에서 easing은 이런 가속도를 매끄럽게 해주는 일을 한다. 위 이동 그래프에 나타난 것과 같이 이동 그래프의 선이 얼마나 매끄럽게 이어지느냐가 바로 매끄러운 움직임을 나타내는 것이라고 보면 된다. 갑자기 꺾이거나 튀는 부분이 바로 가속도가 튀는 부분이고 이런 게 움직임을 자연스럽지 못하게 만든다.&lt;/p&gt;
 &lt;p&gt;사실 공학(engineering)이라는 것의 상당 부분이 이런 easing과 같은 문제가 얽혀 있다고 볼 수 있다. 똑같은 기능이라도 잘 팔리는 물건은 말하자면 미세한 부분이 다르다. 그 미세한 부분이 바로 easing과 같이 사람의 느낌이나 감성을 건드리는 부분인 것이다. 또한 거기에 인문학이 더해지면 품격까지 높은 물건이 만들어진다고 한다. 엉뚱한 얘기일 수도 있지만 easing 곡선 하나를 만드는 데도 중세의 건축 양식에 있는 곡선을 적용한다면 사람들은 그걸 느낀다는 거다. 정말이라고. 사람들이 얼마나 예민한데!&lt;/p&gt;
+&lt;script src=&quot;//code.jquery.com/ui/1.11.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
 &lt;!--
-&lt;script src=&quot;//code.jquery.com/ui/1.11.2/jquery-ui.js&quot;&gt;&lt;/script&gt;&lt;script&gt;// &lt;![CDATA[
-var DURATION = 600, PAUSE = 500, GRAPH_WIDTH = 200, GRAPH_HEIGHT = 140;
+&lt;script&gt;// &lt;![CDATA[
+var GRAPH_WIDTH = 200, GRAPH_HEIGHT = 140;
 jQuery(function($) {
-    $(&apos;#box1&apos;).click(function() {
-        $(&apos;#box1&apos;).text(&apos;&apos;).animate({width: &apos;0&apos;}, DURATION, &apos;linear&apos;)
-                  .delay(PAUSE)
-                  .animate({width: &apos;300px&apos;}, DURATION, &apos;linear&apos;, function() {
-                      $(&apos;#box1&apos;).text(&apos;눌러보세요&apos;);
-                  });
-    });
-    $(&apos;#box2&apos;).click(function() {
-        $(&apos;#box2&apos;).text(&apos;&apos;).animate({width: &apos;0&apos;}, DURATION, &apos;easeInOutCubic&apos;)
-                  .delay(PAUSE)
-                  .animate({width: &apos;300px&apos;}, DURATION, &apos;easeInOutCubic&apos;, function() {
-                      $(&apos;#box2&apos;).text(&apos;눌러보세요&apos;);
-                  });
-    });
     $(&apos;.graph&apos;).each(function() {
         var canvas = this,
             ctx = canvas.getContext( &quot;2d&quot; );
