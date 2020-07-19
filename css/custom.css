@@ -79,17 +79,14 @@ svg:not(:root).svg-inline--fa {
 .wrapper {
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 90%;
 }
 
-.page__hero--overlay .wrapper {
-    padding-left: 1em;
-    padding-right: 1em
-}
-
-@media (min-width: 80em) {
+@media (min-width: 60em) {
     .page__hero--overlay .wrapper {
-        max-width:62.5rem;
+        max-width: 58rem;
+        padding-left: 1em;
+        padding-right: 1em
     }
 }
 
