@@ -1,4 +1,215 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>https://feeva.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Aug 2020 08:30:46 GMT</lastBuildDate><item><title><![CDATA[d3로 그린 이마트 개점 애니메이션]]></title><description><![CDATA[전국 이마트 지점의 연월별 개점 현황을 지도에 애니메이션으로 표현. 
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nothing New Under the Sun]]></title><description><![CDATA[溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다]]></description><link>https://feeva.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 19 Sep 2020 14:08:36 GMT</lastBuildDate><item><title><![CDATA[스프링 부트 웹앱에 HTTPS 프록시 붙이기]]></title><description><![CDATA[스프링 부트로 웹앱을 만들 경우 기본적으로 HTTP 80 포트에서 실행되는데 웹앱 자체를 수정하지 않고 
+Node http-server 모듈을 활용하여 
+로컬 개발 환경에서 자체 서명한 TLS/SSL 인증서를 만들고 HTTPS 443 포트를 프록시로 웹앱 앞 단에 두는 방법을 알아본다.
+]]></description><link>https://feeva.github.io/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기</link><guid isPermaLink="false">https://feeva.github.io/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기</guid><pubDate>Sat, 19 Sep 2020 14:35:00 GMT</pubDate><content:encoded>&lt;p&gt;스프링 부트로 웹앱을 만들 경우 기본적으로 HTTP 80 포트에서 실행되는데 웹앱 자체를 수정하지 않고
+Node &lt;a href=&quot;https://www.npmjs.com/package/http-server&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;http-server&lt;/a&gt; 모듈을 활용하여
+로컬 개발 환경에서 자체 서명한 TLS/SSL 인증서를 만들고 HTTPS 443 포트를 프록시로 웹앱 앞 단에 두는 방법을 알아본다.&lt;/p&gt;
+&lt;p&gt;이렇게 구성하는 이유는 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;개발 환경이라도 요즘 실제 도메인을 필요로 하는 외부 API를 사용하기 위해서라든지 도메인과 HTTPS가 필요한 경우가 흔하다.&lt;/li&gt;
+&lt;li&gt;운영 환경이 그러한 경우가 많다. 스프링 부트 앱을 수정할 경우 운영 환경에서는 또 다른
+설정이 필요할 수 밖에 없고 설정 관리가 번잡해진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;일반적으로 스프링 부트 웹앱은 기본 설정에서는 그림 1과 같이 HTTP 80 포트에서만 서비스가 실행되지만
+그림 2와 같이 &lt;a href=&quot;https://www.baeldung.com/spring-boot-https-self-signed-certificate&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;별도 설정&lt;/a&gt;을 통해 HTTPS 서비스도 가능하다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 492px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 38.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAABJ0AAASdAHeZh94AAABTElEQVQY01VQyZaCMBDk/3/Ig1cvvkGZp4Iom0tYErIAYREVnRLmMFOX9EtXd1W1cbvdpJRKSi641nWhVFWVnOf3+/31ejVtAwjBVVEKLoSQSknOOd6mboxa6yzLeI620pWWAh1OYtJjeBiKEVmagS2FZCxnjGIJpkE23iMej0cQBFiptVZSQfP9HzDi+35d13LEMAz4NNI4SZPEtt3ZbPZtWVEUbbfb/X4/zXAp4oRQRj3fn8/nEDhfLrvdzrbtz3BMCATXK8u2Hdd1Y4DEh8MBXtBuuy5NU8aYZVlYejweIQs+VnRdZziOE4bhcrlEgUBRGAXhCTknYzgnBgghi8XCNE1GaeD75/MJ/vu+/83ctq3neab5hXvlQsDC8/n8mxlUCFjrFS6Ok0LvowyFiVdV1WazKcsSxfV6nZRxuWEEathB5rIoKM1AQK4fVfy5uW4yWB4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/46592c10b0c5b55681efbda17a1690c6/a3432/boot-http-https.webp 350w,
+/static/46592c10b0c5b55681efbda17a1690c6/9d6da/boot-http-https.webp 492w&quot;
+          sizes=&quot;(max-width: 492px) 100vw, 492px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/46592c10b0c5b55681efbda17a1690c6/13ae7/boot-http-https.png 350w,
+/static/46592c10b0c5b55681efbda17a1690c6/5c6e9/boot-http-https.png 492w&quot;
+          sizes=&quot;(max-width: 492px) 100vw, 492px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/46592c10b0c5b55681efbda17a1690c6/5c6e9/boot-http-https.png&quot;
+          alt=&quot;boot http https&quot;
+          title=&quot;boot http https&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;여기서는 아래 그림 3과 같이 구성하는 방법을 설명하고자 한다. 로컬 개발 환경에 스프링 부트 웹앱 앞에
+사설 TLS 인증서를 사용하는 HTTPS 프록시를 두는 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 407px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAABJ0AAASdAHeZh94AAABd0lEQVQoz1WR646CQAyFff9X8Al8AH9rYlCj4iVGYRFmYVCYGzOgqBjcy1Gyu24JSWfaTs/Xtr5e7F7XWpuY0pRzlSnGGI1oGIZa6/1+T+P4cj0j7eNpcFr4P58Gp67rsjxxxmSWHU/HNE3hxzEVQsCXSt1uVdOmKWm9dsZZcOQzIbjWWfWT2lie55zzJEkopVLKR+fzuZRSGaOLvGBctNvtzWbj+34URavVyhhTGO3tXGXyTqcznU5BgehgMPA8r3UsTMK4VFIKuXW8yWQyHFqO4wJyvV73+j0lxGKxdFxvuVyOx2PHcTKdHQ6Hbrf7kA2eOI5R73lvrutut9siz5VSCBFCkI1LazhEJQRjKBgB9GKKj2IcIAYYaGvbNh7Y7XZQlSSpH5B3QoAKln6/j3EQ4tszmwRBGEb/BlZVFZLGoxHj7HqtlNYpY1hBsx68OJvNELpcH18QkL9VNasry9KyLKgAC8BAfr/ff3c5n89xAyJKI+B8A3ht6lS8OdGoAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/721df9b1f2a2f166e1c770097a0737a1/a3432/proxied-https.webp 350w,
+/static/721df9b1f2a2f166e1c770097a0737a1/c9427/proxied-https.webp 407w&quot;
+          sizes=&quot;(max-width: 407px) 100vw, 407px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/721df9b1f2a2f166e1c770097a0737a1/13ae7/proxied-https.png 350w,
+/static/721df9b1f2a2f166e1c770097a0737a1/0ff56/proxied-https.png 407w&quot;
+          sizes=&quot;(max-width: 407px) 100vw, 407px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/721df9b1f2a2f166e1c770097a0737a1/0ff56/proxied-https.png&quot;
+          alt=&quot;proxied https&quot;
+          title=&quot;proxied https&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;운영 환경에서는 프록시로 Apache 웹서버를 두는 경우가 많지만 로컬 개발 환경에서는 Node의 http-server
+모듈을 사용하면 훨씬 간편하다. 개발 환경에서 사용할 수 있는 HTTP 서버는 이 외에도 몇 가지가 더 있지만
+Node http-server는 설치, 설정이 간편하다. &lt;/p&gt;
+&lt;h3 id=&quot;1-원하는-도메인의-tlsssl-사설-인증서-발급&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%9B%90%ED%95%98%EB%8A%94-%EB%8F%84%EB%A9%94%EC%9D%B8%EC%9D%98-tlsssl-%EC%82%AC%EC%84%A4-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EB%B0%9C%EA%B8%89&quot; aria-label=&quot;1 원하는 도메인의 tlsssl 사설 인증서 발급 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 원하는 도메인의 TLS/SSL 사설 인증서 발급&lt;/h3&gt;
+&lt;p&gt;TLS/SSL 사설 인증서 발급은 일반적으로 OpenSSL 유틸리티를 사용하는데 윈도에서는 없기 때문에 &lt;a href=&quot;https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;다른 방법으로&lt;/a&gt;
+파워셸을 사용한다든가 별도의 외부 유틸리티를 사용한다든가 여러 가지 방법이 있다. 여기서는 OpenSSL을
+사용하겠다. 요즘 개발자들은 Git을 많이 사용하는데 &lt;a href=&quot;https://git-scm.com/download/win&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;윈도용 Git&lt;/a&gt;을 설치한 경우
+Git Bash에서 OpenSSL을 실행할 수 있다.&lt;/p&gt;
+&lt;p&gt;아래와 같이 &lt;code class=&quot;language-text&quot;&gt;openssl&lt;/code&gt; 명령으로 유효기간 3650일짜리 &lt;code class=&quot;language-text&quot;&gt;cert.pem&lt;/code&gt;이라는 인증서를 만들어낸다. 인증서 정보 입력에서는 모두 엔터를
+입력해도 무방하고 &lt;strong&gt;Common Name 질문에 대해서는 원하는 도메인을 입력하도록 한다&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;
+&lt;code class=&quot;language-text&quot;&gt;$ &lt;strong&gt;openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem&lt;/strong&gt;
+Generating a RSA private key
+..........+++++
+......+++++
+writing new private key to &apos;key.pem&apos;
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter &apos;.&apos;, the field will be left blank.
+-----
+Country Name (2 letter code) [AU]: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+State or Province Name (full name) [Some-State]: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+Locality Name (eg, city) []: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+Organization Name (eg, company) [Internet Widgits Pty Ltd]: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+Organizational Unit Name (eg, section) []: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+Common Name (e.g. server FQDN or YOUR name) []: &lt;strong&gt;server.co.kr&lt;/strong&gt;&lt;kbd&gt;ENTER&lt;/kbd&gt;
+Email Address []: &lt;kbd&gt;ENTER&lt;/kbd&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;2-hosts-파일에-도메인-추가하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-hosts-%ED%8C%8C%EC%9D%BC%EC%97%90-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0&quot; aria-label=&quot;2 hosts 파일에 도메인 추가하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. hosts 파일에 도메인 추가하기&lt;/h3&gt;
+&lt;p&gt;윈도인 경우 &lt;code class=&quot;language-text&quot;&gt;Windows\system32\drivers\etc\hosts&lt;/code&gt; 파일, 유닉스 계열인 경우 &lt;code class=&quot;language-text&quot;&gt;/etc/hosts&lt;/code&gt; 파일에
+아래와 같이 사설 도메인을 추가하도록 한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;127.0.0.1   server.co.kr&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;아는 사람은 알겠지만 윈도에서는 보안상 탐색기에서 해당 파일 경로를 찾아들어갈 수 없다.
+텍스트 편집기에서 파일을 열 때 경로를 다 써주는 방법으로 열도록 한다.&lt;/p&gt;
+&lt;h3 id=&quot;3-node-http-server-구동하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-node-http-server-%EA%B5%AC%EB%8F%99%ED%95%98%EA%B8%B0&quot; aria-label=&quot;3 node http server 구동하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Node http-server 구동하기&lt;/h3&gt;
+&lt;p&gt;아직 Node를 가지고 있지 않다면 &lt;a href=&quot;https://nodejs.org/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Node 웹사이트&lt;/a&gt; 안내에 따라 설치한다.
+Node는 있으나 http-server 모듈이 없다면 아래와 같이 명령을 실행하여 모듈을 설치한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm i -g http-server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 아래와 같이 http-server를 구동한다. 앞서 만든 &lt;code class=&quot;language-text&quot;&gt;cert.pem&lt;/code&gt; 파일을 인증서로 사용하고 HTTPS 포트인 443 포트를 통해
+서비스하며 요청 받은 URL이 현재 폴더에 없는 경우 트래픽을 http&lt;span&gt;://&lt;/span&gt;localhost:8080으로 전달한다.
+아마 일반적으로 스프링 부트 웹앱을 띄웠다면 이 주소가 웹앱 주소일 것이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npx http-server -S -C cert.pem -p 443 -P http://localhost:8080&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 아래와 같이 웹서버가 구동될 것이다. 127.0.0.1 외에도 컴퓨터에서 사용하는 모든 IP에서 443 포트가
+열리는 것을 볼 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Starting up http-server, serving ./ through https
+Available on:
+  https://172.29.96.1:443
+  https://192.168.56.1:443
+  https://127.0.0.1:443
+Hit CTRL-C to stop the server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;4-웹-브라우저에서-확인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%9B%B9-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8&quot; aria-label=&quot;4 웹 브라우저에서 확인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 웹 브라우저에서 확인&lt;/h3&gt;
+&lt;p&gt;이제 브라우저 주소란에 https&lt;span&gt;://&lt;/span&gt;server.co.kr과 같이 입력하면 처음 한번은 유효하지 않은 인증서라는
+경고가 뜰 것이다. 일반적으로 “고급” 단추를 누르고 위험을 감수하고 계속 진행하겠다는 선택을 하면 되지만 이게 아니라
+HSTS 자가 서명 인증서(self signed certificate) 오류가 발생할 수 있다.&lt;/p&gt;
+&lt;p&gt;화면에서는 이를 무시하고 건너뛸 수 없게 돼 있지만 웹킷 기반의 크롬, 에지 브라우저나 파이어폭스에서는 방법이 있다.&lt;/p&gt;
+&lt;p&gt;크롬, 에지에서는 주소란에 &lt;code class=&quot;language-text&quot;&gt;chrome://net-internals/#hsts&lt;/code&gt;를 입력한다. 아래와 같은 내부 설정 화면이 열린다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 633px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAABJ0AAASdAHeZh94AAABiklEQVQoz31Si5KDIAz0/z+wN9P2Oq0KyktAUHy13lJuOtfWa1AgQJLdJJlzrffd+kfmeV6WBf/tXdYnLbPWDsMAm9/bdTXG7Pf74/cRLtaPkjnnxnFMSjL23kulGq2MtapplJRKQtX3r2niicJOSJlBFVzY1sGmbdsQemA5nU55XpRlGUJ4OE3QrtcrEKU5885bY2FmrMGHFPR9HwOqRkoJj1C7ru9D77zD8gT7nck0z9oYWAspGGNSSBsFqTAvqc1e07muwzjmRU6qilZ1zRgX3Hfdcpf04FNklOpwPCAf0zQlG9TtOcBtw/hRqpKQoijz/EIo1VrHq/W2Uar3oxCGCJdxxjmllNW1jny1iYtttPGd/x/2ssTkGy0AXal7nsC6Q0dczmdUEXQSzA1jvENcoEXzJNoPUrjqvN+GnTgrJb92u6IkYQjTNGLGGOIc4AweY+VR8RA2OQdrW4zYmA2AY5VSJBIKZRc8brgQW00yTTWrczQnISymrq4oLQiByjkrS4oGwDna9wd7O2KzwlavRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/9759a2835a3a7023724a5b4f733b33be/a3432/chrome-hsts.webp 350w,
+/static/9759a2835a3a7023724a5b4f733b33be/5c300/chrome-hsts.webp 633w&quot;
+          sizes=&quot;(max-width: 633px) 100vw, 633px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/9759a2835a3a7023724a5b4f733b33be/13ae7/chrome-hsts.png 350w,
+/static/9759a2835a3a7023724a5b4f733b33be/bce72/chrome-hsts.png 633w&quot;
+          sizes=&quot;(max-width: 633px) 100vw, 633px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/9759a2835a3a7023724a5b4f733b33be/bce72/chrome-hsts.png&quot;
+          alt=&quot;chrome hsts&quot;
+          title=&quot;chrome hsts&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;이 화면에서 &lt;strong&gt;Query HSTS/PKP domain&lt;/strong&gt;을 통해 내 도메인이 차단되었는지를, &lt;strong&gt;Delete domain security policies&lt;/strong&gt;를
+통해 차단된 도메인을 크롬에서 삭제할 수 있다. 아래와 같이 원하는 도메인을 입력하고 &lt;strong&gt;Delete&lt;/strong&gt; 단추를 누른다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 793px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.85714285714286%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAIAAAAcOLh5AAAACXBIWXMAABJ0AAASdAHeZh94AAAAb0lEQVQI112NOxLDIAxEuf/xnM42QQVKpx+0CAJJ7CJvNNrVbqGQUgKAZ4z7fkzv7r13v2iteVv6l3+rQEQioiLMYqrMRGu4FNOVq6nN0qzUWueWG+awbY9JjBERc84A6TwPfOEYY74aH27zO6/kDaX7qir7l8h5AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/0209acb5ee669a73c8b64dc157e32614/a3432/chrome-hsts-delete.webp 350w,
+/static/0209acb5ee669a73c8b64dc157e32614/426ac/chrome-hsts-delete.webp 700w,
+/static/0209acb5ee669a73c8b64dc157e32614/51ddc/chrome-hsts-delete.webp 793w&quot;
+          sizes=&quot;(max-width: 793px) 100vw, 793px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/0209acb5ee669a73c8b64dc157e32614/13ae7/chrome-hsts-delete.png 350w,
+/static/0209acb5ee669a73c8b64dc157e32614/8c557/chrome-hsts-delete.png 700w,
+/static/0209acb5ee669a73c8b64dc157e32614/73fd0/chrome-hsts-delete.png 793w&quot;
+          sizes=&quot;(max-width: 793px) 100vw, 793px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/0209acb5ee669a73c8b64dc157e32614/73fd0/chrome-hsts-delete.png&quot;
+          alt=&quot;chrome hsts delete&quot;
+          title=&quot;chrome hsts delete&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;기타-이야기-거리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B8%B0%ED%83%80-%EC%9D%B4%EC%95%BC%EA%B8%B0-%EA%B1%B0%EB%A6%AC&quot; aria-label=&quot;기타 이야기 거리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;기타 이야기 거리&lt;/h3&gt;
+&lt;p&gt;이상으로 설명한 방법은 로컬 개발 환경에서도 실운영 환경처럼 도메인 주소 기반으로 웹 사이트를 개발할 수 있으며
+Apache를 설정한다거나 외부 프록시를 두지 않아도 된다는 점이 장점이라 할 수 있다. 좀더 본격적으로
+하자면 가상 머신을 띄워 프록시와 웹앱 서버를 분리하는 방법도 있을 수 있으나 대부분은 이런 번거로운 방법을
+쓰고 싶지 않을 것이다.&lt;/p&gt;
+&lt;p&gt;보안상 도메인이 필요한 API라든가 URL 리디렉션, URL 검증 등 다양한 경우에 대해 개발 환경과 운영 환경을
+일치시킬 수 있다. 다만 Java 서블릿 API에서 &lt;code class=&quot;language-text&quot;&gt;request.getRequestURL()&lt;/code&gt; 등 몇 가지 API는 원하지 않은 결과가
+나오므로 주의해야 한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[d3로 그린 이마트 개점 애니메이션]]></title><description><![CDATA[전국 이마트 지점의 연월별 개점 현황을 지도에 애니메이션으로 표현. 
 이마트 신촌점이 개점하면서 오랜만의 신규 개점이 뉴스로 보도되었다. 연월 시간에 따라 이마트 점포가
 개점되는 현황을 d3 자바스크립트 라이브러리 등을 사용하여 지도에 표현한다.
 ]]></description><link>https://feeva.github.io/posts/d3로-그린-이마트-개점-애니메이션</link><guid isPermaLink="false">https://feeva.github.io/posts/d3로-그린-이마트-개점-애니메이션</guid><pubDate>Thu, 30 Jul 2020 18:03:00 GMT</pubDate><content:encoded>&lt;p&gt;최근 이마트가 서울 신촌점을 개점하면서 화제로 떠올랐었다. 오프라인 마트 규모가 정체되면서 신규 개점이
