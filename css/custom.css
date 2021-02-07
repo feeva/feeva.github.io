@@ -81,14 +81,17 @@ svg:not(:root).svg-inline--fa {
     font-size: 22px;
 }
 
-.page__hero--overlay::after {
-    clear: both;
-    content: "";
-    display: table
+.page__hero--overlay::after { clear: both; content: ""; display: table }
+.page__hero--overlay a { color: #fff; }
+.page__hero--overlay .search { position: absolute; right: 1em; bottom: .5em; }
+.page__hero--overlay input {
+    background-color: white; color: #404040; 
+    padding: .6em .7em; padding-left: 32px; border: solid 1px #bbb; border-radius: 3px;
 }
-
-.page__hero--overlay a {
-    color: #fff
+.page__hero--overlay input:focus { border-color: #6bf; outline: 0; }
+.page__hero--overlay svg {
+    left: .4em; color: #bbb; vertical-align: bottom; position: absolute;
+    pointer-events: none; margin-top: 14px; 
 }
 
 .wrapper {
