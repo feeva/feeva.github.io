@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 배열 길이 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="자바스크립트 배열 길이는 동적으로 변한다. 그렇다면 배열 변수 선언이나 요소 정의, 삭제 등의 조작에 따라 그 값이 어떻게 달라질까? 다음은 구글 크롬 브라우저의 콘솔 창에서 배열을 선언하고 요소를 추가하는 과정을 보인 것이다. 다른 브라우저에서도 유사한 결과를 볼 수 있다.">
+    <link rel="canonical" href="/posts/자바스크립트-배열-길이/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="자바스크립트 배열 길이">
+    <meta property="og:url" content="/posts/자바스크립트-배열-길이/">
+    <meta property="og:description" content="자바스크립트 배열 길이는 동적으로 변한다. 그렇다면 배열 변수 선언이나 요소 정의, 삭제 등의 조작에 따라 그 값이 어떻게 달라질까? 다음은 구글 크롬 브라우저의 콘솔 창에서 배열을 선언하고 요소를 추가하는 과정을 보인 것이다. 다른 브라우저에서도 유사한 결과를 볼 수 있다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>자바스크립트 배열 길이</h1>
+
+  <div class="post-content">
+    <p>자바스크립트 배열 길이는 동적으로 변한다. 그렇다면 배열 변수 선언이나 요소 정의, 삭제 등의 조작에 따라 그 값이 어떻게 달라질까? 다음은 구글 크롬 브라우저의 콘솔 창에서 배열을 선언하고 요소를 추가하는 과정을 보인 것이다. 다른 브라우저에서도 유사한 결과를 볼 수 있다.</p>
+<pre class="language-js"><code class="language-js"><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> x<span class="token punctuation">.</span>length<span class="token punctuation">;</span><br><span class="token number">0</span><br><span class="token operator">></span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> x<span class="token punctuation">.</span>length<span class="token punctuation">;</span><br><span class="token number">11</span><br><span class="token operator">></span> <span class="token keyword">typeof</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><br><span class="token string">"undefined"</span><br><span class="token operator">></span> <span class="token keyword">typeof</span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><br><span class="token string">"number"</span><br><span class="token operator">></span> x<br><span class="token punctuation">[</span><span class="token keyword">undefined</span> × <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">]</span></code></pre>
+<!--more-->
+<p>위에서 보면 x라는 배열 변수를 선언하고 2행에서 10번 요소에 값을 설정하자 그 길이가 0에서 11로 바뀌는 것을 볼 수 있다. (그런데 <code>x[0]</code> ~ <code>x[9]</code>까지는 <code>&quot;undefined&quot;</code>이기 때문에, 즉 존재하지 않기 때문에 메모리를 차지하지 않는다. 자바스크립트 배열 길이는 열 한개지만 메모리는 한 개 분량만 차지하는 것이다.)</p>
+<p>배열 요소를 삭제해보자.</p>
+<pre class="language-js"><code class="language-js"><span class="token operator">></span> <span class="token keyword">delete</span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><br><span class="token boolean">true</span><br><span class="token operator">></span> x<br><span class="token punctuation">[</span><span class="token keyword">undefined</span> × <span class="token number">11</span><span class="token punctuation">]</span><br><span class="token operator">></span> x<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><br><span class="token punctuation">[</span><span class="token keyword">undefined</span> × <span class="token number">1</span><span class="token punctuation">]</span><br><span class="token operator">></span> x<br><span class="token punctuation">[</span><span class="token keyword">undefined</span> × <span class="token number">10</span><span class="token punctuation">]</span></code></pre>
+<p><code>delete</code>로 배열 요소를 삭제할 때는 값만 사라지고 배열 길이가 줄어들지 않는 것을 볼 수 있다. 그런데 5행에서 <code>splice</code> 함수로 배열 요소를 잘라내면 배열 길이가 줄어든다. 뭔가 예상과는 다른가?</p>
+<p>결론부터 말하자면 JavaScript 배열은 말만 배열일 뿐 실제로는 객체와 동일하게 동작하고 배열 길이를 나타내는 <code>length</code> 속성만 하나 더 관리되는 것이기 때문인 것이다. <code>delete</code>로 10번 요소는 완전히 사라졌지만 <code>length</code> 값을 별도로 관리하기 때문에 요소 개수가 여전히 11인 것처럼 나온 것이고 <code>splice</code> 같은 배열 함수를 사용하자 <code>length</code> 값이 변하는 것이다.</p>
+<p>배열을 조작할 때 배열 색인은 실제로는 객체의 속성과 똑같은 역할이다. <code>for</code> 문은 객체의 속성 키를 모두 뽑아낼 수 있다. 배열과 객체를 비슷하게 선언한 후 속성 값을 확인해보자.</p>
+<pre class="language-js"><code class="language-js"><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span><br><span class="token number">123</span><br><span class="token operator">></span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><br><span class="token number">123</span><br><span class="token operator">></span> x<span class="token punctuation">[</span><span class="token string">'10'</span><span class="token punctuation">]</span><br><span class="token number">123</span><br><span class="token operator">></span> s <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> x<span class="token punctuation">)</span> s <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> x<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">;</span> s<span class="token punctuation">;</span><br>"<span class="token number">10</span> <span class="token operator">=</span> <span class="token number">123</span><br>"<br><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">}</span><span class="token punctuation">;</span><br>Object <span class="token punctuation">{</span><span class="token number">10</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">}</span><br><span class="token operator">></span> s <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> x<span class="token punctuation">)</span> s <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> x<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">;</span> s<span class="token punctuation">;</span><br>"<span class="token number">10</span> <span class="token operator">=</span> <span class="token number">123</span><br>"<br><span class="token operator">></span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><br><span class="token number">123</span><br><span class="token operator">></span> x<span class="token punctuation">[</span><span class="token string">'10'</span><span class="token punctuation">]</span><br><span class="token number">123</span></code></pre>
+<p>이상에서 배열과 객체는 선언하는 방법은 다르지만 실제 데이터는 똑같이 들어있고 똑같이 액세스할 수 있음을 알 수 있다. 배열에서 <code>x[10] = 123</code>이라고 값을 넣는 것은 실제로는 객체에 '10’이라는 속성을 주는 것과 같은 것이다. 즉, JavaScript 배열은 다른 언어에서 일반적으로 생각하듯 연속된 메모리를 할당한 후 그 메모리의 첫번째 칸에는 뭘 넣고 두번째 칸에는 뭘 넣고… 이런 식이 아니라 배열 요소마다 따로따로 메모리를 할당하여 값을 넣는 방식이라 할 수 있다.</p>
+<p>배열과 객체는 결국 같은 방식으로 조작할 수 있으며 동작 방식 또한 전혀 차이가 없다고 생각하면 된다.</p>
+<pre class="language-js"><code class="language-js"><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> x<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'변수'</span><span class="token punctuation">;</span><br><span class="token string">"변수"</span><br><span class="token operator">></span> s <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> x<span class="token punctuation">)</span> s <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> x<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">;</span> s<span class="token punctuation">;</span><br>"<span class="token number">10</span> <span class="token operator">=</span> <span class="token number">123</span><br>name <span class="token operator">=</span> 변수<br>"<br><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">'변수'</span><span class="token punctuation">}</span><span class="token punctuation">;</span><br>Object <span class="token punctuation">{</span><span class="token number">10</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"변수"</span><span class="token punctuation">}</span><br><span class="token operator">></span> s <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> x<span class="token punctuation">)</span> s <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> x<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">;</span> s<span class="token punctuation">;</span><br>"<span class="token number">10</span> <span class="token operator">=</span> <span class="token number">123</span><br>name <span class="token operator">=</span> 변수<br>"</code></pre>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-03-24T15:09:20.000Z">2013. 3. 25.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/배열">배열</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/03/%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8-%eb%b0%b0%ec%97%b4-%ea%b8%b8%ec%9d%b4/" || location.origin + '/posts/자바스크립트-배열-길이/';
+    this.page.identifier = '자바스크립트-배열-길이';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

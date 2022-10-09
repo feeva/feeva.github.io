@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스프링 부트 + 리액트 개발 셋업 2018 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="오늘 오랜만에 올리는 글은 스프링 부트 + 리액트 개발을 2018년 현재 시점의 도구들로 셋업하는 방법에 대해 써보고자 한다. 아직까지 상용 프로젝트에서는 두 가지 조합을 본 적이 없지만 현재까지 추세나 장점을 볼 때 앞으로 대세가 될 것이라 확신한다.">
+    <link rel="canonical" href="/posts/스프링-부트-리액트-개발-셋업-2018/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="스프링 부트 + 리액트 개발 셋업 2018">
+    <meta property="og:url" content="/posts/스프링-부트-리액트-개발-셋업-2018/">
+    <meta property="og:description" content="오늘 오랜만에 올리는 글은 스프링 부트 + 리액트 개발을 2018년 현재 시점의 도구들로 셋업하는 방법에 대해 써보고자 한다. 아직까지 상용 프로젝트에서는 두 가지 조합을 본 적이 없지만 현재까지 추세나 장점을 볼 때 앞으로 대세가 될 것이라 확신한다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>스프링 부트 + 리액트 개발 셋업 2018</h1>
+
+  <div class="post-content">
+    <p>오늘 오랜만에 올리는 글은 <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">스프링 부트</a> + <a href="https://reactjs.org/" target="_blank" rel="noopener">리액트</a> 개발을 2018년 현재 시점의 도구들로 셋업하는 방법에 대해 써보고자 한다. 아직까지 상용 프로젝트에서는 두 가지 조합을 본 적이 없지만 현재까지 추세나 장점을 볼 때 앞으로 대세가 될 것이라 확신한다.</p>
+<!--more-->
+<p>우리나라 스프링 기반의 상용 웹 프로젝트를 보면 UI는 JSP를 기본으로 jQuery로 DOM 조작을 직접하거나 X-Platform이나 Nexacro 같은 상용 프레임웍을 사용하는 경우가 많은데 React는 학습이 쉽고 UI 컴포넌트화, 재사용성이 좋고 개발자 층이 두터운 등 다양한 이유로 UI 프레임웍의 대표 주자가 되고 있다.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>React를 추천하기도 하고 이미 대세가 된 또 한 가지 큰 이유는 웹 아키텍처의 변화다. 웹에서 클라이언트가 갈수록 복잡한 기능을 담당하기 때문에 시스템 구조도 그에 맞게 서버측은 API 역할만 담당하고 사용자 업무 로직 상당 부분을 클라이언트에서 처리하는 경우가 많아졌다는 것이다. Eclipse에서 JSP를 코딩하던 방식으로는 이런 복잡한 UI나 업무 처리가 쉽지 않다. Angular를 포함한 여러 UI 프레임웍은 이런 환경에서 개발자에게 인기가 많아지고 있다.</p>
+<p>이 글은 스프링 부트, 리액트 각각에 대한 소개글이 아니므로 각각을 공부하려는 경우는 별도 자료를 찾아보도록 한다.</p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<h2>준비</h2>
+<p>내가 권장하는 스프링 부트 + 리액트 개발 환경의 도구들은 다음과 같다. 아직 설치 안했다면 링크를 눌러 하나씩 설치해보도록 한다.</p>
+<ul>
+    <li><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">Visual Studio Code</a> - "뭐라구요! 아직까지 Visual Studio Code를 플레이해본 적이 없다구요? 농담이지요?" &#x1f604;&#x1f601; 이미 많은 사람이 텍스트 에디터로서도 Visual Studio Code를 사용하고 있을 것이다. 워낙 기능이 커지고 있어서 이제는 Eclipse를 대체할 IDE로 사용할 수 있을 정도다. 특히 JavaScript 개발에 있어서의 기능은 다른 어떤 도구들도 따라오지 못할 정도가 되고 있어서 VSC 사용을 강력 권장한다.</li>
+    <li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js</a> - 이제 JavaScript 개발에 있어서 필수도 아니고 기본 도구라고 할 수 있을 정도로 일반화가 된 것 같다. 웹 앱을 개발하더라도 JavaScript를 사용한다면 Node.js를 설치하는 것이 점점 더 편한 시대가 되었다.</li>
+    <li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">JDK</a> - 자바 개발 환경을 셋업하는 데에 당연히 필요한 항목이다. 그런데 버전은 이제 8 이상이어야 한다. 이미 Oracle에서는 10을 대표 버전으로 내세우고 있다.</li>
+</ul>
+<h2>Visual Studio Code 확장</h2>
+<p>비주얼 스투디오 코드의 기능을 확장하는 프로그램이 상당히 많다. 여기서는 다음 두 가지를 설치하는 것이 좋다. 비주얼 스투디오 코드에서 <code>ctrl-shift-x</code>를 누르거나 사이드바에서 확장 아이콘을 누른 후 검색란에서 검색하여 설치한다.</p>
+<ul>
+<li>Java Extension Pack (Microsoft) - Java 언어 지원 기능(Eclipse 도구 활용), 디버거, 테스트 실행, Maven 프로젝트 관리 등의 확장을 패키징한 것이다.</li>
+<li>Spring Boot Extension Pack (Pivotal) - Spring 프레임웍에 적용할 수 있는 몇 가지 유용한 기능이 들어있다.</li>
+</ul>
+<p>위 확장을 설치했으면 JDK 위치를 알려줘야 한다. <code>ctrl-,</code>를 누르거나 메뉴에서 기본 설정 &gt; 설정으로 들어간 후 jdk를 검색하고 편집 기능을 통해 사용자 설정에 <code>java.home</code> 값을 넣도록 한다.</p>
+<p><img src="../../static/uploads/2018/09/vcs-jdk-setting.png" alt=""></p>
+<p><img src="../../static/uploads/2018/09/vcs-jdk-setting2.png" alt=""></p>
+<p>마찬가지 방법으로 <code>spring-boot.ls.java.home</code> 설정에 대해서도 JDK 경로를 설정해주도록 한다.</p>
+<h2>Spring Boot 웹 프로젝트 생성</h2>
+<p>도구가 준비됐으면 프로젝트부터 생성해보자. Visual Studio Code에서 <code>ctrl-shift-p</code>를 누르거나 보기 &gt; 명령 팰릿을 선택하여 spring을 검색하면 나오는 <em>Spring Initalizr: Generate Maven Project Spring</em>을 선택한다. 연달아 나오는 질문에서 언어로 Java를 선택하고 Group Id는 여기서는 myweb, Artifact Id는 test로 하겠다. 또한 Spring Boot 버전은 최신인 2.0.5를 선택하고 의존성은 필요에 따라 선택하면 된다. 기본적으로 다음 두 가지는 포함하도록 한다.</p>
+<ul>
+<li>DevTools - 클래스 소스 변경시 재시작 등의 기능이 있다.</li>
+<li>Web - Tomcat을 기반으로 서블릿 API를 사용할 수 있는 프로젝트가 된다.</li>
+</ul>
+<p>이제 폴더 선택 대화창이 나타나면 임의로 적당한 위치에 폴더를 만들고 선택한다. 그 다음 폴더를 열겠냐는 팝업에서 열기를 선택하면 프로젝트가 열리면서 준비 과정에 약간 시간이 지나간다.</p>
+<p>만들어진 폴더 구조는 Maven에 의해 만들어진 것이므로 Eclipse에서와 거의 동일하다. <code>/src/main/webapp</code> 폴더만 직접 만들어주도록 한다.</p>
+<p>개인적으로 VSC Java 도구에서 한 가지 불만은 Ecipse처럼 자바 클래스 트리를 플랫하게 보여주지 않는다는 것이다. 나는 트리 구조보다 플랫한 목록형 나열이 훨씬 보기 좋다고 생각한다.</p>
+<p>프로젝트에서 JSP를 사용하려면 라이브러리 하나를 추가해야 한다. pom.xml 파일을 열고 <code>&lt;dependencies&gt;</code> 섹션에 다음을 추가한다.</p>
+<pre class="language-xml"><code class="language-xml">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.tomcat.embed<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>tomcat-embed-jasper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>참고로 JSTL을 사용하려면 다음 의존성도 필요하다.</p>
+<pre class="language-xml"><code class="language-xml">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jstl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>스프링 부트에서 프로젝트 설정은 어노테이션이나 <code>src/main/resources/application.properties</code>로 처리되는데 개인적으로 properties 파일은 한글을 쓰기도 어렵고 설정 값을 구별해 보기도 불편해서 yaml 파일로 바꿀 것을 권장한다. <code>application.properties</code> 파일을 삭제하고 아래와 같이 <code>application.yml</code> 파일을 추가한다.</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span><br>  <span class="token key atrule">http</span><span class="token punctuation">:</span><br>    <span class="token key atrule">encoding</span><span class="token punctuation">:</span><br>      <span class="token key atrule">charset</span><span class="token punctuation">:</span>    UTF<span class="token punctuation">-</span><span class="token number">8</span><br>  <span class="token key atrule">mvc</span><span class="token punctuation">:</span><br>    <span class="token key atrule">view</span><span class="token punctuation">:</span><br>      <span class="token key atrule">prefix</span><span class="token punctuation">:</span>     /jsp/<br>      <span class="token key atrule">suffix</span><span class="token punctuation">:</span>     .jsp<br><span class="token key atrule">server</span><span class="token punctuation">:</span><br>  <span class="token key atrule">tomcat</span><span class="token punctuation">:</span><br>    <span class="token key atrule">uri-encoding</span><span class="token punctuation">:</span> UTF<span class="token punctuation">-</span><span class="token number">8</span></code></pre>
+<p>현 시점에서 웹 프로젝트를 실행하면 정상 구동돼야 한다. <code>ctrl+shift+` </code> 또는 메뉴에서 터미널 &gt; 새 터미널을 선택한 후 <code>mvnw spring-boot:run</code> 또는 <code>mvnw test</code>를 실행하면 오류 없이 실행돼야 한다. 아래는 구동 과정의 콘솔 출력 일부다.</p>
+<!-- /wp:html -->
+<p><img src="../../static/uploads/2018/09/vcs-spring-boot-1.png" alt="윈도 명령 프롬프트에서는 기본적으로 색이 나오지 않는데 위 설정에 spring.output.ansi.enabled 값을 always로 설정하면 나온다."></p>
+<h2>React 개발 환경 셋업</h2>
+<p>이번에는 React 환경을 셋업해보자. 터미널을 하나 더 연 후 <code>npm init</code>을 실행하여 앞서 만든 프로젝트를 Node.js 프로젝트로 만든다(결과적으로 package.json 파일이 생기는 것 뿐이다). 모든 질문에 엔터만 눌러도 무방하다.</p>
+<p>다음으로 아래와 같이 입력하여 React 개발을 위한 의존 라이브러리를 설치한다.</p>
+<pre><code>d:\myweb.test&gt;npm i react react-dom
+
+d:\myweb.test&gt;npm i @babel/core @babel/preset-env @babel/preset-react babel-loader css-loader style-loader webpack webpack-cli -D
+</code></pre>
+<p>설치 결과 package.json 파일에 아래 내용과 같이 의존성이 추가됐을 것이다.</p>
+<p><img src="../../static/uploads/2018/09/vcs-package-json.png" alt=""></p>
+<p>여기서 한 가지, React 앱을 개발할 때 사실 <a href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener">create-react-app</a>이라는 훌륭한 도구를 사용할 수 있는데 이 절 이하에서 복잡하게 수동으로 설정하는 이유는 상용으로 개발하는 Java 웹 프로젝트 대부분은 다수의 웹페이지로 구성되는데 반해 create-react-app은 단일 페이지 앱(SPA)만 기본적으로 염두에 두었다는 점 때문이다. 상용 프로젝트에서도 조건만 맞으면 SPA 방식으로 개발하는 것도 문제가 없겠으나 좀더 복잡한 시나리오나 조건을 고려하여 이렇게 다수 웹 페이지인 경우로 설정해보고자 한다.</p>
+<h2>webpack 설정</h2>
+<p>다음으로는 webpack 설정을 추가한다. webpack을 통해 React 개발시 JavaScript의 최근 언어 기능을 사용할 수 있고 JSP에 포함할 .js 파일들을 만들 수 있다. 이 과정은 자동화가 안되므로 그냥 아래 내용을 프로젝트 루트 경로에 <code>webpack.config.js</code>라는 파일로 만들도록 한다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">context</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src/main/jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token string">'./MainPage.jsx'</span><span class="token punctuation">,</span><br>        <span class="token literal-property property">page1</span><span class="token operator">:</span> <span class="token string">'./Page1Page.jsx'</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">devtool</span><span class="token operator">:</span> <span class="token string">'sourcemaps'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname<span class="token punctuation">,</span><br>        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'./src/main/webapp/js/react/[name].bundle.js'</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span><br>            <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.jsx?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>            <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(node_modules)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>            <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>                <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span><br>                <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>                    <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'@babel/preset-env'</span><span class="token punctuation">,</span> <span class="token string">'@babel/preset-react'</span> <span class="token punctuation">]</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><br>            <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>            <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span> <span class="token punctuation">]</span><br>        <span class="token punctuation">}</span> <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>내용은 다음과 같다.</p>
+<ul>
+<li>React 소스 경로는 <code>src/main/jsx</code>로 한다</li>
+<li>(현재로서는) MainPage.jsx, Page1Page.jsx 두 스크립트를 각각 빌드한다</li>
+<li>빌드한 결과 js 파일들은 <code>src/main/webapp/js/react</code> 아래에 <code>[웹페이지 이름].bundle.js</code> 파일로 놓는다</li>
+<li>.jsx 파일은 ES6 등의 JavaScript 구문을 사용하며 React 스크립트다</li>
+<li>.css 파일은 웹페이지내에 포함한다</li>
+</ul>
+<h2>서버 코드 개발</h2>
+<p>이제 코딩에 들어갈 수 있게 됐다. VSC에서 임의 패키지 경로에 <code>MyController</code>라는 클래스 파일을 만들어보자. 내 계획은 일단 Java단에서 처리할 로직은 없으므로 다수의 URL을 한 매핑으로 처리하되 React 스크립트만 구별해서 JSP가 로딩하게 하는 것이다.</p>
+<p>코드를 입력할 때 Eclipse에서와 마찬가지로 내용 도움(content assist)이 잘 작동하므로 Java 코딩 작성도 손쉽게 할 수 있다. 혹시 import가 안된 클래스나 annotation이 있으면 <code>alt-shift-o</code>를 눌러 자동으로 찾게 한다.</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">myweb<span class="token punctuation">.</span>test</span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Controller</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>ui<span class="token punctuation">.</span></span><span class="token class-name">Model</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">GetMapping</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PathVariable</span></span><span class="token punctuation">;</span><br><br><span class="token annotation punctuation">@Controller</span><br><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyController</span> <span class="token punctuation">{</span><br><br>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/{name}.html"</span><span class="token punctuation">)</span><br>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">page</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token class-name">Model</span> model<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        model<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"pageName"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> <span class="token string">"page"</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br><span class="token punctuation">}</span></code></pre>
+<p>그리고 이번엔 <code>src/main/webapp/jsp</code> 경로 아래에 <code>page.jsp</code>라는 파일을 만든다. webpack에서 만들어낼 <code>[페이지 이름].bundle.js</code>에 해당하는 스크립트를 불러들이는 부분이 들어가 있다. 또한 React의 최상위 요소가 되는 div도 들어가 있다.</p>
+<pre class="language-html"><code class="language-html">&lt;%@ page language="java" contentType="text/html; charset=utf-8"<br>%><br><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>${pageName}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>root<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/react/${pageName}.bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>이번엔 <code>src/main/webapp/css/custom.css</code> 파일을 만든다. webpack에서 CSS도 로딩되게 설정했으므로 나중에 이 파일이 웹페이지에 잘 포함됐는지 확인해볼 수 있다.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">.main</span> <span class="token punctuation">{</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 24px<span class="token punctuation">;</span> <span class="token property">border-bottom</span><span class="token punctuation">:</span> solid 1px black<span class="token punctuation">;</span> <span class="token punctuation">}</span><br><span class="token selector">.page1</span> <span class="token punctuation">{</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span> <span class="token property">background-color</span><span class="token punctuation">:</span> yellow<span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<h2> 클라이언트 코드 개발</h2>
+<p>이제 JSX 파일을 작성할 차례다. <code>src/main/jsx</code> 폴더 아래에 아래와 같이 별 의미는 없지만 내용을 구별할 수 있게 자바스크립트 클래스를 작성한다. css 파일을 import하는 게 보이는데 개인적으로 CSS 파일은 JavaScript 위에서 import하는 걸 선호한다.</p>
+<p><code>MainPage.jsx</code>:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'../webapp/css/custom.css'</span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">MainPage</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br><br>    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"main"</span><span class="token operator">></span>메인 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br><span class="token punctuation">}</span><br><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>MainPage<span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>Page1Page.jsx</code>:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'../webapp/css/custom.css'</span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">Page1Page</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br><br>    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"page1"</span><span class="token operator">></span>Page1 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br><span class="token punctuation">}</span><br><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Page1Page<span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2>클라이언트 스크립트 빌드</h2>
+<p>webpack을 실행하면 바로 클라이언트 스크립트가 빌드되지만 JSX 파일 수정시에 자동으로 지속적으로 빌드되는 것이 필요하다. 이를 위해 webpack에는 watch 명령이 준비돼 있다. VSC 터미널에서 아래 명령을 실행해준다. 개발시에는 -d 옵션을 붙이고 운영 환경에서는 -p 옵션으로 바꾸도록 한다.</p>
+<pre><code>node_modules\.bin\webpack --watch -d
+</code></pre>
+<p><code>webpack.config.js</code>에 설정한 대로 정상 빌드되어 <code>src/main/webapp/js/react</code> 아래에 <code>main.bundle.js</code>, <code>page1.bundle.js</code>가 생겼다면 성공이다.</p>
+<p>개발할 때마다 명령어를 복잡하게 입력하기는 불편하므로 <code>package.json</code>의 scripts 항목에 아래와 같이 자주 사용하는 명령을 넣어둔다. 터미널에서 <code>npm start</code>, <code>npm run watch</code>로 간단하게 실행할 수 있다.</p>
+<pre class="language-javascript"><code class="language-javascript">  <span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"start"</span><span class="token operator">:</span> <span class="token string">"set JAVA_HOME=d:\\java\\jdk1.8&amp;&amp;mvnw spring-boot:run"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"watch"</span><span class="token operator">:</span> <span class="token string">"node_modules\\.bin\\webpack --watch -d"</span><span class="token punctuation">,</span></code></pre>
+<h2>테스트 및 맺음말</h2>
+<p>자 이제 웹 브라우저에서 웹페이지를 열어보자. 모두 이상 없이 구성됐고 <code>mvnw spring-boot:run</code> 명령으로 Spring Boot가 정상 구동되었다면 <code>http://localhost:8080/main.html</code>, <code>http://localhost:8080/page1.html</code>을 열었을 때 각각 맞는 페이지 내용이 스타일을 설정한 대로 표시돼야 한다.</p>
+<p>결과는 아주 간단한 웹페이지지만 Eclipse를 대체하면서도 Java와 JavaScript 개발을 모두 편리하게 할 수 있는 개발 환경을 구성해봤다. 앞으로 React를 사용할 때 이 작은 글이 조금이나마 도움이 되길 바라본다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2018-09-14T08:54:45.000Z">2018. 9. 14.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/스프링-부트">스프링 부트</a></li><li><a href="/tags/spring-boot">Spring Boot</a></li><li><a href="/tags/리액트">리액트</a></li><li><a href="/tags/react">React</a></li><li><a href="/tags/jsp">JSP</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2018/09/%ec%8a%a4%ed%94%84%eb%a7%81-%eb%b6%80%ed%8a%b8-%eb%a6%ac%ec%95%a1%ed%8a%b8-%ea%b0%9c%eb%b0%9c-%ec%85%8b%ec%97%85-2018/" || location.origin + '/posts/스프링-부트-리액트-개발-셋업-2018/';
+    this.page.identifier = '스프링-부트-리액트-개발-셋업-2018';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

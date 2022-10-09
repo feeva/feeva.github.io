@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지의 가로세로비를 유지하면서 틀 안에 맞추려면 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.">
+    <link rel="canonical" href="/posts/이미지의-가로세로비를-유지하면서-틀-안에-맞추려/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="이미지의 가로세로비를 유지하면서 틀 안에 맞추려면">
+    <meta property="og:url" content="/posts/이미지의-가로세로비를-유지하면서-틀-안에-맞추려/">
+    <meta property="og:description" content="웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>이미지의 가로세로비를 유지하면서 틀 안에 맞추려면</h1>
+
+  <div class="post-content">
+    <p>웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.</p>
+<!--more-->
+<p>(2018년 편집: 현재는 IE를 제외하고 대부분의 브라우저가 CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" target="_blank" rel="noopener">object-fit</a>, object-position 속성을 지원하므로 IE를 무시한다면 아래와 같은 과정 없이 CSS 한 줄로 간단히 이미지 맞춤을 조절할 수 있다.)</p>
+<p><img src="../../static/uploads/2014/02/aspect_wrong.png" alt="우리의 영웅 김연아를 이렇게 만들다니..."></p>
+<p>위 그림은 신문사 사이트에서 갈무리한 것인데 같은 개발자 입장에서 미안하지만 개발자가 좀 덜 신경을 쓴 게 분명하다. 원래 이미지는 다음처럼 세로가 긴 이미지였다.</p>
+<p><img src="../../static/uploads/2014/02/aspect_good.jpg" alt="원래는 이렇게 예쁨"></p>
+<p>사실 어렵지 않은 것인데 오늘은 웹페이지에서 이미지의 가로세로비를 유지하면서 틀 안에 맞추려면 어떻게 해야 하는지 알아보겠다.</p>
+<p>먼저 기본 개념을 말하자면 다음과 같은 것을 생각해볼 수 있다.</p>
+<ul>
+<li>이미지가 로딩되면 자바스크립트로 이미지 본래의 가로, 세로 크기를 구할 수 있다</li>
+<li>CSS의 <code>width</code>, <code>height</code> 속성 중 한쪽만 수치 값을 설정하고 다른 쪽은 <code>auto</code>로 하면 비율이 유지된다</li>
+<li>CSS의 <code>overflow</code> 속성을 사용해 HTML 요소의 경계 바깥으로 벗어나는 컨텐트를 숨길 수 있다</li>
+<li>이미지를 틀에 맞춘다 함은 두 가지 경우가 있다. 틀을 이미지의 뷰포트로서 처리하는 경우와 액자처럼 이미지를 틀 안에 맞춰 넣는 것 같은 경우다.</li>
+</ul>
+<p>위에서 네번째 개념은 다음과 같은 경우를 말한다. 예시는 4:3 크기의 틀을 가정했다.</p>
+<ol>
+<li>이미지를 맞출 틀 안에 이미지의 <strong>가로, 세로 중 짧은 쪽을 맞춰서</strong> 틀을 벗어나게 하는 경우. 틀을 벗어나는 이미지 부분은 잘라낸다(숨긴다).
+<img src="../../static/uploads/2014/02/aspect_type1.png" alt="틀이 이미지의 뷰포트처럼 적용되는 경우"></li>
+<li>이미지를 맞출 틀 안에 이미지의 <strong>가로, 세로 중 긴 쪽을 맞춰서</strong> 틀을 벗어나지 않게 하는 경우. 대신 틀과 이미지의 비율이 안맞으면 여백이 생긴다.
+<img src="../../static/uploads/2014/02/aspect_type2.png" alt="이미지를 액자 안에 넣은 것처럼 맞추는 경우"></li>
+</ol>
+<p>여기서는 1번을 해보려고 한다. 2번은 1번에 비해 이미지가 작아지고 여백이 생겨 보기가 안 좋다고 생각한다.</p>
+<p>기본적인 HTML 구조는 <code>&lt;div&gt;</code>로 <code>&lt;img&gt;</code>를 감싸는 형태가 된다. <code>&lt;div&gt;</code>는 원하는 가로세로비를 적용하여 크기를 설정해놓고 <code>overflow: hidden</code>을 주면 되고 <code>&lt;img&gt;</code>는 위 1번이나 2번 중 원하는 방식에 따라 크기와 위치를 지정해주면 된다.</p>
+<p>아래는 위 1번에서 첫번째 경우일 때 결과적으로 나와야할 소스 예시다. 틀 크기가 120 x 90일 때 그보다 큰 이미지가 잘려보이도록 하는 것이다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 120px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 90px<span class="token punctuation">;</span> <span class="token property">overflow</span><span class="token punctuation">:</span> hidden</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>이미지 경로<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 120px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>두번째 경우는 다음과 같이 돼야할 것이다. 첫번째와 달리 이미지를 가운데 맞추려고 <code>margin-left</code>를 주고 있다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 120px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 90px<span class="token punctuation">;</span> <span class="token property">overflow</span><span class="token punctuation">:</span> hidden</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>이미지 경로<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 90px<span class="token punctuation">;</span> <span class="token property">margin-left</span><span class="token punctuation">:</span> -30px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>차이가 나는 건 이미지의 크기와 위치다. div의 크기는 사전에 결정돼있고 이미지의 크기는 매번 달라지므로 이미지의 크기와 위치를 처리하기 위해 자바스크립트가 필요하다.</p>
+<p>이제 다시 처음부터 시작한다고 했을 때(이미지 크기를 모를 때) 원래의 HTML이 다음과 같다면,</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 120px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 90px<span class="token punctuation">;</span> <span class="token property">overflow</span><span class="token punctuation">:</span> hidden</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>이미지 경로<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>자바스크립트를 어떻게 만들어야 할까? 이미지의 크기를 구해서 가로세로비를 구한 다음 바깥의 가로세로비에 따라 조정해주면 된다. 일단 jQuery 같은 외부 라이브러리를 사용하지 않고 해보도록 하자.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> div <span class="token operator">=</span> <span class="token operator">...</span> <span class="token comment">// 이미지를 감싸는 div</span><br><span class="token keyword">var</span> img <span class="token operator">=</span> <span class="token operator">...</span> <span class="token comment">// 이미지</span><br><span class="token keyword">var</span> divAspect <span class="token operator">=</span> <span class="token number">90</span> <span class="token operator">/</span> <span class="token number">120</span><span class="token punctuation">;</span> <span class="token comment">// div의 가로세로비는 알고 있는 값이다</span><br><span class="token keyword">var</span> imgAspect <span class="token operator">=</span> img<span class="token punctuation">.</span>height <span class="token operator">/</span> img<span class="token punctuation">.</span>width<span class="token punctuation">;</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span>imgAspect <span class="token operator">&lt;=</span> divAspect<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다</span><br>    <span class="token keyword">var</span> imgWidthActual <span class="token operator">=</span> div<span class="token punctuation">.</span>offsetHeight <span class="token operator">/</span> imgAspect<span class="token punctuation">;</span><br>    <span class="token keyword">var</span> imgWidthToBe <span class="token operator">=</span> div<span class="token punctuation">.</span>offsetHeight <span class="token operator">/</span> divAspect<span class="token punctuation">;</span><br>    <span class="token keyword">var</span> marginLeft <span class="token operator">=</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span>imgWidthActual <span class="token operator">-</span> imgWidthToBe<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    img<span class="token punctuation">.</span>style<span class="token punctuation">.</span>cssText <span class="token operator">=</span> <span class="token string">'width: auto; height: 100%; margin-left: '</span><br>                      <span class="token operator">+</span> marginLeft <span class="token operator">+</span> <span class="token string">'px;'</span><br><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span><br>    <span class="token comment">// 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다</span><br>    img<span class="token punctuation">.</span>style<span class="token punctuation">.</span>cssText <span class="token operator">=</span> <span class="token string">'width: 100%; height: auto; margin-left: 0;'</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>위에서 8 ~ 10행의 수식 계산은 이미지를 좌우로 가운데 맞춤하기 위한 계산이다. <code>div.offsetHeight / divAspect</code>에서 이미지가 맞춰야할 가로 크기가 나오므로 비율을 맞춰 축소한 이미지의 가로 크기에서 빼고 그 반 값을 <code>margin-left</code>로 설정하는 것이다.</p>
+<p>15행의 세로로 길쭉한 이미지에 대해서는 가운데 맞춤을 안하고 있다. 필요하다면 여기도 가운데 맞춤 계산을 해주면 좋을 것이다. 대신 여기서는 <code>margin-left</code>를 초기화시켜준다. 위 루틴이 웹페이지 초기화 과정에서 딱 한번만 호출된다는 보장이 없기 때문에 매번 호출될 때마다 가급적 모든 값을 설정해주는 것이 좋다.</p>
+<p>자, 이상으로 마치고 이제 위 소스를 적용한 예시를 아래 링크로 붙인다. 모두들 우리의 영웅 사진은 영웅 답게 보여주도록 하자.</p>
+<p>[<a title="예시" href="http://codepen.io/feeva/pen/ApneC" target="_blank" rel="noopener">예시 보러 가기</a>]</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-02-28T02:53:58.000Z">2014. 2. 28.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/html">HTML</a></li><li><a href="/tags/css">CSS</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/02/%ec%9d%b4%eb%af%b8%ec%a7%80%ec%9d%98-%ea%b0%80%eb%a1%9c%ec%84%b8%eb%a1%9c%eb%b9%84%eb%a5%bc-%ec%9c%a0%ec%a7%80%ed%95%98%eb%a9%b4%ec%84%9c-%ed%8b%80-%ec%95%88%ec%97%90-%eb%a7%9e%ec%b6%94%eb%a0%a4/" || location.origin + '/posts/이미지의-가로세로비를-유지하면서-틀-안에-맞추려/';
+    this.page.identifier = '이미지의-가로세로비를-유지하면서-틀-안에-맞추려';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

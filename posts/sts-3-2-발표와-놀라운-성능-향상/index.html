@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STS 3.2 발표와 놀라운 성능 향상 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="Spring Tool Suite(이하 STS) 3.2가 엊그제인 3월 11일 발표됐는데 3.1에 비해 3.2에서는 놀라운 성능 향상을 느낄 수 있었다. 일단 아무 것도 안하고 시작, 종료만 해도 그 전 버전에 비해 확실히 달라졌음을 알 수 있을 것이다. 그 전 버전은 시작 후 Java Tooling, 프로젝트 빌드 등으로 시간을 잡아먹었는데 이번엔 확실히 빨리 시작하고 초기화도 금방 끝난다.
+">
+    <link rel="canonical" href="/posts/sts-3-2-발표와-놀라운-성능-향상/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="STS 3.2 발표와 놀라운 성능 향상">
+    <meta property="og:url" content="/posts/sts-3-2-발표와-놀라운-성능-향상/">
+    <meta property="og:description" content="Spring Tool Suite(이하 STS) 3.2가 엊그제인 3월 11일 발표됐는데 3.1에 비해 3.2에서는 놀라운 성능 향상을 느낄 수 있었다. 일단 아무 것도 안하고 시작, 종료만 해도 그 전 버전에 비해 확실히 달라졌음을 알 수 있을 것이다. 그 전 버전은 시작 후 Java Tooling, 프로젝트 빌드 등으로 시간을 잡아먹었는데 이번엔 확실히 빨리 시작하고 초기화도 금방 끝난다.
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>STS 3.2 발표와 놀라운 성능 향상</h1>
+
+  <div class="post-content">
+    <p>Spring Tool Suite(이하 STS) 3.2가 엊그제인 <a title="Spring Tool Suite and Groovy/Grails Tool Suite 3.2.0 released" href="http://www.springsource.org/node/4247" target="_blank">3월 11일 발표됐는데</a> 3.1에 비해 3.2에서는 놀라운 성능 향상을 느낄 수 있었다. 일단 아무 것도 안하고 시작, 종료만 해도 그 전 버전에 비해 확실히 달라졌음을 알 수 있을 것이다. 그 전 버전은 시작 후 Java Tooling, 프로젝트 빌드 등으로 시간을 잡아먹었는데 이번엔 확실히 빨리 시작하고 초기화도 금방 끝난다.</p>
+<!--more-->
+<p><a title="PERFORMANCE IMPROVEMENTS IN STS 3.2.0" href="http://blog.springsource.org/2013/03/12/performance-improvements-in-sts-3-2-0/" target="_blank">SpringSource 블로그</a>에서도 보면 아래와 같은 동영상과 함께 빌드 시간이 크게 단축됐음을 보여주고 있으며 앞으로 나올 3.3버전까지 성능 향상에 힘을 쓸 것임을 밝히고 있다.</p>
+<iframe src="http://www.youtube-nocookie.com/embed/_Kz3YUtE7J4?rel=0" height="315" width="560" allowfullscreen="" frameborder="0"></iframe>
+<p>Eclise 4.2 Juno가 나왔을 때 <a title="Bug 385272 - Very slow response after upgrade to Juno Release" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=385272" target="_blank">JSP나 특히 XML을 편집하면서 심각하게 느려지는 현상</a>을 발견하면서 Eclipse에 대한 실망감이 상당히 커졌었는데 STS는 그런 문제도 극복하고 나름 더 발전시켜 우수한 IDE로 거듭나고 있는 것 같다.</p>
+<p>다음은 STS 블로그를 통해 공개한 STS의 성능 개선 사항으로 이미 완료했거나 앞으로 처리할 것들이다.</p>
+<ul>
+	<li><span style="line-height: 15px; font-size: 15px;">웍스페이스의 빌드 시간이 너무 오래 걸림</span></li>
+	<li>레이블 데코레이션 성능 개선</li>
+	<li>Spring의 JDT 기반 어노테이션 처리가 느림</li>
+	<li>자료형 구조를 찾는 게 느림</li>
+	<li>JdtConfigurationClassPostProcessor가 빌드 중 CPU 40%를 소비함</li>
+	<li>빈 초기화, 소멸 검증이 성능을 저해함</li>
+</ul>
+<p>Eclipse 4.2 Juno에 대한 실망이 커서 다른 Java IDE를 찾아보기까지 했었는데 이번 버전은 부진을 깨끗이 만회하고 있다. STS 3.2면 걱정 끝이다. ^^</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-03-13T14:36:04.000Z">2013. 3. 13.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/eclipse">Eclipse</a></li><li><a href="/tags/sts">STS</a></li><li><a href="/tags/성능">성능</a></li><li><a href="/tags/스프링">스프링</a></li><li><a href="/tags/이클립스">이클립스</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/03/sts-3-2-%eb%b0%9c%ed%91%9c%ec%99%80-%eb%86%80%eb%9d%bc%ec%9a%b4-%ec%84%b1%eb%8a%a5-%ed%96%a5%ec%83%81/" || location.origin + '/posts/sts-3-2-발표와-놀라운-성능-향상/';
+    this.page.identifier = 'sts-3-2-발표와-놀라운-성능-향상';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

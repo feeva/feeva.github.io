@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhantomJS를 활용한 웹 스크레이핑 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹에서 뭔가 필요한 자료를 찾을 때가 종종 있다. 한 번만 찾고 마는 경우라면 간단한데 정기 간행되는 기사나 웹툰(Webcomics) 같은 연재되는 컨텐트를 보려고 하면 일일이 눌러서 봐야 하기 때문에 흐름이 끊기는 게 싫기도 하고 광고가 페이지마다 뜨는 것도 마음에 안든다. 그래서 웹 스크레이핑(Web scraping)으로 필요한 컨텐트만 콕 집어서 한번에 가져온 다음 여유있게 보는 것이 편리할 것이다.
+그래서 작성해봤다. 웹페이지의 컨텐트를 이미지로 저장하거나 텍스트 파일로 저장할 수 있는 자바스크립트 프로그램!
+">
+    <link rel="canonical" href="/posts/phantomjs를-활용한-웹-스크레이핑/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="PhantomJS를 활용한 웹 스크레이핑">
+    <meta property="og:url" content="/posts/phantomjs를-활용한-웹-스크레이핑/">
+    <meta property="og:description" content="웹에서 뭔가 필요한 자료를 찾을 때가 종종 있다. 한 번만 찾고 마는 경우라면 간단한데 정기 간행되는 기사나 웹툰(Webcomics) 같은 연재되는 컨텐트를 보려고 하면 일일이 눌러서 봐야 하기 때문에 흐름이 끊기는 게 싫기도 하고 광고가 페이지마다 뜨는 것도 마음에 안든다. 그래서 웹 스크레이핑(Web scraping)으로 필요한 컨텐트만 콕 집어서 한번에 가져온 다음 여유있게 보는 것이 편리할 것이다.
+그래서 작성해봤다. 웹페이지의 컨텐트를 이미지로 저장하거나 텍스트 파일로 저장할 수 있는 자바스크립트 프로그램!
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>PhantomJS를 활용한 웹 스크레이핑</h1>
+
+  <div class="post-content">
+    <p>웹에서 뭔가 필요한 자료를 찾을 때가 종종 있다. 한 번만 찾고 마는 경우라면 간단한데 정기 간행되는 기사나 웹툰(Webcomics) 같은 연재되는 컨텐트를 보려고 하면 일일이 눌러서 봐야 하기 때문에 흐름이 끊기는 게 싫기도 하고 광고가 페이지마다 뜨는 것도 마음에 안든다. 그래서 웹 스크레이핑(Web scraping)으로 필요한 컨텐트만 콕 집어서 한번에 가져온 다음 여유있게 보는 것이 편리할 것이다.</p>
+<p>그래서 작성해봤다. 웹페이지의 컨텐트를 이미지로 저장하거나 텍스트 파일로 저장할 수 있는 자바스크립트 프로그램!</p>
+<!--more-->
+<p><strong>오늘의 프로그램 요리를 위한 첫번째 재료는 <a title="PhantomJS" href="http://phantomjs.org/" target="_blank">PhantomJS</a> 되겠다</strong>.애플 사파리(Safari) 및 구글 크롬(Chrome) 웹브라우저의 렌더링 엔진인 <a title="WebKit" href="http://www.webkit.org/" target="_blank">WebKit</a>을 활용한 “Headless” 브라우저로서 자바스크립트(JavaScript)을 사용해 UI 없이 명령행으로 웹페이지를 조작할 수 있다. 모질라 파이어폭스(Firefox)의 엔진인 <a title="Gecko" href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko" target="_blank">Gecko</a> 기반의 <a title="SlimerJS" href="http://slimerjs.org/index.html" target="_blank">SlimerJS</a>도 마찬가지 방식이다. 이 글에서는 PhantomJS를 사용해보기로 한다.</p>
+<p>먼저 PhantomJS에서 기본적으로 제공되는 <a title="PhantomJS 화면 캡처 예제" href="http://phantomjs.org/screen-capture.html" target="_blank">예제 중에 웹 페이지를 캡처</a>해 저장하는 스크립트가 있다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> page <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpage'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'http://github.com/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  page<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'github.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>위 코드를 보면 PhantomJS의 외부 모듈 중 하나인 <code>webpage</code> 모듈을 로딩한 다음 <code>page</code> 개체를 만든다. 그리고는 그 페이지 개체를 사용하여 http://github.com 싸이트의 화면을 캡처한 후 종료한다.</p>
+<p>이것이 일반적인 PhantomJS의 사용 방식이다. 웹 스크레이핑을 위해서는 연속적으로 웹 페이지를 찾아들어갈 수 있도록 반복되는 루틴을 추가하면 될 것이다.</p>
+<p>오늘의 프로그램 요리 두 번째 재료로 웹 스크레이프를 할 대상 웹사이트를 준비한다. 여기서는 영어 그래픽 소설인 <a title="Delilah Dirk and the Turkish Lieutenant" href="http://www.delilahdirk.com/" target="_blank">Delilah Dirk and the Turkish Lieutenant</a>를 스크레이프해보겠다. 우선 이 만화에서 <strong>어떤 주소로부터 시작할지 정해야 한다.</strong> 첫 페이지인 <a href="http://www.delilahdirk.com/ddattl/ch0-000A-000B.html">http://www.delilahdirk.com/ddattl/ch0-000A-000B.html</a>부터 스크레이프하기로 하고 그 페이지를 연 후 소스를 보자.</p>
+<p><img src="../../static/uploads/2013/11/delilah_dirk_elements.jpg" alt="캡처할 부분을 HTML 소스에서 찾기"></p>
+<p>위는 구글 크롬에서 개발자 도구를 사용해 소스를 보면서 원하는 컨텐트가 어떤 부분인지 찾아내는 것이다. 파란색으로 강조 표시된 줄이 뒤의 웹페이지에서 흐릿하게 나타나는 것을 볼 수 있다. 다른 브라우저나 도구를 사용해도 상관 없다. <strong>어떤 부분이 원하는 영역인지 찾은 후 그 영역을 구별할 수 있는 <a title="CSS 선택자" href="http://www.clearboth.org/css3_1_by_isdn386/" target="_blank">CSS 선택자</a>를 만들어내야 한다</strong>. 여기서는 이미지를 감싸고 있는 div의 id가 있으므로 <code>#leftpage img</code>와 같이 선택할 수 있을 것이다.</p>
+<p>이 페이지에는 만화가 두 쪽씩 들어있으므로 <code>#rightpage img</code>도 선택해야 한다.</p>
+<p><strong>다음으로는 이 웹페이지를 본 후 어디로 가는지를 찾아내야 한다</strong>. 위 그림에서 보면 아주 간편하게 <code>#snextbutton a</code> 태그 안의 href 값을 가져오기만 하면 된다.</p>
+<p>그런데 우리나라의 웹페이지를 보면 위와 같이 간단히 HTML 개체에서 값을 가져오지 못하는 경우가 있다. 자바스크립트를 사용해서 동적으로 처리하거나 어딘가 숨겨놓은 경우다. 이런 경우는 CSS 선택자만으로는 안되고 정규식 같은 것을 사용해서 문자열을 추출하는 방식으로 처리해야 할 것이다.</p>
+<p>일단은 위와 같이 간단한 조건으로 웹 컨텐트를 캡처할 수 있는 프로그램을 아래와 같이 만들어봤다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">/*<br> * phantomjs를 활용한 웹 스크레이핑 0.1, 2013-11-30<br> * http://start.goodtime.co.kr<br> * (c) 2013 이동련<br> * MIT 라이선스<br> */</span><br><br><span class="token comment">/********** 설정 영역. 아래 설정 값들을 적절히 수정해야 함 ***********/</span><br><br><span class="token comment">// 시작 웹페이지의 URL. 이 주소부터 시작해서 컨텐트를 스크레이핑한다.</span><br><span class="token keyword">var</span> url <span class="token operator">=</span> <span class="token string">'http://www.delilahdirk.com/ddattl/ch0-000A-000B.html'</span><span class="token punctuation">;</span><br><br><span class="token comment">// 웹페이지에서 어떤 컨텐트를 스크레이핑할지 지정하는 CSS 선택자</span><br><span class="token keyword">var</span> contentSelectors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'#leftpage img'</span><span class="token punctuation">,</span> <span class="token string">'#rightpage img'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br><br><span class="token comment">// 다음 웹페이지 링크를 찾을 수 있는 CSS 선택자</span><br><span class="token keyword">var</span> nextLinkSelector <span class="token operator">=</span> <span class="token string">'#snextbutton a'</span><span class="token punctuation">;</span><br><br><span class="token comment">// 최대로 가져올 웹페이지 수</span><br><span class="token keyword">var</span> maxPages <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span><br><br><span class="token comment">// 가져온 컨텐트 캡처 이미지를 저장할 폴더</span><br><span class="token keyword">var</span> saveTo <span class="token operator">=</span> <span class="token string">'./captures'</span><span class="token punctuation">;</span><br><br><span class="token comment">/********** 이 이하는 스크레이핑 실행 코드 ***************/</span><br><span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> webpage <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpage'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> page <span class="token operator">=</span> webpage<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> scrape<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">scrape</span><span class="token punctuation">(</span><span class="token parameter">status</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">!=</span> <span class="token string">'success'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'웹페이지 열기 오류: '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>index <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> contentSelectors<span class="token punctuation">.</span>length<span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">var</span> clipRect <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span><br>            <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><span class="token punctuation">,</span> contentSelectors<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token operator">++</span>i<span class="token punctuation">;</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>clipRect<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            page<span class="token punctuation">.</span>clipRect <span class="token operator">=</span> clipRect<span class="token punctuation">;</span><br>            page<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>saveTo <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> index <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">'.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><br>    url <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span>href <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span> nextLinkSelector<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">>=</span> maxPages <span class="token operator">||</span> <span class="token operator">!</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> scrape<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>위의 스크립트는 원하는 컨텐트를 이미지로 저장하는 것인데 텍스트를 추출해 텍스트 파일로 저장할 경우는 파일 API를 사용한 처리도 필요하고 조금 더 복잡해진다.</p>
+<p>이제 위 스크립트를 <code>scrape.js</code>라는 파일명으로 저장했다면 다음과 같이 실행함으로써 captures 폴더에 png 이미지들이 저장된다.</p>
+<pre><code>phantomjs.exe scrape.js
+</code></pre>
+<p>PhantomJS는 이러한 사용 외에도 웹 기능 테스트라든가 HTTP 네트웍 모니터링 등 활용도가 다양하다. 간단하게나마 위와 같이 웹 스크레이핑에 있어서도 아주 훌륭하다. 다양한 활용 방법이 앞으로도 계속 나오지 않을까 생각된다.</p>
+<p><span style="display: none;">웹스크래핑</span></p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-11-30T13:01:38.000Z">2013. 11. 30.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/phantomjs">PhantomJS</a></li><li><a href="/tags/웹-스크레이핑">웹 스크레이핑</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/11/phantomjs%eb%a5%bc-%ed%99%9c%ec%9a%a9%ed%95%9c-%ec%9b%b9-%ec%8a%a4%ed%81%ac%eb%a0%88%ec%9d%b4%ed%95%91/" || location.origin + '/posts/phantomjs를-활용한-웹-스크레이핑/';
+    this.page.identifier = 'phantomjs를-활용한-웹-스크레이핑';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

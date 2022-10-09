@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카운트다운 타이머 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="기념일, 행사 날짜까지의 카운트다운 타이머. 라면 끓이기, 달걀 삶기 등을 위한 시간 제한 타이머. 시험 시간, 문제 푸는 시간 제한을 위한 타이머.">
+    <link rel="canonical" href="/pages/timer/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="카운트다운 타이머">
+    <meta property="og:url" content="/pages/timer/">
+    <meta property="og:description" content="기념일, 행사 날짜까지의 카운트다운 타이머. 라면 끓이기, 달걀 삶기 등을 위한 시간 제한 타이머. 시험 시간, 문제 푸는 시간 제한을 위한 타이머.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>a{text-decoration:none}.ui-widget,.ui-widget button{font-family:맑은 고딕,나눔 고딕,sans-serif}.clearfix:after,.clearfix:before{display:table;line-height:0;content:""}.clearfix:after{clear:both}.title{margin-left:1em}.title div,.title h1{display:inline-block}.title h1{margin-right:2em}.title div{vertical-align:middle}#content{min-width:900px;width:80%;margin:auto}#timer{position:relative;margin:auto;text-align:center;padding:1em;background:#000 none}.digit-label{margin-bottom:.5em}.digit-panel{float:left;width:13%;padding-right:1em}.digit-panel.days{width:18%}.digit-face{position:relative}.digit-panel .digit-face span{color:#fff;font-size:4.5em;font-family:century gothic,arial,sans-serif}.timer-meta{width:19.8%;float:left;text-align:left}.timer-meta dl{margin-top:1.5em;font-size:11pt}.timer-meta dd{margin-left:1em;margin-bottom:.5em}.timer-meta dd span{color:#9df;cursor:pointer}.timer-meta dd span:hover{border-bottom-width:1px;border-bottom-style:solid}#btnStartStop{color:#ff0;margin-top:.7em;font-size:2.5em;padding:.4em .8em}#btnStartStop.active{color:#f70}.digit-slider{position:absolute;top:0;right:0;bottom:.2em;display:none;background:#000 none;width:7px;height:auto}.digit-slider.ui-slider .ui-slider-handle{width:1em;height:1em}.marks{margin-top:1em}.marks div{width:26%;height:.5em;float:left;border:solid 1px #333;margin:0 0 2% 4%}.timer .marks div{cursor:pointer}.timer.days .marks div{width:6.1%;margin:0 0 1.9% 1%}.timer-meta fieldset{position:absolute;border-color:#555;color:#555;left:77.5%;right:1.5%;bottom:1.5em;font-size:9pt}.timer-meta fieldset legend{color:#555;margin-left:1em}.timer-meta fieldset ul{padding-left:1.5em}.timer-meta a{color:#aaa}#dialog-target-date{display:none}#dialog-target-time{display:none}.footer{text-align:center}</style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    
+      <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/trontastic/jquery-ui.css">
+
+      <div id="content">
+          <div class="title clearfix">
+              <h1>카운트다운 타이머 v1.0-20130414</h1>
+              
+              <div>
+                  <iframe src="//www.facebook.com/plugins/like.php?href=https://feeva.github.io/pages/timer&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;colorscheme=dark&amp;action=like&amp;height=21&amp;appId=370619496297823" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px; " allowTransparency="true"></iframe>
+              </div>
+              
+              <div>
+                  <iframe allowtransparency="true" frameborder="0" scrolling="no"
+          src="http://platform.twitter.com/widgets/tweet_button.1363148939.html#_=1366078520169&count=horizontal&id=twitter-widget-0&lang=ko&original_referer=https://feeva.github.io/pages/timer&size=m&text=%EC%B9%B4%EC%9A%B4%ED%8A%B8%EB%8B%A4%EC%9A%B4%20%ED%83%80%EC%9D%B4%EB%A8%B8&url=https://feeva.github.io/pages/timer&via=DylanYi"
+          style="width:80px; height:20px;"></iframe>
+              </div>
+              
+              <div>
+                  <me2:metoo layout="small" profile_images="off" color="light" pingback="unchecked" href="https://feeva.github.io/pages/timer" plugin_key="sOJ1KmYySdWnPmTtT77agg"></me2:metoo>
+              </div>
+          </div>
+
+          <div id="timer" class="ui-widget ui-widget-content ui-corner-all clearfix">
+              <div class="digit-panel timer days" mark-max="372">
+                  <div class="digit-label">일</div>
+                  <div class="ui-widget ui-corner-all ui-state-default digit-face">
+                      <span>000</span>
+                      <div class="digit-slider"></div>
+                  </div>
+                  <div class="marks clearfix"></div>
+              </div>
+              <div class="digit-panel timer" mark-max="24">
+                  <div class="digit-label">시간</div>
+                  <div class="ui-widget ui-corner-all ui-state-default digit-face">
+                      <span>00</span>
+                      <div class="digit-slider"></div>
+                  </div>
+                  <div class="marks"></div>
+              </div>
+              <div class="digit-panel timer" mark-max="60">
+                  <div class="digit-label">분</div>
+                  <div class="ui-widget ui-corner-all ui-state-default digit-face">
+                      <span>05</span>
+                      <div class="digit-slider"></div>
+                  </div>
+                  <div class="marks"></div>
+              </div>
+              <div class="digit-panel timer" mark-max="60">
+                  <div class="digit-label">초</div>
+                  <div class="ui-widget ui-corner-all ui-state-default digit-face">
+                      <span>00</span>
+                      <div class="digit-slider" max="60"></div>
+                  </div>
+                  <div class="marks"></div>
+              </div>
+              <div id="fractionTimer" class="digit-panel" mark-max="99">
+                  <div class="digit-label">1/100초</div>
+                  <div class="ui-widget ui-corner-all ui-state-default digit-face">
+                      <span>00</span>
+                  </div>
+                  <div class="marks"></div>
+              </div>
+
+              <div class="timer-meta">
+                  <div>
+                      <button id="btnStartStop" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                              시작
+                      </button>
+                  </div>
+                  <dl>
+                      <dt>시작 일시:</dt>
+                      <dd id="divStartTime">0000-00-00 00:00:00</dd>
+                      <dt>목표 일시:</dt>
+                      <dd><span id="spanEndDate">0000-00-00</span>
+                          <span id="spanEndTime">00:00:00</span></dd>
+                      <dd>
+                          <label><input id="modeRelative" name="mode" type="radio" checked>숫자판 우선</label><br>
+                          <label><input id="modeAbsolute" name="mode" type="radio">목표 일시 우선</label>
+                      </dd>
+                  </dl>
+
+
+                  <fieldset>
+                      <legend>도움말</legend>
+                      <ul>
+                          <li>숫자판의 슬라이더 또는 아래 눈금으로 상대 목표 시간 설정</li>
+                          <li>목표 일시를 누르면 고정된 목표 일시 설정</li>
+                          <li>단순 시작 또는 정지만 가능.</li>
+                          <li>기타 <a href="/posts/2013-04-14-온라인-타이머">제작 후기</a> 참고</li>
+                      </ul>
+                  </fieldset>
+
+              </div>
+
+          </div>
+
+          <div class="footer">(c) 2013 - 2022, <a href="https://feeva.github.io">Nothing New Under the Sun</a></div>
+      </div>
+
+      <div id="dialog-target-date" title="목표 일자 설정">
+      </div>
+      <div id="dialog-target-time" title="목표 시간 설정">
+          <p><select id="targetHour"></select>시
+              <select id="targetMinute"></select>분
+              <select id="targetSecond"></select>초
+      </div>
+
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+      <script type="text/javascript">
+        function setTimerDigit($slider, value) {
+            $slider.slider('value', value).prev().text(value < 10 ? '0' + value : value);
+            var $marks = $slider.parent().parent().find('.marks div');
+            var max = $slider.slider('option', 'max');
+            $marks.slice(0, value).css('background-color', 'yellow');
+            if (value < max)
+                $marks.slice(value - max).css('background-color', 'transparent');
+        }
+
+        function setTimerFraction(ms) {
+            jQuery('#fractionTimer span').text(ms < 10 ? '0' + ms : ms);
+            var $marks = jQuery('#fractionTimer .marks div');
+            $marks.slice(0, ms).css('background-color', 'yellow');
+            if (ms < 100)
+                $marks.slice(ms - 100).css('background-color', 'transparent');
+        }
+
+        function pad0(n) { return n < 10 ? '0' + n : n; }
+
+        function formatDate(d) {
+            return d.getFullYear() + '-' + pad0(d.getMonth() + 1) + '-' + pad0(d.getDate());
+        }
+
+        function formatTime(d) {
+            return pad0(d.getHours()) + ':' + pad0(d.getMinutes()) + ':' + pad0(d.getSeconds());
+        }
+
+        jQuery(function($) {
+            // 각 시간 단위별 눈금 생성
+            $('.marks').each(function() {
+                var count = Number($(this).parent().attr('mark-max')) + 1;
+                $(this).html(new Array(count).join('<div></div>'));
+            });
+
+            // 눈금 클릭시 시간 설정
+            $(document.body).on('click', '.timer .marks div', function() {
+                if (!$('#btnStartStop').hasClass('active')) {
+                    var value = $(this).parent().children().index(this) + 1;
+                    setTimerDigit($(this).parent().parent().find('.digit-slider'), value);
+                    $('#modeRelative').attr('checked', true);
+                }
+            });
+
+            // 각 시간 단위별 슬라이더 생성
+            $('.digit-slider').each(function() {
+                $(this).slider({
+                    orientation: 'vertical',
+                    min: 0,
+                    max: $(this).parent().parent().attr('mark-max'),
+                    slide: function(e, ui) {
+                        setTimerDigit($(this), Number(ui.value));
+                        $('#modeRelative').attr('checked', true);
+                    }
+                });
+            });
+
+            // 기본적으로 슬라이더는 보이지 않다가 마우스 호버시 보임
+            $('.digit-panel').hover(function() {
+                $(this).find('.digit-slider').fadeIn('fast');
+            }, function() {
+                $(this).find('.digit-slider').fadeOut('fast');
+            });
+
+            // 목표 시간 설정 UI
+            $('#spanEndDate').click(function() {
+                $(this).datepicker('dialog', null, function(ymd) {
+                    $('#spanEndDate').text(ymd);
+                    $('#modeAbsolute').attr('checked', true);
+                }, {
+                    minDate: 0,
+                    maxDate: '+' + $('.digit-panel.days').attr('mark-max') + 'D',
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    dateFormat: 'yy-mm-dd',
+                    modal: true,
+                    showButtonPanel: true
+                });
+            })
+
+            $('#spanEndTime').click(function() {
+                var optionHtml = function(count) {
+                    var html = '';
+                    for (var i = 0; i < count; ++i)
+                        html += '<option value="' + (i < 10 ? '0' + i : i) + '">' + i + '</option>';
+                    return html;
+                }
+
+                $('#targetHour').html(optionHtml(24));
+                $('#targetMinute').html(optionHtml(60));
+                $('#targetSecond').html(optionHtml(60));
+                $('#dialog-target-time').dialog({
+                    resizable: false,
+                    modal: true,
+                    buttons: {
+                        '확인': function() {
+                            $('#spanEndTime').text($('#targetHour').val() + ':' + $('#targetMinute').val() + ':' + $('#targetSecond').val());
+                            $('#modeAbsolute').attr('checked', true);
+                            $(this).dialog('close');
+                        },
+                        '취소': function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                });
+            });
+
+            var targetDate = new Date(new Date().getTime() + 5 * 60 * 1000);
+            $('#spanEndDate').text(formatDate(targetDate));
+            $('#spanEndTime').text(formatTime(targetDate));
+
+            // 로컬 함수
+            var hTimer;
+            function stopTimer() {
+                $('#btnStartStop').removeClass('active').text('시작');
+                clearTimeout(hTimer);
+            }
+
+            $('#btnStartStop').click(function() {
+                if ($(this).hasClass('active')) {
+                    stopTimer();
+                    $('input[name="mode"]').attr('disabled', false);
+                    $('.digit-slider').slider('enable');
+                } else {
+                    $(this).addClass('active').text('정지');
+                    $('input[name="mode"]').attr('disabled', true);
+                    $('.digit-slider').slider('disable');
+
+                    // 현재 시간 및 종료 시간 찾기
+                    var start = new Date();
+                    var endTime;
+                    var $timers = $('.timer .digit-face span');
+                    var times = [];
+
+                    if ($('#modeAbsolute').attr('checked')) {
+                        $('#spanEndDate').text().search(/^(\d+)-(\d+)-(\d+)$/);
+                        var y = RegExp.$1;
+                        var m = RegExp.$2 - 1;
+                        var d = RegExp.$3;
+                        $('#spanEndTime').text().search(/^(\d+):(\d+):(\d+)$/);
+                        var end = new Date(y, m, d, RegExp.$1, RegExp.$2, RegExp.$3);
+                        if (end <= start) {
+                            stopTimer();
+                            $('input[name="mode"]').attr('disabled', false);
+                            return;
+                        }
+                        endTime = end.getTime();
+
+                    } else {
+                        // 각 시간 단위별 값을 배열에 보관
+                        $timers.each(function() {
+                            times.push(Number(this.innerHTML));
+                        });
+
+                        endTime = start.getTime() + (times[0] * 86400 + times[1] * 3600 + times[2] * 60 + times[3]) * 1000;
+                    }
+
+                    var timeoutFunc = function() {
+                        // 종료 시간까지 남은 시간은?
+                        var timeLeft = endTime - new Date().getTime();
+
+                        if (timeLeft <= 0) {
+                            stopTimer();
+                            setTimerFraction(0);
+                            return;
+                        }
+
+                        // 100분의 1초 처리
+                        setTimerFraction(Math.floor(timeLeft % 1000 / 10));
+
+                        timeLeft = Math.floor(timeLeft / 1000);
+                        var newTimes = [Math.floor(timeLeft / 86400), 
+                                        Math.floor(timeLeft % 86400 / 3600),
+                                        Math.floor(timeLeft % 3600 / 60),
+                                        timeLeft % 60
+                        ];
+
+                        // 직전 시간 배열과 현재 시간 배열을 비교하여 다른 값은 갱신
+                        for (var i = 0; i < 4; ++i) {
+                            if (newTimes[i] != times[i]) {
+                                setTimerDigit($timers.eq(i).next(), newTimes[i]);
+                            }
+                        }
+                        times = newTimes;
+
+                        hTimer = setTimeout(timeoutFunc, 1);
+                    };
+                    timeoutFunc();
+
+                    // 메타 정보 설정
+                    $('#divStartTime').text(formatDate(start) + ' ' + formatTime(start));
+                    $('#spanEndDate').text(formatDate(new Date(endTime)));
+                    $('#spanEndTime').text(formatTime(new Date(endTime)));
+                }
+            });
+        });
+      </script>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

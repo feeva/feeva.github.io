@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안드로이드와 iOS 웹킷 브라우저의 차이점 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 웹킷(WebKit) 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까? ">
+    <link rel="canonical" href="/posts/안드로이드와-ios-웹킷-브라우저의-차이점/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="안드로이드와 iOS 웹킷 브라우저의 차이점">
+    <meta property="og:url" content="/posts/안드로이드와-ios-웹킷-브라우저의-차이점/">
+    <meta property="og:description" content="최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 웹킷(WebKit) 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까? ">
+    <meta property="og:image" content="../../static/uploads/2014/03/Webkit_Logo.png">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>안드로이드와 iOS 웹킷 브라우저의 차이점</h1>
+
+  <div class="post-content">
+    <p>최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 <a title="웹킷 오픈소스 프로젝트" href="http://www.webkit.org/" target="_blank">웹킷(WebKit)</a> 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까?</p>
+<!--more-->
+<p>PC에서는 크롬(Chrome), 파이어폭스(Firefox), 인터넷 익스플로러(Internet Explorer), 사파리, 오페라 등 다양한 브라우저가 있는 데다가 다들 알다시피 IE 구 버전이 웹 표준을 지키지 않아 데스크톱 웹을 개발할 때 개발자들은 종종 골치를 썩곤 한다. 반면에 모바일웹은 시장이 거의 안드로이드와 iOS로 양분화되어 고객이 두 가지만을 타겟으로 하는데다가 둘 다 웹킷 기반의 브라우저를 기본으로 하므로 기능 차이가 별로 없다고 할 수 있다. 그래서 개발이 쉬울 거라고 생각했는데…</p>
+<p>하지만 웬걸! 나름대로 브라우저간 차이가 있는데 그 차이가 명확하지 않아 고생할 수 밖에 없었다.</p>
+<h3>터치 이벤트 처리의 차이</h3>
+<p>원래는 프로젝트에서<a title="jQuery mobile" href="http://jquerymobile.com/" target="_blank"> jQuery Mobile</a>을 사용하려고 했다. 그런데 jQuery의 유명세와 다르게 jQuery 모바일 라이브러리는 실망스러웠다. 달력이나 시간 선택 컨트롤도 없고 이미지 슬라이더로 사용할 위젯이나 이벤트도 마땅치 않았다. <a title="jQuery Mobile 스와이프 데모" href="http://demos.jquerymobile.com/1.4.2/transitions/swipe-page/seoul.html" target="_blank">스와이프 데모를 보면</a> 터치와 함께 이미지가 움직이는 게 아니라 터치가 다 지나가면 이미지가 움직이는, 즉 따로 노는 방식이었다.</p>
+<p>또 프로젝트에서 요구하는 이미지 슬라이더는 처음 이미지부터 끝 이미지까지 다 보면 더 이상 슬라이딩이 안되는 방식이 아니라 무한 회전해야 하는 방식이었기 때문에 마지막 이미지를 처음 이미지와 연결시켜 보여주는 조작이 필요했다. 이런 이미지 슬라이더는 찾을 수가 없었다. 그래서 기간 초과의 위험을 감수하고 직접 터치 이벤트를 받아 이미지 슬라이더를 구동하는 루틴을 제작했다. 여러 날의 시행착오 끝에 다음과 같은 차이점을 알게 됐다.</p>
+<ul>
+<li>안드로이드 웹브라우저의 터치 이벤트에서는 <code>changedTouches</code> 객체가 매번 새롭게 생성되어 들어오는데 사파리 브라우저에서는 같은 객체에서 값만 바뀌어 들어온다.</li>
+</ul>
+<p>그 결과 touchstart 이벤트에서 처음 터치 지점을 받아 보관할 필요가 있을 때 <code>changedTouches</code>를 보관하면 안되고 <code>changedTouches.clientX, changedTouches.clientY</code>와 같은 개별 값을 복사해서 보관해야만 두 브라우저에서 모두 같게 동작할 수 있게 된다.</p>
+<p>또한 사파리 브라우저에서는 터치 시작 후 어느 정도 세로로 움직이게 되면 스크롤 이벤트가 발생하여 더 이상 터치 이벤트를 받지 못하게 돼 버린다. 이를 방지하기 위해 <code>event.preventDefault()</code>를 호출해야 하는데 이것을 어느 시점에 어떤 방식으로 호출해야 하는지가 양쪽이 미묘하게 차이가 난다. 어떤 호출 방식에서는 안드로이드에서 이벤트 처리가 막히고 또 어떤 조건으로 호출하면 사파리에서 이미 스크롤 이벤트가 발생한 시점이 된다. 그래서 둘다 만족시키는 방식을 찾는 데 애를 먹었다.</p>
+<h3><code>&lt;a href&gt;</code>에서의 자바스크립트 사용</h3>
+<p>간혹 개발자 중에 <code>href</code>에서 <code>javascript:</code>를 사용하고 주소가 넘어가지 않도록 <code>return false</code>를 하는 경우가 있는데 이게 사파리에서는 먹지 않는다. 반드시 <code>onclick</code>과 같은 이벤트에서 자바스크립트를 넣고 <code>return false</code>를 해야 한다.</p>
+<h3><code>&lt;iframe&gt;</code> 스크롤</h3>
+<p>안드로이드에서는 <code>&lt;iframe&gt;</code>이 들어있더라도 터치 스크롤에 아무 문제가 없다. 그런데 사파리는 그게 잘 안된다. 다행히 iOS 5부터는 <code>&lt;iframe&gt;</code>을 감싸는 <code>&lt;div&gt;</code> 태그에다가 <a title="모바일 사파리에서의 iframe 스크롤" href="http://stackoverflow.com/a/8214891/122681" target="_blank">다음과 같은 CSS를 줌으로써</a> 스크롤이 가능해졌다.</p>
+<pre class="language-css"><code class="language-css"><span class="token property">-webkit-overflow-scrolling</span><span class="token punctuation">:</span> touch<span class="token punctuation">;</span></code></pre>
+<h3>스크롤링, 스크롤바의 차이</h3>
+<p>모바일 웹브라우저마다 스크롤링 방식, 스크롤바의 처리가 차이가 난다. 어떤 브라우저는 자체적인 도구 모음이 하단에 나타났다 사라지기도 하고 어떤 브라우저는 끝까지 스크롤하면 더 이상 움직이지 않는 경우가 있는 반면 어떤 브라우저는 빈 영역이 고무줄처럼 늘어나 보이기도 한다. 이 과정에서 웹페이지의 어떤 부분은 스크롤이 돼야 하는데 안되기도 한다. 또 어떤 브라우저는 스크롤바가 2중으로 나타났다가 사라지기도 한다.</p>
+<p>이러한 차이점들을 명확히 정리하기는 힘드나 CSS <code>overflow</code> 속성과 많은 관련이 있다. <code>html, body, div</code> 등등에 대해 <code>overflow</code> 값을 <code>hidden, scroll, auto</code> 등으로 주는 경우 안드로이드나 사파리 모두 버전마다 미묘한 차이가 있었다. 이런 것들은 실제 모바일 기기를 가지고 테스트하기 전에는 알 수가 없는 것들이었다.</p>
+<h3>결국 모바일웹도 테스트가 중요하다!</h3>
+<p>이 밖에도 기억도 안나는 미묘한 차이들이 브라우저마다 있다. 삼성 갤럭시 시리즈 일부는 iframe 내부의 단추가 터치되지 않는다든지 노트 II에서는 <code>&lt;select&gt;</code> 태그가 텍스트 입력란처럼 보인다든지 하는 것들도 있었다. 아마도 어떤 특정 상황에서 그러는 것일 테지만 그걸 일일이 찾아 해결할 수가 없어서 더러는 포기하고 더러는 전체적으로 수정하여 원인도 모른 채 해결되기도 했다.
+결국 중요한 건 브라우저별로 쉽게 적용할 수 있는 단순한 형태로 UI를 만들어야 하고 일단 만들면서부터는 실제 테스트를 통해 문제를 찾아내고 수정하는 수 밖에 없는 것 같다. 사람이 테스트하지 않는 이상 알 수 없는 미묘한 것들이니까. 모바일웹이라고, 또 표준을 지키는 브라우저라고 결코 쉬운 게 아님을 알게 된 프로젝트였다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-03-19T15:30:21.000Z">2014. 3. 20.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/css">CSS</a></li><li><a href="/tags/사파리">사파리</a></li><li><a href="/tags/크롬">크롬</a></li><li><a href="/tags/안드로이드">안드로이드</a></li><li><a href="/tags/android">Android</a></li><li><a href="/tags/ios">iOS</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/03/%ec%95%88%eb%93%9c%eb%a1%9c%ec%9d%b4%eb%93%9c%ec%99%80-ios-%ec%9b%b9%ed%82%b7-%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90/" || location.origin + '/posts/안드로이드와-ios-웹킷-브라우저의-차이점/';
+    this.page.identifier = '안드로이드와-ios-웹킷-브라우저의-차이점';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트와 자바에서 공백 문자란? - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹 프로그램을 개발할 때 인터넷 익스플로러(IE)는 참 개발자를 괴롭게 한다. IE만의 예외 상황을 고려해야 하는 번거로운 경우가 얼마나 많은지... 특히 IE 8 이하는 발표된지 몇 년이 지났는데도 우리나라에서는 아직 사용자가 많다! 수년 전까지도 윈도 XP에서 IE 6을 사용하는 사용자가 가장 많았던 우리나라에서 개발자는 이래 저래 힘들다.
+여기 그 문제 중 또 하나를 얘기해보려고 한다. 공백(whitespace) 문자의 범위에 대한 문제다. ">
+    <link rel="canonical" href="/posts/자바스크립트와-자바에서-공백-문자란/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="자바스크립트와 자바에서 공백 문자란?">
+    <meta property="og:url" content="/posts/자바스크립트와-자바에서-공백-문자란/">
+    <meta property="og:description" content="웹 프로그램을 개발할 때 인터넷 익스플로러(IE)는 참 개발자를 괴롭게 한다. IE만의 예외 상황을 고려해야 하는 번거로운 경우가 얼마나 많은지... 특히 IE 8 이하는 발표된지 몇 년이 지났는데도 우리나라에서는 아직 사용자가 많다! 수년 전까지도 윈도 XP에서 IE 6을 사용하는 사용자가 가장 많았던 우리나라에서 개발자는 이래 저래 힘들다.
+여기 그 문제 중 또 하나를 얘기해보려고 한다. 공백(whitespace) 문자의 범위에 대한 문제다. ">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>자바스크립트와 자바에서 공백 문자란?</h1>
+
+  <div class="post-content">
+    <p>웹 프로그램을 개발할 때 인터넷 익스플로러(IE)는 참 개발자를 괴롭게 한다. IE만의 예외 상황을 고려해야 하는 번거로운 경우가 얼마나 많은지… 특히 IE 8 이하는 발표된지 몇 년이 지났는데도 우리나라에서는 아직 사용자가 많다! 수년 전까지도 윈도 XP에서 IE 6을 사용하는 사용자가 가장 많았던 우리나라에서 개발자는 이래 저래 힘들다.</p>
+<p>여기 그 문제 중 또 하나를 얘기해보려고 한다. <strong>공백(whitespace) 문자의 범위에 대한 문제다.</strong></p>
+<!--more-->
+<p>현재 내가 진행 중인 프로젝트에서는 고객이 가지고 있는 과거의 HTML 자료를 프로그램적으로 처리하는 게 있다. 그 중 자바스크립트로 공백 문자를 제거하는 게 있었다.</p>
+<pre class="language-javascript"><code class="language-javascript">text <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\u00a0]+|[\s\u00a0]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>(위에서 <code>\u00a0</code>은 HTML로는 <code>&amp;nbsp;</code>, 즉 “줄바꿈 안하는 빈칸” 글자다.) 우리는 주로 크롬이나 IE 9 이상을 사용하고 있었기 때문에 잘 되는 줄 알았는데 얼마 후 사용자가 특정 표에서 불필요한 빈 행이 나타난다고 알려왔다. 다른 브라우저에서는 안 그러는데 IE 8 이하에서만 발생하는 문제였다. <em>‘올 것이 왔구나…’</em></p>
+<p>확인해보니 사용자의 자료들은 아래아 한글이나 엑셀에서 HTML로 변환한 것이었는데 거기에 <strong><code>\u3000</code> &quot;상형 문자의 빈칸&quot;이 포함돼 있었고 IE 8에서는 그것을 공백 문자로 인식하지 않는 것이었다</strong>. 이미 그 전에도 IE 8 이하에서는 &quot;줄바꿈 안하는 빈칸&quot;을 공백 문자로 인식하지 않는다는 건 알고 위와 같이 처리하고 있었는데 이번 건 새로운 문제였다. <code>\u3000</code>이라는 문자를 사용하는 거도 처음 봤는데 그걸 IE 8은 공백으로 인식하지 않는 문제가 겹친 것이다.</p>
+<h3>그럼 대체 자바스크립트에서 공백 문자란 무엇인가?</h3>
+<p>자바스크립트(JavaScript)는 ECMAScript 언어 표준에 따라 정의되고 구현되는데 1999년에 3판이 나왔고 (4판은 건너뛰고) 2009년에 5판이 나왔고 2011년에 5.1판이 최신으로 발표돼 있다. IE 8 이하는 2009년 전에 나왔으므로 <a title="ECMAScript 언어 명세 3판" href="http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf" target="_blank">1999년의 ECMAScript 언어 명세</a>를 참고했을 텐데 7.2절을 보면 공백 문자를 <code>\u0009</code>(탭), <code>\u000B</code>(세로 탭), <code>\u000C</code>(폼피드), <code>\u0020</code>(빈칸), <code>\u00A0</code>(줄바꿈 안하는 빈칸) 및 &quot;Any other Unicode space separator”라고 정의하고 있다. 또 별개로 7.3절에 줄 바꿈 문자로 <code>\u000A</code>, <code>\u000D</code>, <code>\u2028</code>, <code>\u2029</code>를 정의하고 있는데 일반적으로 공백 문자에는 줄 바꿈 문자도 포함된다.</p>
+<p>그래서 1999년에 나온 <a title="유니코드 2.0 속성 목록" href="http://www.unicode.org/Public/2.0-Update/PropList-2.0.14.txt" target="_blank">유니코드 2.0의 속성 목록</a>을 찾아봤더니 다음과 같은 내용이 있었다.</p>
+<pre><code>Property dump for: 0x10000002 (Space)
+
+0020
+00A0
+2000..200B  (12 chars)
+3000
+FEFF
+
+Property dump for: 0x10000004 (White space)
+
+0000
+0009..000D  (5 chars)
+0020
+00A0
+2000..200F  (16 chars)
+2028..202E  (7 chars)
+206A..206F  (6 chars)
+3000
+FEFF
+</code></pre>
+<p><strong>최소한 00A0이라든가 3000 글자는 “Space” 속성이므로 공백 문자에 포함돼야 하는데 IE 8 이하는 그것을 지키지 않은 것이다!</strong></p>
+<p>최근의 브라우저는 <a title="ECMAScript 표준 규격 5판" href="http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf" target="_blank">ECMAScript 언어 명세 표준 중 2009년에 나온 5판</a>을 따를 것이므로 그 중 7.2절을 보면 공백 문자는 유니코드 3.0에 정의한 대로 인식해야 한다고 나와 있다.</p>
+<blockquote>
+<p>ECMAScript implementations must recognize all of the white space characters defined in Unicode 3.0</p>
+</blockquote>
+<p>그래서 <a title="유니코드 속성 목록" href="http://www.unicode.org/Public/3.0-Update/PropList-3.0.0.txt" target="_blank">유니코드 3.0의 속성 목록</a>을 보면 공백 문자를 다음과 같이 정의한다.</p>
+<pre><code>0009..000D  (5 chars)
+0020
+0085
+00A0
+1680
+2000..200B  (12 chars)
+2028..2029  (2 chars)
+202F
+3000
+</code></pre>
+<p>위 각각의 문자 값을 유니코드 표에서 찾아보면 다음 의미다.</p>
+<ul>
+	<li>U+0009–U+000D (제어 문자 - 탭, CR, LF 등)</li>
+	<li>U+0020 빈칸(space)</li>
+	<li>U+0085 NEL (제어 문자 - 다음 줄)</li>
+	<li>U+00A0 줄바꿈 안하는 빈칸<a title="Non-breaking space" href="http://en.wikipedia.org/wiki/Non-breaking_space">
+</a></li>
+	<li>U+1680 OGHAM 빈칸 표시</li>
+	<li>U+2000–U+200B (여러 종류의 빈칸들)</li>
+	<li>U+2028 LS (줄 구분자)</li>
+	<li>U+2029 PS (문단 구분자)</li>
+	<li>U+202F NNBSP (줄바꿈 안하는 좁은 빈칸)</li>
+	<li>U+3000 상형문자 빈칸</li>
+</ul>
+<p>현재 유니코드 6.x대 버전에서는 U+180E 몽골 모음 구분자, U+205F MMSP 중간 수학 빈칸이 추가되어 조금 달라졌는데 아무튼 기본적으로 자바스크립트는 위의 글자들을 공백 문자로 처리해야 한다. 그래서 우리는 원래의 공백 제거 코드를 다음과 같이 수정했다.</p>
+<pre class="language-javascript"><code class="language-javascript">text <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\u00a0\u3000]+|[\s\u00a0\u3000]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3>그 밖에...</h3>
+<p>자바스크립트에는 문자열의 앞뒤 공백을 제거하는 <code>trim</code> 함수가 정의돼 있는데 이게 IE8 이하에 없어서 우리 프로젝트에서는 직접 공백 제거 처리를 하고 있었다. 사실 jQuery에도 <code>trim</code> 함수가 있기 때문에 걔네들은 어떻게 하고 있는지 찾아봤다. 아래는 많이 사용하는 버전 중 하나인 <a title="jQuery 1.8.3 Core" href="https://github.com/jquery/jquery/blob/ab409d14bc6db42b4af3ba753be1b55fe8f897d8/src/core.js" target="_blank">1.8.3</a>에 있는 <code>trim</code> 함수의 원형이다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Make sure we trim BOM and NBSP (here's looking at you, Safari 5.0 and IE)</span><br>rtrim <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span></code></pre>
+<p>Safari 5.0과 IE 너네 땜에 BOM과 NBSP는 별도로 추가해서 처리한다고 주석에 나와 있다. 여기도 <code>\u3000</code>은 처리하지 않으므로 우리 프로젝트에서 jQuery로 <code>trim</code>해도 IE 8은 계속 문제가 될 수 밖에 없었을 것이다. (그런데 <code>\uFEFF</code>는 왜 공백으로 치는 것이지?)</p>
+<h3>자바(Java)는 어떨까?</h3>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#trim()"><code>String#trim</code></a> 메서드의 경우는 주석을 보면 <code>\u0020</code>, 즉 빈칸 이하의 글자들을 제거한다고 나와 있다. 헛, 그렇다면 유니코드에 공백이라고 정의되지 않은 제어 문자도 제거한다는!!??</p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"><code>Pattern</code></a> 클래스의 경우는 <code>\s</code>, 즉 공백 구문을 <code>[ \t\n\x0B\f\r]</code>로 정의한다고 나와 있다. NBSP도 없고 <code>\u3000</code>도 없다!</p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html#isWhitespace(char)"><code>Character#isWhitespace</code></a> 메서드의 경우는 다음으로 정의한다고 나와 있다.</p>
+<ul>
+	<li>빈칸 구분자, 줄 구분자, 문단 구분자이되 줄 바꿈 안하는 글자는 제외</li>
+	<li>'\t', 가로 탭</li>
+	<li>'\n', 줄 먹임</li>
+	<li>'\u000B', 세로 탭</li>
+	<li>'\f', 폼 먹임</li>
+	<li>'\r', 캐리지 되돌림</li>
+	<li>'\u001C', 파일 구분자</li>
+	<li>'\u001D', 그룹 구분자</li>
+	<li>'\u001E', 레코드 구분자</li>
+	<li>'\u001F', 단위 구분자</li>
+</ul>
+<p><a title="맥 OS 7.0을 브라우저에서 실행하기" href="http://jamesfriend.com.au/pce-js/" target="_blank">자바스크립트는 눈부시게 발전하는데</a> 비해 자바는 아직 멀었나보다…</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-12-21T17:35:53.000Z">2013. 12. 22.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/java">Java</a></li><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/공백">공백</a></li><li><a href="/tags/유니코드">유니코드</a></li><li><a href="/tags/자바">자바</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/제어문자">제어문자</a></li><li><a href="/tags/인터넷-익스플로러">인터넷 익스플로러</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/12/%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%ec%99%80-%ec%9e%90%eb%b0%94%ec%97%90%ec%84%9c-%ea%b3%b5%eb%b0%b1-%eb%ac%b8%ec%9e%90%eb%9e%80/" || location.origin + '/posts/자바스크립트와-자바에서-공백-문자란/';
+    this.page.identifier = '자바스크립트와-자바에서-공백-문자란';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

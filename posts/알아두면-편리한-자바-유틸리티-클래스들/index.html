@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알아두면 편리한 자바 유틸리티 클래스들 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="프로젝트를 하다보면 비슷한 기능들이 자주 사용되는 경우가 있고 개발자들은 흔히 이런 기능들을 스태틱(static) 메서드로 만들어 유틸리티 클래스를 만들곤 한다. 그런데 이런 유틸리티 기능들이 사실 우리가 이미 사용하는 오픈소스 프레임웍이나 라이브러리에 포함된 경우가 상당히 많다. 또한 개발자가 나름 만든 클래스에는 버그가 숨어 있는 경우도 많아서 가급적 검증된 라이브러리를 사용하는 게 훨씬 낫다. 이번 글에서는 알아두면 편리한 자바 유틸리티 클래스들 에 대해 찾아보았다.">
+    <link rel="canonical" href="/posts/알아두면-편리한-자바-유틸리티-클래스들/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="알아두면 편리한 자바 유틸리티 클래스들">
+    <meta property="og:url" content="/posts/알아두면-편리한-자바-유틸리티-클래스들/">
+    <meta property="og:description" content="프로젝트를 하다보면 비슷한 기능들이 자주 사용되는 경우가 있고 개발자들은 흔히 이런 기능들을 스태틱(static) 메서드로 만들어 유틸리티 클래스를 만들곤 한다. 그런데 이런 유틸리티 기능들이 사실 우리가 이미 사용하는 오픈소스 프레임웍이나 라이브러리에 포함된 경우가 상당히 많다. 또한 개발자가 나름 만든 클래스에는 버그가 숨어 있는 경우도 많아서 가급적 검증된 라이브러리를 사용하는 게 훨씬 낫다. 이번 글에서는 알아두면 편리한 자바 유틸리티 클래스들 에 대해 찾아보았다.">
+    <meta property="og:image" content="../../static/uploads/2014/06/tools.png">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>알아두면 편리한 자바 유틸리티 클래스들</h1>
+
+  <div class="post-content">
+    <p>프로젝트를 하다보면 비슷한 기능들이 자주 사용되는 경우가 있고 개발자들은 흔히 이런 기능들을 스태틱(static) 메서드로 만들어 유틸리티 클래스를 만들곤 한다. 그런데 이런 유틸리티 기능들이 사실 우리가 이미 사용하는 오픈소스 프레임웍이나 라이브러리에 포함된 경우가 상당히 많다. 또한 개발자가 나름 만든 클래스에는 버그가 숨어 있는 경우도 많아서 가급적 검증된 라이브러리를 사용하는 게 훨씬 낫다. 이번 글에서는 알아두면 편리한 자바 유틸리티 클래스들 에 대해 찾아보았다.</p>
+<!--more-->
+<h3>스프링 프레임웍</h3>
+<p><a title="스프링 프레임웍 문서" href="http://spring.io/docs" target="_blank">스프링 프레임웍</a>에는 다양한 패키지가 있는데 그중 코어의 <code>org.springframework.util</code> 패키지에 다양한 유틸리티가 있다. 개발자들이 가장 흔하게 사용하는 유틸리티 기능은 아마도 문자열 처리 작업일 것이다. <code>StringUtils</code> 클래스의 다음과 같은 유틸리티성 스태틱 메서드들을 사용해보면 편리하다. 대부분은 <code>String</code> 클래스를 조금만 활용하면 간단히 처리할 수 있는 기능들이지만 특히 <a title="null 검사를 줄이려면" href="http://start.goodtime.co.kr/2013/11/null-%ea%b2%80%ec%82%ac%eb%a5%bc-%ec%a4%84%ec%9d%b4%eb%a0%a4%eb%a9%b4/" target="_blank">일일이 <code>null</code> 검사를 안해도 된다</a>는 점이 개발자들에게 유용한 것 같다. 다음에 나열한 것 외에도 많은 메서드가 있으므로 필요하면 <a title="org.springframework.util Class StringUtils" href="http://docs.spring.io/spring/docs/3.2.9.RELEASE/javadoc-api/index.html?org/springframework/util/StringUtils.html" target="_blank">API를 확인해보기</a> 바란다.</p>
+<ul>
+<li><code>boolean isEmpty(Object str)</code> - 문자열이 <code>null</code>도 아니고 빈 문자열(“”)도 아닌지 확인할 수 있다. 헌데 <code>str</code> 인자가 보다시피 사실 <code>Object</code>형이므로 변수의 형식 자료형이 <code>String</code>형이 아니더라도 형변환할 필요 없이 바로 빈 값인지 확인할 수 있다. 참고로 자바 1.6부터는 <code>String</code> 클래스에 <code>isEmpty()</code> 메서드가 있는데 이미 객체가 존재해야 메서드도 사용할 수 있는 것이므로 <code>null</code> 검사는 따로 해야 한다는 문제가 있다.</li>
+<li><code>boolean hasText(CharSequence str)</code> - 문자열에 공백이 아닌 문자가 들어가 있는지 검사하는 기능이다. 당연히 <code>null</code>도 아니고 빈 문자열도 아닌지 검사한다. 인자의 자료형이 <code>CharSequence</code>이므로 <code>String</code>, <code>StringBuffer</code>, <code>StringBuilder</code> 등을 다 검사할 수 있다.</li>
+<li><code>boolean startsWithIgnoreCase(String str, String prefix), boolean endsWithIgnoreCase(String str, String suffix)</code> - 문자열의 시작 부분 및 끝 부분을 검사할 수 있는 메서드다. <code>String</code> 클래스의 <code>startsWith</code>, <code>endsWith</code>는 대소문자를 구별하는데 반해 이 메서드들은 그렇지 않다는 점이 유용할 때가 많다.</li>
+<li><code>String replace(String inString, String oldPattern, String newPattern) </code> - <code>String.replaceAll</code>
+메서드는 정규식을 사용해 문자열을 대치하는데 이 메서드는 일반 문자열을 대치하는 메서드다. 정규식 생각하지 않고 속도도 빠른 문자열 대치 기능을 원한다면 이 메서드가 딱이다.</li>
+<li><code>String getFilenameExtension(String path)</code> - &quot;mypath/myfile.txt&quot;와 같은 경로에서 확장명 &quot;txt&quot;를 집어낸다. <code>StringUtils</code> 클래스에는 이 외에도 경로나 파일명 처리를 위한 메서드들이 있는데 주의할 점은 경로 구분자가 슬래시(/)인 경우만 된다는 것이다. 즉, 윈도에서는 간혹 기능 오류가 있을 수 있다.</li>
+<li><code>String[] addStringToArray(String[] array, String str)</code> - 배열은 리스트와 달리 요소를 추가하기가 힘들다. 이 메서드는 그러한 문제를 쉽게 해결해준다.</li>
+<li><code>String[] delimitedListToStringArray(String str, String delimiter, String charsToDelete)</code> - 콤마나 탭과 같은 어떠한 문자열로 구분된 다른 문자열을 문자열 배열로 바꿔준다. CSV와 같은 복잡한 예외가 있는 경우(값 안에 컴마가 있는 경우 등)는 안되고 단순한 문자열만 되지만 <code>charsToDelete</code> 인자를 활용하여 줄바꿈이나 공백 같은 걸 지울 수 있으므로 때로 아주 유용하다.</li>
+</ul>
+<p>다음으로는 <code>FileCopyUtils</code>를 살펴보라. 다음과 같은 여러 버전으로 파일 복사 기능을 제공한다. 이 외에도 많다.</p>
+<ul>
+<li><code>int copy(File in, File out) throws IOException</code></li>
+<li><code>void copy(byte[] in, File out) throws IOException</code></li>
+<li><code>int copy(InputStream in, OutputStream out) throws IOException</code></li>
+<li><code>byte[] copyToByteArray(InputStream in) throws IOException</code></li>
+<li><code>int copy(Reader in, Writer out) throws IOException</code></li>
+</ul>
+<p>이 밖에도 <code>org.springframework.util</code> 패키지에서는 다음과 같은 클래스를 구비해놓고 있다. 모두 거들떠볼 필요가 있다.</p>
+<ul>
+<li><code>FileSystemUtils</code> 클래스에서는 (하위 폴더, 파일을 포함하는, 즉 recursive) 폴더 삭제(<code>deleteRecursively</code>), 복사(<code>copyRecursively</code>) 기능을 제공한다.</li>
+<li><code>CollectionUtils</code> 클래스에는 <code>isEmpty</code>, <code>contains</code>, <code>mergeArrayIntoCollection</code> 메서드가 있다.</li>
+<li><code>StopWatch</code> 클래스는 코드 실행 시간을 측정할 수 있는 기능을 제공한다. 원초적으로 <code>System.currentTimeMillis()</code> 메서드로 시간을 재지 말고 이걸 사용해보면 편리할 것이다.</li>
+</ul>
+<pre class="language-java"><code class="language-java"><span class="token class-name">StopWatch</span> w <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StopWatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>w<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token string">"작업 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">// 뭔가 작업 실행</span><br>w<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>w<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token string">"작업 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">// 뭔가 또 다른 작업 실행</span><br>w<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span><span class="token function">prettyPrint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 작업별 경과 시간 출력</span></code></pre>
+<p><code>org.springframework.web.util</code> 패키지에도 유용한 유틸리티 클래스들이 있다.</p>
+<ul>
+<li>우선 <code>HtmlUtils</code> 클래스는 메서드가 몇 개 없는데 대표적인 메서드가 <code>String htmlEscape(String input)</code>다. <code>&amp;lt;</code> 기호를 <code>&amp;amp;lt;</code>로, <code>&amp;amp;</code> 기호를 <code>&amp;amp;amp;</code>로 바꾸는 등의 작업을 처리해준다. 사용자가 입력한 문자열에 HTML 코드가 섞여 있으면 문제가 될 경우 이러한 이스케이프 처리는 필수이다. 다만 JSP에서 JSTL을 사용할 경우는 <code>&amp;lt;c:out&amp;gt;</code> 태그를 사용해 이스케이프시켜 출력할 수 있으므로 어떤 경우에 사용할 것이냐가 중요하다고 볼 수 있다. 반대 작업을 하는 <code>unescape</code> 메서드도 제공된다.</li>
+<li><code>JavaScriptUtils</code> 클래스에는 <code>String javaScriptEscape(String input)</code> 메서드 하나만 있다. 큰따옴표를 <code>\&quot;</code>로, 백슬래시를 <code>\\</code>로, 탭을 <code>\t</code>로, 줄바꿈(CR, NL이 합친 경우 포함해서)을 <code>\n</code>로, 부등호를 <code>\u003C</code> 또는 <code>\u003E</code> 등으로 바꿔주는 작업을 한다.</li>
+<li>웹에서 여러 개의 쿠키를 만들 때 대부분의 인자는 비슷하게 하고 값만 바꿔 설정할 경우 <code>CookieGenerator</code> 클래스를 사용하면 반복 작업을 줄일 수 있다. 즉, <code>setCookieName, setCookieDomain, setCookieMaxAge</code> 등으로 쿠키 기본 설정을 한 후 <code>void addCookie(HttpServletResponse response, String cookieValue)</code>로 HTTP에 쿠키를 추가하거나 <code>void removeCookie(HttpServletResponse response)</code>로 쿠키를 제거할 수 있다.</li>
+</ul>
+<h3><code>commons</code> 라이브러리</h3>
+<p><a title="아파치 커먼스" href="http://commons.apache.org/" target="_blank">아파치 커먼스(Apache Commons)</a> 라이브러리는 그 자체가 이미 유틸리티 라이브러리므로 유틸리티 클래스를 선별하는 건 의미가 없지만 내 경험상 다음 몇 가지 클래스는 자주 나타나는 번거로운 작업을 단순화해주었길래 나열해본다. 먼저 IO 라이브러리의 <code>FileUtils</code> 클래스를 보자.</p>
+<ul>
+<li><code>FileInputStream openInputStream(File file) throws IOException</code> - <code>file</code>이 정상적으로 읽을 수 있는 파일인지 검사한 후 <code>FileInputStream</code>을 만들어낸다.</li>
+<li><code>FileOutputStream openOutputStream(File file, boolean append) throws IOException</code> - 비슷하다. 정상적인 파일로 쓸 수 있는지 검사해주며 상위 디렉터리가 없는 경우 만들어주기까지 한다. 실패하면 <code>IOException</code>을 던진다.</li>
+<li><code>String byteCountToDisplaySize(long size)</code> - <code>size</code> 값을 1000 이하의 범위로 읽을 수 있도록 단위를 환산해 “KB”, “MB”, “GB”, “TB” 등을 붙인다.</li>
+<li><code>Collection listFiles( File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</code> - 디렉터리내 파일들을 필터에 따라 걸러 컬렉션으로 반환한다. <code>IOFileFilter</code> 인터페이스를 알고 클래스를 구현할 수 있어야 사용할 수 있다.</li>
+<li><code>void copyFileToDirectory(File srcFile, File destDir, boolean preserveFileDate) throws IOException</code> - 파일을 복사한다. <code>null</code> 검사, 파일 및 디렉터리 존재 여부, 쓰기 가능 여부 등을 다 검사해준다.</li>
+<li><code>void deleteDirectory(File directory) throws IOException</code> - 디렉터리를 삭제한다.</li>
+<li><code>String readFileToString(File file, String encoding) throws IOException</code> - 파일 내용을 <code>String</code> 문자열로 읽어온다. 문자열이 아니라 리스트로 읽어오는 <code>List readLines(File file, String encoding) throws IOException</code> 메서드도 있다.</li>
+<li><code>void write(File file, CharSequence data, String encoding, boolean append) throws IOException</code> - 문자열 데이터를 파일에 쓴다. Spring IO 2.1부터 나타난 메서드다.</li>
+</ul>
+<p>다음으로 IO 라이브러리의 <code>IOUtils</code> 클래스를 살펴보자. 파일 복사 기능 같은 건 위 <code>FileUtils</code>에 있었지만 이 클래스는 스트림 수준에서 복사 또는 읽기, 쓰기 기능을 제공한다.</p>
+<ul>
+<li><code>static byte[] toByteArray(InputStream input, int size) throws IOException</code> - 스트림의 내용을 읽어 바이트 배열로 반환한다. <code>input</code>에 대한 <code>null</code> 검사는 하지 않지만 <code>size</code>가 0 이상인지는 확인하며 읽은 크기가 <code>size</code>가 아니면 <code>IOException</code>을 던진다. 비슷한 메서드로 <code>toCharArray</code>, <code>toString</code> 등이 있다.</li>
+<li><code>int copy(InputStream input, OutputStream output) throws IOException</code> - 대표적인 스트림 복사 메서드다. 비슷한 메서드들이 많이 제공된다. <code>copy(InputStream input, Writer output)</code>, <code>copy(InputStream input, Writer output, String encoding)</code>, <code>copy(Reader input, Writer output)</code> 등.</li>
+</ul>
+<p>커먼스 Email 라이브러리도 유용하다. 스프링 프레임웍을 사용할 경우 <code>MailSenderImpl</code> 등을 사용할 수 있다고 <a title="자바에서 메일 보내는 방법" href="http://start.goodtime.co.kr/2013/09/%ec%9e%90%eb%b0%94-%eb%a9%94%ec%9d%bc-%eb%b3%b4%eb%82%b4%ea%b8%b0/" target="_blank">언급한 적이 있는데</a> 커먼스의 e메일 라이브러리는 좀더 기능이 많다. 기본적으로 HTML, 첨부 파일 메일을 보낼 수 있는 건 같지만 SMTP 암호화, 원격 웹사이트의 파일 첨부, 이미지 내장 e메일 등을 보내는 게 가능하다. 자세한 설명은 <a title="아파치 커먼스 Email" href="http://commons.apache.org/proper/commons-email/userguide.html" target="_blank">사용자 지침서</a>를 참고한다. 예시가 잘 나와 있다.</p>
+<h3>구슬이 서말이라도</h3>
+<p>스프링 프레임웍과 아파치 커먼스 라이브러리 두 가지에 대해서만 살펴봤지만 사실 대부분의 프레임웍과 라이브러리는 자체적인 유틸리티 클래스와 메서드를 구비해놓고 있다. 또한 <a title="구글 구아바" href="http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/index.html" target="_blank">Google Guava</a>, <a title="아파치 커먼스 Lang" href="http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html" target="_blank">커먼스 Lang</a>와 같이 특정 기술 분야에 대한 라이브러리가 아니라 자바 언어 자체에 대한 유틸리티성 라이브러리도 있다.</p>
+<p>그러나 구슬이 서말이라도 꿰어야 보배라고 이를 잘 활용하지 않으면 아무 소용이 없겠지… 그리고 &quot;Do not reinvent the wheel&quot;이라는 유명한 격언도 있어서 남들이 해놓은 걸 다시 할 필요는 없다는 게 상식이다. 잘 찾아서 가져다 쓰는 것도 사실 쉽지 않은데 그걸 다시 더 잘 만드는 건 더욱 쉽지 않은 일이니까 말이다. 남들이 해놓은 걸 굳이 다시 만들 경우는 내가 스티브 잡스 같은 사람일 경우 뿐이라 생각된다…</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-06-28T13:10:49.000Z">2014. 6. 28.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/java">Java</a></li><li><a href="/tags/유틸리티">유틸리티</a></li><li><a href="/tags/자바">자바</a></li><li><a href="/tags/스프링">스프링</a></li><li><a href="/tags/spring">Spring</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/06/%ec%95%8c%ec%95%84%eb%91%90%eb%a9%b4-%ed%8e%b8%eb%a6%ac%ed%95%9c-%ec%9e%90%eb%b0%94-%ec%9c%a0%ed%8b%b8%eb%a6%ac%ed%8b%b0-%ed%81%b4%eb%9e%98%ec%8a%a4%eb%93%a4/" || location.origin + '/posts/알아두면-편리한-자바-유틸리티-클래스들/';
+    this.page.identifier = '알아두면-편리한-자바-유틸리티-클래스들';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS counter로 다단계 순번 만들기 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="HTML의 순서 있는 목록(ordered list)에는 자동으로 번호가 붙게 돼 있다. 그런데 이 번호라는 게 기본 상태에서는 1, 2, 3,...이고 CSS의 list-style-type을 사용하면 숫자대신 알파벳이나 로마자를 사용할 수는 있기는 하지만 해당 단계에 대해서만 표시하고 다단계는 되지 않는다. 오늘은 CSS counter로 다단계 순번 만들기를 알아보자.">
+    <link rel="canonical" href="/posts/css-counter로-다단계-순번-만들기/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="CSS counter로 다단계 순번 만들기">
+    <meta property="og:url" content="/posts/css-counter로-다단계-순번-만들기/">
+    <meta property="og:description" content="HTML의 순서 있는 목록(ordered list)에는 자동으로 번호가 붙게 돼 있다. 그런데 이 번호라는 게 기본 상태에서는 1, 2, 3,...이고 CSS의 list-style-type을 사용하면 숫자대신 알파벳이나 로마자를 사용할 수는 있기는 하지만 해당 단계에 대해서만 표시하고 다단계는 되지 않는다. 오늘은 CSS counter로 다단계 순번 만들기를 알아보자.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>CSS counter로 다단계 순번 만들기</h1>
+
+  <div class="post-content">
+    <p>HTML의 순서 있는 목록(ordered list)에는 자동으로 번호가 붙게 돼 있다. 그런데 이 번호라는 게 기본 상태에서는 1, 2, 3,…이고 <a title="CSS list-style-type" href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type" target="_blank">CSS의 list-style-type</a>을 사용하면 숫자대신 알파벳이나 로마자를 사용할 수는 있기는 하지만 해당 단계에 대해서만 표시하고 다단계는 되지 않는다. 오늘은 <a title="CSS counters" href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Counters" target="_blank">CSS counter</a>로 다단계 순번 만들기를 알아보자.</p>
+<!--more-->
+<p>우선 기본적인 HTML을 사용해 순서 있는 목록을 사용한 예시를 보자.</p>
+<ol style="list-style-type: upper-roman;">
+    <li>서론</li>
+    <li>연구 내용 및 방법
+<ol>
+    <li>조사 대상 및 기간</li>
+    <li>조사 내용
+<ol style="list-style-type: lower-alpha;">
+    <li>조사 대상자의 특성</li>
+    <li>만족도 조사 결과</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>위 결과는 다음과 같이 비교적 간단히 만들 수 있다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css"><br><span class="token selector">.part</span> <span class="token punctuation">{</span> <span class="token property">list-style-type</span><span class="token punctuation">:</span> upper-roman<span class="token punctuation">;</span> <span class="token punctuation">}</span><br><span class="token selector">.section</span> <span class="token punctuation">{</span> <span class="token property">list-style-type</span><span class="token punctuation">:</span> lower-alpha<span class="token punctuation">;</span> <span class="token punctuation">}</span><br></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>part<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>서론<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>연구 내용 및 방법<br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>조사 대상 및 기간<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>조사 내용<br>                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>section<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>조사 대상자의 특성<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>만족도 조사 결과<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">></span></span></code></pre>
+<p><strong>그럼 다음과 같이 다단계 순번을 붙이려면 어떻게 할까?</strong> 예를 들어 책을 보면 단원, 절에 따라 I-1, I-2,… II-1, II-2, II-2-1, II-2-2,…와 같이 나타나는 경우가 있다. 아래 결과는 IE8 이상이면 잘 되는 스타일이다.</p>
+<style><!--
+#example ol {list-style-type: none; } .part { counter-reset: part; list-style-type: none; } .part > li:before { counter-increment: part; content: counter(part,upper-roman) ". "; } .unit { counter-reset: unit; list-style-type: none; } .unit > li:before { counter-increment: unit; content: counter(part,upper-roman) "-" counter(unit,decimal) ". "; } .section { counter-reset: section; list-style-type: none; } .section > li:before { counter-increment: section; content: counter(part,upper-roman) "-" counter(unit,decimal) "-" counter(section,lower-alpha) ". " ; }
+--></style>
+<div id="example">
+<ol class="part">
+    <li>서론</li>
+    <li>연구 내용 및 방법
+<ol class="unit">
+    <li>조사 대상 및 기간</li>
+    <li>조사 내용
+<ol class="section">
+    <li>조사 대상자의 특성</li>
+    <li>만족도 조사 결과</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<p>HTML은 앞서의 예시과 같고 CSS Style을 다음과 같이 하면 된다.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">ol</span> <span class="token punctuation">{</span><span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span> <span class="token punctuation">}</span><br><span class="token selector">.part</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-reset</span><span class="token punctuation">:</span> part<span class="token punctuation">;</span><br>    <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">.part > li:before</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-increment</span><span class="token punctuation">:</span> part<span class="token punctuation">;</span> <br>    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span>upper-roman<span class="token punctuation">)</span> <span class="token string">". "</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">.unit</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-reset</span><span class="token punctuation">:</span> unit<span class="token punctuation">;</span><br>    <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">.unit > li:before</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-increment</span><span class="token punctuation">:</span> unit<span class="token punctuation">;</span><br>    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span>upper-roman<span class="token punctuation">)</span> <span class="token string">"-"</span> <span class="token function">counter</span><span class="token punctuation">(</span>unit<span class="token punctuation">,</span>decimal<span class="token punctuation">)</span> <span class="token string">". "</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">.section</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-reset</span><span class="token punctuation">:</span> section<span class="token punctuation">;</span> <br>    <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">.section > li:before</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-increment</span><span class="token punctuation">:</span> section<span class="token punctuation">;</span><br>    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span>upper-roman<span class="token punctuation">)</span> <span class="token string">"-"</span> <span class="token function">counter</span><span class="token punctuation">(</span>unit<span class="token punctuation">,</span>decimal<span class="token punctuation">)</span> <span class="token string">"-"</span> <span class="token function">counter</span><span class="token punctuation">(</span>section<span class="token punctuation">,</span>lower-alpha<span class="token punctuation">)</span> <span class="token string">". "</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>설명을 하자면 1행에서 일단 순번 자체를 없애고 있다. <code>counter</code>라는 별도의 순번 체계를 사용하기 위해서다. <code>counter</code>는 <code>ol, ul</code> 뿐 아니라 임의의 HTML 요소에 대해 사용할 수 있다.</p>
+<p>3행에서는 <code>.part</code> 클래스에 <code>counter-increment</code>를 사용해 순번을 붙일 변수를 설정하고 있다. 위에서 “part”, “unit”, &quot;section&quot;은 클래스명이 아니라 임의의 변수명이다. 그 결과 <code>ol.part</code>가 나타나면 &quot;part&quot;라는 변수를 새로 시작하게 된다.</p>
+<p>7행에서는 <code>.part &gt; li</code>에 대해 “part” 변수를 점증시키도록 하고 있다. 그런데 이제 중요한 것은 8행이다. <code>content</code>를 사용함으로써 <code>li:before</code>, 즉 <code>li</code> 내용의 앞에 순번을 삽입하게 된다.</p>
+<p>8행의 <code>counter(part,upper-roman) &quot;. &quot;</code>은 “part” 변수의 순번 값을 대문자 로마자로 출력하고 그 뒤에 마침표와 빈칸을 붙이라는 의미다.</p>
+<p>이제 나머지는 설명하지 않아도 이해할 것이다. 같은 스타일로 반복하고 있으며 3단계까지 출력하는 것이다.</p>
+<p><strong>그렇다면 3단계가 아니라 임의의 단계까지 다단계 번호를 붙이려면 어떻게 할까?</strong></p>
+<p>1단계만 로마자를 사용하고 그 하위 단계는 모두 숫자로만 표시하는 예제를 들어본다면 다음과 같다. <code>counters</code>라는 새로운 CSS 속성을 사용하는 것을 볼 수 있다.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">ol.part</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-reset</span><span class="token punctuation">:</span> part<span class="token punctuation">;</span><br>    <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">ol.part > li:before</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-increment</span><span class="token punctuation">:</span> part<span class="token punctuation">;</span><br>    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span>upper-roman<span class="token punctuation">)</span> <span class="token string">". "</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">li > ol</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-reset</span><span class="token punctuation">:</span> section<span class="token punctuation">;</span><br>    <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token selector">li > ol > li:before</span> <span class="token punctuation">{</span><br>    <span class="token property">counter-increment</span><span class="token punctuation">:</span> section<span class="token punctuation">;</span><br>    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span>upper-roman<span class="token punctuation">)</span> <span class="token string">"-"</span> <span class="token function">counters</span><span class="token punctuation">(</span>section<span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">)</span> <span class="token string">". "</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>이 방식이 강력하긴 하지만 아직도 자유자재로 순번을 붙이기에는 한계가 있다. 예를 들어 순번 값을 한글이라든가 임의의 기호를 넣는 것은 아직 지원되지 않는 게 많다. 하지만 현재 WWW 표준으로 임의의 리스트 스타일을 CSS3로 지정하는 것을 제정하고 있는 과정이다. 자세한 사항은 <a title="CSS 리스트" href="http://dev.w3.org/csswg/css-lists/" target="_blank">여기</a>(주의: 100% 영문!)를 참고해보기 바란다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/css">CSS</a></li><li><a href="/tags/html">HTML</a></li><li><a href="/tags/리스트">리스트</a></li><li><a href="/tags/목록">목록</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/04/css-counter%eb%a1%9c-%eb%8b%a4%eb%8b%a8%ea%b3%84-%ec%88%9c%eb%b2%88-%eb%a7%8c%eb%93%a4%ea%b8%b0/" || location.origin + '/posts/css-counter로-다단계-순번-만들기/';
+    this.page.identifier = 'css-counter로-다단계-순번-만들기';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

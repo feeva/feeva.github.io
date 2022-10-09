@@ -1,0 +1,508 @@
+pre[class*="language-"],
+code[class*="language-"] {
+	color: #d4d4d4;
+	font-size: 15px;
+	text-shadow: none;
+	font-family: "Roboto mono", Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", "맑은 고딕", monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+	text-shadow: none;
+	background: #264F78;
+}
+
+@media print {
+	pre[class*="language-"],
+	code[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	background: #1e1e1e;
+}
+
+:not(pre) > code[class*="language-"] {
+	padding: .1em .3em;
+	border-radius: .3em;
+	color: #db4c69;
+	background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+	opacity: .7;
+}
+
+.token.doctype .token.doctype-tag {
+	color: #569CD6;
+}
+
+.token.doctype .token.name {
+	color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+	color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+	color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+	color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+	color: #ce9178;
+}
+
+.language-css .token.string.url {
+	text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+	color: #d4d4d4;
+}
+
+.token.operator.arrow {
+	color: #569CD6;
+}
+
+.token.atrule {
+	color: #ce9178;
+}
+
+.token.atrule .token.rule {
+	color: #c586c0;
+}
+
+.token.atrule .token.url {
+	color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+	color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+	color: #d4d4d4;
+}
+
+.token.keyword {
+	color: #569CD6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+	color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+	color: #dcdcaa;
+}
+
+.token.regex {
+	color: #d16969;
+}
+
+.token.important {
+	color: #569cd6;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.constant {
+	color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+	color: #4ec9b0;
+}
+
+.token.console {
+	color: #9cdcfe;
+}
+
+.token.parameter {
+	color: #9cdcfe;
+}
+
+.token.interpolation {
+	color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+	color: #569cd6;
+}
+
+.token.boolean {
+	color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+	color: #9cdcfe;
+}
+
+.token.selector {
+	color: #d7ba7d;
+}
+
+.token.escape {
+	color: #d7ba7d;
+}
+
+.token.tag {
+	color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+	color: #808080;
+}
+
+.token.cdata {
+	color: #808080;
+}
+
+.token.attr-name {
+	color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+	color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+	color: #d4d4d4;
+}
+
+.token.entity {
+	color: #569cd6;
+}
+
+.token.namespace {
+	color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+	color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+	color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+	color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+	color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+	color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+	position: relative;
+	z-index: 1;
+}
+
+.line-highlight.line-highlight {
+	background: #f7ebc6;
+	box-shadow: inset 5px 0 0 #f7d87c;
+	z-index: 0;
+}
+
+body {
+  font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+  font-size: 15pt;
+  color: #555;
+}
+h1, h2, h3, h4, h5, h6 { color: black; }
+code { font-family: "Roboto mono", Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", 'Noto Sans KR', monospace; }
+pre code { font-size: 15px; }
+a.badge { text-decoration: none; }
+img { max-width: 100%; height: auto; }
+
+.collection main, .post-layout { max-width: 60rem; margin-left: auto; margin-right: auto; }
+.post-layout > h1 {
+  margin: 1.8rem auto;
+  line-height: 3rem;
+  font-size: 2.2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.post-layout > a, .post-footer a {
+  display: inline-block;
+  height: 2.5rem;
+  line-height: 2.2rem;
+  padding: 0 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 1.25rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #222;
+}
+
+.post-content, .post-footer { padding: 0 1rem; line-height: 2rem; margin-bottom: 2rem; }
+.post-content > *, .post-footer { max-width: 42rem; margin-left: auto; margin-right: auto; word-break: break-word; }
+
+.post-content > p { margin-bottom: 2rem; }
+.post-content h2, .post-content h3 { margin-top: 3.6rem; margin-bottom: 0.9rem; }
+.post-content :not(pre)>code { padding: 0.1em 0.2em; border-radius: 4px; background-color: #f0f0f0; color: #333; }
+.post-content code strong { font-weight: 700; color: #5d0; }
+.post-content pre { margin: 0.5em auto 2rem auto; padding: 1em; border-radius: 0.3em; background-color: #1e1e1e; color: #d4d4d4; }
+.post-content pre kbd {
+  display: inline-block; padding: 3px 5px; color: #444d56;
+  line-height: 12px; vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+.post-content p > img, .post-content picture img, .post-content figure img { display: block; margin: auto; max-width: 100%; height: auto; }
+.post-content .image-block, .post-content iframe, .post-content .image-grid { display: block; max-width: 100%; }
+figcaption { margin: 9px 0; text-align: center; font-size: 12pt; font-style: italic; }
+figcaption a { color: #555; }
+.post-content blockquote {
+  max-width: 44rem;
+  margin: 1rem auto 2rem auto;
+  padding: 1rem;
+  border-left: 10px solid #ccc;
+  background: #f9f9f9;
+  font-family: Georgia, 'Times New Roman', Times, 'Noto Serif KR', serif;
+}
+.post-content blockquote p:last-child { margin-bottom: 0; }
+.post-content .image-grid, .post-content .image-grid p { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.post-content .image-grid > img, .post-content .image-grid > picture, .post-content .image-grid > figure,
+.post-content .image-grid p > img
+{ width: 32%; margin: 0 0 20px; }
+.post-content iframe, .post-content table { margin-bottom: 30px; }
+.post-content table { width: 100%; border-collapse: separate; }
+.post-content td, .post-content th { padding: 3px 9px; font-size: 1.1rem; }
+.post-content th { background: #4682b4; color: #fff; }
+.post-content tbody tr:nth-child(2n) { background: #f5f5f5; }
+
+.post-footer-date { font-style: italic; color: #999; }
+.post-footer ul li { padding: 0 0.3rem; margin-bottom: 0.6rem; }
+
+#disqus_thread { max-width: 42rem; margin: auto; }
+
+.post-tags { list-style: none; margin: 1rem -0.6rem; padding: 0; }
+.post-tags li { display: inline-block; margin: 0.6rem 0.3rem; padding: 0 0.3rem; }
+
+/*
+ 컬렉션 페이지
+ */
+.collection { font-size: 14pt; }
+.collection section.poster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 360px;
+  /* text-shadow: 1px 1px 4px rgb(0 0 0 / 80%); */
+  overflow: hidden;
+}
+.collection section.poster > * { position: relative; color: white; }
+.collection section.poster .background-image {
+  position: absolute; left: 0; top:0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.3) url(/static/images/20220910_161621.jpg) no-repeat top center;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+.collection form.search { position: absolute; right: 1em; bottom: .5em; }
+.collection form.search input {
+  width: 150px;
+  background-color: #ddd;
+  color: #404040;
+  padding: 0.6em 0.7em 0.6em 32px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: all 0.25s ease-in-out;
+}
+.collection form.search input:focus { width: 200px; background-color: white; outline: none; }
+.collection form.search svg {
+  left: 0.4em;
+  color: #bbb;
+  vertical-align: bottom;
+  position: absolute;
+  pointer-events: none;
+  margin-top: 11px;
+}
+
+.collection .sidebar { position: relative; }
+
+.collection .author-photo { border-radius: 50%; }
+.collection .author-name { font-weight: bold; }
+.collection .page-links li { margin: .7rem 0; }
+.collection .page-links a { text-decoration: none; color: #333; }
+.collection .page-links a[aria-current] { border-bottom: 1px solid #222; }
+.collection .social { display: flex; flex-flow: row wrap; }
+.collection .social li {
+  padding: 0;
+  margin: 0.25rem;
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.collection .social li a { line-height: 1.8rem; }
+.collection .social svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  font-style: normal;
+  font-weight: 400;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0.2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+}
+.collection .post-list .post-meta { font-size: 12pt; font-weight: bold; }
+.collection .post-list a { text-decoration: none; color: #f7a046; }
+.collection .post-list time { margin-right: 1em; }
+.collection .post-list p { color: #555; }
+.collection .post-list .poster { position: relative; border: 1px solid #d0d8e0; border-radius: 0.9375rem; overflow: hidden; }
+.collection .post-list .poster::after { content: ''; width: 100%; padding-bottom: 56.25%; display: block; }
+.collection .post-list .poster img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+.collection .collections li { margin: 0.5rem 0; }
+.collection .collections a { text-decoration:none; }
+
+/* 반응형 */
+@media screen and (min-width: 920px) {
+  .post-layout > h1 {
+    font-size: 2.8rem; line-height: 4rem; margin-top: 4rem; margin-bottom: 2.7rem;
+  }
+  .post-layout .home-link { position: fixed; top: 30px; left: 30px; }  
+  .post-content, .post-footer { padding: 0; }
+
+  .collection section.poster h1 { font-size: 3.5rem; font-weight: bold; letter-spacing: -0.1rem; }
+  .collection .sidebar::after {
+    background: linear-gradient(180deg,#e6e6e6 0,#e6e6e6 48%,#fff);
+    position: absolute;
+    content: "";
+    width: 0.5px;
+    height: 34rem;
+    top: 20px;
+    right: 5px;
+    bottom: 0;
+  }
+  
+}
+
+#postImageSlider {
+  position: fixed; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background: rgba(0, 0, 0, 0.9);
+  opacity: 0; transition: opacity 0.25s ease-in-out;
+}
+#postImageSlider .swiper-slide { overflow: hidden; }
+#postImageSlider .swiper-slide img { width: auto; height: auto; max-width: 99%; max-height: 99%; }
+#postImageSlider figcaption { position: absolute; left: 1rem; top: 1rem; color: rgba(255, 255, 255, 0.8); filter: drop-shadow(1px 1px 2px black); }
+#postImageSlider .swiper-close {
+  z-index: 1;
+  position: absolute; top: 1rem; right: 1rem;
+  padding: 0 0.3rem;
+  border: solid 1px rgba(255, 255, 255, .7); border-radius: 3px;
+  color: rgba(255, 255, 255, .7);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/*
+ Prism 줄 번호 - https://github.com/11ty/eleventy-plugin-syntaxhighlight/issues/10#issuecomment-704636739
+ */
+/*
+pre {
+  counter-reset: lineNumber;
+}
+code .highlight-line:before {
+  position: sticky;
+  left: 0;
+  background: var(--code-bg);
+
+  user-select: none;
+  border-right: 1px solid hsla(0, 0%, 0%, 0.2);
+  color: hsla(0, 100%, 100%, 0.6);
+  content: counter(lineNumber);
+  counter-increment: lineNumber;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  margin-right: 1.2rem;
+  text-align: center;
+  width: 3em;
+}
+*/
+

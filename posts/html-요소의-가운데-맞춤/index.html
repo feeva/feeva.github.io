@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 요소의 가운데 맞춤 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="HTML에서 가운데 맞춤은 흔하게 필요한 UI 표현이다. 예를 들어 다음과 같이 회색 블록 안에 있는 작은 블록이 정 중앙에 위치하도록 만드는 경우다.
+이 박스는 바깥 박스의 정 중앙에 위치한다
+">
+    <link rel="canonical" href="/posts/html-요소의-가운데-맞춤/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="HTML 요소의 가운데 맞춤">
+    <meta property="og:url" content="/posts/html-요소의-가운데-맞춤/">
+    <meta property="og:description" content="HTML에서 가운데 맞춤은 흔하게 필요한 UI 표현이다. 예를 들어 다음과 같이 회색 블록 안에 있는 작은 블록이 정 중앙에 위치하도록 만드는 경우다.
+이 박스는 바깥 박스의 정 중앙에 위치한다
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>HTML 요소의 가운데 맞춤</h1>
+
+  <div class="post-content">
+    <p>HTML에서 가운데 맞춤은 흔하게 필요한 UI 표현이다. 예를 들어 다음과 같이 회색 블록 안에 있는 작은 블록이 정 중앙에 위치하도록 만드는 경우다.</p>
+<div style="width: 400px; height: 240px; background-color: #eee; border: solid 2px #ccc; position: relative; margin: auto;">
+<div style="width: 200px; height: 100px; margin: auto; border: solid 2px #aaf; background-color: #ccf; text-align: center; position: absolute; left: 0; top: 0; right: 0; bottom: 0;">이 박스는 바깥 박스의 정 중앙에 위치한다</div>
+</div>
+<!--more-->
+<p>가로로는 가운데 맞추기가 쉽다. 안쪽 블록에 <code>width</code>를 주고 <code>left-margin</code>, <code>right-margin</code> 값이 <code>auto</code>로 되게만 만들면 된다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>가로로 가운데 위치함<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>그런데 세로로는 맞추기가 쉽지 않았다. 인터넷에 그 동안 여러가지 방법이 제시됐었는데 특정 상황에만 되는 제한적인 방법이거나 html, body 태그의 스타일을 설정한다든지 픽셀 단위로 크기와 마진 등을 일일이 지정해야 하는 등 불편한 방법들이었고 손쉽게 적용하기 힘들었다. 그래서 프론트 코딩 개발자(또는 퍼블리셔)들은 이런 불편함을 겪을 바에야 차라리 작업하는 디자인에만 적용되게 margin을 주거나 절대 좌표로 위치시키는 방법을 썼다. 이것은 결국 디자인이 바뀌면 틀어질 수 밖에 없는 문제가 있는 방법이다.</p>
+<p>그런데 최근 <a href="https://twitter.com/shshaw" target="_blank">누군가가</a> 아주 일부 사람들만 알고 있는 방법을 만천하에 공개함으로써 새로운 장을 열었다. 이 방법은 여러 상황에도 손쉽게 적용할 수 있음을 <a href="http://codepen.io/shshaw/full/gEiDt" target="_blank">다양한 예시로도</a> 만들어 보여주고 있다.</p>
+<p>요약하자면 바깥 블록에는 <code>postion: relative</code> 스타일을 주고 안쪽 블록에는 높이 및 <code>margin: auto; position: absolute; left: 0; top: 0; right: 0; bottom: 0;</code>을 지정하면 된다. 이 글 초반에 보인 박스 두 개 예시는 바로 다음과 같이 작성된 것이다. (경계선이나 색깔 스타일 등은 편의상 삭제했다)</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 240px<span class="token punctuation">;</span> <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span> <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>        이 박스는 바깥 박스의 정 중앙에 위치한다<br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p><code>position: absolute</code>와 <code>margin: auto</code> 등의 조화로 이러한 결과가 나타나는 것으로 생각된다. 또 하나를 배웠다. 인터넷은 참 배울 게 무궁무진하다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-08-29T16:33:55.000Z">2013. 8. 30.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/css">CSS</a></li><li><a href="/tags/html">HTML</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/08/html-%ec%9a%94%ec%86%8c%ec%9d%98-%ea%b0%80%ec%9a%b4%eb%8d%b0-%eb%a7%9e%ec%b6%a4/" || location.origin + '/posts/html-요소의-가운데-맞춤/';
+    this.page.identifier = 'html-요소의-가운데-맞춤';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

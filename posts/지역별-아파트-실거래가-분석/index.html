@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역별 아파트 실거래가 분석 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="얼마 전 내 집을 장만했는데 그 과정에서 국토교통부에서 주택 실거래가를 공개하고 있다는 것을 알게 되었다. 개발자로서 정부 3.0이라든지 공공 데이터 개방에 대해 관심이 많이 있었는데 이 주택 실거래 사이트는 데이터 개방, 활용 측면에서 도저히 봐줄 사이트가 안돼 보였다. 왜 데이터를 이렇게 찾기 어렵고 받아갈 수도 없게 만들었냐고!결국 내가 직접 의미 있는 아파트 실거래가 분석을 해보기로 하고 여기 일부를 공개한다. 이 과정에서 데이터를 뽑아 오기 위한 리버스 엔지니어링이라든가(이건 개방형 데이터가 아니잖소!) 다양한 오픈 소스 소프트웨어 사용, 시행착오, 시간 투자가 있었음을 밝힌다. 이 과정이나 좀더 다양한 분석 데이터는 앞으로 차츰 올려보기로 하겠다.">
+    <link rel="canonical" href="/posts/지역별-아파트-실거래가-분석/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="지역별 아파트 실거래가 분석">
+    <meta property="og:url" content="/posts/지역별-아파트-실거래가-분석/">
+    <meta property="og:description" content="얼마 전 내 집을 장만했는데 그 과정에서 국토교통부에서 주택 실거래가를 공개하고 있다는 것을 알게 되었다. 개발자로서 정부 3.0이라든지 공공 데이터 개방에 대해 관심이 많이 있었는데 이 주택 실거래 사이트는 데이터 개방, 활용 측면에서 도저히 봐줄 사이트가 안돼 보였다. 왜 데이터를 이렇게 찾기 어렵고 받아갈 수도 없게 만들었냐고!결국 내가 직접 의미 있는 아파트 실거래가 분석을 해보기로 하고 여기 일부를 공개한다. 이 과정에서 데이터를 뽑아 오기 위한 리버스 엔지니어링이라든가(이건 개방형 데이터가 아니잖소!) 다양한 오픈 소스 소프트웨어 사용, 시행착오, 시간 투자가 있었음을 밝힌다. 이 과정이나 좀더 다양한 분석 데이터는 앞으로 차츰 올려보기로 하겠다.">
+    <meta property="og:image" content="../../static/uploads/2014/09/아파트_매매_전국_2014_567.png">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>지역별 아파트 실거래가 분석</h1>
+
+  <div class="post-content">
+    <p>얼마 전 <a title="내 집 갖기" href="http://start.goodtime.co.kr/2014/08/%eb%82%b4-%ec%a7%91-%ea%b0%96%ea%b8%b0/">내 집을 장만했는데</a> 그 과정에서 국토교통부에서 <a title="주택 실거래가 공개" href="http://rt.molit.go.kr/rtApt.do?cmd=srhLocalView" target="_blank">주택 실거래가를 공개하고 있다</a>는 것을 알게 되었다. 개발자로서 정부 3.0이라든지 <a title="공공 데이터 포털" href="https://www.data.go.kr" target="_blank">공공 데이터 개방</a>에 대해 관심이 많이 있었는데 이 주택 실거래 사이트는 데이터 개방, 활용 측면에서 도저히 봐줄 사이트가 안돼 보였다. 왜 데이터를 이렇게 찾기 어렵고 받아갈 수도 없게 만들었냐고!</p>
+<p>결국 내가 직접 의미 있는 아파트 실거래가 분석을 해보기로 하고 여기 일부를 공개한다. 이 과정에서 데이터를 뽑아 오기 위한 리버스 엔지니어링이라든가(<a title="이건 개방형 데이터가 아니잖소!" href="https://twitter.com/mbostock/status/487292286351728640" target="_blank">이건 개방형 데이터가 아니잖소!</a>) 다양한 오픈 소스 소프트웨어 사용, 시행착오, 시간 투자가 있었음을 밝힌다. 이 과정이나 좀더 다양한 분석 데이터는 앞으로 차츰 올려보기로 하겠다.</p>
+<!--more-->
+<p>우선 전국적인 아파트 매매가 현황이다. 물론 수도권이 비싼 줄 알고 있지만 다른 지역은 어떤지도 궁금했다. 2014년 5, 6, 7월달의 매매에 대해 시군구별로 단위 면적 당 매매가를 비싼 곳은 진하게 싼 곳은 연하게 표시해봤다.</p>
+<p><img src="../../static/uploads/2014/09/%EC%95%84%ED%8C%8C%ED%8A%B8_%EB%A7%A4%EB%A7%A4_%EC%A0%84%EA%B5%AD_2014_567.png" alt="2014년 5~7월 전국 아파트 매매가 현황"></p>
+<p>역시나 수도권이 진하게 나오는 것이 비싼 지역이라는 것을 한 번에 알 수 있다. 아래는 그 중 상위 10개의 시군구 데이터다. “강남 불패” 신화는 여전한 것인가?</p>
+<table>
+<tbody>
+<tr>
+<th>시군구</th>
+<th>매매건수</th>
+<th>3.3m<sup>2</sup>당 가격</th>
+</tr>
+<tr>
+<td>서울특별시 강남구</td>
+<td>775</td>
+<td>2865.0</td>
+</tr>
+<tr>
+<td>서울특별시 서초구</td>
+<td>562</td>
+<td>2563.5</td>
+</tr>
+<tr>
+<td>경기도 과천시</td>
+<td>55</td>
+<td>2528.7</td>
+</tr>
+<tr>
+<td>서울특별시 송파구</td>
+<td>520</td>
+<td>2324.4</td>
+</tr>
+<tr>
+<td>서울특별시 용산구</td>
+<td>159</td>
+<td>2127.6</td>
+</tr>
+<tr>
+<td>서울특별시 광진구</td>
+<td>204</td>
+<td>1912.2</td>
+</tr>
+<tr>
+<td>경기도 성남시 분당구</td>
+<td>747</td>
+<td>1799.1</td>
+</tr>
+<tr>
+<td>서울특별시 마포구</td>
+<td>313</td>
+<td>1791.6</td>
+</tr>
+<tr>
+<td>서울특별시 성동구</td>
+<td>379</td>
+<td>1786.2</td>
+</tr>
+<tr>
+<td>서울특별시 종로구</td>
+<td>84</td>
+<td>1746.3</td>
+</tr>
+</tbody>
+</table>
+<p>이번엔 수도권을 동 단위까지 분석해봤다. 역시 2014년 5, 6, 7월달 데이터를 평균한 것이다.</p>
+<p><img src="../../static/uploads/2014/09/%EC%95%84%ED%8C%8C%ED%8A%B8_%EB%A7%A4%EB%A7%A4_%EC%88%98%EB%8F%84%EA%B6%8C_2014_567.png" alt="2014년 5~7월 수도권 아파트 매매가 현황"></p>
+<p>일부러 최고 비싼 지역인 개포동을 별도로 보이게 했다. 비싸도 저렇게 비쌀 줄은 몰랐다. 특히 개포동 주공 아파트가 44m<sup>2</sup> 이런 면적이 7~8억에 매매돼서 이렇게 평균이 올라간 것이다. 다음은 데이터 표다.</p>
+<table>
+<tbody>
+<tr>
+<th>동</th>
+<th>매매건수</th>
+<th>3.3m<sup>2</sup>당 가격</th>
+</tr>
+<tr><td> 서울특별시 강남구 개포동                </td><td> 124 </td><td>        12252.6 </td></tr>
+<tr><td> 서울특별시 강남구 압구정동              </td><td>  45 </td><td>        12111.6 </td></tr>
+<tr><td> 서울특별시 서초구 반포동                </td><td>  94 </td><td>        10968.0 </td></tr>
+<tr><td> 서울특별시 송파구 잠실동                </td><td>  94 </td><td>        10874.4 </td></tr>
+<tr><td> 서울특별시 중구 회현동1가               </td><td>   1 </td><td>        10738.5 </td></tr>
+<tr><td> 서울특별시 강남구 도곡동                </td><td>  86 </td><td>        10598.7 </td></tr>
+<tr><td> 서울특별시 강남구 청담동                </td><td>  48 </td><td>        10260.6 </td></tr>
+<tr><td> 경기도 과천시 중앙동                    </td><td>   7 </td><td>        10232.1 </td></tr>
+<tr><td> 서울특별시 용산구 용산동5가             </td><td>   1 </td><td>        10152.0 </td></tr>
+<tr><td> 서울특별시 강남구 대치동                </td><td> 107 </td><td>         9786.0 </td></tr>
+</table>
+<p>좀더 다양한 분석은 시간을 두고 진행해야 할 것 같다. 특히 대부분의 사람들이 생각하는 생활권은 “행정동” 단위로 이루어지는데 주택 매매 계약은 “법정동” 단위로 이루어지기 때문에 위 분석도 법정동을 기준으로 할 수 밖에 없었다. 예를 들어 서울 봉천동은 현재 행정구역상에서는 없어졌지만 법정동으로는 계속 존재하므로 봉천동에 대해서 분석하게 된다.</p>
+<p>일단은 여기까지 오는데도 너무나 힘들었다. 특히 데이터를 뽑는 과정이 너무 원시적이었다. 그래도 결과는 내가 생각했을 때 어느 정도 생각한 대로 보기 좋게 나와 기분이 좋다. Mike Bostock의 <a href="http://d3js.org/" title="d3.js" target="_blank">d3.js</a>에 정말 감사드린다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-08-31T18:28:40.000Z">2014. 9. 1.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/d3">d3</a></li><li><a href="/tags/아파트">아파트</a></li><li><a href="/tags/주택">주택</a></li><li><a href="/tags/지도">지도</a></li><li><a href="/tags/데이터-시각화">데이터 시각화</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/09/%ec%a7%80%ec%97%ad%eb%b3%84-%ec%95%84%ed%8c%8c%ed%8a%b8-%ec%8b%a4%ea%b1%b0%eb%9e%98%ea%b0%80-%eb%b6%84%ec%84%9d/" || location.origin + '/posts/지역별-아파트-실거래가-분석/';
+    this.page.identifier = '지역별-아파트-실거래가-분석';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

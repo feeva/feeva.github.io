@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션 easing에 숨은 비밀 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="UI 애니메이션을 코딩할 때 꼭 들어가는 양념 같은 게 있다. easing. 우리 말로는 한 마디로 옮기기 힘들어 풀어서 말하자면 애니메이션 흐름을 매끄럽게 이어주기 위해 동작 속도를 조절하는 것이다. (경제 용어에서는 quantitative easing을 &quot;양적 완화&quot;로 옮기기는 한다.)">
+    <link rel="canonical" href="/posts/애니메이션-easing에-숨은-비밀/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="애니메이션 easing에 숨은 비밀">
+    <meta property="og:url" content="/posts/애니메이션-easing에-숨은-비밀/">
+    <meta property="og:description" content="UI 애니메이션을 코딩할 때 꼭 들어가는 양념 같은 게 있다. easing. 우리 말로는 한 마디로 옮기기 힘들어 풀어서 말하자면 애니메이션 흐름을 매끄럽게 이어주기 위해 동작 속도를 조절하는 것이다. (경제 용어에서는 quantitative easing을 &quot;양적 완화&quot;로 옮기기는 한다.)">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+        },
+        CommonHTML: {
+          scale: 86,
+        },
+      });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>애니메이션 easing에 숨은 비밀</h1>
+
+  <div class="post-content">
+    <p>UI 애니메이션을 코딩할 때 꼭 들어가는 양념 같은 게 있다. easing. 우리 말로는 한 마디로 옮기기 힘들어 풀어서 말하자면 애니메이션 흐름을 매끄럽게 이어주기 위해 동작 속도를 조절하는 것이다. (경제 용어에서는 quantitative easing을 &quot;양적 완화&quot;로 옮기기는 한다.)</p>
+<!--more-->
+<p>이미 아는 사람은 알겠지만 예를 들자면 easing이 없다면 이러던 것이,</p>
+<style>
+#box1, #box2 {
+width: 200px; height: 100px; background-color: #eee; border: solid 1px #99f; text-align: center; line-height: 100px; cursor: pointer; margin-bottom: 1em; transition-property: all; transition-duration: 1s; transition-timing-function: linear;
+}
+#box2 { transition-timing-function: cubic-bezier(0.55, 0, 0.45, 1); }
+</style>
+<div>
+    <div id="box1" onclick="w = this.parentNode.offsetWidth - this.offsetWidth; this.style.transform = this.style.transform ? '' : 'translateX(' + w + 'px)'">눌러보세요</div>
+</div>
+<p>아래처럼 매끄럽고 자연스러운 느낌의 움직임으로 바뀐다.</p>
+<div>
+    <div id="box2" onclick="w = this.parentNode.offsetWidth - this.offsetWidth; this.style.transform = this.style.transform ? '' : 'translateX(' + w + 'px)'">눌러보세요</div>
+</div>
+<p>전자는 시작과 끝에서 뭔가 뚝 끊기는 느낌이 드는데 후자는 자연스럽게 시작하고 끝난다. 그리고 두 애니메이션에 걸리는 시간은 동일하다! 차이는 전자는 일정 속도로 움직이는 것이고 후자는 처음과 끝에는 속도를 낮추고 중간에는 속도를 빨리하는 데 있다. 아래는 그러한 움직임을 그래프로 나타낸 것이다. 운동 속도 = (움직인 거리 / 시간), 즉 $v = \dfrac{\Delta s}{\Delta t}$이므로 그래프의 기울기가 속도다. 기울기가 큰 곳은 빠르고 완만한 곳은 느린 부분이 되겠다.</p>
+<table style="width:100%"><tr><td>
+<p><img src="../../static/uploads/2020/linear.png" alt="등속 이동"></p>
+</td><td>
+<p><img src="../../static/uploads/2020/bezier.png" alt="가속/감속 이동"></p>
+</td></tr>
+</table>
+<p>(혹시 소스가 필요하다면 이 페이지의 소스 보기를 확인하도록.)</p>
+<p>easing이 들어간 편이 좀더 매끄럽게 느껴지는 이유는 사람이 속도에는 둔감해도 가속도에는 민감하기 때문에 그렇다. 위 두 가지 예에서 전자는 처음과 끝에서 무한대 크기의 가속도가 발생하는데 반해 후자는 가속도가 서서히 높아졌다가 낮아지게 된다. (가속도는 속도의 기울기이므로 위 그래프에서 유추해보자~ 😉 )</p>
+<p>일상 생활에서는 우리가 가속도를 따지는 일이 별로 없지만(자동차가 100m/s까지 도달하는 데 몇 초가 걸리는지 따지는 정도?) 실제로는 사람이 교통 수단이나 놀이기구를 탄다든가 연장을 쓰거나 힘을 쓸 때 얼마나 매끄럽게 움직이냐, 얼마나 빨리 떨어지냐, 얼마나 힘이 잘 먹히냐 등의 기준이 되는 것이 바로 가속도다. 혹시 뉴턴의 그 유명한 운동의 법칙을 기억한다면 알 수 있는 $F = ma$을 통해서 본다면 <strong>가속도는 곧 힘이기 때문이다</strong>.</p>
+<p>속도에는 둔감하고 가속도에는 민감한 예를 들자면 차가 일정한 속도로 달리고 있을 때 우리는 이 차가 얼마나 빨리 움직이는 것인지 잘 모른다. 일정한 속도라면(즉, 가속도가 0이라면) 차안에서 가만히 서있을 수 있다. 하지만 급정거나 급출발하면 어떤가? 아무리 살짝(?) 급정거, 급출발을 해도 우리는 곧바로 느낄 수 있다. 우리 몸이 힘을 맞았기 때문이다.</p>
+<p>UI 애니메이션에서 easing은 이런 가속도를 매끄럽게 해주는 일을 한다. 위 이동 그래프에 나타난 것과 같이 이동 그래프의 선이 얼마나 매끄럽게 이어지느냐가 바로 매끄러운 움직임을 나타내는 것이라고 보면 된다. 갑자기 꺾이거나 튀는 부분이 바로 가속도가 튀는 부분이고 이런 게 움직임을 자연스럽지 못하게 만든다.</p>
+<p>사실 공학(engineering)이라는 것의 상당 부분이 이런 easing과 같은 문제가 얽혀 있다고 볼 수 있다. 똑같은 기능이라도 잘 팔리는 물건은 말하자면 미세한 부분이 다르다. 그 미세한 부분이 바로 easing과 같이 사람의 느낌이나 감성을 건드리는 부분인 것이다. 또한 거기에 인문학이 더해지면 품격까지 높은 물건이 만들어진다고 한다. 엉뚱한 얘기일 수도 있지만 easing 곡선 하나를 만드는 데도 중세의 건축 양식에 있는 곡선을 적용한다면 사람들은 그걸 느낀다는 거다. 정말이라고. 사람들이 얼마나 예민한데!</p>
+<!--
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>// <![CDATA[
+var GRAPH_WIDTH = 200, GRAPH_HEIGHT = 140;
+jQuery(function($) {
+    $('.graph').each(function() {
+        var canvas = this,
+            ctx = canvas.getContext( "2d" );
+        canvas.width = GRAPH_WIDTH;
+        canvas.height = GRAPH_HEIGHT;
+        var hMargin = 0.14 * GRAPH_WIDTH, vMargin = 0.14 * GRAPH_HEIGHT, drawWidth = GRAPH_WIDTH - 2 * hMargin, drawHeight = GRAPH_HEIGHT - 2 * vMargin;
+        // 축
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        ctx.beginPath(); ctx.moveTo(hMargin + .5, .5); ctx.lineTo(hMargin + .5, vMargin + drawHeight + .5); ctx.lineTo(GRAPH_WIDTH + .5, vMargin + drawHeight + .5); ctx.stroke();
+        // 축 레이블
+        ctx.font = '9pt 맑은 고딕';
+        ctx.fillText('시간', GRAPH_WIDTH / 2 + .5, GRAPH_HEIGHT - 6);
+        ctx.fillText('변량', .5, vMargin);
+        // 그래프
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#77f';
+        ctx.beginPath(); ctx.moveTo(hMargin, GRAPH_HEIGHT - vMargin);
+        var easing = this.getAttribute('easing');
+        $.each(new Array(drawWidth), function(idx) {
+            var val = $.easing[easing](idx / drawWidth, idx, 0, 1, drawWidth);
+            ctx.lineTo(hMargin + idx + .5, vMargin + (drawHeight - val * drawHeight) + .5);
+        });
+        ctx.stroke();
+    });
+});
+// ]]></script>
+-->
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2015-02-07T18:29:50.000Z">2015. 2. 8.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/easing">easing</a></li><li><a href="/tags/jquery">jQuery</a></li><li><a href="/tags/ui-애니메이션">UI 애니메이션</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2015/02/%ec%95%a0%eb%8b%88%eb%a9%94%ec%9d%b4%ec%85%98-easing%ec%97%90-%ec%88%a8%ec%9d%80-%eb%b9%84%eb%b0%80/" || location.origin + '/posts/애니메이션-easing에-숨은-비밀/';
+    this.page.identifier = '애니메이션-easing에-숨은-비밀';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

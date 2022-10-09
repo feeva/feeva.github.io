@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바 서블릿 컨테이너별 규격 버전 지원 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="서블릿 컨테이너 또는 웹 애플리케이션 서버별로 서블릿이나 JSP를 지원하는 버전을 알아볼 필요가 있게 되었다. 이러한 버전은 web.xml에 명시되어서 컨테이너 구동에 영향을 주기 때문에 운영 환경에서 반드시 신경써야할 항목이다. 특히 우리나라에서는 제우스(Jeus)가 공공 분야에서 점유율이 상당하므로 꼭 정리가 필요했다. 여기 표 하나로 정리해봤다.">
+    <link rel="canonical" href="/posts/자바-컨테이너별-서블릿-규격-버전-지원/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="자바 서블릿 컨테이너별 규격 버전 지원">
+    <meta property="og:url" content="/posts/자바-컨테이너별-서블릿-규격-버전-지원/">
+    <meta property="og:description" content="서블릿 컨테이너 또는 웹 애플리케이션 서버별로 서블릿이나 JSP를 지원하는 버전을 알아볼 필요가 있게 되었다. 이러한 버전은 web.xml에 명시되어서 컨테이너 구동에 영향을 주기 때문에 운영 환경에서 반드시 신경써야할 항목이다. 특히 우리나라에서는 제우스(Jeus)가 공공 분야에서 점유율이 상당하므로 꼭 정리가 필요했다. 여기 표 하나로 정리해봤다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>자바 서블릿 컨테이너별 규격 버전 지원</h1>
+
+  <div class="post-content">
+    <p>서블릿 컨테이너 또는 웹 애플리케이션 서버별로 서블릿이나 JSP를 지원하는 버전을 알아볼 필요가 있게 되었다. 이러한 버전은 web.xml에 명시되어서 컨테이너 구동에 영향을 주기 때문에 운영 환경에서 반드시 신경써야할 항목이다. 특히 우리나라에서는 제우스(Jeus)가 공공 분야에서 점유율이 상당하므로 꼭 정리가 필요했다. 여기 표 하나로 정리해봤다.</p>
+<!--more-->
+<table>
+<tbody>
+<tr>
+<th style="text-align: center;">자바</th>
+<th style="text-align: center;">서블릿</th>
+<th style="text-align: center;">JSP</th>
+<th style="text-align: center;">EL</th>
+<th style="text-align: center;">톰캣</th>
+<th style="text-align: center;">제우스</th>
+<th style="text-align: center;">웹로직</th>
+<th style="text-align: center;">웹스피어</th>
+<th style="text-align: center;">제이보스</th>
+</tr>
+<tr>
+<td style="text-align: center;">7 이상</td>
+<td style="text-align: center;">3.1</td>
+<td style="text-align: center;">2.3</td>
+<td style="text-align: center;">3.0</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: center;">6 이상</td>
+<td style="text-align: center;">3.0</td>
+<td style="text-align: center;">2.2</td>
+<td style="text-align: center;">2.2</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">12c</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6, 7</td>
+</tr>
+<tr>
+<td style="text-align: center;">5 이상</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">2.1</td>
+<td style="text-align: center;">2.1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10<sup>[1]</sup></td>
+<td style="text-align: center;">7<sup>[2]</sup></td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.4 이상</td>
+<td style="text-align: center;">2.4</td>
+<td style="text-align: center;">2.0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<p>주:</p>
+<ol>
+    <li>웹로직 10은 자바 5 이상을 지원하지만 10.3은 자바 6 이상이어야 하며 12c는 7이상이어야 함</li>
+    <li>웹스피어 7은 자바 6 이상이어야 함</li>
+</ol>
+<p>출처:</p>
+<ul>
+    <li><a title="Java EE" href="http://en.wikipedia.org/wiki/Java_EE" target="_blank">http://en.wikipedia.org/wiki/Java_EE</a></li>
+    <li><a title="Tomcat" href="http://tomcat.apache.org" target="_blank">http://tomcat.apache.org</a></li>
+    <li><a title="Servlet" href="http://en.wikipedia.org/wiki/Servlet" target="_blank">http://en.wikipedia.org/wiki/Servlet</a></li>
+    <li><a title="TMax JEUS (웹_애플리케이션_서버)" href="http://ko.wikipedia.org/wiki/%EC%A0%9C%EC%9A%B0%EC%8A%A4_(%EC%9B%B9_%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98_%EC%84%9C%EB%B2%84)" target="_blank">http://ko.wikipedia.org/wiki/제우스_(웹_애플리케이션_서버)</a></li>
+    <li><a href="http://en.wikipedia.org/wiki/Oracle_WebLogic_Server" target="_blank">http://en.wikipedia.org/wiki/Oracle_WebLogic_Server</a></li>
+    <li><a title="IBM WebSphere" href="http://en.wikipedia.org/wiki/IBM_WebSphere_Application_Server" target="_blank">http://en.wikipedia.org/wiki/IBM_WebSphere_Application_Server</a></li>
+</ul>
+<p>참고로 규격 버전에 따른 web.xml 시작문은 다음과 같다. 버전이 맞지 않으면 서블릿 컨테이너가 처음 시작부터 오류가 발생하여 정상 구동되지 않는 경우가 있으니 주의해야 한다.</p>
+<p>서블릿 2.4</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2.4<span class="token punctuation">"</span></span><br>    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/j2ee<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/j2ee<br>        http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>서블릿 2.5</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2.5<span class="token punctuation">"</span></span><br>    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/javaee<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/javaee<br>        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>서블릿 3.0</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3.0<span class="token punctuation">"</span></span><br>    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/javaee<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span><br>    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/javaee<br>        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p> </p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-12-14T04:05:42.000Z">2013. 12. 14.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/java-ee">Java EE</a></li><li><a href="/tags/jsp">JSP</a></li><li><a href="/tags/servlet">Servlet</a></li><li><a href="/tags/서블릿-컨테이너">서블릿 컨테이너</a></li><li><a href="/tags/애플리케이션-서버">애플리케이션 서버</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/12/%ec%9e%90%eb%b0%94-%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%eb%b3%84-%ec%84%9c%eb%b8%94%eb%a6%bf-%ea%b7%9c%ea%b2%a9-%eb%b2%84%ec%a0%84-%ec%a7%80%ec%9b%90/" || location.origin + '/posts/자바-컨테이너별-서블릿-규격-버전-지원/';
+    this.page.identifier = '자바-컨테이너별-서블릿-규격-버전-지원';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스프링 부트 웹앱에 HTTPS 프록시 붙이기 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="스프링 부트로 웹앱을 만들 경우 기본적으로 HTTP 80 포트에서 실행되는데 웹앱 자체를 수정하지 않고 
+Node http-server 모듈을 활용하여 
+로컬 개발 환경에서 자체 서명한 TLS/SSL 인증서를 만들고 HTTPS 443 포트를 프록시로 웹앱 앞 단에 두는 방법을 알아본다.
+">
+    <link rel="canonical" href="/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="스프링 부트 웹앱에 HTTPS 프록시 붙이기">
+    <meta property="og:url" content="/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/">
+    <meta property="og:description" content="스프링 부트로 웹앱을 만들 경우 기본적으로 HTTP 80 포트에서 실행되는데 웹앱 자체를 수정하지 않고 
+Node http-server 모듈을 활용하여 
+로컬 개발 환경에서 자체 서명한 TLS/SSL 인증서를 만들고 HTTPS 443 포트를 프록시로 웹앱 앞 단에 두는 방법을 알아본다.
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>스프링 부트 웹앱에 HTTPS 프록시 붙이기</h1>
+
+  <div class="post-content">
+    <p>스프링 부트로 웹앱을 만들 경우 기본적으로 HTTP 80 포트에서 실행되는데 웹앱 자체를 수정하지 않고
+Node <a href="https://www.npmjs.com/package/http-server">http-server</a> 모듈을 활용하여
+로컬 개발 환경에서 자체 서명한 TLS/SSL 인증서를 만들고 HTTPS 443 포트를 프록시로 웹앱 앞 단에 두는 방법을 알아본다.</p>
+<p>이렇게 구성하는 이유는 다음과 같다.</p>
+<ul>
+<li>개발 환경이라도 요즘 실제 도메인을 필요로 하는 외부 API를 사용하기 위해서라든지 도메인과 HTTPS가 필요한 경우가 흔하다.</li>
+<li>운영 환경이 그러한 경우가 많다. 스프링 부트 앱을 수정할 경우 운영 환경에서는 또 다른
+설정이 필요할 수 밖에 없고 설정 관리가 번잡해진다.</li>
+</ul>
+<p>일반적으로 스프링 부트 웹앱은 기본 설정에서는 그림 1과 같이 HTTP 80 포트에서만 서비스가 실행되지만
+그림 2와 같이 <a href="https://www.baeldung.com/spring-boot-https-self-signed-certificate">별도 설정</a>을 통해 HTTPS 서비스도 가능하다.</p>
+<p><img src="../../static/uploads/2020/boot-http-https.png" alt=""></p>
+<p>여기서는 아래 그림 3과 같이 구성하는 방법을 설명하고자 한다. 로컬 개발 환경에 스프링 부트 웹앱 앞에
+사설 TLS 인증서를 사용하는 HTTPS 프록시를 두는 것이다.</p>
+<p><img src="../../static/uploads/2020/proxied-https.png" alt=""></p>
+<p>운영 환경에서는 프록시로 Apache 웹서버를 두는 경우가 많지만 로컬 개발 환경에서는 Node의 http-server
+모듈을 사용하면 훨씬 간편하다. 개발 환경에서 사용할 수 있는 HTTP 서버는 이 외에도 몇 가지가 더 있지만
+Node http-server는 설치, 설정이 간편하다.</p>
+<h3>1. 원하는 도메인의 TLS/SSL 사설 인증서 발급</h3>
+<p>TLS/SSL 사설 인증서 발급은 일반적으로 OpenSSL 유틸리티를 사용하는데 윈도에서는 없기 때문에 <a href="https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8">다른 방법으로</a>
+파워셸을 사용한다든가 별도의 외부 유틸리티를 사용한다든가 여러 가지 방법이 있다. 여기서는 OpenSSL을
+사용하겠다. 요즘 개발자들은 Git을 많이 사용하는데 <a href="https://git-scm.com/download/win">윈도용 Git</a>을 설치한 경우
+Git Bash에서 OpenSSL을 실행할 수 있다.</p>
+<p>아래와 같이 <code>openssl</code> 명령으로 유효기간 3650일짜리 <code>cert.pem</code>이라는 인증서를 만들어낸다. 인증서 정보 입력에서는 모두 엔터를
+입력해도 무방하고 <strong>Common Name 질문에 대해서는 원하는 도메인을 입력하도록 한다</strong>.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text">
+<code class="language-text">$ <strong>openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem</strong>
+Generating a RSA private key
+..........+++++
+......+++++
+writing new private key to 'key.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]: <kbd>ENTER</kbd>
+State or Province Name (full name) [Some-State]: <kbd>ENTER</kbd>
+Locality Name (eg, city) []: <kbd>ENTER</kbd>
+Organization Name (eg, company) [Internet Widgits Pty Ltd]: <kbd>ENTER</kbd>
+Organizational Unit Name (eg, section) []: <kbd>ENTER</kbd>
+Common Name (e.g. server FQDN or YOUR name) []: <strong>server.co.kr</strong><kbd>ENTER</kbd>
+Email Address []: <kbd>ENTER</kbd>
+</code></pre></div>
+<h3>2. hosts 파일에 도메인 추가하기</h3>
+<p>윈도인 경우 <code>Windows\system32\drivers\etc\hosts</code> 파일, 유닉스 계열인 경우 <code>/etc/hosts</code> 파일에
+아래와 같이 사설 도메인을 추가하도록 한다.</p>
+<pre><code>127.0.0.1   server.co.kr
+</code></pre>
+<p>아는 사람은 알겠지만 윈도에서는 보안상 탐색기에서 해당 파일 경로를 찾아들어갈 수 없다.
+텍스트 편집기에서 파일을 열 때 경로를 다 써주는 방법으로 열도록 한다.</p>
+<h3>3. Node http-server 구동하기</h3>
+<p>아직 Node를 가지고 있지 않다면 <a href="https://nodejs.org/">Node 웹사이트</a> 안내에 따라 설치한다.
+Node는 있으나 http-server 모듈이 없다면 아래와 같이 명령을 실행하여 모듈을 설치한다.</p>
+<pre><code>npm i -g http-server
+</code></pre>
+<p>이제 아래와 같이 http-server를 구동한다. 앞서 만든 <code>cert.pem</code> 파일을 인증서로 사용하고 HTTPS 포트인 443 포트를 통해
+서비스하며 요청 받은 URL이 현재 폴더에 없는 경우 트래픽을 http<span>://</span>localhost:8080으로 전달한다.
+아마 일반적으로 스프링 부트 웹앱을 띄웠다면 이 주소가 웹앱 주소일 것이다.</p>
+<pre><code>npx http-server -S -C cert.pem -p 443 -P http://localhost:8080
+</code></pre>
+<p>이제 아래와 같이 웹서버가 구동될 것이다. 127.0.0.1 외에도 컴퓨터에서 사용하는 모든 IP에서 443 포트가
+열리는 것을 볼 수 있다.</p>
+<pre><code>Starting up http-server, serving ./ through https
+Available on:
+  https://172.29.96.1:443
+  https://192.168.56.1:443
+  https://127.0.0.1:443
+Hit CTRL-C to stop the server
+</code></pre>
+<h3>4. 웹 브라우저에서 확인</h3>
+<p>이제 브라우저 주소란에 https<span>://</span>server.co.kr과 같이 입력하면 처음 한번은 유효하지 않은 인증서라는
+경고가 뜰 것이다. 일반적으로 “고급” 단추를 누르고 위험을 감수하고 계속 진행하겠다는 선택을 하면 되지만 이게 아니라
+HSTS 자가 서명 인증서(self signed certificate) 오류가 발생할 수 있다.</p>
+<p>화면에서는 이를 무시하고 건너뛸 수 없게 돼 있지만 웹킷 기반의 크롬, 에지 브라우저나 파이어폭스에서는 방법이 있다.</p>
+<p>크롬, 에지에서는 주소란에 <code>chrome://net-internals/#hsts</code>를 입력한다. 아래와 같은 내부 설정 화면이 열린다.</p>
+<p><img src="../../static/uploads/2020/chrome-hsts.png" alt=""></p>
+<p>이 화면에서 <strong>Query HSTS/PKP domain</strong>을 통해 내 도메인이 차단되었는지를, <strong>Delete domain security policies</strong>를
+통해 차단된 도메인을 크롬에서 삭제할 수 있다. 아래와 같이 원하는 도메인을 입력하고 <strong>Delete</strong> 단추를 누른다.</p>
+<p><img src="../../static/uploads/2020/chrome-hsts-delete.png" alt=""></p>
+<h3>기타 이야기 거리</h3>
+<p>이상으로 설명한 방법은 로컬 개발 환경에서도 실운영 환경처럼 도메인 주소 기반으로 웹 사이트를 개발할 수 있으며
+Apache를 설정한다거나 외부 프록시를 두지 않아도 된다는 점이 장점이라 할 수 있다. 좀더 본격적으로
+하자면 가상 머신을 띄워 프록시와 웹앱 서버를 분리하는 방법도 있을 수 있으나 대부분은 이런 번거로운 방법을
+쓰고 싶지 않을 것이다.</p>
+<p>보안상 도메인이 필요한 API라든가 URL 리디렉션, URL 검증 등 다양한 경우에 대해 개발 환경과 운영 환경을
+일치시킬 수 있다. 다만 Java 서블릿 API에서 <code>request.getRequestURL()</code> 등 몇 가지 API는 원하지 않은 결과가
+나오므로 주의해야 한다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2020-09-19T14:35:00.000Z">2020. 9. 19.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/node-js">Node JS</a></li><li><a href="/tags/https">HTTPS</a></li><li><a href="/tags/spring-boot">Spring Boot</a></li><li><a href="/tags/스프링-부트">스프링 부트</a></li><li><a href="/tags/ssl">SSL</a></li><li><a href="/tags/크롬">크롬</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "" || location.origin + '/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/';
+    this.page.identifier = '스프링-부트-웹앱에-HTTPS-프록시-붙이기';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

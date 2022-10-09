@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verlet 시뮬레이션 예시 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="지난 번에 Verlet 적산법 개념 설명에 이어 시뮬레이션 예시를 만들어봤다. 중력가속도만 적용되는 단순한 상황인 경우만 놓고 보니 아주 자연스러운 애니메이션이 만들어졌다. 또한 혼자서만 움직이는 게 아니라 입자를 마우스로 잡아 움직일 수 있게, 즉 인터랙티브하게 만들어봤다. 아래 예시는 IE9 이상 및 기타 최신 브라우저에서 볼 수 있다. ">
+    <link rel="canonical" href="/posts/verlet-시뮬레이션-예시/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Verlet 시뮬레이션 예시">
+    <meta property="og:url" content="/posts/verlet-시뮬레이션-예시/">
+    <meta property="og:description" content="지난 번에 Verlet 적산법 개념 설명에 이어 시뮬레이션 예시를 만들어봤다. 중력가속도만 적용되는 단순한 상황인 경우만 놓고 보니 아주 자연스러운 애니메이션이 만들어졌다. 또한 혼자서만 움직이는 게 아니라 입자를 마우스로 잡아 움직일 수 있게, 즉 인터랙티브하게 만들어봤다. 아래 예시는 IE9 이상 및 기타 최신 브라우저에서 볼 수 있다. ">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>Verlet 시뮬레이션 예시</h1>
+
+  <div class="post-content">
+    <p>지난 번에 <a title="물리 시뮬레이션을 위한 Verlet 적산법" href="http://start.goodtime.co.kr/2013/04/%eb%ac%bc%eb%a6%ac-%ec%8b%9c%eb%ae%ac%eb%a0%88%ec%9d%b4%ec%85%98%ec%9d%84-%ec%9c%84%ed%95%9c-verlet-%ec%a0%81%ec%82%b0%eb%b2%95/">Verlet 적산법 개념</a> 설명에 이어 시뮬레이션 예시를 만들어봤다. 중력가속도만 적용되는 단순한 상황인 경우만 놓고 보니 아주 자연스러운 애니메이션이 만들어졌다. 또한 혼자서만 움직이는 게 아니라 입자를 마우스로 잡아 움직일 수 있게, 즉 인터랙티브하게 만들어봤다. 아래 예시는 IE9 이상 및 기타 최신 브라우저에서 볼 수 있다.</p>
+<!--more-->
+<h3>예시</h3>
+<p>첫 번째 예시는 공 한 개가 자유 낙하하는 애니메이션이다. [시작] 단추를 누르면 되며 공을 마우스로 잡아 움직이거나 던질 수 있게 했다.</p>
+<p style="text-align: center;"><canvas id="c1" style="width: 500px; height: 360px; border: solid 1px #ddd;">HTML5 캔버스를 지원해야 볼 수 있음</canvas>
+<button id="btnStart1" type="button">시작</button> <button id="btnReset1" type="button">초기화</button></p>
+<p>이 번에는 삼각형 물체와 사각형 물체가 자유 낙하하는 애니메이션이다. 역시 입자를 마우스로 잡아 움직일 수 있게 했다.</p>
+<p style="text-align: center;"><canvas id="c2" style="width: 500px; height: 360px; border: solid 1px #ddd;">HTML5 캔버스를 지원해야 볼 수 있음</canvas>
+<button id="btnStart2" type="button">시작</button> <button id="btnReset2" type="button">초기화</button></p>
+<p>세 번째는 긴 막대기가 수직으로 떨어지는 애니메이션이다. 떨어진 후 쓰러지는 움직임이 더 주목할 만 하다. 그리고 역시 입자를 잡아 움직일 수 있게 했는데 위 두 가지와 다른 점은 캔버스 안에 마우스 커서가 들어가면 애니메이션이 진행되고 나오면 멈추게 했다.</p>
+<p>막대를 마우스로 한 쪽 끝을 잡아 들어 거꾸로 세운 다음 중심 잡기를 해보기 바란다. 실제에서도 재미로 우산 중심 잡기를 하는 것처럼 중심 잡기가 실감이 난다.</p>
+<p style="text-align: center;"><canvas id="c3" style="width: 500px; height: 360px; border: solid 1px #ddd;">HTML5 캔버스를 지원해야 볼 수 있음</canvas>
+<button id="btnReset3" type="button">초기화</button></p>
+<h3>후기</h3>
+<p>마우스로 입자를 잡아 끄는 처리는 아주 쉬웠다. Verlet 방법의 장점이 가장 잘 나타나는 것이 이것인데 이동 거리와 가속도만 신경 쓰면 되는 간단한 방식이므로 마우스로 물체를 옮기는 힘(즉 가속도)을 따로 고려할 것 없이 결국 이동 좌표만 지정해주면 매순간 그 이동한 만큼이 속도가 되어 바로 반영되는 것이다.</p>
+<p>그런데 Verlet 적산법만으로는 (당연하겠지만) 완전한 물리 시뮬레이션이 되지 않는다. 실제 물리 현상에서는 충돌에 의한 반동도 있고 마찰력도 있고 탄성도 있고 갖가지 힘과 반작용이 난무(?)한다. 따라서 이런 것들도 고려해야 하는데 여기서는 캔버스 벽과의 마찰력, 반동 정도만 고려했다. 반동은 좌표 값에 따라 이동 값을 반대로 해주면 되는 것이었고 마찰력은 이동 방향의 반대의 힘을 넣어주는 것으로 처리했다. 자세한 것은 본 예시에 사용한 <a href="/static/modules/verlet/verlet.js" target="_blank">JavaScript 파일</a>을 참고하기 바란다.</p>
+<p>이상으로 Verlet 공부를 마치기로 한다. 시뮬레이션 예시까지 만들며 열심히 해봤는데 게임을 만든다거나 복잡한 응용은 사실 이것으로는 극히 일부분만 해결이 된다고 볼 수 있다. 나중에 필요하면 좀더 연구해보기로 하겠다.</p>
+<script type="text/javascript" src="/static/modules/verlet/verlet.js">// <![CDATA[
+// 내용없는 태그가 사라지는 걸 막기 위한 주석
+// ]]></script>
+<script type="text/javascript" src="/static/modules/verlet/verlet-example.js">// <![CDATA[
+// 내용없는 태그가 사라지는 걸 막기 위한 주석
+// ]]></script>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/verlet">Verlet</a></li><li><a href="/tags/수치-해석">수치 해석</a></li><li><a href="/tags/시뮬레이션">시뮬레이션</a></li><li><a href="/tags/애니메이션">애니메이션</a></li><li><a href="/tags/canvas">Canvas</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/05/verlet-%ec%8b%9c%eb%ae%ac%eb%a0%88%ec%9d%b4%ec%85%98-%ec%98%88%ec%8b%9c/" || location.origin + '/posts/verlet-시뮬레이션-예시/';
+    this.page.identifier = 'verlet-시뮬레이션-예시';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

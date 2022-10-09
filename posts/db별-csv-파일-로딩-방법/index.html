@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB별 CSV 파일 로딩 방법 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="개발하면서 심심치 않게 CSV 파일을 데이터베이스에 부어 넣어야 하는 경우가 생긴다. 시스템을 처음 구축하면서 초기 데이터를 만들어 넣는다든가 뱃치성 작업으로 외부 시스템과 연동한다든지 할 때 등이다. 그래서 한번 DB별 CSV 파일 로딩 방법을 정리해야겠다는 생각이 들었다. 보다 체계적인 설명이나 자세한 옵션들은 역시나 사용 설명서를 참고하도록 한다.">
+    <link rel="canonical" href="/posts/db별-csv-파일-로딩-방법/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="DB별 CSV 파일 로딩 방법">
+    <meta property="og:url" content="/posts/db별-csv-파일-로딩-방법/">
+    <meta property="og:description" content="개발하면서 심심치 않게 CSV 파일을 데이터베이스에 부어 넣어야 하는 경우가 생긴다. 시스템을 처음 구축하면서 초기 데이터를 만들어 넣는다든가 뱃치성 작업으로 외부 시스템과 연동한다든지 할 때 등이다. 그래서 한번 DB별 CSV 파일 로딩 방법을 정리해야겠다는 생각이 들었다. 보다 체계적인 설명이나 자세한 옵션들은 역시나 사용 설명서를 참고하도록 한다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>DB별 CSV 파일 로딩 방법</h1>
+
+  <div class="post-content">
+    <p>개발하면서 심심치 않게 CSV 파일을 데이터베이스에 부어 넣어야 하는 경우가 생긴다. 시스템을 처음 구축하면서 초기 데이터를 만들어 넣는다든가 뱃치성 작업으로 외부 시스템과 연동한다든지 할 때 등이다. 그래서 한번 DB별 CSV 파일 로딩 방법을 정리해야겠다는 생각이 들었다. 보다 체계적인 설명이나 자세한 옵션들은 역시나 사용 설명서를 참고하도록 한다.</p>
+<!--more-->
+<p>한 가지 주의할 것은 데이터베이스에서 로딩할 수 있는 CSV 파일 형식이 꽤 제한적이라는 점이다. 데이터 값은 콤마로 구분되었고 큰따옴표로 감싼다는 기본적인 사항은 지원하지만 숫자를 문자열로 인식하게 하기 위한 작은따옴표, 수식이나 문자열 수식을 나타내는 등호(=), 큰따옴표 안의 문자열 이스케이프를 위한 2중 큰따옴표 등 다양한 CSV 형식을 모두 인식하지는 않는다. 따라서 CSV 파일을 만들 때부터 로딩이 잘 될 수 있도록 형식에 신경써야 한다. (CSV 파일 형식은 <a title="RFC 4180" href="http://tools.ietf.org/html/rfc4180" target="_blank">아직 표준화 노력이 진행 중이다</a>. 그래서 일단은 가장 간단한 규칙만 고려해야할 필요도 있다.)</p>
+<h3>Oracle</h3>
+<p>오라클은 SQL*Loader라는 번들 프로그램을 사용하며 로딩 명령은 &quot;컨트롤 파일&quot;이라고 하는 별도의 스크립트로 작성해야 한다. 준비가 되면 다음과 같이 실행한다.</p>
+<pre><code>sqlldr 사용자명/비밀번호@DB명 CONTROL=컨트롤파일
+</code></pre>
+<p>로딩할 데이터 파일이나 작업 기록, 로딩 실패 로그를 컨트롤 파일에서 지정할 수도 있지만 아래처럼 명령 인자로 지정할 수도 있다.</p>
+<pre><code>sqlldr 사용자명/비밀번호@DB명 CONTROL=컨트롤파일 LOG=로그파일 BAD=오류로그파일 DISCARD=오류데이터로그파일 DATA=입력데이터파일
+</code></pre>
+<p>컨트롤 파일의 내용은 가장 간단하게는 다음과 같이 작성한다. SQL의 특성상 대소문자는 구별하지 않는다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">load</span> <span class="token keyword">data</span><br>append<br><span class="token keyword">into</span> <span class="token keyword">table</span> my_table<br><span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">','</span> <span class="token keyword">optionally</span> <span class="token keyword">enclosed</span> <span class="token keyword">by</span> <span class="token string">'"'</span><br><span class="token punctuation">(</span><br>    col1<span class="token punctuation">,</span> col2<span class="token punctuation">,</span> col3<span class="token punctuation">,</span> col4<span class="token punctuation">,</span> col4<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><br><span class="token punctuation">)</span></code></pre>
+<p>위의 예는 CSV 파일에서 순서대로 <code>col1</code>, <code>col2</code>, <code>col3</code>,…컬럼 값들을 추출해서 <code>my_table</code> 테이블에 &quot;append&quot;하라는 것이다. 2행의 append 대신 insert, replace, truncate를 사용할 수 있는데 append는 테이블에 데이터가 있더라도 추가하기, insert는 테이블에 데이터가 전혀 없는 경우에만 추가하기, replace는 <code>delete from 테이블</code> 구문으로 먼저 데이터 삭제 후 추가하기(트리거가 있는 경우 실행, 참조 제약 고려), truncate는 <code>truncate table 테이블 reuse storage</code> 구문으로 데이터 삭제 후 추가하기(참조 제약 조건이 중지된 상태여야 하며 replace보다 훨씬 빠름)를 의미한다. 아무 것도 없을 경우 insert가 기본 값이다.</p>
+<p>다음은 좀더 복잡한 예시다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">load</span> <span class="token keyword">data</span><br>characterset utf8<br><span class="token keyword">infile</span> <span class="token string">'/path/data_file'</span> <span class="token string">"str '\r\n'"</span><br>badfile <span class="token string">'/path/bad_file'</span><br>discardfile <span class="token string">'/path/discard_file'</span><br><span class="token keyword">replace</span> <span class="token keyword">into</span> <span class="token keyword">table</span> my_table<br><span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">','</span> <span class="token keyword">optionally</span> <span class="token keyword">enclosed</span> <span class="token keyword">by</span> <span class="token string">'"'</span><br>trailing nullcols<br><span class="token keyword">when</span> col2 <span class="token operator">=</span> <span class="token string">'Y'</span><br><span class="token punctuation">(</span><br>    col1 sequence <span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">,</span> col2<span class="token punctuation">,</span> col3 sysdate<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><br><span class="token punctuation">)</span></code></pre>
+<p>2행에서는 데이터 파일의 문자셋이 utf-8임을 지정하고 있다.</p>
+<p>3행의 <code>str '\r\n'</code>은 CSV 파일의 레코드 구분자를 윈도에서의 줄바꿈 형식을 사용한다는 것이다. 생략하면 유닉스 계열 OS에서는 <code>\n</code>을, 윈도에서는 <code>\r\n</code>을 기본으로 사용하며 <code>;</code>와 같은 임의의 글자를 사용할 수도 있다.</p>
+<p>4행에서는 <code>INSERT</code> 구문 실행시 오류가 발생한 레코드를, 4행에서는 아예 데이터가 없거나 형식이 안 맞아서 <code>INSERT</code> 구문도 실행할 수 없는 레코드를 로그 파일로 남기도록 한다.</p>
+<p>8행에서는 어떤 레코드에서 컬럼 개수가 안 맞는 경우 뒷 컬럼들의 값은 모두 <code>NULL</code>로 넣도록 한다.</p>
+<p>11행에서는 <code>col1</code>의 값을 순열 값으로 만들어 넣되 테이블의 기존 <code>col1</code> 값 중 가장 큰 값을 처음 값으로 시작해서 넣도록 한다. <code>sequence (10000)</code>과 같이 임의의 숫자 값부터 시작하도록 지정할 수도 있고 <code>sequence (10000, 10)</code>과 같이 10씩 증가하도록 지정할 수도 있다. 또한 <code>col3</code> 값에는 현재 시간을 넣고 있다.</p>
+<p>참고로 값이 탭으로 구분되었고 큰따옴표로 필드를 감싼 파일을 읽으려면 fields 절을 다음과 같이 지정한다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">'\t'</span> <span class="token keyword">optionally</span> <span class="token keyword">enclosed</span> <span class="token keyword">by</span> <span class="token string">'"'</span></code></pre>
+<p>사실 SQL*Loader는 CSV 형식 데이터만 읽을 수 있는 것이 아니다. <a title="SQL Loader Control File Reference" href="http://docs.oracle.com/database/121/SUTIL/ldr_control_file.htm#SUTIL005" target="_blank">오라클 문서</a>에서는 <a title="Fixed Record Format" href="http://docs.oracle.com/database/121/SUTIL/ldr_concepts.htm#SUTIL982" target="_blank">고정 폭 데이터</a>라든가 <a title="Variable Record Format" href="http://docs.oracle.com/database/121/SUTIL/ldr_concepts.htm#SUTIL983" target="_blank">길이 지정 레코드</a>를 읽는 방법도 나와 있으니 필요하면 참고한다.</p>
+<h3>MySQL</h3>
+<p>MySQL에서는 CSV 로딩 기능이 일반 SQL 구문(DML)처럼 취급된다. 따라서 CUI나 GUI 같은 클라이언트 프로그램에서 로딩 구문을 실행할 수도 있고 클라이언트 프로그램의 명령 인자에 로딩 구문을 지정할 수도 있다. 그러나 명령 인자로 로딩 구문을 지정하는 것은 상당히 제한적이다. 또한 mysqlimport 유틸리티를 사용할 수도 있는데 마찬가지로 제한적인 면이 있다.</p>
+<p>다음은 DML 방식인 경우의 간단한 예시다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">load</span> <span class="token keyword">data</span><br><span class="token keyword">local</span> <span class="token keyword">infile</span> <span class="token string">'/path/data_file'</span><br><span class="token keyword">replace</span> <span class="token keyword">into</span> <span class="token keyword">table</span> my_table<br><span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">','</span> <span class="token keyword">optionally</span> <span class="token keyword">enclosed</span> <span class="token keyword">by</span> <span class="token string">'"'</span><br><span class="token punctuation">;</span></code></pre>
+<p>위 예시에서는 필드를 지정하지 않았다. CSV에서 찾은 필드를 테이블 컬럼에 1:1 대응되게 집어넣겠다는 의미가 된다.</p>
+<p>2행의 <code>local</code>은 CSV 데이터 파일이 클라이언트 머신에 있음을 의미한다. 지정되지 않은 경우는 MySQL 서버가 있는 디스크에서 읽게 되며 상대 경로인 경우 데이터 폴더에서 CSV 파일을 찾는다.</p>
+<p>3행의 <code>replace</code>는 CSV의 데이터와 테이블에 PK 값이 중복되는 경우 CSV 데이터로 바꿔 넣겠다는 의미다. <code>ignore</code>를 지정하면 원래 데이터를 유지하고 CSV 데이터의 레코드는 무시된다.</p>
+<p>다음 예시를 보자.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">load</span> <span class="token keyword">data</span><br><span class="token keyword">local</span> <span class="token keyword">infile</span> <span class="token string">'/path/data_file'</span><br><span class="token keyword">ignore</span> <span class="token keyword">into</span> <span class="token keyword">table</span> my_table<br><span class="token keyword">character</span> <span class="token keyword">set</span> utf8<br><span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">','</span> <span class="token keyword">optionally</span> <span class="token keyword">enclosed</span> <span class="token keyword">by</span> <span class="token string">'"'</span><br><span class="token keyword">lines</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">'\r\n'</span><br><span class="token keyword">ignore</span> <span class="token number">1</span> <span class="token keyword">rows</span><br><span class="token punctuation">(</span>field_no<span class="token punctuation">,</span> <span class="token variable">@val1</span><span class="token punctuation">,</span> <span class="token variable">@val2</span><span class="token punctuation">,</span> <span class="token variable">@val3</span><span class="token punctuation">)</span><br><span class="token keyword">set</span> code <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token keyword">when</span> <span class="token variable">@val3</span> <span class="token operator">></span> <span class="token string">''</span> <span class="token keyword">then</span> <span class="token variable">@val3</span><br>                <span class="token keyword">when</span> <span class="token variable">@val2</span> <span class="token operator">></span> <span class="token string">''</span> <span class="token keyword">then</span> <span class="token variable">@val2</span><br>                <span class="token keyword">else</span> <span class="token variable">@val1</span> <span class="token keyword">end</span><span class="token punctuation">,</span><br>    name <span class="token operator">=</span> trim<span class="token punctuation">(</span>concat<span class="token punctuation">(</span><span class="token variable">@val1</span><span class="token punctuation">,</span> <span class="token variable">@val2</span><span class="token punctuation">,</span> <span class="token variable">@val3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">;</span></code></pre>
+<p>6행에서는 레코드의 끝을 지정하고 있다. MySQL에서 레코드 끝은 <code>\n</code>이 기본값이므로 윈도에서 만든 CSV 파일을 읽으려면 이 줄이 꼭 필요할 수 있다.</p>
+<p>7행에서는 CSV 파일의 첫 줄은 무시하도록 지정한다.</p>
+<p>8행에서는 CSV 파일의 필드를 <code>field_no</code>라는 테이블 컬럼에 들어갈 값과 <code>@val1</code>, <code>@val2</code>, <code>@val3</code>라는 변수 세 개로 받은 다음 그 아래 <code>set</code> 절에서 테이블의 나머지 컬럼 값을 지정하고 있다. CSV 파일의 필드와 테이블의 컬럼들이 1:1 대응되지 않는 경우 이렇게 필드를 변수로 대치하고 일반적인 SQL 구문을 다 사용할 수 있다.</p>
+<p>값이 탭으로 구분되었고 큰따옴표로 필드를 감싼 파일의 경우 오라클과 똑같은 <code>fields</code> 절을 지정하면 된다. 보다 자세한 사항은 <a title="MySQL LOAD DATA 구문 설명" href="http://dev.mysql.com/doc/refman/5.6/en/load-data.html" target="_blank">MySQL 참조 설명서</a>를 참고한다.</p>
+<h3>H2</h3>
+<p>자바 데이터베이스인 H2에서는 <code>csvread</code> 명령이 테이블과 똑같이 취급되므로 <code>insert ... select ... from csvread ...</code> 구문을 사용하면 CSV 파일을 테이블에 읽어들일 수 있다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> my_table<br><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> csvread<span class="token punctuation">(</span><span class="token string">'/path/data_file'</span><span class="token punctuation">)</span><br><span class="token punctuation">;</span></code></pre>
+<p>좀더 복잡한 예시를 보자.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> my_table<br><span class="token keyword">select</span> col1<span class="token punctuation">,</span> parsedatetime<span class="token punctuation">(</span>col2<span class="token punctuation">,</span> <span class="token string">'yyyyMMdd'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> substr<span class="token punctuation">(</span>col3<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><br><span class="token keyword">from</span> csvread<span class="token punctuation">(</span><span class="token string">'http://www.address.co.kr/file'</span><span class="token punctuation">,</span> <span class="token string">'col1|col2|col3'</span><span class="token punctuation">,</span> <span class="token string">'charset=UTF-8'</span><span class="token punctuation">)</span><br><span class="token keyword">where</span> col2 <span class="token operator">=</span> <span class="token string">'Y'</span></code></pre>
+<p>3행에서는 데이터 파일을 URL로 지정하고 있다. 즉, 로컬 파일 뿐 아니라 네트웍으로 데이터를 읽어들일 수 있다. 또한 <code>col1</code>, <code>col2</code>, <code>col3</code>와 같은 CSV 필드를 선언함으로써 4행의 where 절에 필드 명을 사용할 수 있다. 이렇게 필드명을 지정한 경우는 CSV 파일의 첫 행이 데이터인 것으로, 필드명이 없는 경우는 CSV 파일 첫행을 필드명이 나열된 행인 것으로 처리한다.</p>
+<p><code>csvread</code>의 세번째 인자에는 구분자가 무엇인지 등 여러 옵션을 지정할 수 있다. 탭 구분 텍스트 파일을 읽으려면 다음과 여러 옵션을 빈칸으로 띄어써서 지정할 수 있다. SQL에서 <code>CHAR(9)</code>는 탭 문자다.</p>
+<pre class="language-sql"><code class="language-sql">csvread<span class="token punctuation">(</span><span class="token string">'...'</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">'charset=euckr fieldDelimiter=\" fieldSeparater='</span> <span class="token operator">||</span> <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>보다 자세한 설명은 <a href="http://h2database.com/html/functions.html#csvread" title="H2 CSVREAD 함수" target="_blank">H2 설명 문서</a>를 참고한다.</p>
+<h3>기타</h3>
+<p>데이터베이스에 CSV 파일 로딩 기능이 없다든가 원본 데이터가 CSV가 아니라 엑셀 파일이라면 엑셀에서 SQL Insert 문을 만드는 방법을 활용할 수도 있을 것이다. 예를 들어 다음과 같은 구문을 빈 열에 입력하고 모든 데이터 행마다 복사하면(셀 오른쪽 아래 모퉁이를 두번 클릭하거나 잡아끌면) INSERT SQL문을 간단히 만들어낼 수 있을 것이다.</p>
+<pre class="language-vb"><code class="language-vb"><span class="token operator">=</span><span class="token string">"insert into my_table (col1, col2, col3) values ('"</span> <span class="token operator">&amp;</span> A1 <span class="token operator">&amp;</span> <span class="token string">"', '"</span> <span class="token operator">&amp;</span> B1 <span class="token operator">&amp;</span> <span class="token string">"', '"</span> <span class="token operator">&amp;</span> C1 <span class="token operator">&amp;</span> <span class="token string">"');"</span></code></pre>
+<p>실제 프로젝트에서는 CSV 뿐 아니라 다양한 형식의 플랫(flat) 파일이 데이터 파일로 사용되기 때문에 오라클 SQL*Loader 같은 도구가 없는 데이터베이스라면 직접 파싱해야 하는 경우가 종종 있다. 문자열 파싱을 순수하게 프로그램적으로 처리하려면 쉽지 않은 작업이므로 위에서 설명한 경우를 활용할 수 있는지 먼저 확인한 다음 그런 도구 개발을 고려해보는 것이 좋다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-08-23T15:25:37.000Z">2014. 8. 24.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/csv">CSV</a></li><li><a href="/tags/h2">H2</a></li><li><a href="/tags/mysql">MySQL</a></li><li><a href="/tags/oracle">Oracle</a></li><li><a href="/tags/데이터베이스">데이터베이스</a></li><li><a href="/tags/오라클">오라클</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/08/db%eb%b3%84-csv-%ed%8c%8c%ec%9d%bc-%eb%a1%9c%eb%94%a9-%eb%b0%a9%eb%b2%95/" || location.origin + '/posts/db별-csv-파일-로딩-방법/';
+    this.page.identifier = 'db별-csv-파일-로딩-방법';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

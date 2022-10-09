@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온라인 타이머 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="카운트다운 방식의 온라인 타이머를 찾아보니 마음에 드는 것이 없었다. 단순히 숫자만 표시하지 말고 카운트다운의 긴박감이 있으면 좋겠는데 말이지. 타이머 프로그램이 어려운 건 아니니 그래서 한번 만들어보기로 했다. 그리고 프로그램 공부하는 사람들을 위해 여기 설명도 올리고. 최종 결과물은 여기를 보도록 한다. ">
+    <link rel="canonical" href="/posts/온라인-타이머/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="온라인 타이머">
+    <meta property="og:url" content="/posts/온라인-타이머/">
+    <meta property="og:description" content="카운트다운 방식의 온라인 타이머를 찾아보니 마음에 드는 것이 없었다. 단순히 숫자만 표시하지 말고 카운트다운의 긴박감이 있으면 좋겠는데 말이지. 타이머 프로그램이 어려운 건 아니니 그래서 한번 만들어보기로 했다. 그리고 프로그램 공부하는 사람들을 위해 여기 설명도 올리고. 최종 결과물은 여기를 보도록 한다. ">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>온라인 타이머</h1>
+
+  <div class="post-content">
+    <p>카운트다운 방식의 온라인 타이머를 찾아보니 마음에 드는 것이 없었다. 단순히 숫자만 표시하지 말고 카운트다운의 긴박감이 있으면 좋겠는데 말이지. 타이머 프로그램이 어려운 건 아니니 그래서 한번 만들어보기로 했다. 그리고 프로그램 공부하는 사람들을 위해 여기 설명도 올리고. <a href="/pages/timer" target="_blank">최종 결과물은 여기</a>를 보도록 한다.</p>
+<!--more-->
+<!-- <a href="http://start.goodtime.co.kr/pages/timer" -->
+<p><img src="../../static/uploads/2013/04/timer_v1.jpg" alt="카운트다운 타이머 v1"></p>
+<h3>요건</h3>
+<p>카운트다운의 긴박감을 포함해 내가 만들 타이머의 요건을 생각해봤다.</p>
+<ol>
+	<li>카운트다운의 느낌을 잘 전달하는 방식은 시간 단위를 레고 블록(?)처럼 쌓아 불을 켜놓고 하나씩 끄는 방식이 좋을 것 같다. 디지털 타이머처럼 숫자판도 보여주고 거기에 블록 무더기를 더 보여주는 것이다.</li>
+	<li>시간 단위는 일, 시, 분, 초, 100분의 1초까지 보여주도록 하자. 단, 100분의 1초를 보여주는 건 특히 긴박감을 보여주는 데 좋을 것 같긴 한데 사용자가 설정하는 건 의미가 없겠고 일, 시, 분, 초만 설정할 수 있도록 하자.</li>
+	<li>사용자의 타이머 완료 시간을 기억하여 나중에 다시 방문하더라도 유지되게 하자.</li>
+	<li>타이머 시간을 기억하는 김에 하나가 아니라 둘 이상도 기억할 수 있으면 어떨까? 그러려면 각 타이머에 명칭도 붙일 수 있어야겠고.</li>
+</ol>
+<p>만들기 전에 생각했던 위 요건 중 결과적으로는 3, 4번은 다음으로 미루게 됐다. 일단 1, 2번이 큰 줄거리이므로 계속 진행해보자.</p>
+<h3>고려 사항</h3>
+<p>그럼 어떻게 만들어볼까? 생각할 것들이 몇 가지 있겠지.</p>
+<ul>
+	<li>프로그램적으로는 JavaScript로만 구현한다. 사용자가 설정한 값을 기억하는 기능이 들어가더라도 간단한 값이므로 쿠키로 처리하면 될 것이고 서버측 기능은 필요 없겠다. 또한 보안이나 개인정보보호측면에서 서버에 뭔가 보관하는 건 좋지 않다.</li>
+	<li>JavaScript를 사용하기로 했으면 유용한 라이브러리 또는 프레임웍을 선택해야 한다. 개인적으로 모든 프로젝트에 Bootstrap을 사용하길 좋아하는데 UI 라이브러리가 약하기도 하고 굳이 여기서 그걸 고집할 필요는 없으니 별로 고민없이 jQuery 및 jQuery UI를 사용하기로 한다. 워낙에 일반화가 돼 있으니 그냥 쓰면 되는 것이니 말이다. 그런데 jQuery 1.9부터는 IE7, 8에 대한 고려가 줄어들었으므로 1.8 버전을 사용하기로 한다.</li>
+	<li>기왕이면 IE7, 8 같은 브라우저도 고려하여 모든 브라우저에서 다 사용할 수 있도록 한다. (2013년 현재 "모든"에 IE6은 포함되지 않는다.)</li>
+</ul>
+<h3>화면 프로토타입</h3>
+<p>다음은 화면 프로토타입이다. 디자인하고는 먼 나지만 jQuery UI를 활용해 볼썽 사납지는 않게 만들어졌다. 일, 시, 분, 초, 100분의 1초 숫자판과 눈금 블록, 시작/정지 단추 등이 들어가 있다. 기본적인 사용 방법은 일, 시, 분, 초에 대해 수치를 설정한 후 타이머를 개시하는 것이다. 개시한 후에는 시작/정지 단추가 &quot;정지&quot;로 바뀌어서 정지할 수 있게 하고 시간을 변경할 수 없게 한다. HTML 코딩 내용은 최종 결과물을 참고하도록 한다.</p>
+<p><img src="../../static/uploads/2013/04/timer_prototype.png" alt="타이머 프로토타입"></p>
+<h3>기본 기능 구현</h3>
+<p>수치 설정 방법이 숫자판 슬라이더를 사용하는 것과 숫자판 아래 눈금을 누르는 방법 두가지를 다 고려하려고 하므로 어느 쪽을 설정하든 다른 쪽에도 반영돼야 한다. 여기서 UI 갱신 함수라고 만들 수 있을 것이며 데이터가 바뀌면 그에 관련된 UI는 전부 갱신하는 &quot;뷰&quot;가 된다. 각 UI에서 발생하는 이벤트에 이 함수를 붙여야 한다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">setTimerDigit</span><span class="token punctuation">(</span><span class="token parameter">$slider<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    $slider<span class="token punctuation">.</span><span class="token function">slider</span><span class="token punctuation">(</span><span class="token string">'value'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>value <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token string">'0'</span> <span class="token operator">+</span> value <span class="token operator">:</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">var</span> $marks <span class="token operator">=</span> $slider<span class="token punctuation">.</span><span class="token function">parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'.marks div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">var</span> max <span class="token operator">=</span> $slider<span class="token punctuation">.</span><span class="token function">slider</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">,</span> <span class="token string">'max'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    $marks<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'background-color'</span><span class="token punctuation">,</span> <span class="token string">'yellow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 설정 값까지의 눈금은 노란색</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&lt;</span> max<span class="token punctuation">)</span><br>        $marks<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>value <span class="token operator">-</span> max<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'background-color'</span><span class="token punctuation">,</span> <span class="token string">'transparent'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 그 외의 눈금은 색 없음 </span><br><span class="token punctuation">}</span></code></pre>
+<p>사용자가 설정한 시간 값에서 완료 일시를 구해야 한다. 그래서 완료 일시와 현재 시간을 계속해서 비교해서 UI를 갱신해야 한다. 하루는 24 * 60 * 60 = 86400초고 JavaScript의 Date 객체는 밀리초(1000분의 1초) 단위로 값을 처리한다. 다음은 타이머를 시작할 때의 소스며 콜백에 타이머 갱신 함수도 포함돼 있다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// times는 일, 시, 분, 초의 설정 값을 배열로 넣어둔 것</span><br>endTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>times<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">86400</span> <span class="token operator">+</span> times<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">3600</span> <span class="token operator">+</span> times<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span> times<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span><br><br><span class="token keyword">var</span> <span class="token function-variable function">timeoutFunc</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">var</span> timeLeft <span class="token operator">=</span> endTime <span class="token operator">-</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token operator">...</span><br><br>    timeLeft <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>timeLeft <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">var</span> newTimes <span class="token operator">=</span> <span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>timeLeft <span class="token operator">/</span> <span class="token number">86400</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <br>                    Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>timeLeft <span class="token operator">%</span> <span class="token number">86400</span> <span class="token operator">/</span> <span class="token number">3600</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>                    Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>timeLeft <span class="token operator">%</span> <span class="token number">3600</span> <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>                    timeLeft <span class="token operator">%</span> <span class="token number">60</span><br>    <span class="token punctuation">]</span><span class="token punctuation">;</span><br><br>    <span class="token comment">// 직전 시간 배열과 현재 시간 배열을 비교하여 다른 값은 갱신</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>newTimes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> times<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token function">setTimerDigit</span><span class="token punctuation">(</span>$timers<span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newTimes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    times <span class="token operator">=</span> newTimes<span class="token punctuation">;</span><br><br>    hTimer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>timeoutFunc<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token function">timeoutFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>처음엔 setInterval을 사용하기도 했었으나 브라우저나 PC에 따라 성능이 다르므로 일괄적으로 일정 주기로 갱신을 하도록 하는 것은 UI 갱신이 처리를 못 따라갈 수 있는(그에 따라 버벅거리는 게 보이는) 위험이 있다. 각 환경에 맞게 하려면 setTimer를 계속해서 호출해주는 게 맞는 방법이다.</p>
+<h3>UI 상세화</h3>
+<p>핵심 기능은 처리했으나 실제 구현하면서 다음과 같은 것들을 고려하여 UI를 상세화해야 했다.</p>
+<ul>
+	<li>시작, 정지 단추를 눌렀을 때 처리</li>
+	<li>일 단위를 세 자리까지 처리할 수 있게 하기</li>
+	<li>슬라이더가 항상 보이면 보기 안좋으므로 마우스 오버시에만 표시</li>
+	<li>100분의 1초 표시 및 갱신</li>
+	<li>추가 정보 표시 - 시작 일시와 목표 일시 표시</li>
+	<li>사용자 도움말</li>
+</ul>
+<p>그런데 추가 정보를 표시하면서 원점부터 다시 고려해야할 중대한 요건을 하나 발견하게 되었다.</p>
+<h3>고정 목표 일시 설정 기능</h3>
+<p>원래 타이머의 목적은 시간 기간(duration)만 생각해서 예를 들어 라면 타이머로 사용한다든지 작업 시간 타이머로 사용하려는 것이었는데 타이머 정보로 &quot;목표 일시&quot;라는 걸 보여주려고 하면서 새로운 요건이 등장하게 됐다. 타이머의 용도를 기간만 설정하는 것이라면 &quot;목표 일시&quot;는 상대적인 값이 되는데 어느 특정 일시를 먼저 전제로 할 수도 있어야겠다는 것이다. 이것은 날짜가 들어갔기 때문에 특히 필요하다. 크리스마스까지 남은 날 수를 카운트다운하려는데 처음부터 그 날 수를 알기는 어렵지 않겠는가? 컴퓨터가 해줘야 하는 것이다. 그래서 고정된 목표 일시를 설정할 수 있는 기능도 추가하게 됐다.</p>
+<p>목표 일시를 어디까지 설정할 수 있을까를 생각해봤는데 크리스마스 카운트다운을 하려면 1년 정도는 돼야겠다는 생각이 들었다. 그리고 어찌하다보니 숫자판 아래 눈금도 그렇게 1년 정도로 만들게 됐다. 자릿수가 많으니 눈금을 작게 했는데 어떻게 하다보니 눈금을 한 줄에 12개씩 표시해야했고 그게 100분의 1초와 줄 수를 맞추니 372일이 나온 것이다. 개발하다보면 이런 의도하지 않은 결과도 생긴다. 좀더 장기의 날짜를 선택하려면 어떻게 할지가 그래서 미제로 남는다.</p>
+<p>프로젝트를 하면서도 공기 후반에 이런 새로운 요건이 발생하는데 내가 혼자 하는 경우도 역시 예외는 아니다. 사람이 처음부터 모든 걸 생각해낼 수는 없기 때문이다. 아무튼 그래서 목표 일시를 누르면 달력과 시간 팝업을 열어 설정하는 기능을 추가하게 됐다.</p>
+<h3>기타</h3>
+<ul>
+	<li>IE는 무슨 한계가 있는지 시작/정지가 연속으로 즉시는 반응하지 않는다. 한 번 누른 후 1초는 지나야 눌렀을 때 다음 동작이 수행된다.</li>
+	<li>다음 기능은 다음에 넣기로 한다. 초기화 단추, 브라우저를 닫아도 기억하는 기능, 모달 달력</li>
+</ul>
+<p>이상으로 온라인 타이머 제작 후기를 마친다. 다시 한번 결과물은 <a href="/pages/timer" target="_blank">여기를</a> 확인하고 버그가 있으면 가차 없이 알려주시길!</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-04-14T08:16:18.000Z">2013. 4. 14.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/카운트다운">카운트다운</a></li><li><a href="/tags/타이머">타이머</a></li><li><a href="/tags/인터넷-익스플로러">인터넷 익스플로러</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/04/%ec%98%a8%eb%9d%bc%ec%9d%b8-%ed%83%80%ec%9d%b4%eb%a8%b8/" || location.origin + '/posts/온라인-타이머/';
+    this.page.identifier = '온라인-타이머';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

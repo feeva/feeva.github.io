@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>짝 프로그래밍의 힘 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="우선 짝 프로그래밍(Pair programming)을 아는가? 개발자 두 명이 단위 작업 하나를 수행하는 개발 방식을 말한다.
+이제 한숨 돌리게 돼서 얘기하지만 심각한 위기를 맞은 프로젝트가 있었고 난 그 중심에서 방향을 잃고 있었다. 그 때를 생각하면 내가 무능했었나 자책도 하지만 어쨌든 해결이 됐고 그대로 흘릴 수 없는 중대한 경험을 했다. 단편적이지만 최고의 효과를 본 해법이 있었으니 바로 짝 프로그래밍이었다. 이 글은 그 얘기를 하고자 한다.
+">
+    <link rel="canonical" href="/posts/짝-프로그래밍의-힘/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="짝 프로그래밍의 힘">
+    <meta property="og:url" content="/posts/짝-프로그래밍의-힘/">
+    <meta property="og:description" content="우선 짝 프로그래밍(Pair programming)을 아는가? 개발자 두 명이 단위 작업 하나를 수행하는 개발 방식을 말한다.
+이제 한숨 돌리게 돼서 얘기하지만 심각한 위기를 맞은 프로젝트가 있었고 난 그 중심에서 방향을 잃고 있었다. 그 때를 생각하면 내가 무능했었나 자책도 하지만 어쨌든 해결이 됐고 그대로 흘릴 수 없는 중대한 경험을 했다. 단편적이지만 최고의 효과를 본 해법이 있었으니 바로 짝 프로그래밍이었다. 이 글은 그 얘기를 하고자 한다.
+">
+    <meta property="og:image" content="../../static/uploads/2013/07/aviation-cockpit.jpg">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>짝 프로그래밍의 힘</h1>
+
+  <div class="post-content">
+    <p>우선 <a href="http://xper.org/wiki/xp/PairProgramming" target="_blank">짝 프로그래밍(Pair programming)</a>을 아는가? 개발자 두 명이 단위 작업 하나를 수행하는 개발 방식을 말한다.</p>
+<p>이제 한숨 돌리게 돼서 얘기하지만 심각한 위기를 맞은 프로젝트가 있었고 난 그 중심에서 방향을 잃고 있었다. 그 때를 생각하면 내가 무능했었나 자책도 하지만 어쨌든 해결이 됐고 그대로 흘릴 수 없는 중대한 경험을 했다. 단편적이지만 최고의 효과를 본 해법이 있었으니 바로 짝 프로그래밍이었다. 이 글은 그 얘기를 하고자 한다.</p>
+<!--more-->
+<p>이 프로젝트는 사실 네 개의 하위 프로젝트로 구성된 커다란 프로젝트였다. 문제의 프로젝트는 그 중 전국의 수백 곳의 기관을 상대로 조사를 진행하는 것이었으며 <strong>오픈일이 공표되어 반드시 제 날짜에 오픈을 해야 하는 프로젝트였다</strong>. 하지만 몇 가지 문제로 프로젝트 입찰 및 계약이 늦어졌고 우리는 해당 프로젝트의 오픈일을 불과 2주 정도 남긴 상태에서 인력을 투입하게 되어 고객 건물에 상주를 시작했다.</p>
+<p>이 프로젝트에서 첫번째 과제는 조사 업무를 위한 프로그램을 보수하여 오픈일까지 완료하는 것이었는데 우리는 인력을 초급자 한 명만 배정했다. 기간이 촉박한 편이라 다른 팀원보다 이틀 먼저 투입되긴 했지만 아무튼 우리 본사에서는 초급자가 어느 정도 할 것으로 판단했고 고객도 우리를 믿은 건지 별 반대 없이 수용했다.</p>
+<p><strong>나의 첫번째 잘못은 이러한 상황을 낙관적으로 판단</strong>한 데 있었다. 빨간 불을 켜고 일을 바라봤어야 했다. 하지만 몇 가지 정황 단서는 이런 판단을 하지 못하게 했다. 우선 담당 개발자의 의견이었다. 일반적으로 개발자들은 자기가 맡은 일에 대해 조금 엄살을 부릴 수도 있을 텐데 이 개발자는 문제가 없어 보인다는 말을 되풀이했다. 기존 프로그램이 잘 돌아간다며 문제가 없다고 했고 보수 작업이 잘 진행된다며 별 문제 없을 거 같다고 했다.</p>
+<p>1주일 가까이 지나고 차츰 담당 개발자의 의견이 사실이 아님이 밝혀지면서 우리는 대안을 찾을 수 밖에 없었다. 우리 개발자 중에는 해당 업무인 C# 개발자가 없어서 외부에서 한 명을 더 투입했다. 긴급 수혈이라 정상적인 근무가 아니고 야간에만 지원하는 방식이었다. 그리고 같은 프로젝트의 동료 개발자 두 명에게 해당 업무를 주 업무로 지원하게 했다. 원래는 조사 프로그램과 연동하는 웹사이트 보수 업무도 하는 것이었으나 당장에는 웹사이트 업무가 별로 없음을 알게 되어 중단시키고 조사 프로그램에 대한 업무 요건을 파악하고 테스트를 하는 등의 지원 업무를 맡겼다.</p>
+<p>야근이 시작되었고 남은 기간은 이제 1주일도 안 남았지만 이번에도 나의 판단은 흐렸다. 동료 개발자들이 하는 말이 야간에 투입된 개발자가 문제를 잘 해결하고 있는 것 같았기 때문이다. 하지만 하루 이틀이 지나고 주말까지 근무하는 상황인데도 그 말을 믿지 않아야 했지만 새 개발자가 워낙에 성실했기 때문에 문제를 잘 해결해나가고 있을 거라 생각했다. 다른 프로젝트들을 챙겨야 하는 나의 상황도 문제의 심각성을 깨닫지 못하게 하는 데 일조를 했다.</p>
+<p>결국 며칠이 또 지났지만 조사 프로그램은 여전히 언제 완료될지 아무도 모르는 상황이었다. 이제는 <strong>고객의 관리부서에서 개입</strong>하기에 이르렀다. 그때부터 상황은 시시각각 바뀌며 긴급하게 흘러갔다. 여러 가지 대책을 요구하고 협의했지만 나와 고객이 내놓는 여러 해결책들은 근본적인 효과를 볼 수 있는 게 없었다.</p>
+<p><img src="../../static/uploads/2013/08/situation-room.jpg" alt="비상이다! 모두 모여!"></p>
+<p>우선 새 개발자를 다시 수배해 원래 담당 개발자를 교체했다. 그러나 새로 온 개발자는 업무 파악하는 데 시간이 걸렸고 야간에만 오던 개발자보다 생산성을 못 냈다.</p>
+<p>야간에 오던 개발자에게 간곡히 요청해 주간에도 하루 일하게 하고 주말에도 일하고 밤샘 근무도 했다. 그래서 <strong>야간 개발자가 매번 올 때마다 이해도 빠르고 작업 속도도 빠르고 뭔가 진행이 되는 듯 했으나</strong> 결과물을 고객에게 보여주고 테스트해보면 문제점 투성이였고 원하는 수준의 결과물은 아니었다. 다른 여러 개발자들을 비롯해 나도 같이 밤샘하면서 지켜보고 협의하고 밥도 사고 진행을 관리했으나 이상하게 우리는 나름 됐다고 했으나 <strong>고객 현업의 입장에서는 별 볼 일 없는 결과물이었다</strong>.</p>
+<p>다음 대책으로는 조사 프로그램을 원래 개발했던 개발자를 야간에라도 도와달라며 호출했다. 그러나 이 개발자 및 소속 회사는 본인들이 책임질 수 있는 범위는 모르는 부분에 대한 조언 뿐이지 직접적으로 개발을 대행해줄 수는 없다며 간혹 막히는 부분에 대해서만 조언하는 데 그쳤다. 더구나 자신이 개발한 프로그램에 대한 자부심을 내보이는 데 대해 우리 개발자는 반감이 있었고(잘 만든 프로그램이 아니었다) 제대로 된 협업이 될 수 없었다. 또한 사실 프로젝트 초기에 프로그램에 대한 인수인계가 잘 됐어야 했던 것인데 여러 사정상 우리는 별 인수인계 없이 프로젝트를 시작했었는데도 이에 대한 고려가 없었다.</p>
+<p><strong>모든 게 실패하자 고객은 오픈일을 며칠 늦출 수 밖에 없게 됐다</strong>. 오픈일을 늦춘 것만으로도 조사 대상 수백 곳에 공지를 해야 하는 큰 일이었고 이제 늦춰진 오픈일도 못맞추면 프로젝트 계약은 파기될 상황까지 몰리게 됐다. 또한 계약 파기는 파기고 조사가 실패하면 고객 기관은 청와대까지 불려간다는 심각한 상황이므로 보상이 필요할 것임을 내포하는 말로 나를 질타했다.</p>
+<p>여전히 별 대책은 안 보였다. 문제 해결은 다른 데서 시작됐다.</p>
+<p>일단 오픈일을 늦추고 시간을 벌자 난 전체적 상황을 다시 보게 됐는데 이때 일이 제대로 진행되지 않는 이유를 깨달을 수 있었다. <strong>1. 업무 요건을 파악하는 것과 2. 테스트가 제대로 안되고 있었던 것이다</strong>. 고객은 처음에 우리가 업무 요건까지 알아서 파악하고 프로그램을 보수하길 바랬던 것이었는데 우리 개발자들은 업무 요건의 줄거리는 알지만 프로그램 개발 단계에서 세세한 뉘앙스가 내포된 요구 사항을 일일이 알지는 못했던 것이다. 또한 테스트도 대략 이 정도면 될 것이라고 보고 테스트했을 뿐이지 고객이 바라보는 방식의, 우리가 미처 알지 못하는 문제점이 많이 있음을 알지 못하고 테스트를 수행했던 것이다. 그러니 개발은 공회전을 할 수 밖에(또는 적어도 그렇게 보일 수 밖에) 없었던 것이다.</p>
+<p>난 막연하게 우리 개발자에게 고객 현업과 붙어서, 즉 함께 앉아 일을 하기를 지시했다. 오픈일이 연기된 상황에서 무작정 급하게 일하지 말고 모든 요구 사항을 현업과 일일이 확인해가며 일을 하기를 원했던 것이다. 그러나 그건 쉬운 게 아니었다. 고객 현업은 업무 지연과 위기감으로 스트레스가 높았고 우리를 대하는 태도가 냉랭했다. 개발자들은 그들을 무섭고 껄끄러워 했다.</p>
+<p>그때 고객 관리부서에서는 관리부서 나름대로 그런 판단을 한 것 같다. 관리부서에도 마침 해당 업무에 대해 현업보다 잘 알 정도의 전문가가 한 명 있었는데 그를 개발자 중 가장 생산성이 높았던 야간 개발자에게 붙여 일일이 진행되는 업무를 확인하라고 했던 것이다.</p>
+<p>짝 프로그래밍의 시작이었다.</p>
+<p>그 고객 전문가는 전산과 출신으로 프로그램 내부에 대해서도 이해도가 높았다. 따라서 업무를 확인하는 수준을 벗어나 <strong>프로그램 작업 자체에 대해 일일이 조언하는 상황</strong>이 되었다. 화면에서 이건 여기에, 저건 여기에, 결과는 이렇게 저렇게 나와야 한다고 일일이 짚어줬고 SQL도 함께 보면서 뭘 어떻게 고쳐야 하는지 잘 설명하고 조언해줬다.</p>
+<p>짝 프로그래밍을 설명하는 자료에서 흔히 언급되는 내용 중에 운전에 비유한 것이 있다. <strong>개발자 두명 중 하나는 직접 운전을 하는 드라이버가 되고 다른 하나는 내비게이터가 된다</strong>는 비유다. 프로그램 개발 과정을 어떤 목적지까지 찾아가는 운전에 비유한다면 한 명은 운전자로서 차를 직접 조작하는 사람이고 다른 한명은 방향을 알고 있는 사람으로서 운전자에게 어떤 길로 가면 되며 장애물을 만났을 때 어떻게 돌아가면 되는지를 말해주는 사람이 된다는 것이다.</p>
+<p>이미 그 전에도 우리 개발자끼리는 그런 식으로 업무를 분담하여 일부 짝 프로그래밍처럼 하고 있었지만 내비게이터에 해당하는 개발자가 세세한 요구 사항을 정확히 파악하지 못하고 있었기 때문에 제대로 된 효과를 볼 수 없었던 것이다. 반면에 이번에 협업하게 된 고객 전문가와 개발자는 최고의 생산성을 보였고 당장 오픈에 문제가 되던 몇 가지 기능들을 몇 시간 만에 끝낼 수 있었다.</p>
+<p>프로젝트는 다시 일부 정상 궤도에 오를 수 있었고 부분 오픈, 최종 오픈을 거쳐 조사 업무는 결국 중단되지 않고 진행할 수 있었다.</p>
+<p>난 <a title="민첩 개발 방법" href="http://terms.naver.com/entry.nhn?cid=2955&amp;docId=301928&amp;mobile&amp;categoryId=2955" target="_blank">민첩 개발(Agile development) 방법</a> 신봉자긴 하지만 짝 프로그래밍을 이렇게 효과적으로 체감하는 건 처음이었다. 짝 프로그래밍을 도입하는 데에는 저항이 많고 나 자신도 확신을 가지기 쉽지 않았다. 그러나 <strong>적절한 상황, 적절한 개발자가 짝을 이룬다면 나락으로 가는 프로젝트도 구원할 수 있음</strong>을 아주 찐하게 절감할 수 있었다.</p>
+<p>생산성에 대해 염려하는 여러 개발자, 관리자들은 꼭 짝 프로그래밍에 대해 검토해보기 바란다. 관련 자료에 많이 언급되지만 항공기 조종도 두 명이, 외과 수술도 두 명이, 경주용 차 운전도 두 명이, TV 뉴스 진행도 두 명이 짝을 이뤄 하는 경우가 많지 않은가!</p>
+<p><img src="../../static/uploads/2013/07/aviation-cockpit.jpg" alt="2인조 항공기 조종 (출처: http://wallpoper.com)"></p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-08-01T15:52:59.000Z">2013. 8. 2.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/pair-programming">Pair programming</a></li><li><a href="/tags/짝-프로그래밍">짝 프로그래밍</a></li><li><a href="/tags/프로젝트">프로젝트</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/08/%ec%a7%9d-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%ec%9d%98-%ed%9e%98/" || location.origin + '/posts/짝-프로그래밍의-힘/';
+    this.page.identifier = '짝-프로그래밍의-힘';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>톰캣의 컨텍스트 외부로 경로 매핑하는 방법 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.">
+    <link rel="canonical" href="/posts/톰캣의-컨텍스트-외부로-경로-매핑하는-방법/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="톰캣의 컨텍스트 외부로 경로 매핑하는 방법">
+    <meta property="og:url" content="/posts/톰캣의-컨텍스트-외부로-경로-매핑하는-방법/">
+    <meta property="og:description" content="일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>톰캣의 컨텍스트 외부로 경로 매핑하는 방법</h1>
+
+  <div class="post-content">
+    <p>일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.</p>
+<!--more-->
+<p>원칙적으로 소스 버전 관리를 통해서 산출물을 공유하면 좋지만 디자인팀은 <em>아… 그런 거 골치아파요</em>하거나 <em>일단 진행하다가 나중에 넣을께요</em>하며 시간 지연 작전을 쓴다. 또한 개발팀은 개발팀대로 이미지는 파일 크기가 상당히 큰 편이다 보니 프로젝트 폴더에 이미지를 넣고 주고 받는 게 심적으로 부담스러운 면도 있다.</p>
+<p>아무튼 이렇게 정적인 자원(디자인 산출물)을 별개로 관리할 경우 개발팀에서 Tomcat으로 개발 중인 웹페이지를 띄울 때 어떻게 하는 게 좋을까? 예를 들어 컨텍스트 경로는 <code>/</code>, 즉 루트고 실제 경로는 <code>d:\project\webapp</code>이라고 하자. 그런데 이미지 경로는 <code>/img</code>이고 실제 경로는 <code>d:\project\design\img</code>일 경우 어떻게 할까? 또는 이미지의 실제 경로가 같은 컴퓨터에 있지 않고 예를 들어 <code>http://123.45.67.89/img</code>에 있다면?</p>
+<p><strong>우선 한 컴퓨터 안에 정적인 자원과 자바 컨텍스트가 같이 있되 폴더 위치는 다른 경우를 살펴보자.</strong></p>
+<h3>아파치 HTTP 서버 + 톰캣</h3>
+<p>톰캣(Tomcat) 앞에 아파치(Apache) 웹서버를 프록시로 두는 경우는 서버 기계가 여러 대인 운영 서버 환경에서 자주 볼 수 있는 조합이다. 개발 환경에서는 꼭 이렇게 할 필요는 없겠지만 아무튼 이런 경우는 처음부터 아파치 웹서버가 독립적으로 정적인 자원을 서비스하므로 톰캣이 서비스하는 자바 컨텍스트와 아무 상관이 있을 게 없다. 웹서버는 웹서버대로 웹폴더 위치를 지정하고 톰캣은 톰캣대로 웹폴더 위치를 지정하면 된다.</p>
+<p>혹시 아파치 웹서버 2.2 이상에서 웹서버와 톰캣을 연동해주는 프록시 설정을 알고 싶다면 <a title="mod_proxy_ajp" href="http://httpd.apache.org/docs/2.2/mod/mod_proxy_ajp.html" target="_blank">여기</a>를 보도록 한다.</p>
+<h3>톰캣 6 이상(6, 7, 8 공통)</h3>
+<p>톰캣 6부터는 2단계 이상 디렉터리 구조의 컨텍스트를 지원한다. 무슨 말인가하면 <code>/www</code>와 같은 컨텍스트 뿐 아니라 <code>/www/img</code>와 같은 경로를 별도의 컨텍스트로 독립시킬 수 있다.</p>
+<p>방법은 컨텍스트 설정 xml 파일을 &quot;경로1#경로2.xml&quot;과 같은 이름으로 만들어 컨텍스트 설정 파일 경로인 <code>$CATALINA_BASE/conf/[enginename]/[hostname]</code> 폴더에 넣어두는 것이다. 기본 설치 상태인 경우 <code>[enginename]</code>은 &quot;Catalina&quot;고 <code>[hostname]</code>은 &quot;localhost&quot;가 된다. 그리고 파일 내용은 예를 들어 다음과 같이 될 것이다.</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Context</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img<span class="token punctuation">"</span></span> <span class="token attr-name">reloadable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">docBase</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d:\project\design\img<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Context</span><span class="token punctuation">></span></span></code></pre>
+<p>이클립스 같은 개발 환경에서는 위의 설정 파일이 위치하는 경로에 파일을 넣어주기 보다는 Servers 프로젝트에서 톰캣 설정 파일 server.xml 파일을 열어 <code>&lt;Context&gt;</code>를 추가해주는 게 더 편리하다.</p>
+<h3>톰캣 7</h3>
+<p>위 방법은 정적인 자원 폴더가 예를 들어 <code>/www/img</code>, <code>/www/css</code>, <code>/www/js</code> 등과 같이 여럿일 경우 설정하는 작업이 귀찮아진다. 또한 설정 파일을 별개로 서버에 작업해 넣어야 하므로 소스 버전 관리가 되지 않는 문제도 있다.</p>
+<p>톰캣 7에서는 <code>aliases</code>를 설정할 수 있다.</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Context</span> <span class="token attr-name">...</span><br>    <span class="token attr-name">aliases</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img=d:\project\design\img,/js=d:\project\design\js,/css=d:\project\design\css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Context</span><span class="token punctuation">></span></span></code></pre>
+<p>또한 <a title="가상 경로" href="http://tomcat.apache.org/tomcat-7.0-doc/config/resources.html#VirtualDirContext_implementation" target="_blank">가상 경로를 설정</a>할 수도 있다. 동작상으로는 위의 <code>aliases</code>와 다를 건 없다. 컨텍스트 설정 파일에 다음과 같이 <code>Resources</code> 태그를 추가하면 된다.</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Context</span> <span class="token attr-name">...</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Resources</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.apache.naming.resources.VirtualDirContext<span class="token punctuation">"</span></span><br>        <span class="token attr-name">extraResourcePaths</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img=d:\project\design\img,/js=d:\project\design\js,/css=d:\project\design\css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Context</span><span class="token punctuation">></span></span></code></pre>
+<p>이러한 설정 내용은 <code>META-INF/context.xml</code>에 넣는 것이 프로젝트 소스를 관리하는 면에서 편리하다. 그런데 위에서 aliases의 경우는 경로 설정 문자열의 컴마나 등호 앞뒤로 빈칸이나 줄바꿈 같은 게 있을 수 있으나 가상 경로는 있으면 안된다.</p>
+<p>또 한 가지 주의할 점은 (이미 다 알고 하고 있겠지만 확인 차원에서 말하자면) 스프링 같은 프레임웍을 사용할 경우 대개 <code>WEB-INF/web.xml</code> 파일에서</p>
+<pre class="language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>dispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span></code></pre>
+<p>와 같이 모든 경로를 <a title="스프링의 웹 요청 처리 흐름" href="http://start.goodtime.co.kr/2013/03/%ec%8a%a4%ed%94%84%eb%a7%81%ec%9d%98-%ec%9b%b9-%ec%9a%94%ec%b2%ad-%ec%b2%98%eb%a6%ac-%ed%9d%90%eb%a6%84/" target="_blank">스프링의 디스패처 서블릿</a>으로 서비스하도록 설정하는 경우가 일반적인데 이 경우 정적인 자원도 스프링에서 처리하도록 돼 있기 때문에 스프링 설정에서</p>
+<pre class="language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resources</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/**<span class="token punctuation">"</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resources</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/css/**<span class="token punctuation">"</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/css/<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<p>와 같이 정적인 자원은 배제하는 게 필수라는 것이다.</p>
+<h3>톰캣 8</h3>
+<p>톰캣 7의 혼란스러운 설정들은 <a href="http://tomcat.apache.org/tomcat-8.0-doc/config/resources.html" target="_blank" title="Resources 설정">톰캣 8에서 과감히 정리</a>됐다. <code>&lt;Context&gt;</code> 태그 안에 <code>PreResources</code>, <code>JarResources</code>, <code>PostResources</code> 등을 설정할 수 있게 바뀌었는데 JAR 파일에 정적인 자원을 넣어 서비스하는 경우가 아니라면 일반적으로 <code>PreResources</code>를 설정하면 된다.</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Context</span> <span class="token attr-name">...</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PreResources</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.apache.catalina.webresources.DirResourceSet<span class="token punctuation">"</span></span><br>        <span class="token attr-name">webAppMount</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img<span class="token punctuation">"</span></span> <span class="token attr-name">base</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d:\project\design\img<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Context</span><span class="token punctuation">></span></span></code></pre>
+<h3>정적인 자원이 원격지(다른 컴퓨터)에 있는 경우</h3>
+<p><strong>마지막으로 정적인 자원이 자바 컨텍스트가 위치한 컴퓨터와는 다른 컴퓨터에 있는 경우를 알아보자.</strong> 이 경우는 좀 번거롭지만 정적인 자원의 경로 앞에 원격지의 주소를 일일이 붙여주는 수 밖에 없다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>...<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://123.45.67.89/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><br>...<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>원격지의 주소는 개발 중 바뀔 수도 있고 운영 서버로 최종 배포할 때도 바뀔 가능성이 많으므로 스프링 같은 프레임웍이나 JSTL을 사용한다면 원격지 주소를 설정 파일 같은 곳에서 변수로 뽑아오는 것이 편리하다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${resourcePath}/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></code></pre>
+<p>이상으로 글을 마치며 디자인팀과 개발팀의 조화로운 프로젝트 진행을 꿈꿔본다. 😉</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/톰캣">톰캣</a></li><li><a href="/tags/apache">Apache</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/04/%ed%86%b0%ec%ba%a3%ec%9d%98-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ec%99%b8%eb%b6%80%eb%a1%9c-%ea%b2%bd%eb%a1%9c-%eb%a7%a4%ed%95%91%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95/" || location.origin + '/posts/톰캣의-컨텍스트-외부로-경로-매핑하는-방법/';
+    this.page.identifier = '톰캣의-컨텍스트-외부로-경로-매핑하는-방법';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB University 강의 2강 – CRUD 1 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="지난 1강에 이어 두 번째 강의를 정리해본다. 이번 주제는 관계형 데이터베이스에서 흔한 작업들, 즉 CRUD라고 하는 작업을 MongoDB에서는 어떻게 처리하는가에 대한 내용이다. 내용이 길어 1, 2로 나눈다.CRUDMongoDB에서는 CRUD를 다음과 같이 말한다. 이러한 기능은 관계형 DB의 SQL 같은 별도 언어가 아니라 자바스크립트나 자바와 같은 개발 언어의 구문 형태로 API가 제공된다.">
+    <link rel="canonical" href="/posts/mongodb-university-강의-2강-crud-1/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="MongoDB University 강의 2강 – CRUD 1">
+    <meta property="og:url" content="/posts/mongodb-university-강의-2강-crud-1/">
+    <meta property="og:description" content="지난 1강에 이어 두 번째 강의를 정리해본다. 이번 주제는 관계형 데이터베이스에서 흔한 작업들, 즉 CRUD라고 하는 작업을 MongoDB에서는 어떻게 처리하는가에 대한 내용이다. 내용이 길어 1, 2로 나눈다.CRUDMongoDB에서는 CRUD를 다음과 같이 말한다. 이러한 기능은 관계형 DB의 SQL 같은 별도 언어가 아니라 자바스크립트나 자바와 같은 개발 언어의 구문 형태로 API가 제공된다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>MongoDB University 강의 2강 – CRUD 1</h1>
+
+  <div class="post-content">
+    <p><a title="MongoDB University 강의 1강 – 개요" href="http://start.goodtime.co.kr/2014/07/mongodb-university-%ea%b0%95%ec%9d%98-1%ea%b0%95-%ea%b0%9c%ec%9a%94/">지난 1강</a>에 이어 두 번째 강의를 정리해본다. 이번 주제는 관계형 데이터베이스에서 흔한 작업들, 즉 CRUD라고 하는 작업을 MongoDB에서는 어떻게 처리하는가에 대한 내용이다. 내용이 길어 1, 2로 나눈다.</p>
+<h3>CRUD</h3>
+<p>MongoDB에서는 CRUD를 다음과 같이 말한다. 이러한 기능은 관계형 DB의 SQL 같은 별도 언어가 아니라 자바스크립트나 자바와 같은 개발 언어의 구문 형태로 API가 제공된다.</p>
+<!--more-->
+<ul>
+<li>Create(DB Insert) - Insert</li>
+<li>Read(DB Select) - Find</li>
+<li>Update(DB Update) - Update</li>
+<li>Delete(DB Delete) - Remove</li>
+</ul>
+<h3>Mongo Shell</h3>
+<p>Mongo Shell은 자바스크립트를 인터랙티브하게 실행할 수 있는 인터프리터다. 윈도에서는 <code>mongo.exe</code>를 실행하면 되며 DB를 지정하지 않으면 test DB에 연결된다. 단축키는 Bash나 Emacs와 비슷하여 예를 들어 위, 아래 화살표로 이전 입력을 불러올 수 있고 ctrl-a(또는 home)키를 입력하면 줄 처음으로 가며 몇 글자 입력 후 탭키를 누르면 자바스크립트 키워드가 자동 완성된다. &quot;help&quot;라고 입력하면 도움말을 볼 수 있다.</p>
+<h3>BSON</h3>
+<p>문자열, 부동 소숫점 소수, 배열, 객체, 시간을 표현할 수 있는 이진 형태의 자료 구조다. 사용자는 JSON만을 볼 수 있지만 MongoDB 내부적으로는 DB와의 통신에서 이 형식이 사용된다.</p>
+<h3>문서 삽입</h3>
+<p>문서(JavaScript 객체)를 삽입하려면 다음 구문을 사용한다. 이때 변경 불가한(immutable) <code>ObjectId</code> 객체가 <code>_id</code> 필드로 생성되어 추가된다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>컬렉션명<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>문서<span class="token punctuation">)</span></code></pre>
+<p>등록한 문서를 확인할 때 다음과 같이 하면 컬렉션 안의 모든 문서를 찾게 된다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>컬렉션명<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3>findOne</h3>
+<p><code>db.컬렉션명.findOne(조건객체, 조회할필드객체)</code>와 같이 하여 원하는 문서를 찾을 수 있다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>people<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Jones"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">Name</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token literal-property property">_id</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>이때 필드 객체에서 <code>_id</code> 필드는 기본적으로 결과에 포함시키기 때문에 제외하려면 명시적으로 <code>false</code> 값을 줘야 한다. 다른 필드는 명시적으로 포함해야만 결과에 나타난다.</p>
+<h3>find</h3>
+<p><code>db.컬렉션명.find()</code>는 전체 문서를 찾아내는 메서드다. 인자를 주면 해당 인자를
+조건으로 그에 맞는 문서를 찾아낸다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>scores<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'essay'</span><span class="token punctuation">,</span> <span class="token literal-property property">score</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">student</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token literal-property property">_id</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>그런데 문서가 많은 경우를 대비해 한번에 20개씩만 출력하게 돼 있으며 <code>it</code>라는 명령을 내리면 다음 20개를 볼 수 있다. 또한 <code>find().pretty()</code>와 같이 하면 문서 내의 필드를 가로로 나열해 표시하던 방식에서 세로로 표시하는 방식으로 바뀐다.</p>
+<h3>$gt, $lt</h3>
+<p>범위를 지정하는 조건을 줘야 하는 경우, 예를 들어 점수가 50 이상 60 이하인 경우를 찾으려면 다음과 같이 할 수 있다. (조건 순서는 무관)</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>scores<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">score</span> <span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">$gte</span> <span class="token operator">:</span> <span class="token number">50</span> <span class="token punctuation">,</span> <span class="token literal-property property">$lte</span> <span class="token operator">:</span> <span class="token number">60</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>이러한 조건은 문자열에 대해서도 적용할 수 있는데 자료형이 섞여 있는 경우 원하는 결과를 찾을 수 없을 수 있으므로 스키마 구성시 주의해야 한다. MongoDB는 자바스크립트 환경이므로 UTF-8 로캘로 정렬하고 대소문자를 구별한다.</p>
+<h3>$regex, $exists, $type</h3>
+<p>계속해서 <code>find</code> 메서드의 조건으로 정규식이나 존재 여부, 자료형 등을 지정하려면 다음 예시와 같이 한다.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">$regex</span><span class="token operator">:</span> <span class="token string">'e$'</span><span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token comment">// 정규식 조건</span><br><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">$exists</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token comment">// name 값이 존재하는지 여부</span><br><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">$type</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token comment">// 2는 BSON에서 문자열 자료형을 가리키는 값임</span></code></pre>
+<h3>$or</h3>
+<p>여러 조건을 or로 묶으려면 <code>$or: [조건 배열]</code>과 같이 한다. 조건 배열에 괄호가 많이 나타나 익숙해지는 데 시간이 걸릴 수 있는데 mongo 셸에서는 괄호 짝을 강조 표시해주고 구문에 문제가 있으면 결과 대신 …을 표시하므로 도움이 된다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>scores<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">$or</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token literal-property property">score</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">$lt</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">score</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">$gt</span><span class="token operator">:</span> <span class="token number">90</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p><code>$and</code>도 있지만 조건 객체의 기본이 and 조건이므로 많이 사용되지는 않는다.</p>
+<p>주의) 아래는 JSON 구문상 뒤의 <code>score</code>가 앞의 <code>score</code>를 덮어쓰므로 <code>$lt</code> 조건만 유효하다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>scores<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span> <span class="token punctuation">{</span> <span class="token literal-property property">score</span> <span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">$gt</span> <span class="token operator">:</span> <span class="token number">50</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token literal-property property">score</span> <span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">$lt</span> <span class="token operator">:</span> <span class="token number">60</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3>내부 배열에 대한 질의</h3>
+<p>MongoDB는 polymorphic하기 때문에 객체 내 배열은 단순 값을 질의할 때와 마찬가지로 검색한다. 아래 예는 tags라는 필드가 배열일 경우다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>products<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span> <span class="token punctuation">{</span> <span class="token literal-property property">tags</span> <span class="token operator">:</span> <span class="token string">"shiny"</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 이 질의는 tags 배열 중 shiny가 있으면 찾아낸다</span><br><br><span class="token comment">// 아래 예시와 같은 결과를 찾아낼 수 있다</span><br><span class="token punctuation">{</span> <span class="token literal-property property">_id</span> <span class="token operator">:</span> <span class="token number">42</span> <span class="token punctuation">,</span> <span class="token literal-property property">name</span> <span class="token operator">:</span> <span class="token string">"Whizzy Wiz-o-matic"</span><span class="token punctuation">,</span> <span class="token literal-property property">tags</span> <span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"awesome"</span><span class="token punctuation">,</span> <span class="token string">"shiny"</span> <span class="token punctuation">,</span> <span class="token string">"green"</span> <span class="token punctuation">]</span> <span class="token punctuation">}</span><br><span class="token punctuation">{</span> <span class="token literal-property property">_id</span> <span class="token operator">:</span> <span class="token number">1040</span> <span class="token punctuation">,</span> <span class="token literal-property property">name</span> <span class="token operator">:</span> <span class="token string">"Snappy Snap-o-lux"</span><span class="token punctuation">,</span> <span class="token literal-property property">tags</span> <span class="token operator">:</span> <span class="token string">"shiny"</span> <span class="token punctuation">}</span></code></pre>
+<h3>$in, $all</h3>
+<p><code>$in: [...]</code> - 지정한 배열 요소 중 하나라도 일치하는 게 있는 문서를 찾는다
+<code>$all: [...]</code> - 지정한 배열 요소 모두를 가지고 있는 문서를 찾는다</p>
+<h3>점 표기법 질의</h3>
+<p>문서의 필드가 예를 들어 <code>{email: {personal: 'aaa@bbb.com', work: 'ccc@ddd.com'}}</code>와 같은 객체인 경우도 <code>find</code> 메서드에 조건을 지정해 찾을 수 있는데 필드명은 자바스크립트의 점 표기법 규칙에 따라 지정할 수 있다. 예를 들어 <code>{'email.work': 'ccc@ddd.com'}</code>와 같이 필드의 값 객체에 대해 하위 필드를 찾아들어갈 수 있다.</p>
+<p>객체의 일부 값을 찾는 경우가 아니라 객체의 값을 통으로 지정해서 찾을 수도 있다. 질의 조건을 객체 값 그대로 지정하는 것이다. 다만 의미상은 똑같은 JSON 객체더라도 필드 순서가 바뀌면 BSON에서 달라지기 때문에 못찾으므로 필드 순서도 그대로 객체 값과 같이 지정해야 한다.</p>
+<h3>커서</h3>
+<p>Mongo 셸에서 <code>find()</code> 메서드는 사실 &quot;커서&quot;를 반환하는 것이며 셸은 그 커서를 사용해 한번에 20개까지 화면에 출력한다. 따라서 예를 들어 <code>cur = db.컬렉션.find()</code>와 같이 해서 커서를 받을 수 있으며 (셸에서 이렇게 입력하고 엔터를 누르면 값을 출력하느라 커서를 사용하게 되므로 <code>; null</code>을 붙여 커서를 사용해버리지 않도록 한다.) <code>hasNext()</code>, <code>next()</code>, <code>sort({필드: 1 또는 -1})</code>, <code>limit(숫자)</code>, <code>skip(숫자)</code>와 같은 메서드를 사용할 수 있다. 이때 이러한 메서드는 서버측의 질의를 수정하는 것이지 클라이언트에 반환된 결과를 필터링하는 게 아니므로 서버로부터 클라이언트로 넘어오는 데이터가 달라지는 것이다.</p>
+<h3>결과 계수</h3>
+<p><code>find</code> 메서드 대신 <code>count</code>를 사용해 결과 개수를 셀 수 있다.</p>
+<h3>데이터베이스 갱신은 통(wholesale) 갱신이다</h3>
+<p>데이터 갱신은 <code>update</code> 메서드를 사용한다. 인자 두 가지가 필요하다.</p>
+<ol>
+<li>첫번째 인자는 SQL의 where 절과 같은 조건 객체다.</li>
+<li>두번째 인자는 원래의 데이터를 <em>대체할</em> 데이터 객체다.</li>
+</ol>
+<p>이 <code>update</code>는 원래의 문서를 완전히 대체하는 통 갱신 개념이므로 관계형 DB에서 특정 컬럼들을 지정해 갱신하는 것과 다르다. (단, <code>_id</code> 필드는 갱신 안되고 유지됨)</p>
+<h3>$set, $inc, $unset</h3>
+<p><code>update</code> 메서드가 통으로 갱신하지 않게 하려면 <code>$set</code> 연산자를 사용한다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>people<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Alice'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">$set</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">31</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>위 예시는 name이 Alice인 문서에서 age 값만 변경한다. 한편 <code>$inc</code>를 사용하면 특정 필드 값을 증가시킬 수 있다.</p>
+<pre class="language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>people<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Bob'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">$inc</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p><code>$unset</code>을 사용하면 특정 필드를 없앨 수 있다. <code>{$unset: {profession: 1}}</code> 여기서 1은 아무 값이나 와도 상관 없다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-07-20T15:46:04.000Z">2014. 7. 21.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/crud">CRUD</a></li><li><a href="/tags/json">JSON</a></li><li><a href="/tags/mongodb">MongoDB</a></li><li><a href="/tags/nosql">NoSQL</a></li><li><a href="/tags/데이터베이스">데이터베이스</a></li><li><a href="/tags/온라인-강의">온라인 강의</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/07/mongodb-university-%ea%b0%95%ec%9d%98-2%ea%b0%95-crud-1/" || location.origin + '/posts/mongodb-university-강의-2강-crud-1/';
+    this.page.identifier = 'mongodb-university-강의-2강-crud-1';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

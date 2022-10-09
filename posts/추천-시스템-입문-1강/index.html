@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추천 시스템 입문 1강 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="요즘 Coursera에서 추천 시스템 입문(Introduction to Recommender Systems) 강의가 9월 3일에 개강하여 듣고 있다.
+우선 이런 우수한 대학 과목을 온라인으로 무료 수강한다는 데 대해 대단히 감사하고 있다. 이 강의는 미국 미네소타 대학의 정규 과목을 옮겨 놓은 것으로 학부 학생도 온라인으로 똑같이 수강하는 과목이다. 미국에 가지 않고도 미국 대학의 정규 과목을 그대로 수강한다는 건 참 감격스러운 일이다. 물론 이미 몇 년 전부터 MIT 오픈코스웨어 등이 있었지만 수강생으로서 과제도 제출하고 시험도 볼 수 있게 정말 학생처럼 그것도 무료로 관리 받는 것으로서는 또 한번 새로운 변화라 할 수 있다.
+">
+    <link rel="canonical" href="/posts/추천-시스템-입문-1강/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="추천 시스템 입문 1강">
+    <meta property="og:url" content="/posts/추천-시스템-입문-1강/">
+    <meta property="og:description" content="요즘 Coursera에서 추천 시스템 입문(Introduction to Recommender Systems) 강의가 9월 3일에 개강하여 듣고 있다.
+우선 이런 우수한 대학 과목을 온라인으로 무료 수강한다는 데 대해 대단히 감사하고 있다. 이 강의는 미국 미네소타 대학의 정규 과목을 옮겨 놓은 것으로 학부 학생도 온라인으로 똑같이 수강하는 과목이다. 미국에 가지 않고도 미국 대학의 정규 과목을 그대로 수강한다는 건 참 감격스러운 일이다. 물론 이미 몇 년 전부터 MIT 오픈코스웨어 등이 있었지만 수강생으로서 과제도 제출하고 시험도 볼 수 있게 정말 학생처럼 그것도 무료로 관리 받는 것으로서는 또 한번 새로운 변화라 할 수 있다.
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>추천 시스템 입문 1강</h1>
+
+  <div class="post-content">
+    <p>요즘 <a title="Coursera" href="https://www.coursera.org/" target="_blank">Coursera</a>에서 <a title="Introduction to Recommender Systems" href="https://www.coursera.org/course/recsys" target="_blank">추천 시스템 입문(Introduction to Recommender Systems)</a> 강의가 9월 3일에 개강하여 듣고 있다.</p>
+<p>우선 이런 우수한 대학 과목을 온라인으로 무료 수강한다는 데 대해 대단히 감사하고 있다. 이 강의는 미국 미네소타 대학의 정규 과목을 옮겨 놓은 것으로 학부 학생도 온라인으로 똑같이 수강하는 과목이다. 미국에 가지 않고도 미국 대학의 정규 과목을 그대로 수강한다는 건 참 감격스러운 일이다. 물론 이미 몇 년 전부터 MIT 오픈코스웨어 등이 있었지만 <strong>수강생으로서 과제도 제출하고 시험도 볼 수 있게 정말 학생처럼 그것도 무료로 관리 받는 것</strong>으로서는 또 한번 새로운 변화라 할 수 있다.</p>
+<!--more-->
+<p>추천 시스템은 쇼핑몰 같은 웹사이트에서 상품 정보를 볼 때 관련 상품 정보 등을 제공하는 서브시스템을 말한다. 책이나 영화 사이트에서 개인의 취향이나 과거 구매 패턴에 따라 추천하는 경우를 일반적으로 접해봤을 것이다.</p>
+<p>한 학기 동안 비디오 보는 데 3시간, 필기 숙제 및 프로그래밍 숙제가 1주일에 10시간은 될 예정이라 만만치 않은 투자다. 또 이것 말고도 수강 중인 게 하나 더 있어 부담은 더 하다.</p>
+<p>이러한 투자가 헛되지 않도록 강의 내용도 정리하고 숙제도 잘 해볼 예정이다. 아래는 제1강 추천 시스템 입문(Introduction to Recommender Systems)을 내가 요약한 내용이다. 영어 표현을 그대로 쓰고 싶진 않았지만 의미 전달에 있어 어쩔 수 없는 면이 있었다. 강의 개요 및 진행 방식에 대한 요약은 넣지 않았다.</p>
+<h3>추천 시스템의 개념 체계(taxonomy)</h3>
+<p>추천에 있어서 다음 영역(dimension)을 고려해야 한다.</p>
+<p><strong>추천의 도메인</strong></p>
+<ul>
+	<li>상거래 등의 컨텐트 - 뉴스, 정보, 상품, 벤더, 짝연결, 시퀀스(음악 재생 목록 등)</li>
+	<li>특정 관심 속성 - 신상품, 과거 것을 재추천(식료, 음악)</li>
+</ul>
+<p>구글도 어떤 면에서는 검색 결과를 추천하는 것이라고 볼 수 있다.</p>
+<p><strong>추천의 목적</strong></p>
+<ul>
+	<li>추천 자체 - 판매, 정보</li>
+	<li>사용자, 고객에 대한 교육 - 프로그램 사용 방법 교육을 위한 기능 추천</li>
+	<li>제품, 컨텐트에 대한 사용자, 고객 커뮤니티 형성</li>
+</ul>
+<p><strong>추천 컨텍스트</strong></p>
+<ul>
+	<li>추천 시점에서 사용자의 행위 - 쇼핑? 음악? 사람들과 놀기?</li>
+	<li>컨텍스트에 따라 추천이 어떻게 제한되는가</li>
+</ul>
+<p><strong>누구의 의견인가?</strong></p>
+<ul>
+	<li>전문가? - wine.com의 성공은 전문가인 "피터"의 의견이 주효했다</li>
+	<li>대중? - phoaks.com는 유스넷 의견 교환 사이트</li>
+</ul>
+<p><strong>기타</strong></p>
+<ul>
+	<li>개인화 - 일반/비개인화, 인구학적 타겟 그룹(성인 남성 등), 개인 맞춤</li>
+	<li>프라이버시</li>
+	<li>신뢰성 - 상품이 떨어졌다든가 해서 추천하지 않는 경우가 있다</li>
+	<li>인터페이스 - 출력 유형(예측, 추천, 필터링), 입력 유형(직접 입력, 묵시적 입력)</li>
+	<li>추천 앨거리듬 (앨거리듬의 자세한 내용은 향후 계속)</li>
+</ul>
+<p><strong>추천 시스템의 기본 모형</strong></p>
+<ul>
+	<li>사용자 - 사용자 및 사용자 속성(예: 나이 등 인구학적 속성), 사용자 모델(예: 좋아하는 영화 장르, 책 종류)</li>
+	<li>추천 대상 항목 - 항목 및 항목 속성(영화 장르, 책 종류, 호텔)</li>
+	<li>평가(ratings) - 사용자가 항목을 좋아하는지, 평점은 얼마인지 등</li>
+	<li>커뮤니티</li>
+</ul>
+<a href="https://d396qusza40orc.cloudfront.net/recsys/lecture_slides/Week%201/1-4b%20Taxonomy.pdf#page=4" target="_blank">
+<p><img src="../../static/uploads/2013/09/recsys-model.png" alt="추천 시스템 모형">
+</a></p>
+<p><strong>추천 시스템 유형</strong></p>
+<ul>
+	<li>비개인화된 요약 통계 - 베스트셀러, 인기도, 트렌드</li>
+	<li>컨텐트 기반 필터링 - 사용자 평가와 항목 속성의 조합, 또는 지식 기반으로 항목 속성에 따른 구분(개인화된 뉴스 피드 등). 사용자가 원하는 컨텐트의 속성(액션, SF 등)에 따라 컨텐트의 속성이 일치하는 것을 찾아 제공하는 기본 방식</li>
+	<li>개인화된 협업 필터링 - 다른 사람의 예상, 추천을 활용. 모든 사람들의 모든 취향을 파악하는 매트릭스(조견표)가 있다면 그 중 알지 못하는 취향을 채워넣어야 할 것이다.
+<ul>
+	<li>사용자-사용자 - 취향이 비슷한 다른 사람들의 정보를 활용해 채워넣을(추천) 수 있다</li>
+	<li>항목-항목 - 속성이 비슷한 다른 항목을 통해 추측해 채워넣을(추천) 수 있다</li>
+</ul>
+</li>
+	<li>각 접근법의 장점을 알기 위해 평가가 아주 중요하다</li>
+	<li>다른 접근법으로 인터랙티브 추천(비평가 기반, 대화식 기반), 여러 기법의 조합이 있다</li>
+</ul>
+<h3>아마존(amazon.com) 사례로 본 추천 시스템 분석</h3>
+<p>분석 프레임웍 - 분석 영역(dimensions)으로는 도메인, 목적, 추천 컨텍스트, 누구의 의견인가, 개인화 수준, 프라이버시 및 신뢰성, 인터페이스, 추천 앨거리듬이 있다.</p>
+<p>아마존에서 페이지를 들여다보면 다른 사람들이 지금 보는 것, 다른 사람들이 본 것, 함께 살 것, 함께 산 것, 관련 상품 추천 등 몇 가지 추천을 찾을 수 있다.</p>
+<table>
+<tbody>
+<tr>
+<th></th>
+<th>다른 사람들이 지금 보는 것</th>
+<th>관련 상품</th>
+<th>메일 추천</th>
+</tr>
+<tr>
+<td>도메인</td>
+<td>상품</td>
+<td>←</td>
+<td>←</td>
+</tr>
+<tr>
+<td>목적</td>
+<td>판매</td>
+<td>←</td>
+<td>←</td>
+</tr>
+<tr>
+<td>추천 컨텍스트</td>
+<td>시간</td>
+<td>상품 연관성</td>
+<td></td>
+</tr>
+<tr>
+<td>누구의 의견인가</td>
+<td>다른 고객(일반인)</td>
+<td>상품을 봤거나 산 사람</td>
+<td>알 수 없음</td>
+</tr>
+<tr>
+<td>개인화 정도</td>
+<td>없음</td>
+<td>순간적</td>
+<td>영속적(과거 구매, 평가, 브라우징 기반)</td>
+</tr>
+<tr>
+<td>프라이버시 및 신뢰성</td>
+<td>저위험</td>
+<td>←</td>
+<td></td>
+</tr>
+<tr>
+<td>인터페이스</td>
+<td>단순 상품 설명</td>
+<td>←</td>
+<td>투명(왜 추천하는지 밝힘)</td>
+</tr>
+<tr>
+<td>추천 앨거리듬</td>
+<td>aggregation + 비즈니스 룰</td>
+<td>상품 연관성</td>
+<td>개인화되지 않은 요약 및 상품-상품 필터링</td>
+</tr>
+</tbody>
+</table>
+<p>아마존에는 Improve your recommendations가 있어서 내가 산 상품, 가지고 있는 상품, 평가한 항목, 좋아한 항목, 선물로 표시한 항목 등 다양한 상품별로 평점을 관리할 수 있다. 또한 Betterizer라는 게 있어서 책, 영화, 음악 등을 추천해준다. 또한 Deals에서도 여러 가지 상품을 추천해준다.</p>
+<p>아래는 사실 위보다 앞서 진행된 &quot;강의 개요&quot;인데 본 수업 내용을 벗어나거나 어려운 개념도 포함돼 있어서 별도로 빼놓았다. 본 내용을 이해하는 것과 별개로 봐도 될 것 같아서 아래로 뺐다.</p>
+<h3>강의 개요</h3>
+<p>추천 시스템의 배경에는 정보 재사용, 보관되는 취향(persistent preference)이 있다.</p>
+<p>야구 경기가 끝나면 다른 사람을 따라 출구를 찾아가는 것 같은 social navigation은 사회적 정보 재사용으로 이어진다. 또한 혈거인이 처음 보는 과실을 먹을 때 다른 사람들이 안전하게 먹었는지 의견을 듣는 것은 비평가의 출현으로 이어진다. (하나의 사실에 대해 비평가는 각자 자기 관점에서 의견을 제시한다.)</p>
+<p>정보 조회(retrieval)는 수많은 데이터에서 원하는 것을 찾는 것인데 이를 위해 TFIDF(term frequency inverse document frequency) 접근법이 있다. 정보 필터링은 컨텐트 스트림에서 필요한 것을 가려내는 것인데 계속 변화하는 데이터를 인덱싱하는 것보다는 사용자가 원하는 또는 원하지 않는 것을 프로파일링하는 것이 낫다.</p>
+<p>수동 협업적(collaborative) 필터링은 사람들의 정보 취향(preference)이 단순한 검색 키워드들로 나타낼 수 없게 복잡한 경우를 전제로 하는 것으로 예를 들어 월드컵 경기에 관심 있더라도 월드컵에 대한 우수한 기사에 더 관심 있는 경우 이것은 키워드로만은 찾아낼 수 없다. 작은 집단이라면 컨텐트와 댓글을 함께 묶어 찾아보게 한 Xerox의 Tapestry, 컨텐트를 관련 독자에게 전달하는 Active CF가 있었다.</p>
+<p>자동 협업적 필터링은 미네소타 대학의 GroupLens 프로젝트가 있는데 Nearest-Neighbor 접근법 등이 있었다.</p>
+<p>(중략)</p>
+<p>MovieLens.org 사이트의 추천 시스템을 보자면,</p>
+<ol>
+<li>개인들의 평점을 C.F. Engine을 통해 저장. 또한 개인간의 취향이 얼마나 비슷한가를 pair-wise correlation으로 저장함. 비슷하면 1, 반대면 -1, 겹치는 게 없으면 0에 가까운 값임.</li>
+<li>이제 요청이 들어오면 비슷한 취향의 사람들을 통해 추천, 예측이 가능함</li>
+</ol>
+<p>추천 시스템을 만드는 데 있어서 Historical Challenges</p>
+<ul>
+	<li>의견 및 경험 데이터의 수집</li>
+	<li>목적에 관련된 데이터 찾기</li>
+	<li>추천 계산</li>
+	<li>유용한 방식으로의 데이터 표현</li>
+</ul>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-09-15T10:45:54.000Z">2013. 9. 15.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/coursera">Coursera</a></li><li><a href="/tags/온라인-강의">온라인 강의</a></li><li><a href="/tags/추천-시스템">추천 시스템</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/09/%ec%b6%94%ec%b2%9c-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ec%9e%85%eb%ac%b8-1%ea%b0%95/" || location.origin + '/posts/추천-시스템-입문-1강/';
+    this.page.identifier = '추천-시스템-입문-1강';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

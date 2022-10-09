@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새로 발표된 스프링 4.0에 대해 알아보자 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="[덧글] 1월 23일에도 웨비나가 있었고 이번엔 앞부분을 약간 놓치고 다 봤다. 관심 있는 사람은 유튜브에서 보기 바란다.
+구랍 12월에 스프링 프레임웍 4.0 GA가 발표됐었고 엊그제 Spring IO에서 웨비나를 한다길래 꼭 보려고 했는데 그만 놓치고 말았다. 요즘 야근으로 정신이 없다. T_T
+그래서 남이 알려주기 전에 직접 알아보기로 했다. 출처는 스프링 블로그와 지침서 등이다. 과연 스프링 4.0에서는 뭐가 새로워졌는가?
+">
+    <link rel="canonical" href="/posts/새로-발표된-스프링-4-0에-대해-알아보자/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="새로 발표된 스프링 4.0에 대해 알아보자">
+    <meta property="og:url" content="/posts/새로-발표된-스프링-4-0에-대해-알아보자/">
+    <meta property="og:description" content="[덧글] 1월 23일에도 웨비나가 있었고 이번엔 앞부분을 약간 놓치고 다 봤다. 관심 있는 사람은 유튜브에서 보기 바란다.
+구랍 12월에 스프링 프레임웍 4.0 GA가 발표됐었고 엊그제 Spring IO에서 웨비나를 한다길래 꼭 보려고 했는데 그만 놓치고 말았다. 요즘 야근으로 정신이 없다. T_T
+그래서 남이 알려주기 전에 직접 알아보기로 했다. 출처는 스프링 블로그와 지침서 등이다. 과연 스프링 4.0에서는 뭐가 새로워졌는가?
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>새로 발표된 스프링 4.0에 대해 알아보자</h1>
+
+  <div class="post-content">
+    <p>[덧글] 1월 23일에도 웨비나가 있었고 이번엔 앞부분을 약간 놓치고 다 봤다. 관심 있는 사람은 <a title="Spring 4.0" href="https://www.youtube.com/watch?v=e4Jo_xJYcYg" target="_blank">유튜브에서</a> 보기 바란다.</p>
+<p>구랍 12월에 스프링 프레임웍 4.0 GA가 발표됐었고 엊그제 Spring IO에서 웨비나를 한다길래 꼭 보려고 했는데 그만 놓치고 말았다. 요즘 야근으로 정신이 없다. T_T</p>
+<p>그래서 남이 알려주기 전에 직접 알아보기로 했다. 출처는 스프링 블로그와 지침서 등이다. 과연 스프링 4.0에서는 뭐가 새로워졌는가?</p>
+<!--more-->
+<h3>자바 8과 궁합이 잘 맞음</h3>
+<ul>
+	<li>프리 릴리즈 버전인 자바 8과 잘 작동하며 2014년 3월에 OpenJDK 8이 나오면 바로 실무 가능</li>
+	<li>람다, 메서드 참조, JSR-310 날짜 및 시간(java.time), 반복적 어노테이션(@Repeatable) 등 활용</li>
+	<li>Hibernate, Quartz, EhCache 등의 최신 버전 지원</li>
+	<li>최소 자바 버전은 자바 SE 6 업데이트 10 이상, 자바 EE 6 이상. JPA 2.0, <a title="자바 서블릿 컨테이너별 규격 버전 지원" href="http://start.goodtime.co.kr/2013/12/%ec%9e%90%eb%b0%94-%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%eb%b3%84-%ec%84%9c%eb%b8%94%eb%a6%bf-%ea%b7%9c%ea%b2%a9-%eb%b2%84%ec%a0%84-%ec%a7%80%ec%9b%90/">서블릿 3.0</a> 이상이 권장된다.</li>
+</ul>
+<h3>최근 일반화되고 있는 아키텍처 경향 반영</h3>
+<ul>
+	<li>최근 자바 아키텍처가 마이크로 서비스 아키텍처(MSA), REST를 기본으로 하고 있는데 스프링 4.0에서 이를 잘 지원한다. 특히 REST는 이제 최우선시된다(1st class citizen).</li>
+	<li>HTML5 웹소켓 지원으로 메시징 아키텍처 기반을 서버 및 클라이언트 모두에서 제공한다.</li>
+	<li>프리젠테이션 레이어를 클라이언트 티어가 담당하고 웹소켓으로 데이터를 주고 받는 인터랙티브한 웹 애플리케이션 개발이 쉽다.</li>
+	<li>스프링 부트(Boot)는 @Conditional 빈(bean) 정의 구조를 바탕으로 REST 기반 마이크로 서비스의 "컨테이너 없는", 즉 임베디드 런타임을 제공하며 스프링의 초기 설정을 거의 제거할 수 있다.</li>
+</ul>
+<h3>기타 사항들</h3>
+<ul>
+	<li>애플리케이션 일부나 전부를 그루비로 개발 가능</li>
+	<li>디프리케이트 상태였던 패키지는 전부, 클래스 및 메서드는 일부가 제거됨</li>
+	<li>관련 써드파티 라이브러리는 최소 2010년이나 2011년 이후의 버전을 사용해야 함. 예를 들어 Hibernate 3.6 이상, EhCache 2.1 이상, Quartz 1.8 이상 등. 예외적으로 Hibernate Validator는 4.3 이상, Jackson은 2.0 이상으로 더 최신 버전이 권장됨.</li>
+	<li>스프링 MVC 테스트 프레임웍은 서블릿 3.0을 필요로 함</li>
+	<li>새롭게 @RestController 어노테이션을 사용하면 @RequestMapping된 메서드들마다 @ResponseBody를 붙이지 않아도 됨</li>
+	<li>AsyncRestTemplate 클래스를 사용하여 REST 클라이언트 개발시 (비중단) 비동기 지원</li>
+	<li>로캘에 있어서 시간대 지원</li>
+</ul>
+<p>아… 공부할 게 많아졌다. 특히 웹소켓이 중요한 것 같은데 이미 자바 EE 7에서 웹소켓을 지원하는 API가 있으므로 그것부터 공부해야겠다. <a title="오라클 웹소켓 자습서" href="http://docs.oracle.com/javaee/7/tutorial/doc/websocket.htm" target="_blank">http://docs.oracle.com/javaee/7/tutorial/doc/websocket.htm</a></p>
+<p>또 Spring IO 사이트도 변화된 점이 자습서(guide)가 많아졌다는 것이다. STS에서 자습서를 넣고 실행하면 단계적으로 스프링을 공부할 수 있다.</p>
+<p>마이크로 서비스도 뭔지 한번 봐야겠는데 발표 자료 하나가 유명하다고 권장하므로 시간 내서 봐야겠다. <a title="마이크로 서비스 발표 자료" href="http://www.infoq.com/presentations/Micro-Services" target="_blank">http://www.infoq.com/presentations/Micro-Services</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-01-11T16:35:25.000Z">2014. 1. 12.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/spring">Spring</a></li><li><a href="/tags/스프링">스프링</a></li><li><a href="/tags/java">Java</a></li><li><a href="/tags/자바">자바</a></li><li><a href="/tags/goovy">Goovy</a></li><li><a href="/tags/그루비">그루비</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/01/%ec%83%88%eb%a1%9c-%eb%b0%9c%ed%91%9c%eb%90%9c-%ec%8a%a4%ed%94%84%eb%a7%81-4-0%ec%97%90-%eb%8c%80%ed%95%b4-%ec%95%8c%ec%95%84%eb%b3%b4%ec%9e%90/" || location.origin + '/posts/새로-발표된-스프링-4-0에-대해-알아보자/';
+    this.page.identifier = '새로-발표된-스프링-4-0에-대해-알아보자';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

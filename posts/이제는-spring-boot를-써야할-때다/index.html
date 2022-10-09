@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이제는 Spring Boot를 써야할 때다 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="스프링 프레임웍(Spring Framework)의 현행 버전은 4.1.x다. 그런데 세월이 흐르고 모든 것이 변해가는데 2014년 4/4분기인 현재 시점에서 아직도 2.5 버전대의 습관에서 못 벗어난 경우를 가끔 본다. 과감히 바꿔야할 때가 됐다. 이제는 Spring Boot를 써야할 때다. 스프링 부트는 스프링 프레임웍을 사용하는 프로젝트를 아주 간편하게 셋업할 수 있는 스프링 프레임웍의 서브프로젝트다.">
+    <link rel="canonical" href="/posts/이제는-spring-boot를-써야할-때다/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="이제는 Spring Boot를 써야할 때다">
+    <meta property="og:url" content="/posts/이제는-spring-boot를-써야할-때다/">
+    <meta property="og:description" content="스프링 프레임웍(Spring Framework)의 현행 버전은 4.1.x다. 그런데 세월이 흐르고 모든 것이 변해가는데 2014년 4/4분기인 현재 시점에서 아직도 2.5 버전대의 습관에서 못 벗어난 경우를 가끔 본다. 과감히 바꿔야할 때가 됐다. 이제는 Spring Boot를 써야할 때다. 스프링 부트는 스프링 프레임웍을 사용하는 프로젝트를 아주 간편하게 셋업할 수 있는 스프링 프레임웍의 서브프로젝트다.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>이제는 Spring Boot를 써야할 때다</h1>
+
+  <div class="post-content">
+    <p>스프링 프레임웍(Spring Framework)의 현행 버전은 <a title="스프링 프레임웍" href="http://projects.spring.io/spring-framework/" target="_blank">4.1.x다</a>. 그런데 세월이 흐르고 모든 것이 변해가는데 2014년 4/4분기인 현재 시점에서 아직도 2.5 버전대의 습관에서 못 벗어난 경우를 가끔 본다. 과감히 바꿔야할 때가 됐다. 이제는 Spring Boot를 써야할 때다. 스프링 부트는 스프링 프레임웍을 사용하는 프로젝트를 아주 간편하게 셋업할 수 있는 스프링 프레임웍의 서브프로젝트다.</p>
+<!--more-->
+<p>스프링 프레임웍은 <a title="전자정부 표준프레임웍의 중심은 스프링 프레임웍" href="http://www.egovframe.go.kr/EgovEnvRun.jsp?menu=1&amp;submenu=3&amp;leftsub=1" target="_blank">우리나라에서 국가 표준이므로</a> 대부분의 자바 프로젝트에서 채택하는 명실상부한 1위 프레임웍이다. 나도 스프링 프레임웍을 몇 년간 써보면서 느끼는데 중요하면서도 개발자가 직접 만들기 힘든 기능들을 아주 맛깔스럽게 빚어놓음으로써 개발자들의 본 업무 외적인 시스템 내부 작업을 아주 간편하게 해결해주고 있다.</p>
+<p>그런데 스프링의 다양한 장점에 비해 개발자들의 이해도는 낮은 편이며 남들이 해놓은 것을 가져다 수정해서 쓰는 “ctrl-c, ctrl-v” 방식 개발이 현장에는 만연해 있다. 또한 스프링을 충분히 활용하려면 초기 셋업부터 중요한데 일반 개발자는 거의 손을 못대는 경우가 많다. 진화하고 있는 스프링 프레임웍에 비해 우리나라 현장에서는 다음과 같은 문제점이 있다고 생각된다.</p>
+<ul>
+<li>전자정부 표준프레임웍은 새로운 것을 추구하기보다 안정성이 중요하므로 스프링 프레임웍 3.x 버전대를 사용하고 있다. 안정성의 반대로 바꿔 생각한다면 관 주도의 표준안 적용으로 인해 변화와 혁신에 대한 도입이 늦는 편이다.</li>
+<li>개발자들은 과거에 "잘" 사용했던 버전 및 기본 설정만을 가져다 쓰다보니 프로그램 모델이 경직돼 있다. 새롭고 효율적인 변화에 대해 공부하고 싶지 않거나 공부할 기회가 적다.</li>
+<li>스프링을 잘 아는 기술 지원 전문가(현장에서 "AA"라고도 부르는...)에 의존하다 보니 기술 지원 전문가가 부재 중일 때 또는 기술 지원 전문가도 잘 해결 안되는 문제가 발생하면 프로젝트 전체에 영향이 미친다.</li>
+<li>개발자가 개발한 결과물을 개발 서버나 운영 서버로 이행(배포)하는 것은 더욱 더 기술 지원 전문가에게 의존해야만 한다. 프로젝트의 효율성에서, 결국 시간과 인력이라는 비용 측면에서 손실이 발생할 수 있다.</li>
+</ul>
+<p>웹 개발의 경향은 전체적으로 작은 서비스의 집합체로서의 웹으로 가는 편인데 우리나라 프로젝트들은 아직도 대규모 컨텐트 제공 웹사이트를 만들기 위한 프레임웍 구성에 치중해 있는 편이다. 커다란 프로젝트를 하나 구성하면 대부분은 그 안에서 자기가 맡은 일부 업무만 개발하고 말고 PoC 개념의 소규모 프로젝트를 동시 다반사로 진행한다든가 개발자 각각의 학습과 발전을 위한 기회를 마련하는 것은 상당히 요원하다.</p>
+<p>여기서 요지는 프레임웍이란 것이 개발하는 데 도움을 주기 위해 도입하는 것인데 <em><strong>우리나라 개발 현장에서는 프레임웍을 자유자재로 다루기 위한 진입 장벽이 높아 보다 새롭고 유익한 변화를 도입하거나 보다 다양한 프레임웍의 면모를 활용하는 게 쉽지 않다</strong></em>는 것이다.</p>
+<p>내가 수행한 몇 프로젝트에서 스프링 부트를 적용해본 결과 그 장점이 아주 만족스러운 편이었다. 위에 말한 문제점들을 해결한다고 말하는 것이 아니라 스프링의 다양한 변화 중 가장 먼저 관심을 가질 만한 서브프로젝트라고 생각돼서 언급하는 것이다. 아직 스프링 부트를 접해보지 못했다면 다음과 같은 면에서 유용함을 느낄 수 있으므로 추천하고 싶다.</p>
+<ul>
+<li>수작업으로 초기 셋업하는 과정 없이 간단히 프로젝트를 띄울 수 있다. 스프링에서 제공하는 Spring Tool Suite 개발 도구를 사용하면 마법사를 통해 기본적인 프로젝트 성격과 프로젝트에서 필요로 하는 라이브러리를 선택할 수 있다. 수작업으로 셋업하더라도 이전에 비해 반 이상이 단순해진다고 생각된다.</li>
+<li>프로젝트마다 일상적으로 설정하게 되는 사항들을 이미 내부적으로 가지고 있고 개별적으로 차이가 나는 부분만 설정 파일에 집어 넣으면 된다. 예를 들어 DB 연결 설정은 설정대로, 스프링 DB 설정은 설정대로 하지 않고 DB 연결 설정만 설정 파일에 적어놓으면 된다. DB 드라이버니, 트랜잭션이니 하는 것처럼 당연히 들어가야하는 것들은 알아서 처리된다.</li>
+<li>스프링 보안(Security), 스프링 데이터 JPA와 같이 다른 스프링 프레임웍 구성 요소를 쉽게 가져다 쓸 수 있으며 이 과정에서 프로토타이핑이나 기능을 시험해보는 시간이 전보다 단축된다.</li>
+<li>톰캣(Tomcat)이나 제티(Jetty)를 기본 내장할 수 있으며 웹 프로젝트 띄우는 시간이 독립적인 톰캣으로 띄우는 시간보다 반은 단축된다(예를 들어 30초 -&gt; 15초). 또한 이렇게 서블릿 컨테이너가 내장될 수 있으므로 프로젝트를 .jar 파일 형태로 간단히 만들어 배포할 수 있다.</li>
+<li>maven <code>pom.xml</code>에서 의존 라이브러리의 버전을 일일이 지정하지 않아도 된다. 스프링 부트가 권장 버전을 관리한다. 또한 Spring Tool Suite을 사용한다면 이클립스의 “컨텐트 어시스트” 기능을 통해 의존 라이브러리를 자동 완성 방식으로 입력할 수 있다.</li>
+</ul>
+<p><strong>실제 예시를 들어가보자</strong>. Spring Tool Suite을 사용하지 않고 수작업으로 웹프로젝트를 셋업할 경우다. 우선 의존 라이브러리를 maven <code>pom.xml</code> 파일에 지정해야할 것이다. 스프링 부트는 다음 한 가지 라이브러리 의존성만 넣어도 기본적인 웹 개발이 가능하도록 나머지 의존 라이브러리를 준비해준다.</p>
+<pre class="language-xml"><code class="language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>다음으로는 스프링 환경 셋업이다. 아래와 같이 xml 설정 없이 자바 클래스 하나로 기본 설정이 끝난다. <code>@Configuration</code>, <code>@EnableAutoConfiguration</code> 같은 어노테이션이 보인다.</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">dylan<span class="token punctuation">.</span>sample<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>boot</span><span class="token punctuation">;</span> <span class="token comment">// 예시 패키지</span><br><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringApplication</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span></span><span class="token class-name">EnableAutoConfiguration</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">ComponentScan</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span></span><span class="token punctuation">;</span><br><br><span class="token annotation punctuation">@Configuration</span><br><span class="token annotation punctuation">@ComponentScan</span><br><span class="token annotation punctuation">@EnableAutoConfiguration</span><br><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>이제 서비스할 웹 페이지를 만들겠다면 늘 하던 대로 <code>@RequestMapping</code> 어노테이션을 붙인 컨트롤러 메서드를 만들면 된다.</p>
+<pre class="language-java"><code class="language-java">    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><br>    <span class="token keyword">public</span> <span class="token annotation punctuation">@ResponseBody</span> <span class="token class-name">String</span> <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span></code></pre>
+<p>그런데 위의 예제는 메서드 반환 값에 <code>@ResponseBody</code>를 붙임으로써 별도의 뷰가 없는 경우를 예로 든 것이다. 뷰를 JSP로 하겠다면 <code>src/main/resources/application.properties</code> 파일에 다음과 같이 지정해준다.</p>
+<pre class="language-properties"><code class="language-properties"><span class="token key attr-name">spring.view.prefix</span>                  <span class="token punctuation">=</span> <span class="token value attr-value">/jsp/</span><br><span class="token key attr-name">spring.view.suffix</span>                  <span class="token punctuation">=</span> <span class="token value attr-value">.jsp</span></code></pre>
+<p>위 두 줄로 인해 스프링 MVC는 <code>/jsp/</code> 폴더에 있는 jsp 파일들을 기본 뷰로 사용하게 된다. 컨트롤러 메서드는 다음과 같이 고치면 된다. <code>/jsp/hello.jsp</code>를 찾아 보여주게 된다.</p>
+<pre class="language-java"><code class="language-java">    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><br>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token string">"hello"</span><span class="token punctuation">;</span> <span class="token comment">// jsp 지정</span><br>    <span class="token punctuation">}</span></code></pre>
+<p>스프링 부트의 기본 개념은 <a href="http://projects.spring.io/spring-boot/" title="스프링 부트 프로젝트 웹사이트" target="_blank">프로젝트 웹사이트</a>의 설명에 분명하게 드러나 있다.</p>
+<blockquote>
+<p>Spring Boot takes an opinionated view of building production-ready Spring applications. Spring Boot favors convention over configuration and is designed to get you up and running as quickly as possible.</p>
+</blockquote>
+<p>즉, 스프링 부트는 환경 설정보다는 통상적인 관례를 더 우선시한다. 환경 설정 한 줄 더 추가하는 것보다는 개발자들이 자주 하던 것이 무엇인지를 알고 있음으로 해서 사용자 환경에 따라 자동으로 구성해주는 것이다. 관심이 있다면 이러한 자동 설정이 어떻게 만들어져 있는지 소스를 보는 것도 좋을 것이다. 기존에 일일이 작성하던 환경 설정 값이 자바 클래스에 박혀있음을 보게 될 것이다.</p>
+<p>자바는 버전 8을 내보내면서 근본적인 변화를 맞이하고 있다. 2014년 올해 자바와 스프링은 변혁의 한 해였던 것 같다. 같이 동참해보는 게 어떨까 권유해본다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2014-10-06T06:19:11.000Z">2014. 10. 6.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/spring">Spring</a></li><li><a href="/tags/스프링">스프링</a></li><li><a href="/tags/스프링-부트">스프링 부트</a></li><li><a href="/tags/spring-boot">Spring Boot</a></li><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/톰캣">톰캣</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2014/10/%ec%9d%b4%ec%a0%9c%eb%8a%94-spring-boot%eb%a5%bc-%ec%8d%a8%ec%95%bc%ed%95%a0-%eb%95%8c%eb%8b%a4/" || location.origin + '/posts/이제는-spring-boot를-써야할-때다/';
+    this.page.identifier = '이제는-spring-boot를-써야할-때다';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

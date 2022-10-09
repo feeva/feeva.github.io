@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mysqldump SQL 호환성 높이기 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="mysqldump를 사용해 SQL 스크립트를 만들어낼 때 여러가지 목적이 있겠지만 다른 데이터베이스와의 호환성을 염두에 두는 경우가 종종 있다. 예를 들어 MySQL을 개발용으로만 사용하고 다른 데이터베이스를 실운영용으로 사용하는 경우가 있을 수 있다.데이터베이스간의 호환성 문제는 단순한 문제가 아니므로 이 글에서는 일단 mysqldump 명령만을 주제로 SQL 호환성을 최대한 높이는 방법을 알아보자. mysqldump로 결과물을 어느 정도 호환성 있게만 만들어도 많은 수고를 줄일 수 있다. 우선 mysqldump는 다음과 같은 형식으로 명령을 실행한다.```sqldump [옵션] [DB명 [테이블명 ...]]```">
+    <link rel="canonical" href="/posts/mysqldump-sql-호환성-높이기/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="mysqldump SQL 호환성 높이기">
+    <meta property="og:url" content="/posts/mysqldump-sql-호환성-높이기/">
+    <meta property="og:description" content="mysqldump를 사용해 SQL 스크립트를 만들어낼 때 여러가지 목적이 있겠지만 다른 데이터베이스와의 호환성을 염두에 두는 경우가 종종 있다. 예를 들어 MySQL을 개발용으로만 사용하고 다른 데이터베이스를 실운영용으로 사용하는 경우가 있을 수 있다.데이터베이스간의 호환성 문제는 단순한 문제가 아니므로 이 글에서는 일단 mysqldump 명령만을 주제로 SQL 호환성을 최대한 높이는 방법을 알아보자. mysqldump로 결과물을 어느 정도 호환성 있게만 만들어도 많은 수고를 줄일 수 있다. 우선 mysqldump는 다음과 같은 형식으로 명령을 실행한다.```sqldump [옵션] [DB명 [테이블명 ...]]```">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>mysqldump SQL 호환성 높이기</h1>
+
+  <div class="post-content">
+    <p>mysqldump를 사용해 SQL 스크립트를 만들어낼 때 여러가지 목적이 있겠지만 다른 데이터베이스와의 호환성을 염두에 두는 경우가 종종 있다. 예를 들어 MySQL을 개발용으로만 사용하고 다른 데이터베이스를 실운영용으로 사용하는 경우가 있을 수 있다.</p>
+<p>데이터베이스간의 호환성 문제는 단순한 문제가 아니므로 이 글에서는 일단 mysqldump 명령만을 주제로 SQL 호환성을 최대한 높이는 방법을 알아보자. mysqldump로 결과물을 어느 정도 호환성 있게만 만들어도 많은 수고를 줄일 수 있다. 우선 mysqldump는 다음과 같은 형식으로 명령을 실행한다.</p>
+<pre><code>mysqldump [옵션] [DB명 [테이블명 ...]]
+</code></pre>
+<!--more-->
+<p>mysqldump의 실행을 제어하는 옵션 중 호환성에 관련된 건 다음과 같다. 참고로 모든 옵션은 <code>--xxx-xxx</code>와 같은 형태인데 기본값으로 동작하도록 켜있는 경우가 많고 <code>--skip-xxx-xxx</code>와 같이 하여 그 옵션을 끌 수 있다.</p>
+<ul>
+<li><strong><code>--compatible=&lt;span style=&quot;text-decoration: underline;&quot;&gt;명칭&lt;/span&gt;</code></strong> - 호환성을 위해 가장 중요한 옵션이다. 명칭으로는 mysql323, mysql40, postgresql, oracle, mssql, db2, maxdb, no_key_options, no_table_options, no_field_options 중 하나 이상을 콤마로 구분해주면 된다. 그러나 이 옵션이 데이터 형식을 매핑해준다거나 SQL 구문 자체를 번역하는 건 아니다. MySQL 특유의 구문을 정제해주는 것 뿐이다.</li></li>
+<li><strong><code>--set-charset</code></strong> - SQL 스크립트 결과물에 <code>SET NAMES 문자셋</code> 문을 넣어주는 옵션이다. 이러한 문은 다른 데이터베이스에서는 필요 없으므로 <code>--skip-set-charset</code>으로 꺼줘야 한다.</li></li>
+<li><strong><code>--quote-names</code></strong> - 이 옵션은 데이터베이스나 테이블, 컬럼명 등의 식별어에 작은따옴표를 붙여준다. ANSI SQL에서는 큰따옴표를 쓰도록 돼있고 또한 따옴표를 쓰면 대소문자가 구별되는 문제가 생기므로 따로 필요한 경우가 아니면 끄는 것이 좋다.</li></li>
+<li><strong><code>--opt</code></strong> - 이 옵션은 편의성을 위해 <code>--add-drop-table</code>, <code>--add-locks</code>, <code>--create-options</code>, <code>--disable-keys</code>, <code>--extended-insert</code>, <code>--lock-tables</code>, <code>--quick</code>, <code>--set-charset</code> 옵션을 하나로 합쳐놓은 것이다. 이중 특히 <code>--add-locks</code>, <code>--create-options</code>, <code>--extended-insert</code> 등의 옵션은 MySQL만의 구문을 사용하므로 사용하지 않는 게 호환성이 높아진다. 이것들을 끄려면 <code>--skip-opt</code>를 붙여야 한다.</li>
+</ul>
+<p>이상과 같은 옵션을 염두에 두고 실제 예시를 보자. 원래 별다른 옵션 없이 mysqldump을 실행한 경우 결과물이 다음과 같았다면,</p>
+<pre class="language-sql"><code class="language-sql"><span class="token comment">-- MySQL dump 10.13  Distrib 5.1.12, for redhat-linux-gnu (i386)</span><br><span class="token operator">*</span><span class="token operator">*</span>중략<span class="token operator">*</span><span class="token operator">*</span><br><br><span class="token comment">--</span><br><span class="token comment">-- Table structure for table `wp_commentmeta`</span><br><span class="token comment">--</span><br><br><span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token identifier"><span class="token punctuation">`</span>wp_commentmeta<span class="token punctuation">`</span></span><span class="token punctuation">;</span><br><span class="token comment">/*!40101 SET @saved_cs_client     = @@character_set_client */</span><span class="token punctuation">;</span><br><span class="token comment">/*!40101 SET character_set_client = utf8 */</span><span class="token punctuation">;</span><br><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>wp_commentmeta<span class="token punctuation">`</span></span> <span class="token punctuation">(</span><br>  <span class="token identifier"><span class="token punctuation">`</span>meta_id<span class="token punctuation">`</span></span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span><br>  <span class="token identifier"><span class="token punctuation">`</span>comment_id<span class="token punctuation">`</span></span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token string">'0'</span><span class="token punctuation">,</span><br>  <span class="token identifier"><span class="token punctuation">`</span>meta_key<span class="token punctuation">`</span></span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span><br>  <span class="token identifier"><span class="token punctuation">`</span>meta_value<span class="token punctuation">`</span></span> <span class="token keyword">longtext</span><span class="token punctuation">,</span><br>  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>meta_id<span class="token punctuation">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token keyword">KEY</span> <span class="token identifier"><span class="token punctuation">`</span>comment_id<span class="token punctuation">`</span></span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>comment_id<span class="token punctuation">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token keyword">KEY</span> <span class="token identifier"><span class="token punctuation">`</span>meta_key<span class="token punctuation">`</span></span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>meta_key<span class="token punctuation">`</span></span><span class="token punctuation">)</span><br><span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span>MyISAM <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">30</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><br><span class="token comment">/*!40101 SET character_set_client = @saved_cs_client */</span><span class="token punctuation">;</span><br><br><span class="token comment">--</span><br><span class="token comment">-- Dumping data for table `wp_commentmeta`</span><br><span class="token comment">--</span><br><br><span class="token keyword">LOCK</span> <span class="token keyword">TABLES</span> <span class="token identifier"><span class="token punctuation">`</span>wp_commentmeta<span class="token punctuation">`</span></span> <span class="token keyword">WRITE</span><span class="token punctuation">;</span><br><span class="token comment">/*!40000 ALTER TABLE `wp_commentmeta` DISABLE KEYS */</span><span class="token punctuation">;</span><br><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>wp_commentmeta<span class="token punctuation">`</span></span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'akismet_result'</span><span class="token punctuation">,</span><span class="token string">'false'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'akismet_history'</span><span class="token punctuation">,</span><br><span class="token operator">*</span><span class="token operator">*</span>중략<span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">29</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token string">'hc_foreign_user_id'</span><span class="token punctuation">,</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">/*!40000 ALTER TABLE `wp_commentmeta` ENABLE KEYS */</span><span class="token punctuation">;</span><br><span class="token keyword">UNLOCK</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span><br><br><span class="token operator">*</span><span class="token operator">*</span> 생략 <span class="token operator">*</span><span class="token operator">*</span></code></pre>
+<p>이제 다음과 같이 mysqldump를 실행하면,</p>
+<pre><code>mysqldump -uuser -p --skip-opt --compatible=&quot;no_table_options, no_field_options, no_key_options, oracle&quot; --skip-quote-names mydb &gt; mydb.sql
+</code></pre>
+<p>다음과 같이 보다 호환성이 높은 SQL 스크립트가 만들어진다.</p>
+<pre class="language-sql"><code class="language-sql"><span class="token comment">-- MySQL dump 10.13  Distrib 5.1.12, for redhat-linux-gnu (i386)</span><br><span class="token operator">*</span><span class="token operator">*</span>중략<span class="token operator">*</span><span class="token operator">*</span><br><br><span class="token comment">--</span><br><span class="token comment">-- Table structure for table "wp_commentmeta"</span><br><span class="token comment">--</span><br><br><span class="token comment">/*!40101 SET @saved_cs_client     = @@character_set_client */</span><span class="token punctuation">;</span><br><span class="token comment">/*!40101 SET character_set_client = utf8 */</span><span class="token punctuation">;</span><br><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> wp_commentmeta <span class="token punctuation">(</span><br>  meta_id <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span><br>  comment_id <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token string">'0'</span><span class="token punctuation">,</span><br>  meta_key <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span><br>  meta_value <span class="token keyword">longtext</span><span class="token punctuation">,</span><br>  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>meta_id<span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token keyword">KEY</span> comment_id <span class="token punctuation">(</span>comment_id<span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token keyword">KEY</span> meta_key <span class="token punctuation">(</span>meta_key<span class="token punctuation">)</span><br><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">/*!40101 SET character_set_client = @saved_cs_client */</span><span class="token punctuation">;</span><br><br><span class="token comment">--</span><br><span class="token comment">-- Dumping data for table "wp_commentmeta"</span><br><span class="token comment">--</span><br><br><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> wp_commentmeta <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'akismet_result'</span><span class="token punctuation">,</span><span class="token string">'false'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> wp_commentmeta <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'akismet_history'</span><span class="token punctuation">,</span><br><span class="token operator">*</span><span class="token operator">*</span>중략<span class="token operator">*</span><span class="token operator">*</span><br><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> wp_commentmeta <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">29</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token string">'hc_foreign_user_id'</span><span class="token punctuation">,</span><span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token operator">*</span><span class="token operator">*</span>생략<span class="token operator">*</span><span class="token operator">*</span></code></pre>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/mysql">MySQL</a></li><li><a href="/tags/데이터베이스">데이터베이스</a></li><li><a href="/tags/sql">SQL</a></li><li><a href="/tags/호환성">호환성</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/03/mysqldump-sql-%ed%98%b8%ed%99%98%ec%84%b1-%eb%86%92%ec%9d%b4%ea%b8%b0/" || location.origin + '/posts/mysqldump-sql-호환성-높이기/';
+    this.page.identifier = 'mysqldump-sql-호환성-높이기';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

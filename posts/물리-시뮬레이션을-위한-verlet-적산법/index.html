@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>물리 시뮬레이션을 위한 Verlet 적산법 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 Wikipedia 글의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 천이 찢어지는 애니메이션, 거미줄의 흔들림 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! JavaScript(자바스크립트)로 물리 운동을 시뮬레이션하다니!">
+    <link rel="canonical" href="/posts/물리-시뮬레이션을-위한-verlet-적산법/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="물리 시뮬레이션을 위한 Verlet 적산법">
+    <meta property="og:url" content="/posts/물리-시뮬레이션을-위한-verlet-적산법/">
+    <meta property="og:description" content="Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 Wikipedia 글의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 천이 찢어지는 애니메이션, 거미줄의 흔들림 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! JavaScript(자바스크립트)로 물리 운동을 시뮬레이션하다니!">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+        },
+        CommonHTML: {
+          scale: 86,
+        },
+      });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>물리 시뮬레이션을 위한 Verlet 적산법</h1>
+
+  <div class="post-content">
+    <p>Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 <a title="Verlet integration" href="http://en.wikipedia.org/wiki/Verlet_integration" target="_blank">Wikipedia 글</a>의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)</p>
+<p>이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 <a href="http://codepen.io/anon/pen/cwLuG" target="_blank">천이 찢어지는 애니메이션</a>, <a href="http://subprotocol.com/verlet-js/examples/spiderweb.html">거미줄의 흔들림</a> 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! <strong>JavaScript<span style="display: none;">(자바스크립트)</span>로 물리 운동을 시뮬레이션하다니!</strong></p>
+<!--more-->
+<h3>기본 개념</h3>
+<p>그래서! 한 번 공부해보기로 했다. 우선 중학교만 나오면 다 아는 뉴턴의 운동 방정식을 단순하게 쓰자면 다음과 같다.</p>
+<p>$$
+x = vt
+$$</p>
+<p>즉, 어떤 입자의 위치 $x$ 는 속도와 시간의 곱으로 구할 수 있다. 그런데 이걸 컴퓨터에 맞게 적산하려면, 즉 시간을 잘개 쪼개 매순간 $\Delta t$씩 흘러가는 동안 $i$번째 시간의 위치를 기준으로 $i + 1$번째 시점의 위치는 수치 해석적으로는 다음과 같이 쓴다.</p>
+<p>$$
+x_{i+1} = x_i + v_i \Delta t
+$$</p>
+<p>반복해서 이 다음 $i + 2$번째 시점에는 다음과 같이 될 것이다.</p>
+<p>$$
+x_{i+2} = x_{i+1} + v_{i+1} \Delta t
+$$</p>
+<p>Verlet 적분법은 여기서 속도를 구하기가 힘들거나 번거롭다는 데 주목했다. 대부분 중력 가속도와 같은 상수 값에 의해 속도가 결정되는데 매순간 속도를 구해야 한다는 건 번거로운 일이 아닐 수 없다. 그래서 $v_{i+1} = v_i + a_i\Delta t$, 즉 속도는 가속도에 시간을 곱해 구하므로 다음과 같이 전개할 수 있다.</p>
+<p>$$
+x_{i+2} = x_{i+1} + v_i\Delta t + a_i\Delta t^2
+$$</p>
+<p>여기서 $v_i$를 제거하기 위해 $x_{i+1} = x_i + v_i\Delta t$를 양변에서 빼주면 최종적으로 다음 공식이 도출된다.</p>
+<p>$$
+x_{i+2} = 2x_{i+1} - x_i + a_i\Delta t^2
+$$</p>
+<p>즉 <strong><em>i+1</em>번째를 현재 시점으로 본 다면 그 다음 시점인 <em>i+2</em>번째의 위치는 현재 시점과 지난 시점의 위치, 가속도만 가지고 구할 수 있다.</strong></p>
+<p>사실 이것은 수치해석법이라 정확하게 미적분을 적용한 게 아니므로 위 식이 수학적으로 정확한 것은 아니다. 그러나 위 식에 대한 증명을 찾아보면 그 오차는 4차수(4th order) 오차이므로 큰 영향이 없고 컴퓨터에서 구현할 때 그 정도는 무시할 수 있게 된다.</p>
+<h3>구속 앨거리듬</h3>
+<p>구속은 입자간의 거리에 대한 조건으로 말하자면 입자간에 끈이 연결돼서 입자 운동을 제한하는 것이라 보면 된다. 가장 단순한 경우는 끈이고 좀더 복잡하게 한다면 스프링으로 연결한 것이 된다. 단순 연결이라고 본다면 이 Verlet 방법에서 구속에 따른 입자의 위치 계산은 단순히 위 (1)에서 두 점의 위치를 계산했을 때 그 두 점 사이의 거리가 원래의 거리와 차이가 난 것을 두 점에 &quot;반땅&quot;해주는(노나주는) 것이다.</p>
+<p>좀더 수학적으로 말하자면 <strong><em>p<sub>1</sub>, p<sub>2</sub></em>라는 두 입자가 있을 때 위 (1)에 따른 거리가 <em>d</em>, 원래 거리가 <em>l</em>이라면 <em>d - l</em> 값을 반으로 갈라 <em>p<sub>1</sub>, p<sub>2</sub></em>의 위치에 더하거나 빼서 조정해주는 것이다.</strong> <em>p<sub>2</sub></em>의 좌표 값이 <em>p<sub>1</sub></em>보다 크고 <em>d &gt; l</em>이라면 <em>p<sub>2</sub></em>의 좌표를 예로 들 경우 다음과 같이 조정하게 된다.</p>
+<p>$$
+x_{i+2} = x_{i+2} + \frac{d - l}{2}
+$$</p>
+<p>지금 말한 건 1차원인 경우고 2차원인 경우는 $d - l$ 값을 그대로 노나줄 수는 없고 가로 좌표값과 세로 좌표값을 분리해서 비율적으로 노나줘야 한다.</p>
+<p>분자 구조에 대한 그림에서 입자간의 연결을 흔히 스프링으로 해놓은 것을 기억할지 모르겠다. 만약 단순한 끈이 아니라 스프링으로 연결된 것으로 하자면 위에서 노나주는 값을 스프링의 탄성 비율에 따라 조정해야 할 것이다.</p>
+<h3>예시</h3>
+<p>자, 이제 실제로 뭔가 만들어봐야겠는데 밤 늦도록 공부만 실컷했고 하니 그 전에 좀 감을 잡기 위해 위 식에 따라 값들이 어떻게 변하는지 한번 계산해보자. 구속은 일단 다음으로 미루고 위치 변화만 살펴본다.</p>
+<p>대부분의 물리 운동 시뮬레이션에서 가속도는 중력가속도면 충분하겠지만 Verlet 적산법이 얼마나 정확한지 보기 위해 가속도가 시간에 따라 변하는 함수인 경우를 적용해보자. 예를 들어 가속도를 $a_t = 10\cos(t)$라고 정의한다면 입자의 위치의 정확한 해는 두 번 적분하면 나온다.</p>
+<ul>
+<li>가속도 $a_t = 10\cos(t)$</li>
+<li>속도 $v_t = 10\sin(t)$</li>
+<li>변위 $x_t = 10 - 10\cos(t)$</li>
+</ul>
+<p>위의 공식을 0.1초씩 변경해가면서 구한 정확한 값과 Verlet 적산법으로 구한 값을 비교해보면 다음과 같다. 마지막 값을 보면 큰 차이가 없음을 볼 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">시간 $t$</th>
+<th style="text-align:right">가속도 $a_t$</th>
+<th style="text-align:right">속도 $v_t$</th>
+<th style="text-align:right">위치 $x_t$</th>
+<th style="text-align:right">Verlet 위치 $x_{i+2}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">0.1</td>
+<td style="text-align:right">9.950041653</td>
+<td style="text-align:right">0.998334166</td>
+<td style="text-align:right">0.049958347</td>
+<td style="text-align:right">0.049958347</td>
+</tr>
+<tr>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">9.800665778</td>
+<td style="text-align:right">1.986693308</td>
+<td style="text-align:right">0.199334222</td>
+<td style="text-align:right">0.199417111</td>
+</tr>
+<tr>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">9.553364891</td>
+<td style="text-align:right">2.955202067</td>
+<td style="text-align:right">0.446635109</td>
+<td style="text-align:right">0.446882532</td>
+</tr>
+<tr>
+<td style="text-align:right">0.4</td>
+<td style="text-align:right">9.21060994</td>
+<td style="text-align:right">3.894183423</td>
+<td style="text-align:right">0.78939006</td>
+<td style="text-align:right">0.789881603</td>
+</tr>
+<tr>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">8.775825619</td>
+<td style="text-align:right">4.794255386</td>
+<td style="text-align:right">1.224174381</td>
+<td style="text-align:right">1.224986773</td>
+</tr>
+<tr>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">8.253356149</td>
+<td style="text-align:right">5.646424734</td>
+<td style="text-align:right">1.746643851</td>
+<td style="text-align:right">1.747850199</td>
+</tr>
+<tr>
+<td style="text-align:right">0.7</td>
+<td style="text-align:right">7.648421873</td>
+<td style="text-align:right">6.442176872</td>
+<td style="text-align:right">2.351578127</td>
+<td style="text-align:right">2.353247186</td>
+</tr>
+<tr>
+<td style="text-align:right">0.8</td>
+<td style="text-align:right">6.967067093</td>
+<td style="text-align:right">7.173560909</td>
+<td style="text-align:right">3.032932907</td>
+<td style="text-align:right">3.035128393</td>
+</tr>
+<tr>
+<td style="text-align:right">0.9</td>
+<td style="text-align:right">6.216099683</td>
+<td style="text-align:right">7.833269096</td>
+<td style="text-align:right">3.783900317</td>
+<td style="text-align:right">3.78668027</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">5.403023059</td>
+<td style="text-align:right">8.414709848</td>
+<td style="text-align:right">4.596976941</td>
+<td style="text-align:right">4.600393144</td>
+</tr>
+<tr>
+<td style="text-align:right">1.1</td>
+<td style="text-align:right">4.535961214</td>
+<td style="text-align:right">8.912073601</td>
+<td style="text-align:right">5.464038786</td>
+<td style="text-align:right">5.468136248</td>
+</tr>
+<tr>
+<td style="text-align:right">1.2</td>
+<td style="text-align:right">3.623577545</td>
+<td style="text-align:right">9.32039086</td>
+<td style="text-align:right">6.376422455</td>
+<td style="text-align:right">6.381238965</td>
+</tr>
+<tr>
+<td style="text-align:right">1.3</td>
+<td style="text-align:right">2.674988286</td>
+<td style="text-align:right">9.635581854</td>
+<td style="text-align:right">7.325011714</td>
+<td style="text-align:right">7.330577457</td>
+</tr>
+<tr>
+<td style="text-align:right">1.4</td>
+<td style="text-align:right">1.699671429</td>
+<td style="text-align:right">9.8544973</td>
+<td style="text-align:right">8.300328571</td>
+<td style="text-align:right">8.306665832</td>
+</tr>
+<tr>
+<td style="text-align:right">1.5</td>
+<td style="text-align:right">0.707372017</td>
+<td style="text-align:right">9.974949866</td>
+<td style="text-align:right">9.292627983</td>
+<td style="text-align:right">9.299750922</td>
+</tr>
+<tr>
+<td style="text-align:right">1.6</td>
+<td style="text-align:right">-0.291995223</td>
+<td style="text-align:right">9.99573603</td>
+<td style="text-align:right">10.29199522</td>
+<td style="text-align:right">10.29990973</td>
+</tr>
+<tr>
+<td style="text-align:right">1.7</td>
+<td style="text-align:right">-1.288444943</td>
+<td style="text-align:right">9.916648105</td>
+<td style="text-align:right">11.28844494</td>
+<td style="text-align:right">11.29714859</td>
+</tr>
+<tr>
+<td style="text-align:right">1.8</td>
+<td style="text-align:right">-2.272020947</td>
+<td style="text-align:right">9.738476309</td>
+<td style="text-align:right">12.27202095</td>
+<td style="text-align:right">12.281503</td>
+</tr>
+<tr>
+<td style="text-align:right">1.9</td>
+<td style="text-align:right">-3.232895669</td>
+<td style="text-align:right">9.463000877</td>
+<td style="text-align:right">13.23289567</td>
+<td style="text-align:right">13.24313719</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">-4.161468365</td>
+<td style="text-align:right">9.092974268</td>
+<td style="text-align:right"><strong>14.16146837</strong></td>
+<td style="text-align:right"><strong>14.17244244</strong></td>
+</tr>
+</tbody>
+</table>
+<p>$(14.17244244 - 14.16146837) / 14.16146837 = 0.000775$, 즉 약 $0.08%$ 오차 정도가 난다. 다른 가속도로도 시험해봤는데 가속도가 선형이거나 상수인 경우는 아예 오차가 없다(앞서 말한 것처럼 오차는 4차수 오차이므로 선형이거나 상수인 경우 4차 미분 값은 0이기 때문이겠지). 일반적으로 사용하는 경우 중력가속도처럼 상수 가속도를 사용하므로 Verlet 적산법이면 물리 운동 시뮬레이션으로는 아주 충분하다는 걸 알 수 있다.</p>
+<h3>초기값 계산</h3>
+<p>그런데 위에서 사실은 Verlet 계산 결과라고 한 열의 첫번째, 두번째 값은 상수를 넣은 것이다. 위 (1)번 공식에서 현재 위치와 그 전 위치를 알아야 다음 위치를 구할 수 있는데 첫번째, 두번째 위치는 그 전 위치가 없으므로 구할 수 없는 것이다.</p>
+<p>그래서 일반적으로는 두번째 위치값을 첫번째 위치값과 같은 값으로 넣어준다(즉, 두 값 다 0으로 시작). 그러면 위 예시에서의 오차가 7%가 나오긴 하는데 다시 0.1초 후에는 그 위치를 따라 잡게 되고 더욱이 실제 애니메이션에서는 시간 간격이 0.1초보다 훨씬 작거나(30~60분의 1초 정도) 전체 시간이 상대적으로 긴 경우에는 이 오차는 더 느낄 수 없을 정도가 되기 때문에 이렇게 근사치로 적용한다. 즉, 위 예시는 2초 후의 오차인데 0.02초 간격일 때의 오차나 10초, 100초 후의 오차는 더 작아진다는 말이다.</p>
+<p>그럼 여기까지 하고 이제 다음에는 꼭 실제 JavaScript 예제를 만들어보자. 근데 이거 시간이 많이 걸리네…</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/verlet">Verlet</a></li><li><a href="/tags/수치-해석">수치 해석</a></li><li><a href="/tags/시뮬레이션">시뮬레이션</a></li><li><a href="/tags/애니메이션">애니메이션</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/04/%eb%ac%bc%eb%a6%ac-%ec%8b%9c%eb%ae%ac%eb%a0%88%ec%9d%b4%ec%85%98%ec%9d%84-%ec%9c%84%ed%95%9c-verlet-%ec%a0%81%ec%82%b0%eb%b2%95/" || location.origin + '/posts/물리-시뮬레이션을-위한-verlet-적산법/';
+    this.page.identifier = '물리-시뮬레이션을-위한-verlet-적산법';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

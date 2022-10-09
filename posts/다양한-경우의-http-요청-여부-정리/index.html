@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다양한 경우의 HTTP 요청 여부 정리 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹페이지를 개발하다 보면 이러저러한 개체에 대해 브라우저가 서버에 HTTP 요청을 정말 할까하고 궁금한 경우가 있다. 예를 들어 display: none; 스타일을 줘서 보이지 않는 이미지도 서버에서 받아올까 하는 궁금증이다.
+일전에 이러한 궁금증에 대한 다양한 사례를 퀴즈로 풀어보는 외국 사이트가 떠서 나도 좀 풀어봤다(이 사이트는 프로그램적으로도 참신하게 잘 만든 사이트다. 꼭 크롬에서 보기 바란다). 무지 어려웠다. W3C의 HTML이나 CSS 명세서에 없는 사항인 경우도 있고 브라우저마다 실제 구현도 다른데 그걸 어떻게 많이 맞추겠나.
+">
+    <link rel="canonical" href="/posts/다양한-경우의-http-요청-여부-정리/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="다양한 경우의 HTTP 요청 여부 정리">
+    <meta property="og:url" content="/posts/다양한-경우의-http-요청-여부-정리/">
+    <meta property="og:description" content="웹페이지를 개발하다 보면 이러저러한 개체에 대해 브라우저가 서버에 HTTP 요청을 정말 할까하고 궁금한 경우가 있다. 예를 들어 display: none; 스타일을 줘서 보이지 않는 이미지도 서버에서 받아올까 하는 궁금증이다.
+일전에 이러한 궁금증에 대한 다양한 사례를 퀴즈로 풀어보는 외국 사이트가 떠서 나도 좀 풀어봤다(이 사이트는 프로그램적으로도 참신하게 잘 만든 사이트다. 꼭 크롬에서 보기 바란다). 무지 어려웠다. W3C의 HTML이나 CSS 명세서에 없는 사항인 경우도 있고 브라우저마다 실제 구현도 다른데 그걸 어떻게 많이 맞추겠나.
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>다양한 경우의 HTTP 요청 여부 정리</h1>
+
+  <div class="post-content">
+    <p>웹페이지를 개발하다 보면 이러저러한 개체에 대해 브라우저가 서버에 HTTP 요청을 정말 할까하고 궁금한 경우가 있다. 예를 들어 <code>display: none;</code> 스타일을 줘서 보이지 않는 이미지도 서버에서 받아올까 하는 궁금증이다.</p>
+<p>일전에 이러한 궁금증에 대한 다양한 사례를 <a title="Request Quest" href="http://jakearchibald.github.io/request-quest/" target="_blank">퀴즈로 풀어보는 외국 사이트</a>가 떠서 나도 좀 풀어봤다(이 사이트는 프로그램적으로도 참신하게 잘 만든 사이트다. 꼭 크롬에서 보기 바란다). 무지 어려웠다. W3C의 HTML이나 CSS 명세서에 없는 사항인 경우도 있고 브라우저마다 실제 구현도 다른데 그걸 어떻게 많이 맞추겠나.</p>
+<!--more-->
+<p>그래서 문제 풀기보다 정리하는 게 낫겠다 싶어 여기 정리해봤다. 퀴즈 제공자인 Jake님에게 감사하면서 보기로 하자. :)</p>
+<h3>보이지 않게 처리된 이미지</h3>
+<p>보이지 않는 이미지는 브라우저가 다운로드를 할까, 안 할까?</p>
+<ul>
+<li><code>&lt;img&gt;</code> 태그에 지정된 이미지는 무조건 서버로부터 다운로드된다. 예:<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>img.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li>하위 요소의 백그라운드 스타일로 지정된 이미지는 다운로드되지 않는다.<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span>none</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>img.png<span class="token punctuation">)</span></span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li>이미지가 백그라운드에 있는 요소 자체가 보이지 않게 처리된 경우는 FireFox만 다운로드하지 않고 Chrome, Safari, IE는 다운로드한다.<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>img.png<span class="token punctuation">)</span></span><span class="token punctuation">;</span> <span class="token property">display</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>`</code></pre>
+</li>
+<li>보이지 않는 방식이 <code>visibility: hidden</code>인 경우는 다운로드 된다.<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>img.png<span class="token punctuation">)</span></span><span class="token punctuation">;</span> <span class="token property">visibility</span><span class="token punctuation">:</span> hidden</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+</li>
+</ul>
+<h3>자바스크립트로 이미지를 로딩하는 경우</h3>
+<p>자바스크립트(JavaScript)로 이미지를 로딩하는 경우는 브라우저가 다운로드를 할까? 안 할까?</p>
+<ul>
+<li><code>&lt;img&gt;</code> 태그를 만들어내는 경우는 다운로드된다.<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'img.png'</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>문서에 삽입되기 전의 백그라운드 이미지는 다운로드되지 않는다.<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">'url(img.png)'</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<p>웹브라우저에서 JavaScript는 단일 스레드이므로 이벤트 하나에서 개체를 넣었다가(예: <code>appendChild</code>) 바로 제거하는 경우는(예: <code>removeChild</code>) 결과적으로 문서에 삽입된 적이 없게 되므로 역시 다운로드되지 않는다. 그러나 한 스레드더라도 제거하기 전에 <code>innerHTML</code>을 호출하면 IE는 다운로드하며 <code>offsetWidth</code>를 호출하면 다른 브라우저도 다운로드한다.</p>
+<h3><code>&lt;script&gt;</code> 요소</h3>
+<p>&lt;script&gt; 태그 사용시 어떤 경우에 자바스크립트가 로딩되지 않을까?</p>
+<ul>
+<li><code>type</code>이나 <code>language</code>가 인식할 수 없는 값으로 지정된 경우 HTML 규격은 다운로드하지 않도록 기술하고 있지만 Firefox, IE는 스크립트를 다운로드한다.<pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"script.js"</span> type<span class="token operator">=</span><span class="token string">"foo/bar"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+</li>
+<li>자바스크립트로 자바스크립트를 로딩하는 경우 규격에는 문서에 삽입된 경우에만 로딩하는 것으로 기술돼 있지만 IE는 스크립트를 다운로드한다.<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>script<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'script.js'</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>규격에는 스크립트가 문서에 삽입되면 동기적으로(synchronously) 스크립트를 준비해야 한다고 돼 있고 IE를 제외한 브라우저는 스크립트가 삽입과 동시에 제거되더라도 스크립트를 로딩한다.<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>script<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'script.js'</span><span class="token punctuation">;</span><br>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span><br>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<h3><code>&lt;link&gt;</code> 요소</h3>
+<p><code>&lt;link&gt;</code> 태그를 자바스크립트로 삽입하면 어떻게 될까?</p>
+<ul>
+<li><code>&lt;link&gt;</code> 요소는 문서에 삽입되지 않으면 다운로드되지 않는다.<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> link <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'link'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>link<span class="token punctuation">.</span>rel <span class="token operator">=</span> <span class="token string">'stylesheet'</span><span class="token punctuation">;</span><br>link<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'style.css'</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<h3><code>&lt;iframe&gt;</code> 요소</h3>
+<ul>
+<li>빈 <code>&lt;iframe&gt;</code> 태그는 아무 것도 서버에 요청하지 않는다.<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span></code></pre>
+</li>
+</ul>
+<p>이 이후의 내용은 상당히 특수한 경우라고 생각되므로 더 이상 정리해 싣지는 않겠다. 위의 내용만으로도 많은 공부가 되리라고 생각된다.</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-06-21T17:00:08.000Z">2013. 6. 22.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/http">HTTP</a></li><li><a href="/tags/html">HTML</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/06/%eb%8b%a4%ec%96%91%ed%95%9c-%ea%b2%bd%ec%9a%b0%ec%9d%98-http-%ec%9a%94%ec%b2%ad-%ec%97%ac%eb%b6%80-%ec%a0%95%eb%a6%ac/" || location.origin + '/posts/다양한-경우의-http-요청-여부-정리/';
+    this.page.identifier = '다양한-경우의-http-요청-여부-정리';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>

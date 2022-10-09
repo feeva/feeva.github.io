@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>접근성을 고려한 JavaScript 사용 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹 접근성(Accessibility)을 고려할 때 자바스크립트(JavaScript) 사용에 대해 다시 좀 보기로 했다. 그 동안 공공 프로젝트를 여러 차례 하면서 우리나라 웹 접근성 표준에 대해 익히 알고 있었는데 오늘 이걸 다시 거들떠 봐야겠다는 생각이 들었다. 웹 접근성에 있어서 JavaScript에 대한 오해 JavaScript에 대한 웹 접근성을 고려하기 위한 &quot;표준&quot;을 우연찮게 다시 보게 됐는데 이상한 내용이 있었다. 우리나라의 웹 접근성에 대해 사실상 &quot;표준&quot;을 제시하고 있는 정보화진흥원의 웹 접근성 연구소에서 기술한 다음과 같은 내용이 문제다.
+">
+    <link rel="canonical" href="/posts/접근성을-고려한-javascript-사용/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="접근성을 고려한 JavaScript 사용">
+    <meta property="og:url" content="/posts/접근성을-고려한-javascript-사용/">
+    <meta property="og:description" content="웹 접근성(Accessibility)을 고려할 때 자바스크립트(JavaScript) 사용에 대해 다시 좀 보기로 했다. 그 동안 공공 프로젝트를 여러 차례 하면서 우리나라 웹 접근성 표준에 대해 익히 알고 있었는데 오늘 이걸 다시 거들떠 봐야겠다는 생각이 들었다. 웹 접근성에 있어서 JavaScript에 대한 오해 JavaScript에 대한 웹 접근성을 고려하기 위한 &quot;표준&quot;을 우연찮게 다시 보게 됐는데 이상한 내용이 있었다. 우리나라의 웹 접근성에 대해 사실상 &quot;표준&quot;을 제시하고 있는 정보화진흥원의 웹 접근성 연구소에서 기술한 다음과 같은 내용이 문제다.
+">
+    <meta property="og:image" content="../../static/uploads/2013/05/a11y.png">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/photo.jpg" />
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>접근성을 고려한 JavaScript 사용</h1>
+
+  <div class="post-content">
+    <p>웹 접근성(Accessibility)을 고려할 때 자바스크립트(JavaScript) 사용에 대해 다시 좀 보기로 했다. 그 동안 공공 프로젝트를 여러 차례 하면서 우리나라 웹 접근성 표준에 대해 익히 알고 있었는데 오늘 이걸 다시 거들떠 봐야겠다는 생각이 들었다.</p>
+<h3>웹 접근성에 있어서 JavaScript에 대한 오해</h3>
+<p>JavaScript에 대한 웹 접근성을 고려하기 위한 &quot;표준&quot;을 우연찮게 다시 보게 됐는데 이상한 내용이 있었다. 우리나라의 웹 접근성에 대해 사실상 &quot;표준&quot;을 제시하고 있는 정보화진흥원의 <a title="한국정보화진흥원 웹 접근성 연구소" href="http://wah.or.kr" target="_blank">웹 접근성 연구소</a>에서 기술한 다음과 같은 내용이 문제다.</p>
+<!--more-->
+<blockquote>
+<p>적절한 낮춤 방법을 적용하면 신기술을 사용할 때, 신기술을 지원하지 않는 환경에 대한 접근성을 보장할 수 있다. [중략] 예를 들어 우리나라의 화면 낭독 프로그램이 JavaScript를 충분히 지원하지 못하고 있으므로, JavaScript를 이용한 웹 콘텐츠 구현 기술은 신기술로 분류될 수 있다. 만일 우리나라에서 구입 가능한 화면 낭독 프로그램이 JavaScript를 충분히 지원하게 된다면 JavaScript는 더 이상 신기술로 분류되지 않을 것이다.</p>
+<p><em>- 웹 접근성 연구소, “웹 콘텐츠 신기술 제작기법” 중</em></p>
+</blockquote>
+<p>다시 풀어 말하자면 &quot;신기술&quot;을 지원하지 않는 환경에 대해 &quot;적절한 낮춤 방법&quot;을 적용하여 접근성을 보장해야 한다는 것인데 예를 들어 JavaScript가 바로 신기술이므로 낮춤 방법을 제공해야 한다는 것이다.</p>
+<p>참 황당한 내용이다. JavaScript는 HTML과 발 맞춰 발표된 기술이다. HTML이 처음 사용되기 시작한 게 1990년대 전반인데 JavaScript 역시 비슷한 시기였으며 대중적으로 확산된 중요 시점은 둘 다 1995년 HTML 2.0, NetScape Navigator 2.0이 발표되면서부터다. 무려 18년전이다. HTML은 왜 신기술이 아니지?</p>
+<p>전제가 잘못됐는데 예를 거기에 끼어맞추는 내용이다. 신기술을 지원하지 않는 사용자를 배려한다는 건 좋은데 중요한 건 신기술도 아니고 JavaScript도 아니다. 다양한 종류의 사용자를 배려해서 웹페이지가 전달하고자 하는 내용을 충분히 전달할 수 있도록 해야 한다는 것이 중요한 것이지 신기술을 낮춰 제공해야 한다고?</p>
+<p>“적절한 낮춤 방법”, 즉 <a title="Wikipedia Fault-tolerant system" href="http://en.wikipedia.org/wiki/Fault-tolerant_system" target="_blank">Graceful degradation은 Fault tolerant 시스템의 다른 말</a>로 문제가 발생하더라도 자체적으로 극복할 수 있는 시스템을 말하는 것이다. 이것은 접근성에 대해 말하기 전에 모든 시스템을 안정적으로 사용하기 위한 근간이 되는 개념이다. 이걸 웹 접근성에 적용하면서 JavaScript를 신기술로 분류하고 JavaScript는 결국 사용자에 따라 적용할 수 없으므로 낮은 수준의 기술로 대안을 제시해야 한다는 황당한 논리를 펴다니. 화면 낭독 프로그램이 JavaScript를 읽어줄 수 있느냐 없느냐로 웹 접근성 개념을 재단해?</p>
+<p>그리고 또한 중요한 것은 요즘은 Graceful degradation을 고려하는 시대가 아니라 <a title="Wikipedia Progressive enhancement" href="http://en.wikipedia.org/wiki/Progressive_enhancement" target="_blank">Progressive enhancement</a>를 내세우는 시대라는 것이다.</p>
+<h3>웹 접근성을 위한 JavaScript 사용</h3>
+<p>웹 접근성 연구소의 웹페이지의 내용은 논리가 이상하지만 다행히도 함께 포함된 “콘텐츠 제작 기법” 문서는 그래도 좀 나은 내용을 담고 있다. 일단은 이 PDF 파일을 다운로드 받아 보는 게 제대로 된 접근성 전략을 공부하는 방법 중 하나다.</p>
+<p>그러나 우리나라의 어설픈 &quot;표준&quot;이 아니라 국제적으로 합의되고 있는 웹 접근성 “전략” 또는 &quot;지침&quot;을 보는 것이 더 좋다. 우리나라 표준도 사실 이것에 바탕을 두고 있는데 바로 W3C(월드와이드웹컨소시엄)의 <a title="월드와이드웹컨소시엄 웹 접근성 전략" href="http://www.w3.org/WAI/" target="_blank">Web Accesibility Initiative(WAI)</a>다. 여기서는 접근성에 있어서 웹 접근성 연구소처럼 컨텐트에 대해서만 언급하지 않는다. <a title="WAI Guidelines and Techniques" href="http://www.w3.org/WAI/guid-tech.html" target="_blank">다음과 같은 지침(Guideline)이 있다</a>.</p>
+<ul>
+	<li>웹 컨텐트 접근성 지침</li>
+	<li>저작 도구 접근성 지침</li>
+	<li>사용자 에이전트 접근성 지침</li>
+	<li>Accessible Rich Internet Applications(ARIA) 지침</li>
+</ul>
+<p>이러한 지침을 보면 어디에도 JavaScript가 신기술이니 낮춤 방법을 제공해야 한다는 내용은 없다. 위의 낮춤 방법 제공에 대한 내용이 웹 접근성 연구소에서는 RIA라는 영역에서 제공되므로 WAI에서도 ARIA라는 내용을 보면 근간은 같은 목적을 가지고 있다.</p>
+<blockquote>
+<p>Currently certain functionality used in Web sites is not available to some users with disabilities, especially people who rely on screen readers and people who cannot use a mouse. WAI-ARIA addresses these accessibility challenges, for example, by defining new ways for functionality to be provided to assistive technology. With WAI-ARIA, developers can make advanced Web applications accessible and usable to people with disabilities.</p>
+<p><em>- W3C, WAI-ARIA Overview</em></p>
+</blockquote>
+<p>즉, 진보된(advanced) 웹 애플리케이션을 장애가 있는 일부 사용자도 접근할 수 있고 사용할 수 있도록 만들 수 있는 지침을 제공한다는 것이다. 이것은 JavaScript에만 한정된 얘기는 아니다. 리치 인터넷 애플리케이션은 플래시, 실버라이트, SVG, HTML5 등으로 멀티미디어를 제공하는 웹 페이지를 말할 수도 있다.</p>
+<p>일단 웹 접근성 연구소의 &quot;콘텐츠 제작 기법&quot;에서 JavaScript에 대한 지침은 다음 항목들이 있다.</p>
+<ul>
+	<li>대체 텍스트 제공</li>
+	<li>키보드의 이용</li>
+	<li>반응 시간의 조절</li>
+	<li>온라인 서식 구성</li>
+	<li>신기술의 사용</li>
+	<li>표준의 준수</li>
+</ul>
+<p>역시 어설프다. RIA를 접근성 높게 만들기 위한 내용이 아니라 JavaScript가 없더라도 접근하기 좋은 방법에 대해서 주로 얘기하고 있고 결국은 웹 접근성 연구소의 &quot;웹 콘텐츠 접근성&quot;과 중복된다. 단지 기법을 말하고 있을 뿐이다. WAI에서 위에 해당하는 내용은 <a title="W3C Web Content Accessibility Guidelines" href="http://www.w3.org/WAI/intro/wcag.php" target="_blank">웹 컨텐트 접근성 지침(WCAG)</a>에 있다. 2008년에 정리된 권고안(recommendation)이다.</p>
+<ul>
+	<li>1.1 비텍스트 컨텐트에 대한 텍스트 대안 제공</li>
+	<li>1.2 시간 기반 미디어에 대한 대안 제공</li>
+	<li>1.3 적응성(Adaptable) - 정보나 구조에 대한 유실 없이 다른 방법으로 컨텐트 제공</li>
+	<li>1.4 구별 가능해야 함</li>
+	<li>2.1 키보드로 접근 가능해야 함</li>
+	<li>2.2 충분한 시간 제공</li>
+	<li>2.3 발작(seizure)을 일으키지 않게 해야 함</li>
+	<li>2.4 탐색 가능해야 함(Navigable)</li>
+	<li>3.1 읽을 수 있어야 함</li>
+	<li>3.2 예측할 수 있어야 함</li>
+	<li>3.3 입력 보조</li>
+	<li>4.1 호환성</li>
+</ul>
+<p>또한 WAI에는 이를 준수하기 위한 <a title="Techniques for WCAG 2.0" href="http://www.w3.org/TR/WCAG20-TECHS/" target="_blank">기법을 여러가지 제공하고 있다.</a></p>
+<ul>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/general.html" target="_blank">일반적 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/html.html" target="_blank">HTML 및 XHTML 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/css.html" target="_blank">CSS 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/client-side-script.html" target="_blank">클라이언트측 스크립팅 기법</a> - JavaScript에 대해서는 이 내용을 눈여겨 봐야 할 것이다</li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/server-side-script.html" target="_blank">서버측 스크립팅 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/smil.html" target="_blank">SMIL 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/text.html" target="_blank">일반 텍스트 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/aria.html" target="_blank">ARIA 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/flash.html" target="_blank">플래시 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/silverlight.html" target="_blank">실버라이트 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/pdf.html" target="_blank">PDF 기법</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/failures.html" target="_blank">흔한 오류</a></li>
+</ul>
+<p>위의 기법에 나오는 내용은 말하자면 예시일 뿐이지만 웹 접근성 지침을 제대로 준수하기 위해서는 참으로 다양한 경우를 고려해야 함을 알 수 있다. 이게 사실 웹 접근성 연구소의 JavaScript 제작 기법을 일부 포함하고 있는 것이다. 다시 말해 웹 접근성 연구소에서 말하는 JavaScript 제작 기법은 W3C에 있어서는 사실은 웹 컨텐트 접근성 지침에 일부 해당하는 내용이고 정말 Rich Internet Application을 만들 때 접근성을 고려하기 위해서는 W3C의 ARIA를 학습해야 한다. 일부분만 아는 것으로 부족하긴 하지만 ARIA는 다음에 찾아보기로 하고 위에서 &quot;클라이언트측 스크립팅 기법&quot;만 몇 가지 짚어보자.</p>
+<h3>클라이언트측 스크립팅 기법 예시</h3>
+<h4>SCR2: 키보드와 마우스 이벤트 핸들러를 중복 사용하기</h4>
+<p>이 기법 예시에서는 웹 접근성 지침 2.1 키보드 접근 가능에 대한 성공 예시를 보여준다. 어떤 꾸밈 이미지를 바꿔주는 이벤트를 처리할 때 마우스와 포커스 이벤트를 줌으로써 키보드도 충분히 지원하게 하는 것이다. 아래와 같이 하면 키보드로 포커스를 주거나 마우스로 이동하거나 하면 이미지가 바뀌게 된다.</p>
+<p><a id="aScr2" style="border: none;" href="#"><img id="imgScr2" style="border: none;" alt="" src="/uploads/programs/img/s_login_off.png" /></a></p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>aScr2<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>imgScr2<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>img/s_login_off.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<pre class="language-javascript"><code class="language-javascript">    <span class="token keyword">var</span> aScr2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'aScr2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">var</span> imgScr2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'imgScr2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    aScr2<span class="token punctuation">.</span>onfocus <span class="token operator">=</span> aScr2<span class="token punctuation">.</span><span class="token function-variable function">onmouseover</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        imgScr2<span class="token punctuation">.</span>src <span class="token operator">=</span> imgScr2<span class="token punctuation">.</span>src<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">_off\.png$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">'_on.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>    aScr2<span class="token punctuation">.</span>onblur <span class="token operator">=</span> aScr2<span class="token punctuation">.</span><span class="token function-variable function">onmouseout</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        imgScr2<span class="token punctuation">.</span>src <span class="token operator">=</span> imgScr2<span class="token punctuation">.</span>src<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">_on\.png$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">'_off.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h4>SCR18: 클라이언트측 검증 및 알림 제공</h4>
+<p>이 기법은 3.3 입력 보조에 대한 예시로서 사용자가 입력하는 값을 클라이언트측 스크립트로 검증하는 것이다. 사실 웹페이지 개발할 때 아주 일반적인 사항이라 웹접근성 측면에서 새로울 것은 없지만 입력값 검증이 그만큼 중요하다는 측면에서 올려본다. 한편 클라이언트측 스크립트로 검증하는 것 만큼 서버측 검증이 제대로 있어야 한다는 것은 당연한 명제다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>val<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>값:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>val<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>val<span class="token punctuation">"</span></span> <br>  <span class="token special-attr"><span class="token attr-name">onchange</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'0 이상의 숫자를 입력해주세요.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span></span><span class="token punctuation">"</span></span></span> <span class="token punctuation">/></span></span></code></pre>
+<h4>SCR24: 사용자 요청으로 새 창을 열게 하는 진보적 개선법(Progressive enhancement)</h4>
+<p>이 기법은 3.2 예측할 수 있어야 함의 성공 예시다. 웹 페이지에서 사용자가 요청하지 않은 새 창을 열게 되면 사용자는 혼란스럽거나 놓칠 수 있다. 이 기법에서는 원래의 링크는 새 창으로 열지 않지만(HTML에서 새 창을 여는 방법으로 target을 주는 방법이 있지만 HTML 4.01까지는 표준이 아니다) JavaScript를 사용해 새 창으로 연다는 문구를 집어 넣고 새 창으로 열도록 만드는 것이다. 또한 이 과정에서 키보드도 동작하도록 한다. 이 예시는 원래의 예시를 거의 그대로 옮겨본다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token special-attr"><span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">addHandlers</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>newwin<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>help.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>도움말 보기<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">addHandlers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> objAnchor <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'newwin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>objAnchor<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    objAnchor<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>data <span class="token operator">=</span> objAnchor<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>data <span class="token operator">+</span> <span class="token string">' (새 창에서 열림)'</span><span class="token punctuation">;</span><br>    objAnchor<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token function">launchWindow</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><br>    <span class="token comment">// 일부 브라우저는 이벤트 처리시 장치 독립적이지 않아서</span><br>    <span class="token comment">// 아래와 같이 키보드 이벤트를 따로 추가했다</span><br>    objAnchor<span class="token punctuation">.</span><span class="token function-variable function">onkeypress</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token function">launchWindow</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">function</span> <span class="token function">launchWindow</span><span class="token punctuation">(</span><span class="token parameter">objAnchor<span class="token punctuation">,</span> objEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> iKeyCode<span class="token punctuation">,</span> bSuccess<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// 키보드 이벤트인 경우 엔터 키나 스페이스 키에만 새 창을 열게 한다</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>objEvent <span class="token operator">&amp;&amp;</span> objEvent<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token string">'keypress'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>objEvent<span class="token punctuation">.</span>keyCode<span class="token punctuation">)</span><br>      iKeyCode <span class="token operator">=</span> objEvent<span class="token punctuation">.</span>keyCode<span class="token punctuation">;</span><br>    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>objEvent<span class="token punctuation">.</span>which<span class="token punctuation">)</span><br>      iKeyCode <span class="token operator">=</span> objEvent<span class="token punctuation">.</span>which<span class="token punctuation">;</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>iKeyCode <span class="token operator">!=</span> <span class="token number">13</span> <span class="token operator">&amp;&amp;</span> iKeyCode <span class="token operator">!=</span> <span class="token number">32</span><span class="token punctuation">)</span><br>      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  bSuccess <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>objAnchor<span class="token punctuation">.</span>href<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// 이 아래는 return !bSuccess; 한 문장이면 되는데 설명을 위해 분리한 것이다</span><br>  <span class="token comment">// 창이 열리지 않은 경우 브라우저의 기본 동작, 즉 같은 창에서 열리도록 한다</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>bSuccess<span class="token punctuation">)</span><br>    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// 창이 열렸으므로 브라우저가 다음 처리를 하지 않게 한다</span><br>  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h4>SCR28: 열고 닫을 수 있는 메뉴를 사용하여 컨텐트 일부 건너뛰기</h4>
+<p>이 기법은 2.4 탐색할 수 있어야 함의 성공 예시다. 웹페이지마다 상단에는 공통되는 내용, 특히 메뉴 같은 걸 넣는 경우가 많은데 이 예시는 JavaScript를 사용하여 특정 블록을 숨길 수 있게 함으로써 사용자가 본문 내용으로 바로 갈 수 있도록 하는 것이다. 이 예시도 원래 예시를 거의 그대로 옮겨 본다.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br><span class="token keyword">function</span> <span class="token function">toggle</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">var</span> n <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    n<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span>  <span class="token punctuation">(</span>n<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">!=</span> <span class="token string">'none'</span> <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token operator">:</span> <span class="token string">''</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token keyword">return</span> <span class="token function">toggle</span><span class="token punctuation">(</span><span class="token string">'toc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>목차 열기/닫기<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>toc<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    ...<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<h3>정리하자면...</h3>
+<p>일부 기법만 예시로 봤지만 예시뿐 아니라 W3C의 웹 접근성 지침을 보자면 JavaScript는 가깝지만 먼 당신이 아니라 웹 페이지를 유용하게 만들 수 있는 적극적인 기술로 인지되고 있음이 분명하다. 국내의 정보화진흥원에서 제정한 웹 접근성 표준처럼 컨텐트 저작할 때의 표준뿐만 아니라 ARIA와 같이 RIA를 만들 때 웹 접근성을 고려하기 위한 기술적 표준도 고려함으로써 제대로된 웹 접근성을 만족할 수 있을 것으로 생각된다.</p>
+<p>정리하자면… 참 공부할 게 많다. ARIA는 또 다음 기회에 공부해보기로 하자.</p>
+<script type="text/javascript" src="/programs/wcag-examples.js">// <![CDATA[
+// ...
+// ]]></script>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/접근성">접근성</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "http://start.goodtime.co.kr/2013/05/%ec%a0%91%ea%b7%bc%ec%84%b1%ec%9d%84-%ea%b3%a0%eb%a0%a4%ed%95%9c-javascript-%ec%82%ac%ec%9a%a9/" || location.origin + '/posts/접근성을-고려한-javascript-사용/';
+    this.page.identifier = '접근성을-고려한-javascript-사용';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
