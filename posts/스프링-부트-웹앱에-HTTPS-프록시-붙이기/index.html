@@ -59,10 +59,10 @@ Node <a href="https://www.npmjs.com/package/http-server">http-server</a> 모듈�
 </ul>
 <p>일반적으로 스프링 부트 웹앱은 기본 설정에서는 그림 1과 같이 HTTP 80 포트에서만 서비스가 실행되지만
 그림 2와 같이 <a href="https://www.baeldung.com/spring-boot-https-self-signed-certificate">별도 설정</a>을 통해 HTTPS 서비스도 가능하다.</p>
-<p><img src="../../static/uploads/2020/boot-http-https.png" alt=""></p>
+<p><picture><source type="image/webp" srcset="/static/resp-img/NLHqJ5zzzy-360.webp 360w, /static/resp-img/NLHqJ5zzzy-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/NLHqJ5zzzy-360.jpeg 360w, /static/resp-img/NLHqJ5zzzy-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2020/boot-http-https.png" src="/static/resp-img/NLHqJ5zzzy-360.jpeg" width="480" height="184"></picture></p>
 <p>여기서는 아래 그림 3과 같이 구성하는 방법을 설명하고자 한다. 로컬 개발 환경에 스프링 부트 웹앱 앞에
 사설 TLS 인증서를 사용하는 HTTPS 프록시를 두는 것이다.</p>
-<p><img src="../../static/uploads/2020/proxied-https.png" alt=""></p>
+<p><picture><source type="image/webp" srcset="/static/resp-img/fH63X1brfP-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2020/proxied-https.png" src="/static/resp-img/fH63X1brfP-360.jpeg" width="360" height="157"></picture></p>
 <p>운영 환경에서는 프록시로 Apache 웹서버를 두는 경우가 많지만 로컬 개발 환경에서는 Node의 http-server
 모듈을 사용하면 훨씬 간편하다. 개발 환경에서 사용할 수 있는 HTTP 서버는 이 외에도 몇 가지가 더 있지만
 Node http-server는 설치, 설정이 간편하다.</p>
@@ -127,10 +127,10 @@ Hit CTRL-C to stop the server
 HSTS 자가 서명 인증서(self signed certificate) 오류가 발생할 수 있다.</p>
 <p>화면에서는 이를 무시하고 건너뛸 수 없게 돼 있지만 웹킷 기반의 크롬, 에지 브라우저나 파이어폭스에서는 방법이 있다.</p>
 <p>크롬, 에지에서는 주소란에 <code>chrome://net-internals/#hsts</code>를 입력한다. 아래와 같은 내부 설정 화면이 열린다.</p>
-<p><img src="../../static/uploads/2020/chrome-hsts.png" alt=""></p>
+<p><picture><source type="image/webp" srcset="/static/resp-img/zL2YT5Q8Ys-360.webp 360w, /static/resp-img/zL2YT5Q8Ys-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/zL2YT5Q8Ys-360.jpeg 360w, /static/resp-img/zL2YT5Q8Ys-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2020/chrome-hsts.png" src="/static/resp-img/zL2YT5Q8Ys-360.jpeg" width="480" height="360"></picture></p>
 <p>이 화면에서 <strong>Query HSTS/PKP domain</strong>을 통해 내 도메인이 차단되었는지를, <strong>Delete domain security policies</strong>를
 통해 차단된 도메인을 크롬에서 삭제할 수 있다. 아래와 같이 원하는 도메인을 입력하고 <strong>Delete</strong> 단추를 누른다.</p>
-<p><img src="../../static/uploads/2020/chrome-hsts-delete.png" alt=""></p>
+<p><picture><source type="image/webp" srcset="/static/resp-img/WWz6lK32pB-360.webp 360w, /static/resp-img/WWz6lK32pB-480.webp 480w, /static/resp-img/WWz6lK32pB-720.webp 720w, /static/resp-img/WWz6lK32pB-768.webp 768w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/WWz6lK32pB-360.jpeg 360w, /static/resp-img/WWz6lK32pB-480.jpeg 480w, /static/resp-img/WWz6lK32pB-720.jpeg 720w, /static/resp-img/WWz6lK32pB-768.jpeg 768w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2020/chrome-hsts-delete.png" src="/static/resp-img/WWz6lK32pB-360.jpeg" width="768" height="99"></picture></p>
 <h3>기타 이야기 거리</h3>
 <p>이상으로 설명한 방법은 로컬 개발 환경에서도 실운영 환경처럼 도메인 주소 기반으로 웹 사이트를 개발할 수 있으며
 Apache를 설정한다거나 외부 프록시를 두지 않아도 된다는 점이 장점이라 할 수 있다. 좀더 본격적으로
