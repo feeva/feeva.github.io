@@ -325,7 +325,7 @@ img { max-width: 100%; height: auto; }
 }
 .post-content p > img, .post-content picture img, .post-content figure img { display: block; margin: auto; max-width: 100%; height: auto; }
 .post-content .image-block, .post-content iframe, .post-content .image-grid { display: block; max-width: 100%; }
-figcaption { margin: 9px 0; text-align: center; font-size: 12pt; font-style: italic; }
+figcaption { margin: 9px 0; text-align: center; font-size: 11pt; font-style: italic; }
 figcaption a { color: #555; }
 .post-content blockquote {
   max-width: 44rem;
@@ -339,7 +339,7 @@ figcaption a { color: #555; }
 .post-content .image-grid, .post-content .image-grid p { display: flex; flex-wrap: wrap; justify-content: space-between; }
 .post-content .image-grid > img, .post-content .image-grid > picture, .post-content .image-grid > figure,
 .post-content .image-grid p > img
-{ width: 32%; margin: 0 0 20px; }
+{ width: 49%; margin: 0 0 10px; }
 .post-content iframe, .post-content table { margin-bottom: 30px; }
 .post-content table { width: 100%; border-collapse: separate; }
 .post-content td, .post-content th { padding: 3px 9px; font-size: 1.1rem; }
@@ -349,7 +349,7 @@ figcaption a { color: #555; }
 .post-footer-date { font-style: italic; color: #999; }
 .post-footer ul li { padding: 0 0.3rem; margin-bottom: 0.6rem; }
 
-#disqus_thread { max-width: 42rem; margin: auto; }
+#disqus_thread { max-width: 44rem; margin: auto; padding: 1rem; }
 
 .post-tags { list-style: none; margin: 1rem -0.6rem; padding: 0; }
 .post-tags li { display: inline-block; margin: 0.6rem 0.3rem; padding: 0 0.3rem; }
@@ -452,6 +452,10 @@ figcaption a { color: #555; }
   }
   .post-layout .home-link { position: fixed; top: 30px; left: 30px; }  
   .post-content, .post-footer { padding: 0; }
+  .post-content .image-grid > img, .post-content .image-grid > picture, .post-content .image-grid > figure,
+  .post-content .image-grid p > img
+  { width: 32%; margin: 0 0 20px; }
+  figcaption { font-size: 12pt; }
 
   .collection section.poster h1 { font-size: 3.5rem; font-weight: bold; letter-spacing: -0.1rem; }
   .collection .sidebar::after {
