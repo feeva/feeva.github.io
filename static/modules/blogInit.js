@@ -87,3 +87,11 @@ const onEsc = (e) => {
   }
 };
 document.documentElement.addEventListener('keydown', onEsc);
+
+
+// 이전에 설치된 서비스 워커 제거
+navigator.serviceWorker.getRegistrations().then(registrations => {
+  for(let registration of registrations) {
+    registration.unregister()
+  } 
+})
