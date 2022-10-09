@@ -45,7 +45,7 @@
 
   <div class="post-content">
     <p>분산 버전 관리 시스템(DVCS)인 <a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>이 나온지 벌써 몇 년이 지나 개발자들에게서 상당한 호응을 받고 있지만 난(또는 우리 회사) 본격적인 사용은 미루고 있었다. 얼마 전부터 제대로 해보자고 이것저것 해보고 있는데 이제 블로그에도 한번 정리삼아 올려보기로 한다. Git을 사용해보자 첫번째 주제로 Git 개념부터 꺼내기로 한다. 이 다음에는 기회되는 대로 Eclipse Git, Git 셸 명령, GitHub, Git 작업 패턴 등을 다뤄보기로 한다.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/PlwZa7jQK3-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="Git 학습" loading="lazy" decoding="async" data-src="../../static/uploads/2013/04/git.jpg" src="/static/resp-img/PlwZa7jQK3-360.jpeg" width="360" height="282"></picture><figcaption>Git 학습</figcaption></figure></p>
+<p><img src="../../static/uploads/2013/04/git.jpg" alt="Git 학습"></p>
 <!--more-->
 <h3>Git 개념 소개</h3>
 <p><a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>은 자유 오픈 소스로서 분산 버전 관리 시스템이라고 하는 것이다. 많이 사용되는 버전 관리 시스템인 Subversion이나 CVS, ClearCase 등이 중앙의 저장소를 두고 개발자들이 붙어 작업하는 것과 달리 개발자 각자의 버전 관리에 방점을 두고 있으며 이에 따라 서버와의 잦은 업데이트/커밋 통신이 감소하고 개인이 임의로 소스를 브랜칭하여 시험하고 병합하는 게 간편하게 이루어지는 등의 장점이 생긴다. 반면에 새로운 개념을 다수 도입했기 때문에 기존 버전 관리에 익숙한 상태에서는 좀 공부를 해서 &quot;패러다임 전환&quot;을 해야만 Git을 제대로 사용할 수 있다.</p>

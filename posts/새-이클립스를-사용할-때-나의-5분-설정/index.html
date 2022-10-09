@@ -53,25 +53,25 @@
 <p>아무튼 내가 새 이클립스에서 5분 정도 투자해 손보는(또는 기존 내 이클립스에서 설정해둔) 설정 항목들을 얘기해보겠다.</p>
 <h3>자동 Validation 끄기</h3>
 <p>웹 개발에는 상당히 자원이 많이 소모된다. 이클립스는 너무나도 버벅대고 개발자는 멍하니 컴퓨터 화면을 쳐다보기만 해야 하는 경우가 많다. 상당 경우는 빌드 시에 발생한다. Java 소스를 저장하거나 하면 빌드가 발생하는데 이때 의존 관계에 따라 처리해줄 것들이 있으니 그럴만 하다. 이런 경우 사용자 입장에서 대처할 방법이 없는 경우가 많은데 Validation을 해제하면 꽤 도움이 된다. 메뉴 중 Windows &gt; Preferences로 들어가면 Validation 설정이 있는데 그 중 Build 열의 체크를 일부 해제하면 도움이 된다. 예를 들어 웹 개발에서는 HTML, JSP, XML 관련 Validation을 해제하면 된다. Manual 열은 해제하지 않도록 한다. 간혹 정말 필요해서 Validation을 수동으로 할 경우가 있기 때문이다(수동으로 하려면 원하는 파일에서 문맥 메뉴를 띄운 후 &quot;Validate&quot;를 선택한다).</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/kleZHGEThb-360.webp 360w, /static/resp-img/kleZHGEThb-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/kleZHGEThb-360.jpeg 360w, /static/resp-img/kleZHGEThb-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="Validation" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/validation.png" src="/static/resp-img/kleZHGEThb-360.jpeg" width="480" height="468"></picture><figcaption>Validation</figcaption></figure></p>
+<p><img src="../../static/uploads/2013/06/validation.png" alt="Validation"></p>
 <h3>스펠링 검사 끄기</h3>
 <p>프로그램 소스에는 별의별 약어와 합성어가 많이 사용되기 마련이다. 정상적인 단어는 언어 키워드 외에는 별로 없을 정도다. 그런데 이런 프로그램 소스에 대해 스펠링 검사를 하는 건 여러모로 낭비다. 그래서 난 바로 꺼버린다. 역시 Windows &gt; Preferences로 들어가서 General &gt; Editors &gt; Text Editors &gt; Spelling을 열어보면 스펠링 검사를 끌 수 있다.</p>
-<p><picture><source type="image/webp" srcset="/static/resp-img/SFhg0bpZNP-345.webp 345w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/eclipse-spelling.png" src="/static/resp-img/SFhg0bpZNP-345.jpeg" width="345" height="306"></picture></p>
+<p><img src="../../static/uploads/2013/06/eclipse-spelling.png" alt=""></p>
 <h3>디버그 퍼스펙티브에서 변수 뷰 크기 조정</h3>
 <p>Debug 기능은 실행 중 변수 값을 확인하기 위해 자주 사용하는 기능인데 기본 상태에서는 변수(Variables) 뷰가 상당히 작다. 아래 그림에서 원래는 Debug 뷰의 오른쪽에 나란히 나타나서 높이가 작다. 변수 값이 복잡한 경우는 상당히 보기가 힘들고 답답하다. 나는 그래서 변수 뷰를 에디터 영역에 걸치도록 높이를 키운다. Variables 뷰를 뜯어다가 이동하면 되는데 처음에는 하단의 Console 뷰에까지 걸친다. 그래서 Console 뷰도 뜯어다가 다시 원래대로 키운다. Console 뷰는 정보 양이 더 많기 때문에 넓어야 하기 때문이다.</p>
 <p>변수 뷰를 키우면서 그 안에서 설정하는 것들도 있는데 변수 뷰의 오른쪽 위에 있는 드롭다운 메뉴를 통해 우선 레이아웃을 세로로(Vertical) 배치하도록 한다. 그러면 변수를 선택했을 때 오른쪽이 아니라 아래쪽에서 변수 값을 확인하게 된다. 뷰가 세로로 기니까 이렇게 하는 게 유용하다. 그리고 값 영역에서 마우스 오른쪽 단추를 눌러 문맥 메뉴를 띄워보면 Wrap Text라는 게 있다. 변수 값이 아주 긴 경우 줄 바꿈해서 보는 게 훨씬 낫다고 생각한다.</p>
-<p><picture><source type="image/webp" srcset="/static/resp-img/KgyAjBEqZ8-360.webp 360w, /static/resp-img/KgyAjBEqZ8-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/KgyAjBEqZ8-360.jpeg 360w, /static/resp-img/KgyAjBEqZ8-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/eclipse-variables.png" src="/static/resp-img/KgyAjBEqZ8-360.jpeg" width="480" height="343"></picture></p>
+<p><img src="../../static/uploads/2013/06/eclipse-variables.png" alt=""></p>
 <h3>오류, 경고 메시지를 현재 프로젝트 것만 보도록 설정</h3>
 <p>Java 구문 오류나 빌드 오류 등 다양한 오류를 볼 수 있는 뷰로 Markers, Problems 등의 뷰가 있는데 기본적으로는 웍스페이스의 모든 프로젝트의 문제점을 표시하도록 돼 있다. 그래서 현재 작업 중인 프로젝트가 아닌 프로젝트의 문제들도 보이느라 상당히 혼란스럽다. 그래서 나는 현재 프로젝트의 문제만 표시되도록 설정한다.</p>
 <p>Markers 뷰의 경우 뷰 오른쪽 위의 드롭다운 메뉴를 연 후 Configure Contents…를 선택한다. 원래는 Show all items가 체크돼 있을 텐데 그걸 해제하고 Configurations 박스 안의 New를 눌러 새로운 구성을 만든다. 내 경우는 그 구성 이름을 &quot;현재 프로젝트만&quot;이라고 붙여놨다(Rename 단추 사용). 그리고 오른쪽의 Scope에서 On any element in same project를 선택한다. 이제 OK를 눌러 나가면 프로젝트를 선택하거나 파일을 열거나 현재 포커스가 간 개체의 프로젝트에 대한 문제점만 Markers 뷰에 나타날 것이다.</p>
-<p><picture><source type="image/webp" srcset="/static/resp-img/MEQHogTzRV-360.webp 360w, /static/resp-img/MEQHogTzRV-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/MEQHogTzRV-360.jpeg 360w, /static/resp-img/MEQHogTzRV-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/eclipse-markers1.png" src="/static/resp-img/MEQHogTzRV-360.jpeg" width="480" height="249"></picture></p>
+<p><img src="../../static/uploads/2013/06/eclipse-markers1.png" alt=""></p>
 <h3>검색(Search) 대화 상자 단순화</h3>
 <p>ctrl-h를 누르거나 메뉴에서 Search를 선택하면 나오는 검색 대화 상자는 처음에는 다양한 검색 탭이 있어서 혼란스럽다. 다 자주 사용하지 않는 기능임에도 항상 띄우는 것은 한 번이라도 클릭을 더 하게 돼서 불편하다. 그래서 난 자주 사용하는 것만 남겨놓고 다른 탭은 숨긴다.</p>
 <p>방법은 아주 간단하다. 검색 대화 상자를 띄운 후 아래쪽에 있는 Customize… 단추를 누른다. 사용할 탭(페이지)만 체크 상태로 두고 나머지는 해제한다.</p>
-<p><picture><source type="image/webp" srcset="/static/resp-img/-I-0ysI_q5-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/eclipse-search.png" src="/static/resp-img/-I-0ysI_q5-360.jpeg" width="360" height="264"></picture></p>
+<p><img src="../../static/uploads/2013/06/eclipse-search.png" alt=""></p>
 <h3>텍스트 글꼴을 Consolas로 설정</h3>
 <p>개인적으로 Windows에서 가장 보기 좋은 코딩용 글꼴은 Consolas라고 생각한다. 그래서 난 이클립스나 웹 브라우저나 영문 등간격 글꼴을 사용할 경우는 다 Consolas로 설정한다. 역시 Preferences로 들어간 후 General &gt; Appearance &gt; Colors and Fonts를 열고 화면 요소 항목 중 Basic &gt; Text Font를 선택하고 Edit…를 눌러 Consolas를 선택해준다. 단, 이상하게 안 그런 컴퓨터도 있지만 내 경우는 거의 항상 한글 글꼴과 크기가 잘 안맞다. 그래서 한가지 발견한 것은 Consolas의 언어를 &quot;중앙 유럽어&quot;나 &quot;그리스어&quot;로 선택해주는 것이다.</p>
-<p><picture><source type="image/webp" srcset="/static/resp-img/Uk90NeVu6D-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/eclipse-font.png" src="/static/resp-img/Uk90NeVu6D-360.jpeg" width="360" height="400"></picture></p>
+<p><img src="../../static/uploads/2013/06/eclipse-font.png" alt=""></p>
 <h3>Subclipse 설치</h3>
 <p>이제는 점차 Git으로 옮겨가는 중이라 사실 앞으로도 계속 그럴 거 같지는 않지만 Subclipse 플러그인은 꼭 설치한다. 10여년을 Subclipse에 의존해 Subversion을 사용해왔고 앞으로도 한동안을 그럴 거 같다. Subversive라는 Subversion 클라이언트 플러그인도 있지만 Subclipse에 비해서는 기능이 떨어져서 몇 차례 테스트했다가 지금은 거들떠 보지 않는다.</p>
 <p>설치 방법은 <a title="Subclipse" href="http://subclipse.tigris.org" target="_blank">subclipse.tigris.org</a> 사이트에 나와 있다. 내가 자주 사용하는 방법은 메뉴 중 Help &gt; Install New Software…를 들어간 후 Add… 단추를 눌러 Subclipse 설치 주소(예: http://subclipse.tigris.org/update_1.8.x)를 입력하는 것이다.</p>

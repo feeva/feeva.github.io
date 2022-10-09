@@ -276,12 +276,12 @@ pre[class*="language-"] > code[class*="language-"] {
 
 body {
   font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
-  font-size: 14pt;
+  font-size: 13pt;
   color: #555;
 }
 h1, h2, h3, h4, h5, h6 { color: black; }
 code { font-family: "Roboto mono", Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", 'Noto Sans KR', monospace; }
-pre code { font-size: 15px; }
+pre code { font-size: 12pt; }
 a.badge { text-decoration: none; }
 img { max-width: 100%; height: auto; }
 
@@ -357,7 +357,6 @@ figcaption a { color: #555; }
 /*
  컬렉션 페이지
  */
-.collection { font-size: 13pt; }
 .collection section.poster {
   position: relative;
   padding: 0 1rem;

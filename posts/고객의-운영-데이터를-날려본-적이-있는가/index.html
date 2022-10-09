@@ -49,7 +49,7 @@
     <p>난 있다. 창피한 일이지만 10여년 전 어떤 골프장 웹사이트 개발로 바쁠 때 운영 데이터베이스 작업 중 테이블 하나를 날려버렸었다.</p>
 <p>그땐 의욕이 앞서고 안정성에 대한 개념이 별로 없어서 개발용 데이터베이스를 따로 만들지 않고 운영 데이터베이스에 직접 붙어서 작업을 했다. 다행히 백업 테이블이 있고 고객이 수기로도 관리하던 사항이라 시간이 좀 들더라도 복구가 가능했지만 그런 대비책이 없었더라면 어떡했을까 지금도 생각해보면 아찔하다.</p>
 <!--more-->
-<p><picture><source type="image/webp" srcset="/static/resp-img/hcqU-rxnr7-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/The_Scream-e1373043295972.jpg" src="/static/resp-img/hcqU-rxnr7-360.jpeg" width="360" height="331"></picture></p>
+<p><img src="../../static/uploads/2013/07/The_Scream-e1373043295972.jpg" alt=""></p>
 <p>이런 일이 나만의 실수라면 한 번의 해프닝으로 지나칠 수도 있을 텐데 나를 포함해 앞으로도 누구나 이런 실수가 가능하다는 데에 간과할 수 없는 중요성이 있다. 10여년을 다양한 프로젝트를 하면서 다양한 개발자를 봤는데 2~3년에 한번씩은 누군가 이런 사고를 만드는 것 같다.</p>
 <p>운영 데이터베이스에 접근할 정도면 신참은 아니고 오히려 어느 정도 개발 경력이 있는 사람들이 이런 실수를 한다. 경력이 쌓이다보니 머리보다 손이 빨라 자기도 모르게 실수를 한다. 순간의 클릭이나 엔터키 입력이 재앙을 부르는 것이다.</p>
 <p>개인적인 문제에 더해 그 환경에 있어서도 사고를 부를 요소를 갖추고 있는 경우 이런 일이 발생한다. 웬만큼 규모가 있고 포멀한 작업 방식을 따르는 조직이라고 하더라도 개개인의 행동을 일일이 통제할 수 없기 때문에 사고의 위험성은 꼭 존재한다. 그 사고의 위험성을 간과한 어떤 빈틈이 있는 것이다.</p>
@@ -59,7 +59,7 @@
 <p>다음으로는 데이터베이스 제품별로 대비책이 있을 수 있다. Oracle은 10g부터 테이블 삭제(drop)를 복구할 수 있는 휴지통(recycle bin) 기능을 사용할 수 있으며 SQL Server인 경우 백업과 트랜잭션 로그를 잘 관리하면 어느 정도는 특정 과거 시점으로 온전하게 되돌릴 수 있다.</p>
 <p>작업자 차원에서의 대비책으로는 auto commit되지 않게 하는 것이 필요하다. drop table을 한 경우 소용 없겠지만 단순 delete문인 경우 auto commit이 아니라면 삭제를 취소할 수 있으므로 아주 유용하다.</p>
 <p>마지막 대비책은 긴장이다. 병사여~ 긴장을 늦추지 마라!</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/btEHykoKuj-360.webp 360w, /static/resp-img/btEHykoKuj-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/btEHykoKuj-360.jpeg 360w, /static/resp-img/btEHykoKuj-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="긴장을 늦추면 안돼!" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/행정병.jpg" src="/static/resp-img/btEHykoKuj-360.jpeg" width="480" height="319"></picture><figcaption>긴장을 늦추면 안돼!</figcaption></figure></p>
+<p><img src="../../static/uploads/2013/07/%ED%96%89%EC%A0%95%EB%B3%91.jpg" alt="긴장을 늦추면 안돼!"></p>
 
   </div>
 
