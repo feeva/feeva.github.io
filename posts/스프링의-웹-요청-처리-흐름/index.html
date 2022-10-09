@@ -44,7 +44,7 @@
   <div class="post-content">
     <p>스프링은 주로 웹 개발에 사용되는데 스프링의 <a href="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html" target="_blank">웹 MVC 참조 설명서</a>나 기타 여러 학습 자료를 보면 다음과 같은 유명한 흐름도를 보게 된다.</p>
 <a href="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html">
-<p><img src="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/images/mvc.png" alt="스프링 웹 MVC의 요청 처리 흐름도">
+<p><figure><img alt="스프링 웹 MVC의 요청 처리 흐름도" loading="lazy" decoding="async" data-src="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/images/mvc.png" src="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/images/mvc.png" width="undefined" height="undefined"><figcaption>스프링 웹 MVC의 요청 처리 흐름도</figcaption></figure>
 </a></p>
 <!--more-->
 <p>이 그림은 Spring 설명서에서도 밝히고 있지만 Spring뿐 아니라 그동안 여러 웹 프레임웍에서 사용하던 방식이다. (이 그림이 실제 처리 방식이나 프레임웍들간에 꼭 들어맞지는 않는다. 개념적으로 비슷한 사상을 가지고 있다는 것이다.)</p>
@@ -52,7 +52,7 @@
 <p>Spring에서는 프론트 컨트롤러는 &quot;디스패처 서블릿&quot;이라고 하고 컨트롤러는 &quot;핸들러&quot;라고 한다.</p>
 <p>그런데 그 동안 여러 프로젝트들을 진행하면서 디스패처 서블릿과 관련한 동작 항목들이 위 그림에 있는 것보다 참 다양하구나 하는 것을 알게 됐다. 주로 Spring 설명서에 의존해 Spring을 사용했는데 설명 방식으로 이해하는 것보다는 위 그림처럼 좀더 직관적이면서 기억이 쉬운 흐름도를 직접 만들어보는 게 좋을 것 같았다. 그러기 위해서는 디스패처 서블릿의 소스를 읽으면서 어떤 처리 흐름이 있는지 밟아나가야 했다.</p>
 <p>그래서 나온 것이 아래 그림이다. 위 그림에서 디스패처 서블릿의 동작을 좀더 자세히 들여다 본 흐름도라고 볼 수 있겠다.</p>
-<p><img src="../../static/uploads/2013/03/spring-dispatcher-workflow.png" alt="Spring 디스패처 서블릿 처리 흐름도"></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/XVOxYIqKXr-360.webp 360w, /static/resp-img/XVOxYIqKXr-480.webp 480w, /static/resp-img/XVOxYIqKXr-720.webp 720w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/XVOxYIqKXr-360.jpeg 360w, /static/resp-img/XVOxYIqKXr-480.jpeg 480w, /static/resp-img/XVOxYIqKXr-720.jpeg 720w" sizes="(max-width: 768px) 100vw, 768px"><img alt="Spring 디스패처 서블릿 처리 흐름도" loading="lazy" decoding="async" data-src="../../static/uploads/2013/03/spring-dispatcher-workflow.png" src="/static/resp-img/XVOxYIqKXr-360.jpeg" width="720" height="926"></picture><figcaption>Spring 디스패처 서블릿 처리 흐름도</figcaption></figure></p>
 <p>말로 풀어 설명하자면 다음과 같다. 사용자의 웹 요청이 URL 매핑에 의해 디스패처서블릿으로 들어오면,</p>
 <ol>
     <li>디스패처서블릿은 핸들러 인터셉터의 preHandle() 메서드를 호출한다. 핸들러 인터셉터는 Spring 사용자가 등록해놓은 사용자정의(custom) 클래스다.</li>
