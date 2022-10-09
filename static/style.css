@@ -276,7 +276,7 @@ pre[class*="language-"] > code[class*="language-"] {
 
 body {
   font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
-  font-size: 15pt;
+  font-size: 14pt;
   color: #555;
 }
 h1, h2, h3, h4, h5, h6 { color: black; }
@@ -305,6 +305,7 @@ img { max-width: 100%; height: auto; }
   text-decoration: none;
   color: #222;
 }
+.post-layout .home-link { position: relative; top: 1rem; left: 1rem; }
 
 .post-content, .post-footer { padding: 0 1rem; line-height: 2rem; margin-bottom: 2rem; }
 .post-content > *, .post-footer { max-width: 42rem; margin-left: auto; margin-right: auto; word-break: break-word; }
@@ -356,9 +357,10 @@ figcaption a { color: #555; }
 /*
  컬렉션 페이지
  */
-.collection { font-size: 14pt; }
+.collection { font-size: 13pt; }
 .collection section.poster {
   position: relative;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -444,6 +446,8 @@ figcaption a { color: #555; }
 
 /* 반응형 */
 @media screen and (min-width: 920px) {
+  body { font-size: 15pt; }
+  .collection { font-size: 14pt; }
   .post-layout > h1 {
     font-size: 2.8rem; line-height: 4rem; margin-top: 4rem; margin-bottom: 2.7rem;
   }
@@ -461,7 +465,9 @@ figcaption a { color: #555; }
     right: 5px;
     bottom: 0;
   }
-  
+}
+@media screen and (max-width: 920px) {
+  .page-link { padding: 0.2rem 0.5rem; }
 }
 
 #postImageSlider {
