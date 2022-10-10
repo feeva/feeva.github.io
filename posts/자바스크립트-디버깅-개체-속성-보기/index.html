@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <style></style>
-    <link rel="icon" href="/static/images/photo.jpg" />
+    <link rel="icon" href="/static/images/masi.jpg" />
 
     
 
+    
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,6 +39,7 @@
       ga('create', 'UA-13042476-6', 'auto');
       ga('send', 'pageview');
     </script>
+    
   </head>
   <body>
     <div class="post-layout">
@@ -47,7 +49,7 @@
 
   <div class="post-content">
     <p>몇 년 전부터 자바스크립트 디버깅이 참 쉬워졌다. 이미 FireFox, Chrome 등 다른 브라우저는 물론이고 MS의 인터넷 익스플로러까지도 개발자 도구를 포함하고 있기 때문에 웹페이지 디버그 모드로 들어가서 한 단계, 한 단계 실행하면서 개체의 정보를 보고 뭐가 문제인지 찾을 수 있게 되었기 때문이다.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/hFRDqnxVit-360.webp 360w" sizes="(max-width: 768px) 100vw, 768px"><img alt="Chrome 개발자 도구" loading="lazy" decoding="async" data-src="../../static/uploads/2013/03/chrome_dev_tool.png" src="/static/resp-img/hFRDqnxVit-360.jpeg" width="360" height="254"></picture><figcaption>Chrome 개발자 도구</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/hFRDqnxVit-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="Chrome 개발자 도구" loading="lazy" decoding="async" data-src="../../static/uploads/2013/03/chrome_dev_tool.png" src="/static/resp-img/hFRDqnxVit-360.jpeg" width="360" height="254"></picture><figcaption>Chrome 개발자 도구</figcaption></figure></p>
 <p>그런데 가끔 이러한 브라우저 개발자 도구를 사용하지 못한다든가 개발자 도구에서 들여다보기에는 답답한 경우가 있다. 직접 개체의 속성 정보를 원하는 대로 출력해보는 건 어떨까?</p>
 <!--more-->
 <p>기본적으로 JavaScript 개체의 모든 속성을 구하려면 <code>for (var key in obj)</code> 반복문을 사용하면 된다. <code>obj</code>의 모든 속성의 키를 <code>key</code> 변수에 담아 반복하는 것이다. 그리고 속성 값을 구하려면 <code>obj[key]</code>와 같이 하면 된다. 따라서 다음과 같이 하면 어떤 변수의 속성 키와 값을 모두 문자열에 담을 수 있다.</p>

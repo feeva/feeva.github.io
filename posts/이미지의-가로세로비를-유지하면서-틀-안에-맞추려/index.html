@@ -21,10 +21,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <style></style>
-    <link rel="icon" href="/static/images/photo.jpg" />
+    <link rel="icon" href="/static/images/masi.jpg" />
 
     
 
+    
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,6 +35,7 @@
       ga('create', 'UA-13042476-6', 'auto');
       ga('send', 'pageview');
     </script>
+    
   </head>
   <body>
     <div class="post-layout">
@@ -45,9 +47,9 @@
     <p>웹사이트 중에는 종종 이미지가 가로세로비(종횡비)를 못 맞추고 짜부라진 모양으로 나오는 곳들이 있다. 크기가 큰 사진들은 괜찮은데 좁은 자리에 가로 세로 크기를 한정시켜 맞춰넣는 얼굴 사진이나 광고 같은 것들에 그런 게 종종 보인다. 얼굴이 너무 넓적하다든지 몸매가 완전 날씬한 형태로 나오는 사진들이 그런 것들이다.</p>
 <!--more-->
 <p>(2018년 편집: 현재는 IE를 제외하고 대부분의 브라우저가 CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" target="_blank" rel="noopener">object-fit</a>, object-position 속성을 지원하므로 IE를 무시한다면 아래와 같은 과정 없이 CSS 한 줄로 간단히 이미지 맞춤을 조절할 수 있다.)</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/spEy48qhOX-347.webp 347w" sizes="(max-width: 768px) 100vw, 768px"><img alt="우리의 영웅 김연아를 이렇게 만들다니..." loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_wrong.png" src="/static/resp-img/spEy48qhOX-347.jpeg" width="347" height="94"></picture><figcaption>우리의 영웅 김연아를 이렇게 만들다니...</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/spEy48qhOX-347.webp 347w" sizes="(max-width:800px) 100vw, 1200px"><img alt="우리의 영웅 김연아를 이렇게 만들다니..." loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_wrong.png" src="/static/resp-img/spEy48qhOX-347.jpeg" width="347" height="94"></picture><figcaption>우리의 영웅 김연아를 이렇게 만들다니...</figcaption></figure></p>
 <p>위 그림은 신문사 사이트에서 갈무리한 것인데 같은 개발자 입장에서 미안하지만 개발자가 좀 덜 신경을 쓴 게 분명하다. 원래 이미지는 다음처럼 세로가 긴 이미지였다.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/IpfUdxtgqY-170.webp 170w" sizes="(max-width: 768px) 100vw, 768px"><img alt="원래는 이렇게 예쁨" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_good.jpg" src="/static/resp-img/IpfUdxtgqY-170.jpeg" width="170" height="251"></picture><figcaption>원래는 이렇게 예쁨</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/IpfUdxtgqY-170.webp 170w" sizes="(max-width:800px) 100vw, 1200px"><img alt="원래는 이렇게 예쁨" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_good.jpg" src="/static/resp-img/IpfUdxtgqY-170.jpeg" width="170" height="251"></picture><figcaption>원래는 이렇게 예쁨</figcaption></figure></p>
 <p>사실 어렵지 않은 것인데 오늘은 웹페이지에서 이미지의 가로세로비를 유지하면서 틀 안에 맞추려면 어떻게 해야 하는지 알아보겠다.</p>
 <p>먼저 기본 개념을 말하자면 다음과 같은 것을 생각해볼 수 있다.</p>
 <ul>
@@ -59,9 +61,9 @@
 <p>위에서 네번째 개념은 다음과 같은 경우를 말한다. 예시는 4:3 크기의 틀을 가정했다.</p>
 <ol>
 <li>이미지를 맞출 틀 안에 이미지의 <strong>가로, 세로 중 짧은 쪽을 맞춰서</strong> 틀을 벗어나게 하는 경우. 틀을 벗어나는 이미지 부분은 잘라낸다(숨긴다).
-<figure><picture><source type="image/webp" srcset="/static/resp-img/m-ennJnhyt-360.webp 360w, /static/resp-img/m-ennJnhyt-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/m-ennJnhyt-360.jpeg 360w, /static/resp-img/m-ennJnhyt-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="틀이 이미지의 뷰포트처럼 적용되는 경우" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_type1.png" src="/static/resp-img/m-ennJnhyt-360.jpeg" width="480" height="281"></picture><figcaption>틀이 이미지의 뷰포트처럼 적용되는 경우</figcaption></figure></li>
+<figure><picture><source type="image/webp" srcset="/static/resp-img/m-ennJnhyt-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="틀이 이미지의 뷰포트처럼 적용되는 경우" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_type1.png" src="/static/resp-img/m-ennJnhyt-360.jpeg" width="360" height="211"></picture><figcaption>틀이 이미지의 뷰포트처럼 적용되는 경우</figcaption></figure></li>
 <li>이미지를 맞출 틀 안에 이미지의 <strong>가로, 세로 중 긴 쪽을 맞춰서</strong> 틀을 벗어나지 않게 하는 경우. 대신 틀과 이미지의 비율이 안맞으면 여백이 생긴다.
-<figure><picture><source type="image/webp" srcset="/static/resp-img/qjkQof4I_B-360.webp 360w, /static/resp-img/qjkQof4I_B-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/qjkQof4I_B-360.jpeg 360w, /static/resp-img/qjkQof4I_B-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="이미지를 액자 안에 넣은 것처럼 맞추는 경우" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_type2.png" src="/static/resp-img/qjkQof4I_B-360.jpeg" width="480" height="148"></picture><figcaption>이미지를 액자 안에 넣은 것처럼 맞추는 경우</figcaption></figure></li>
+<figure><picture><source type="image/webp" srcset="/static/resp-img/qjkQof4I_B-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="이미지를 액자 안에 넣은 것처럼 맞추는 경우" loading="lazy" decoding="async" data-src="../../static/uploads/2014/02/aspect_type2.png" src="/static/resp-img/qjkQof4I_B-360.jpeg" width="360" height="111"></picture><figcaption>이미지를 액자 안에 넣은 것처럼 맞추는 경우</figcaption></figure></li>
 </ol>
 <p>여기서는 1번을 해보려고 한다. 2번은 1번에 비해 이미지가 작아지고 여백이 생겨 보기가 안 좋다고 생각한다.</p>
 <p>기본적인 HTML 구조는 <code>&lt;div&gt;</code>로 <code>&lt;img&gt;</code>를 감싸는 형태가 된다. <code>&lt;div&gt;</code>는 원하는 가로세로비를 적용하여 크기를 설정해놓고 <code>overflow: hidden</code>을 주면 되고 <code>&lt;img&gt;</code>는 위 1번이나 2번 중 원하는 방식에 따라 크기와 위치를 지정해주면 된다.</p>

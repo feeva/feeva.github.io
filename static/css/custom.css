@@ -95,7 +95,7 @@ figcaption a { color: #555; }
 .collection section.poster > * { position: relative; color: white; }
 .collection section.poster .background-image {
   position: absolute; left: 0; top:0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.3) url(/static/images/20220910_161621.jpg) no-repeat top center;
+  background: rgba(0, 0, 0, 0.3) url(/static/images/poster.jpg) no-repeat top center;
   background-size: cover;
   background-blend-mode: darken;
 }

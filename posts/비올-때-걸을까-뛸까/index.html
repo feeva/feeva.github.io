@@ -21,10 +21,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <style></style>
-    <link rel="icon" href="/static/images/photo.jpg" />
+    <link rel="icon" href="/static/images/masi.jpg" />
 
     
 
+    
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,6 +35,7 @@
       ga('create', 'UA-13042476-6', 'auto');
       ga('send', 'pageview');
     </script>
+    
   </head>
   <body>
     <div class="post-layout">
@@ -46,7 +48,7 @@
 <p>그런데 이것을 수치 계산이 아니라 21세기의 컴퓨터 기술을 활용해 시각적으로 보이면 좋지 않을까 생각이 들었다. 그래서 한번 만들어봤다. <a href="/pages/rainrun/" target="rainrun">비 맞기 시뮬레이션</a>!</p>
 <!--more-->
 <a href="/pages/rainrun/" target="rainrun">
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/aGulRcFPmd-360.webp 360w, /static/resp-img/aGulRcFPmd-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/aGulRcFPmd-360.jpeg 360w, /static/resp-img/aGulRcFPmd-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="비 맞기 시뮬레이션" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun.jpg" src="/static/resp-img/aGulRcFPmd-360.jpeg" width="480" height="169"></picture><figcaption>비 맞기 시뮬레이션</figcaption></figure>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/aGulRcFPmd-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="비 맞기 시뮬레이션" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun.jpg" src="/static/resp-img/aGulRcFPmd-360.jpeg" width="360" height="127"></picture><figcaption>비 맞기 시뮬레이션</figcaption></figure>
 </a></p>
 <p>링크를 눌러 프로그램을 띄우면 애니메이션 방식으로 비 맞기를 시뮬레이션해 보여준다. 애니메이션을 중지하고 직접 움직이게 해볼 수도 있고 여러 조건을 지정해 비를 얼마나 많이 맞게 되는지 확인해볼 수 있다. 이때 비의 양이라든가 달리는 속력 등은 실제 물리 단위가 아니라 프로그램에서 정한 임의의 상대적인 단위이므로 오해 없기 바란다.</p>
 <p>일단 왼쪽에서 오른쪽으로 달리는 조건에서 천천히 갈 때와 빨리 갈 때 맞은 비의 흔적을 비교해보면 다음과 같다.</p>
@@ -54,19 +56,19 @@
 <tbody>
 <tr>
 <td>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/fckJ2Dgk12-250.webp 250w" sizes="(max-width: 768px) 100vw, 768px"><img alt="빨리 갈 때" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_fast1.jpg" src="/static/resp-img/fckJ2Dgk12-250.jpeg" width="250" height="250"></picture><figcaption>빨리 갈 때</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/fckJ2Dgk12-250.webp 250w" sizes="(max-width:800px) 100vw, 1200px"><img alt="빨리 갈 때" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_fast1.jpg" src="/static/resp-img/fckJ2Dgk12-250.jpeg" width="250" height="250"></picture><figcaption>빨리 갈 때</figcaption></figure></p>
 </td>
 <td>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/wudNTRvjPp-250.webp 250w" sizes="(max-width: 768px) 100vw, 768px"><img alt="천천히 갈 때" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_slow1.jpg" src="/static/resp-img/wudNTRvjPp-250.jpeg" width="250" height="250"></picture><figcaption>천천히 갈 때</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/wudNTRvjPp-250.webp 250w" sizes="(max-width:800px) 100vw, 1200px"><img alt="천천히 갈 때" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_slow1.jpg" src="/static/resp-img/wudNTRvjPp-250.jpeg" width="250" height="250"></picture><figcaption>천천히 갈 때</figcaption></figure></p>
 </td>
 </tr>
 </tbody>
 </table>
 <p>소년 이미지에 비가 맞았을 경우 그림에 표시된 것 같은 붉은 색으로 변하게 되는데 왼쪽의 빨리 갈 때와 오른쪽의 천천히 갈 때를 비교해보면 빨리 가는 쪽이 비를 더 많이 맞은 것 같다. 순간적으로는 달리는 방향으로 오는 비를 뚫고(더 많이 맞으면서) 가야 하기 때문이다.</p>
 <p>그러나 목표하는 이동 거리를 다 이동하고 난 후의 비의 양을 보면 얘기가 달라진다. 아래는 빨리 이동한 경우 비를 맞은 전체 자취다.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/IZTVaK1DNT-360.webp 360w, /static/resp-img/IZTVaK1DNT-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/IZTVaK1DNT-360.jpeg 360w, /static/resp-img/IZTVaK1DNT-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="빠르게 이동한 경우 맞은 비의 자취" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_fast2.jpg" src="/static/resp-img/IZTVaK1DNT-360.jpeg" width="480" height="292"></picture><figcaption>빠르게 이동한 경우 맞은 비의 자취</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/IZTVaK1DNT-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="빠르게 이동한 경우 맞은 비의 자취" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_fast2.jpg" src="/static/resp-img/IZTVaK1DNT-360.jpeg" width="360" height="219"></picture><figcaption>빠르게 이동한 경우 맞은 비의 자취</figcaption></figure></p>
 <p>아래는 천천히 이동한 경우 비를 맞은 전체 자취다.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/ATPQe-plkD-360.webp 360w, /static/resp-img/ATPQe-plkD-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/ATPQe-plkD-360.jpeg 360w, /static/resp-img/ATPQe-plkD-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="느리게 이동한 경우 맞은 비의 자취" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_slow2.jpg" src="/static/resp-img/ATPQe-plkD-360.jpeg" width="480" height="292"></picture><figcaption>느리게 이동한 경우 맞은 비의 자취</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/ATPQe-plkD-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="느리게 이동한 경우 맞은 비의 자취" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/rainrun_slow2.jpg" src="/static/resp-img/ATPQe-plkD-360.jpeg" width="360" height="219"></picture><figcaption>느리게 이동한 경우 맞은 비의 자취</figcaption></figure></p>
 <p>빠르게 이동한 경우는 이동 시간이 짧으므로 맞은 비의 높이가 작지만 느리게 이동한 경우는 비의 높이가 높다. 따라서 대략적으로 면적을 구해본다면 빠르게 이동한 경우가 비를 덜 맞음을 알 수 있다. <strong>결과적으로 비를 맞는 양은 이동 시간이 길면 많아진다</strong>는 것이다. 실제 결과는 <a href="/pages/rainrun/" target="rainrun">비 맞기 시뮬레이션</a>을 띄워 빗 방울의 수가 얼마인지 확인해보기 바란다.</p>
 <p>프로그램에서는 바람의 방향에 따른 영향도 확인할 수 있다. 우리 아이에게 보여주니 게임처럼 재밌어 하던데 😄 관심 있는 사람들 모두 재밌게 볼 수 있기를 바란다.</p>
 

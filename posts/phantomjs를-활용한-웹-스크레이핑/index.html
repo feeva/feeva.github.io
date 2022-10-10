@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <style></style>
-    <link rel="icon" href="/static/images/photo.jpg" />
+    <link rel="icon" href="/static/images/masi.jpg" />
 
     
 
+    
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,6 +39,7 @@
       ga('create', 'UA-13042476-6', 'auto');
       ga('send', 'pageview');
     </script>
+    
   </head>
   <body>
     <div class="post-layout">
@@ -55,7 +57,7 @@
 <p>위 코드를 보면 PhantomJS의 외부 모듈 중 하나인 <code>webpage</code> 모듈을 로딩한 다음 <code>page</code> 개체를 만든다. 그리고는 그 페이지 개체를 사용하여 http://github.com 싸이트의 화면을 캡처한 후 종료한다.</p>
 <p>이것이 일반적인 PhantomJS의 사용 방식이다. 웹 스크레이핑을 위해서는 연속적으로 웹 페이지를 찾아들어갈 수 있도록 반복되는 루틴을 추가하면 될 것이다.</p>
 <p>오늘의 프로그램 요리 두 번째 재료로 웹 스크레이프를 할 대상 웹사이트를 준비한다. 여기서는 영어 그래픽 소설인 <a title="Delilah Dirk and the Turkish Lieutenant" href="http://www.delilahdirk.com/" target="_blank">Delilah Dirk and the Turkish Lieutenant</a>를 스크레이프해보겠다. 우선 이 만화에서 <strong>어떤 주소로부터 시작할지 정해야 한다.</strong> 첫 페이지인 <a href="http://www.delilahdirk.com/ddattl/ch0-000A-000B.html">http://www.delilahdirk.com/ddattl/ch0-000A-000B.html</a>부터 스크레이프하기로 하고 그 페이지를 연 후 소스를 보자.</p>
-<p><figure><picture><source type="image/webp" srcset="/static/resp-img/ZR2lDdGLGU-360.webp 360w, /static/resp-img/ZR2lDdGLGU-480.webp 480w" sizes="(max-width: 768px) 100vw, 768px"><source type="image/jpeg" srcset="/static/resp-img/ZR2lDdGLGU-360.jpeg 360w, /static/resp-img/ZR2lDdGLGU-480.jpeg 480w" sizes="(max-width: 768px) 100vw, 768px"><img alt="캡처할 부분을 HTML 소스에서 찾기" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/delilah_dirk_elements.jpg" src="/static/resp-img/ZR2lDdGLGU-360.jpeg" width="480" height="425"></picture><figcaption>캡처할 부분을 HTML 소스에서 찾기</figcaption></figure></p>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/ZR2lDdGLGU-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="캡처할 부분을 HTML 소스에서 찾기" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/delilah_dirk_elements.jpg" src="/static/resp-img/ZR2lDdGLGU-360.jpeg" width="360" height="319"></picture><figcaption>캡처할 부분을 HTML 소스에서 찾기</figcaption></figure></p>
 <p>위는 구글 크롬에서 개발자 도구를 사용해 소스를 보면서 원하는 컨텐트가 어떤 부분인지 찾아내는 것이다. 파란색으로 강조 표시된 줄이 뒤의 웹페이지에서 흐릿하게 나타나는 것을 볼 수 있다. 다른 브라우저나 도구를 사용해도 상관 없다. <strong>어떤 부분이 원하는 영역인지 찾은 후 그 영역을 구별할 수 있는 <a title="CSS 선택자" href="http://www.clearboth.org/css3_1_by_isdn386/" target="_blank">CSS 선택자</a>를 만들어내야 한다</strong>. 여기서는 이미지를 감싸고 있는 div의 id가 있으므로 <code>#leftpage img</code>와 같이 선택할 수 있을 것이다.</p>
 <p>이 페이지에는 만화가 두 쪽씩 들어있으므로 <code>#rightpage img</code>도 선택해야 한다.</p>
 <p><strong>다음으로는 이 웹페이지를 본 후 어디로 가는지를 찾아내야 한다</strong>. 위 그림에서 보면 아주 간편하게 <code>#snextbutton a</code> 태그 안의 href 값을 가져오기만 하면 된다.</p>
