@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV 동네 탐방 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="연전에 달인의 추억이라는 프로그램을 만들어서 올렸는데 이번에 시간을 내서 버전업을 해봤다. 이름하여
+&quot;TV 동네 탐방&quot;. 이번엔 생활의 달인 한 프로그램 뿐 아니라 여러 TV 방송 데이터를 수집했고
+검색 기능까지 넣는 등 업그레이드해봤다.
+">
+    <link rel="canonical" href="https://feeva.github.io/posts/TV-동네-탐방/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="TV 동네 탐방">
+    <meta property="og:url" content="https://feeva.github.io/posts/TV-동네-탐방/">
+    <meta property="og:description" content="연전에 달인의 추억이라는 프로그램을 만들어서 올렸는데 이번에 시간을 내서 버전업을 해봤다. 이름하여
+&quot;TV 동네 탐방&quot;. 이번엔 생활의 달인 한 프로그램 뿐 아니라 여러 TV 방송 데이터를 수집했고
+검색 기능까지 넣는 등 업그레이드해봤다.
+">
+    <meta property="og:image" content="../../static/uploads/2020/gatsby.jpg">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/static/style.css">
+    <style></style>
+    <link rel="icon" href="/static/images/masi.jpg">
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-13042476-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 게시물</a>
+
+  <h1>TV 동네 탐방</h1>
+
+  <div class="post-content">
+    <p>연전에 <a href="/posts/%EB%8B%AC%EC%9D%B8%EC%9D%98-%EC%B6%94%EC%96%B5/">달인의 추억</a>이라는 프로그램을 만들어서 올렸는데 이번에 시간을 내서 버전업을 해봤다.
+이름하여 “<a href="/pages/tv-towns">TV 동네 탐방</a>”. 이번엔 생활의 달인 한 프로그램 뿐 아니라 여러 TV 방송 데이터를 수집했고
+검색 기능까지 넣는 등 업그레이드해봤다.</p>
+<!--more-->
+<p><a href="/pages/tv-towns"><picture><source type="image/webp" srcset="/static/resp-img/Nr4RBgJDHK-360.webp 360w, /static/resp-img/Nr4RBgJDHK-720.webp 720w, /static/resp-img/Nr4RBgJDHK-800.webp 800w, /static/resp-img/Nr4RBgJDHK-1200.webp 1200w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/Nr4RBgJDHK-360.jpeg 360w, /static/resp-img/Nr4RBgJDHK-720.jpeg 720w, /static/resp-img/Nr4RBgJDHK-800.jpeg 800w, /static/resp-img/Nr4RBgJDHK-1200.jpeg 1200w" sizes="(max-width:800px) 100vw, 1200px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2023/tv-towns.jpg" src="/static/resp-img/Nr4RBgJDHK-360.jpeg" width="1200" height="723"></picture></a></p>
+<p>달인의 추억을 보면서 문제가 있는 건 아니지만 좀더 기능을 추가해야겠다는 생각이 들었었다.</p>
+<ul>
+<li>TV 방송에는 SBS <a href="https://programs.sbs.co.kr/culture/lifemaster/main?div=tv_total_new">생활의 달인</a> 말고도 맛집, 멋집을 소개하는 프로그램이 많다. 이번에는 TV조선 <a href="http://broadcast.tvchosun.com/broadcast/program/3/C201900033.cstv">백반 기행</a>, SBS <a href="https://programs.sbs.co.kr/culture/today3/main?div=tv_total_new">생방송 투데이</a>, MBC <a href="https://program.imbc.com/evening">생방송 오늘 저녁</a>의 데이터를 추가했다.</li>
+<li>검색 기능을 넣어서 주소나 내용으로 찾아볼 수 있으면 좋겠다.</li>
+<li>너무 오래된 데이터는 제외해야겠다. 그래서 5년간의 데이터만 수집하도록 하고 연도가 지날수록 지도 마커를 흐리게 표시하도록 했다.</li>
+</ul>
+<p>개발에 있어서는 전과 마찬가지로 Vue JS 기반이며 <a href="https://www.vworld.kr/">VWorld</a>에서 제공하는 지도를 사용했고 <a href="https://leafletjs.com/">Leaflet</a>을 사용해서 지도 UI를 구현했다.</p>
+<p>소스는 <a href="https://github.com/feeva/feeva.tv-towns">GitHub</a>에서 받을 수 있다. 즐거운 맛집, 멋집 탐방이 되길~</p>
+
+  </div>
+
+  <div class="post-footer">
+    <div class="post-footer-date">
+      게시일 - <time datetime="2023-05-20T10:30:00.000Z">2023. 5. 20.</time>
+    </div>
+
+    <ul class="post-tags"><li><a href="/tags/sbs">SBS</a></li><li><a href="/tags/mbc">MBC</a></li><li><a href="/tags/tv조선">TV조선</a></li><li><a href="/tags/생활의-달인">생활의 달인</a></li><li><a href="/tags/백반-기행">백반 기행</a></li><li><a href="/tags/생방송-투데이">생방송 투데이</a></li><li><a href="/tags/생방송-오늘-저녁">생방송 오늘 저녁</a></li><li><a href="/tags/맛집">맛집</a></li><li><a href="/tags/멋집">멋집</a></li><li><a href="/tags/지도">지도</a></li></ul>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+  var disqus_config = function () {
+    this.page.url = "" || location.origin + '/posts/TV-동네-탐방/';
+    this.page.identifier = 'TV-동네-탐방';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://nnus.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
