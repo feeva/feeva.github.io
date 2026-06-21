@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-03-24T15:09:20.000Z">2013. 3. 25.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>자바스크립트 배열 길이는 동적으로 변한다. 그렇다면 배열 변수 선언이나 요소 정의, 삭제 등의 조작에 따라 그 값이 어떻게 달라질까? 다음은 구글 크롬 브라우저의 콘솔 창에서 배열을 선언하고 요소를 추가하는 과정을 보인 것이다. 다른 브라우저에서도 유사한 결과를 볼 수 있다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>자바스크립트 배열 길이는 동적으로 변한다. 그렇다면 배열 변수 선언이나 요소 정의, 삭제 등의 조작에 따라 그 값이 어떻게 달라질까? 다음은 구글 크롬 브라우저의 콘솔 창에서 배열을 선언하고 요소를 추가하는 과정을 보인 것이다. 다른 브라우저에서도 유사한 결과를 볼 수 있다.</p>
 <pre class="language-js"><code class="language-js"><span class="token operator">></span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> x<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
 <span class="token number">0</span>
 <span class="token operator">></span> x<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> x<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
@@ -102,6 +108,7 @@ Object <span class="token punctuation">{</span><span class="token number">10</sp
 name <span class="token operator">=</span> 변수
 "</code></pre>
 
+    </div>
   </div>
 
   <div class="post-footer">

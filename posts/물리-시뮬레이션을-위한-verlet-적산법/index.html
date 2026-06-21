@@ -55,8 +55,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 <a title="Verlet integration" href="http://en.wikipedia.org/wiki/Verlet_integration" target="_blank">Wikipedia 글</a>의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 <a title="Verlet integration" href="http://en.wikipedia.org/wiki/Verlet_integration" target="_blank">Wikipedia 글</a>의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)</p>
 <p>이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 <a href="http://codepen.io/anon/pen/cwLuG" target="_blank">천이 찢어지는 애니메이션</a>, <a href="http://subprotocol.com/verlet-js/examples/spiderweb.html">거미줄의 흔들림</a> 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! <strong>JavaScript<span style="display: none;">(자바스크립트)</span>로 물리 운동을 시뮬레이션하다니!</strong></p>
 <!--more-->
 <h3>기본 개념</h3>
@@ -265,6 +271,7 @@ $$</p>
 <p>그래서 일반적으로는 두번째 위치값을 첫번째 위치값과 같은 값으로 넣어준다(즉, 두 값 다 0으로 시작). 그러면 위 예시에서의 오차가 7%가 나오긴 하는데 다시 0.1초 후에는 그 위치를 따라 잡게 되고 더욱이 실제 애니메이션에서는 시간 간격이 0.1초보다 훨씬 작거나(30~60분의 1초 정도) 전체 시간이 상대적으로 긴 경우에는 이 오차는 더 느낄 수 없을 정도가 되기 때문에 이렇게 근사치로 적용한다. 즉, 위 예시는 2초 후의 오차인데 0.02초 간격일 때의 오차나 10초, 100초 후의 오차는 더 작아진다는 말이다.</p>
 <p>그럼 여기까지 하고 이제 다음에는 꼭 실제 JavaScript 예제를 만들어보자. 근데 이거 시간이 많이 걸리네…</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

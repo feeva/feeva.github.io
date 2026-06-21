@@ -47,8 +47,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-03-21T02:39:50.000Z">2013. 3. 21.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>몇 년 전부터 자바스크립트 디버깅이 참 쉬워졌다. 이미 FireFox, Chrome 등 다른 브라우저는 물론이고 MS의 인터넷 익스플로러까지도 개발자 도구를 포함하고 있기 때문에 웹페이지 디버그 모드로 들어가서 한 단계, 한 단계 실행하면서 개체의 정보를 보고 뭐가 문제인지 찾을 수 있게 되었기 때문이다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>몇 년 전부터 자바스크립트 디버깅이 참 쉬워졌다. 이미 FireFox, Chrome 등 다른 브라우저는 물론이고 MS의 인터넷 익스플로러까지도 개발자 도구를 포함하고 있기 때문에 웹페이지 디버그 모드로 들어가서 한 단계, 한 단계 실행하면서 개체의 정보를 보고 뭐가 문제인지 찾을 수 있게 되었기 때문이다.</p>
 <p><figure><picture><source type="image/webp" srcset="/static/resp-img/hFRDqnxVit-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="Chrome 개발자 도구" loading="lazy" decoding="async" data-src="../../static/uploads/2013/03/chrome_dev_tool.png" src="/static/resp-img/hFRDqnxVit-360.jpeg" width="360" height="254"></picture><figcaption>Chrome 개발자 도구</figcaption></figure></p>
 <p>그런데 가끔 이러한 브라우저 개발자 도구를 사용하지 못한다든가 개발자 도구에서 들여다보기에는 답답한 경우가 있다. 직접 개체의 속성 정보를 원하는 대로 출력해보는 건 어떨까?</p>
 <!--more-->
@@ -64,6 +70,7 @@
 <p>마지막으로 내가 원하는 임의의 개체를 그때그때 지정하여 디버깅할 수 있게 한다면 다음과 같이 개체명을 입력받으면 된다. 그리고 즐겨찾기로 등록하면 아무 때나 디버깅이 가능하므로 편리할 것이다(Chrome에서는 주소란에 입력한 문자열을 선택한 후 즐겨찾기로 끌어다 놓으면 되고 IE에서는 아무 웹페이지나 즐겨찾기로 등록한 후 수정으로 들어가 주소 정보를 수정하면 된다).</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token literal-property property">javascript</span><span class="token operator">:</span> <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">'개체명을 입력하세요'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> obj<span class="token punctuation">)</span> s <span class="token operator">+=</span> key <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'&lt;br>'</span><span class="token punctuation">;</span> <span class="token keyword">var</span> w <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> w<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> w<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span> w<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
 
+    </div>
   </div>
 
   <div class="post-footer">

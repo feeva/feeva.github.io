@@ -47,8 +47,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-11-30T13:01:38.000Z">2013. 11. 30.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>웹에서 뭔가 필요한 자료를 찾을 때가 종종 있다. 한 번만 찾고 마는 경우라면 간단한데 정기 간행되는 기사나 웹툰(Webcomics) 같은 연재되는 컨텐트를 보려고 하면 일일이 눌러서 봐야 하기 때문에 흐름이 끊기는 게 싫기도 하고 광고가 페이지마다 뜨는 것도 마음에 안든다. 그래서 웹 스크레이핑(Web scraping)으로 필요한 컨텐트만 콕 집어서 한번에 가져온 다음 여유있게 보는 것이 편리할 것이다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>웹에서 뭔가 필요한 자료를 찾을 때가 종종 있다. 한 번만 찾고 마는 경우라면 간단한데 정기 간행되는 기사나 웹툰(Webcomics) 같은 연재되는 컨텐트를 보려고 하면 일일이 눌러서 봐야 하기 때문에 흐름이 끊기는 게 싫기도 하고 광고가 페이지마다 뜨는 것도 마음에 안든다. 그래서 웹 스크레이핑(Web scraping)으로 필요한 컨텐트만 콕 집어서 한번에 가져온 다음 여유있게 보는 것이 편리할 것이다.</p>
 <p>그래서 작성해봤다. 웹페이지의 컨텐트를 이미지로 저장하거나 텍스트 파일로 저장할 수 있는 자바스크립트 프로그램!</p>
 <!--more-->
 <p><strong>오늘의 프로그램 요리를 위한 첫번째 재료는 <a title="PhantomJS" href="http://phantomjs.org/" target="_blank">PhantomJS</a> 되겠다</strong>.애플 사파리(Safari) 및 구글 크롬(Chrome) 웹브라우저의 렌더링 엔진인 <a title="WebKit" href="http://www.webkit.org/" target="_blank">WebKit</a>을 활용한 “Headless” 브라우저로서 자바스크립트(JavaScript)을 사용해 UI 없이 명령행으로 웹페이지를 조작할 수 있다. 모질라 파이어폭스(Firefox)의 엔진인 <a title="Gecko" href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko" target="_blank">Gecko</a> 기반의 <a title="SlimerJS" href="http://slimerjs.org/index.html" target="_blank">SlimerJS</a>도 마찬가지 방식이다. 이 글에서는 PhantomJS를 사용해보기로 한다.</p>
@@ -137,6 +143,7 @@ page<span class="token punctuation">.</span><span class="token function">open</s
 <p>PhantomJS는 이러한 사용 외에도 웹 기능 테스트라든가 HTTP 네트웍 모니터링 등 활용도가 다양하다. 간단하게나마 위와 같이 웹 스크레이핑에 있어서도 아주 훌륭하다. 다양한 활용 방법이 앞으로도 계속 나오지 않을까 생각된다.</p>
 <p><span style="display: none;">웹스크래핑</span></p>
 
+    </div>
   </div>
 
   <div class="post-footer">

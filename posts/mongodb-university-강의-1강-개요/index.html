@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2014-07-09T17:06:38.000Z">2014. 7. 10.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p><a href="https://university.mongodb.com/" target="_blank">MongoDB University</a>에서 <a title="M101J: MongoDB for Java Developers" href="https://university.mongodb.com/courses/10gen/M101J/2014_August/about" target="_blank">자바 개발자를 위한 MongoDB 강좌</a>를 들었다. 시작한지 꽤 됐지만 바쁜 핑계로 아직도 끝내진 못했는데 정리 삼아 올려본다. 서너달에 한번씩 여러 강좌를 순환하므로 관심있다면 수강해보길 권한다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p><a href="https://university.mongodb.com/" target="_blank">MongoDB University</a>에서 <a title="M101J: MongoDB for Java Developers" href="https://university.mongodb.com/courses/10gen/M101J/2014_August/about" target="_blank">자바 개발자를 위한 MongoDB 강좌</a>를 들었다. 시작한지 꽤 됐지만 바쁜 핑계로 아직도 끝내진 못했는데 정리 삼아 올려본다. 서너달에 한번씩 여러 강좌를 순환하므로 관심있다면 수강해보길 권한다.</p>
 <!--more-->
 <h3>MongoDB 개념</h3>
 <p>NoSQL 데이터베이스로서 JSON 형태의 데이터를 저장한다. SQL을 지원하지 않기 때문에 조인 개념이 없고 스키마는 유동적이다. 유동적이라는 말은 MongoDB에서 저장하는 데이터 단위는 &quot;문서&quot;인데 관계형 데이터베이스에서 행 단위의 레코드라고 할 수 있다. 하지만 문서의 속성은 DB 컬럼처럼 정형화된 것이 아니라 가변적이라 모든 문서의 형태는 다를 수 있다는 것이다.</p>
@@ -170,6 +176,7 @@ tag_id          comment_id          username
 <p>태그나 댓글을 Posts 컬렉션에 넣는 이유는 게시물을 액세스할 때 태그나 댓글도 거의 항상 액세스하기 때문이다.</p>
 <p>한편 현실적으로는 16MB가 문서(document)의 한계기 때문에 예를 들어 댓글이 16MB가 넘을 것으로 예상된다면 분리해야 할 수도 있다.</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

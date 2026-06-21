@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>최근에 우리 회사 새내기 개발자가 e메일 보내기에 대해 약간이나마 어려움을 느낀 것 같길래 자바에서 e메일 보내는 방법을 다시 한번 정리해볼 필요가 있겠다는 생각이 들었다. 이 글에서는 JavaMail API, 스프링 API, 기타 방법으로 e메일을 발신하는 방법을 알아보기로 한다. <span style="display: none;">자바 메일 보내기</span><!--more--></p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>최근에 우리 회사 새내기 개발자가 e메일 보내기에 대해 약간이나마 어려움을 느낀 것 같길래 자바에서 e메일 보내는 방법을 다시 한번 정리해볼 필요가 있겠다는 생각이 들었다. 이 글에서는 JavaMail API, 스프링 API, 기타 방법으로 e메일을 발신하는 방법을 알아보기로 한다. <span style="display: none;">자바 메일 보내기</span><!--more--></p>
 <h3>1. JavaMail API 사용</h3>
 <p>이 방법은 자바 EE의 JavaMail API를 사용하는 것이다. 웹 환경에서는 제우스(Jeus)나 웹스피어(WebSphere) 같은 자바 EE 컨테이너를 사용한다면 JavaMail 라이브러리가 기본적으로 포함됐으므로 바로 사용할 수 있고 톰캣(Tomcat) 같은 서블릿 컨테이너를 사용하는 환경이거나 웹 환경이 아니라면 <a title="JavaMail API 다운로드" href="http://www.oracle.com/technetwork/java/javamail/index-138643.html" target="_blank">Oracle 사이트</a>에서 JavaMail API를 다운로드하거나 Maven pom.xml에 다음 의존성을 추가한다. (1.4.7이 현재 가장 안정적인 최신 버전이다.)</p>
 <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -121,6 +127,7 @@ helper<span class="token punctuation">.</span><span class="token function">addAt
 <h3>3. 기타 방법</h3>
 <p>아파치 커먼스(Apache Commons) 프로젝트 중에 Email 프로젝트를 사용해서 메일을 보낼 수 있다. 이 역시 JavaMail API를 래핑한 것이라 JavaMail 라이브러리는 필수다. 사용 방법은 프로젝트의 <a title="Apache Commons Email 사용 설명" href="http://commons.apache.org/proper/commons-email/userguide.html" target="_blank">설명 문서</a>를 참고하기 바란다. 마지막으로 <a title="Apache Commons Net" href="http://commons.apache.org/proper/commons-net/" target="_blank">아파치 커먼스 Net</a> 같은 프로젝트를 활용해서 SMTP 프로토콜을 직접 제어하는 방법도 있다. 이 방법은 위의 방법들보다 훨씬 복잡하지만 SMTP를 거의 직접적으로 제어하는 수준으로 메일을 발신할 수 있으므로 오류 처리라든가 대량 메일 발신 등의 처리에 있어서 개발자 고유의 로직을 적용할 수 있는 장점이 있다. 사용 방법 예시로 <a title="Apache Commons Net SMTP 예시" href="http://commons.apache.org/proper/commons-net/examples/mail/SMTPMail.java" target="_blank">자바 파일</a>이 있으므로 참고해볼만 하다.</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

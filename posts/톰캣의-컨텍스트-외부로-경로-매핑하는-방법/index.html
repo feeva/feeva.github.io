@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.</p>
 <!--more-->
 <p>원칙적으로 소스 버전 관리를 통해서 산출물을 공유하면 좋지만 디자인팀은 <em>아… 그런 거 골치아파요</em>하거나 <em>일단 진행하다가 나중에 넣을께요</em>하며 시간 지연 작전을 쓴다. 또한 개발팀은 개발팀대로 이미지는 파일 크기가 상당히 큰 편이다 보니 프로젝트 폴더에 이미지를 넣고 주고 받는 게 심적으로 부담스러운 면도 있다.</p>
 <p>아무튼 이렇게 정적인 자원(디자인 산출물)을 별개로 관리할 경우 개발팀에서 Tomcat으로 개발 중인 웹페이지를 띄울 때 어떻게 하는 게 좋을까? 예를 들어 컨텍스트 경로는 <code>/</code>, 즉 루트고 실제 경로는 <code>d:\project\webapp</code>이라고 하자. 그런데 이미지 경로는 <code>/img</code>이고 실제 경로는 <code>d:\project\design\img</code>일 경우 어떻게 할까? 또는 이미지의 실제 경로가 같은 컴퓨터에 있지 않고 예를 들어 <code>http://123.45.67.89/img</code>에 있다면?</p>
@@ -96,6 +102,7 @@
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${resourcePath}/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></code></pre>
 <p>이상으로 글을 마치며 디자인팀과 개발팀의 조화로운 프로젝트 진행을 꿈꿔본다. 😉</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

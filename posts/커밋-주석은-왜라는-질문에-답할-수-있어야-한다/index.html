@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2015-02-23T18:22:58.000Z">2015. 2. 24.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>개발자들의 일상 업무 중 하나는 소스 코드를 작성하고 버전 관리 도구를 사용해 &quot;커밋&quot;하는 일일 것이다. 소스 저장소라고 하는 신성한 영역에 내가 공들여 만든 소스 한 조각을 추가함으로써 IT 시스템을 진화시키는 것이다. 마치 매트릭스 3편에서 네오가 자신의 몸을 데우스 엑스 마키나에게 맡겨 가상의 소스를 건네주는 것처럼.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>개발자들의 일상 업무 중 하나는 소스 코드를 작성하고 버전 관리 도구를 사용해 &quot;커밋&quot;하는 일일 것이다. 소스 저장소라고 하는 신성한 영역에 내가 공들여 만든 소스 한 조각을 추가함으로써 IT 시스템을 진화시키는 것이다. 마치 매트릭스 3편에서 네오가 자신의 몸을 데우스 엑스 마키나에게 맡겨 가상의 소스를 건네주는 것처럼.</p>
 <!--more-->
 <p>그런데 버전 관리 도구들은 커밋할 때 주석(개발자의 의견)을 입력할 수 있게 돼 있는데(아래 그림) 개발자 대부분이 이를 허투로 넘긴다. 이 커밋 주석이라는 녀석을 공들여 작성해야 한다는 것이 프로젝트할 때마다 내가 개발자들에게 언급하는 부분인데 특히 커밋 주석은 왜라는 질문에 답할 수 있어야 한다.</p>
 <p><figure><picture><source type="image/webp" srcset="/static/resp-img/mO06WkQocu-360.webp 360w, /static/resp-img/mO06WkQocu-681.webp 681w" sizes="(max-width:800px) 100vw, 1200px"><img alt="Eclipse Git 커밋 대화창" loading="lazy" decoding="async" data-src="../../static/uploads/2015/02/git_커밋_대화창.png" src="/static/resp-img/mO06WkQocu-360.jpeg" width="681" height="613" srcset="/static/resp-img/mO06WkQocu-360.jpeg 360w, /static/resp-img/mO06WkQocu-681.jpeg 681w" sizes="(max-width:800px) 100vw, 1200px"></picture><figcaption>Eclipse Git 커밋 대화창</figcaption></figure></p>
@@ -55,6 +61,7 @@
 <p><strong>예를 들어 &quot;if 조건 추가&quot;라는 주석을 보자. 이건 변경 내용 자체를 말하는 것이다. 왜 그랬는지 전혀 나타나있지 않다. 이유가 없으므로 사실상 주석을 통해 변경 내용을 이해할 수 없을 것이다. 하지만 &quot;null 검사가 없으면 뒷부분에서 NullPointerException 발생&quot;이라든가 &quot;버그 #23번 참고&quot;와 같이 쓴다면 소스에 대해 훨씬 쉽고 간단히 이해할 수 있다. 하다못해 &quot;회의 들어가기 위해 일단 커밋&quot;이라고 써도 내가 볼 때는 훌륭한 주석이라고 생각한다.</strong></p>
 <p>존재하는 모든 것에는 이유가 있다고 하는 <a title="충족이유율" href="http://krdic.naver.com/detail.nhn?docid=38120800" target="_blank">라이프니츠의 사상</a>처럼 소스 코드 역시 왜 그런 소스가 들어간 것인지 이유가 있어야 한다. 이제부터 커밋 주석을 작성할 때는 &quot;내가 왜 이런 작업을 했지?&quot;라는 질문에 대한 대답을 내용으로 작성해보도록 하자.</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

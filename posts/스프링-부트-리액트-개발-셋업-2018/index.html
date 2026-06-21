@@ -43,8 +43,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2018-09-14T08:54:45.000Z">2018. 9. 14.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>오늘 오랜만에 올리는 글은 <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">스프링 부트</a> + <a href="https://reactjs.org/" target="_blank" rel="noopener">리액트</a> 개발을 2018년 현재 시점의 도구들로 셋업하는 방법에 대해 써보고자 한다. 아직까지 상용 프로젝트에서는 두 가지 조합을 본 적이 없지만 현재까지 추세나 장점을 볼 때 앞으로 대세가 될 것이라 확신한다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>오늘 오랜만에 올리는 글은 <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">스프링 부트</a> + <a href="https://reactjs.org/" target="_blank" rel="noopener">리액트</a> 개발을 2018년 현재 시점의 도구들로 셋업하는 방법에 대해 써보고자 한다. 아직까지 상용 프로젝트에서는 두 가지 조합을 본 적이 없지만 현재까지 추세나 장점을 볼 때 앞으로 대세가 될 것이라 확신한다.</p>
 <!--more-->
 <p>우리나라 스프링 기반의 상용 웹 프로젝트를 보면 UI는 JSP를 기본으로 jQuery로 DOM 조작을 직접하거나 X-Platform이나 Nexacro 같은 상용 프레임웍을 사용하는 경우가 많은데 React는 학습이 쉽고 UI 컴포넌트화, 재사용성이 좋고 개발자 층이 두터운 등 다양한 이유로 UI 프레임웍의 대표 주자가 되고 있다.</p>
 <!-- /wp:paragraph -->
@@ -239,6 +245,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>자 이제 웹 브라우저에서 웹페이지를 열어보자. 모두 이상 없이 구성됐고 <code>mvnw spring-boot:run</code> 명령으로 Spring Boot가 정상 구동되었다면 <code>http://localhost:8080/main.html</code>, <code>http://localhost:8080/page1.html</code>을 열었을 때 각각 맞는 페이지 내용이 스타일을 설정한 대로 표시돼야 한다.</p>
 <p>결과는 아주 간단한 웹페이지지만 Eclipse를 대체하면서도 Java와 JavaScript 개발을 모두 편리하게 할 수 있는 개발 환경을 구성해봤다. 앞으로 React를 사용할 때 이 작은 글이 조금이나마 도움이 되길 바라본다.</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

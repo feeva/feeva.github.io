@@ -45,8 +45,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2013-04-04T07:36:35.000Z">2013. 4. 4.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>분산 버전 관리 시스템(DVCS)인 <a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>이 나온지 벌써 몇 년이 지나 개발자들에게서 상당한 호응을 받고 있지만 난(또는 우리 회사) 본격적인 사용은 미루고 있었다. 얼마 전부터 제대로 해보자고 이것저것 해보고 있는데 이제 블로그에도 한번 정리삼아 올려보기로 한다. Git을 사용해보자 첫번째 주제로 Git 개념부터 꺼내기로 한다. 이 다음에는 기회되는 대로 Eclipse Git, Git 셸 명령, GitHub, Git 작업 패턴 등을 다뤄보기로 한다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>분산 버전 관리 시스템(DVCS)인 <a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>이 나온지 벌써 몇 년이 지나 개발자들에게서 상당한 호응을 받고 있지만 난(또는 우리 회사) 본격적인 사용은 미루고 있었다. 얼마 전부터 제대로 해보자고 이것저것 해보고 있는데 이제 블로그에도 한번 정리삼아 올려보기로 한다. Git을 사용해보자 첫번째 주제로 Git 개념부터 꺼내기로 한다. 이 다음에는 기회되는 대로 Eclipse Git, Git 셸 명령, GitHub, Git 작업 패턴 등을 다뤄보기로 한다.</p>
 <p><figure><picture><source type="image/webp" srcset="/static/resp-img/PlwZa7jQK3-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="Git 학습" loading="lazy" decoding="async" data-src="../../static/uploads/2013/04/git.jpg" src="/static/resp-img/PlwZa7jQK3-360.jpeg" width="360" height="282"></picture><figcaption>Git 학습</figcaption></figure></p>
 <!--more-->
 <h3>Git 개념 소개</h3>
@@ -186,6 +192,7 @@ Fast-forward
 <p>이제 mybranch가 필요 없어서 삭제하려면 <code>git branch -d mybranch</code>와 같이 하면 된다. 만약 위와 같이 병합하지 않았는데도 삭제하려고 하면 변경 사항이 무시되는 것이므로 삭제되지 않는다. 이때는 <code>git branch -d -f mybranch</code>와 같이 강제로 삭제해야 한다.</p>
 <p>마지막으로 문제. 지금까지의 작업을 원격지에 반영하려면(push)? <code>git push</code>를 실행한다.</p>
 
+    </div>
   </div>
 
   <div class="post-footer">

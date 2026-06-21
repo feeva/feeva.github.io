@@ -45,8 +45,14 @@
   <div class="post-header-meta">
     <time class="local-date" datetime="2009-04-08T08:17:34.000Z">2009. 4. 8.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
-  <div class="post-content">
-    <p>웹에서 파일을 다운로드하는 방식은 두 가지로 나눌 수 있다. 하나는 Apache 등의 웹서버 프로그램을 통해 디스크 상에 있는 그대로의 파일을 다운로드하는 경우와 또 하나는 Java, .NET 등의 <strong>프로그램에서, 예를 들어 <strong>DB 조회 결과를 </strong>CSV, XLS 등으로 출력하거나 임의의 파일 내용을 출력하는 방법으로 프로그램적으로 파일을 다운로드하는 경우</strong>다.</p>
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>웹에서 파일을 다운로드하는 방식은 두 가지로 나눌 수 있다. 하나는 Apache 등의 웹서버 프로그램을 통해 디스크 상에 있는 그대로의 파일을 다운로드하는 경우와 또 하나는 Java, .NET 등의 <strong>프로그램에서, 예를 들어 <strong>DB 조회 결과를 </strong>CSV, XLS 등으로 출력하거나 임의의 파일 내용을 출력하는 방법으로 프로그램적으로 파일을 다운로드하는 경우</strong>다.</p>
 <!--more-->
 <p>두 가지 모두 HTTP 헤더 값에 따라 브라우저가 그 컨텐트를 다운로드할지 브라우저에서 보여줄지 결정된다. Apache는 실제 파일만을 취급하므로 파일 확장명 등에 따라 헤더가 결정돼 있지만 프로그램적으로는 개발자가 직접 설정해야 한다. 다음과 같은 내용으로 헤더를 설정하면 컨텐트가 다운로드된다.</p>
 <pre><code>Content-Disposition: attachment; filename=&quot;파일명&quot;
@@ -114,6 +120,7 @@ response<span class="token punctuation">.</span><span class="token function">set
 response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Transfer-Coding"</span><span class="token punctuation">,</span> <span class="token string">"binary"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">%</span><span class="token operator">></span></code></pre>
 
+    </div>
   </div>
 
   <div class="post-footer">
