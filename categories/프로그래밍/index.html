@@ -39,22 +39,17 @@
   
 
   <main class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 order-2 order-md-1">
       <div class="sidebar mt-3 px-md-3 py-4 pe-md-5">
         <div>
           <img src="/static/images/photo.jpg" class="author-photo" width="75" height="75" alt="이동련">
         </div>
         <h5 class="author-name my-4">이동련</h5>
-        <p style="font-size: 92%; color: #aaa;">
-          꿈은 살아있다! 온고지신을 생각하면서도 새로운 것을 찾아 두리번거리는 개발자. 새롭고 좋은 것은 써봐야겠지만 얼리어답터는 아닌 느린 개혁자.
+        <p class="author-description">
+          오늘도 세상 탐구<br>
+          느끼고 배우고 사랑하고 노력하기
         </p>
-
-        <ul class="page-links list-unstyled mt-5">
-          <li><a href="/">전체 글 목록</a></li>
-          <li><a href="/categories">카테고리</a></li>
-          <li><a href="/tags">태그</a></li>
-          <li><a href="/pages/about">내 소개</a></li>
-        </ul>
+        <a class="author-about" href="/pages/about">내 소개</a>
 
         <ul class="social list-unstyled mt-5">
           <li>
@@ -80,8 +75,23 @@
         </ul>
       </div>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 order-1 order-md-2">
       <div class="content mt-3 ps-md-3 py-4">
+        <div class="home-nav mb-4">
+          <nav class="primary-links" aria-label="주요 메뉴">
+            <a href="/">전체 글 목록</a>
+            <a href="/categories">카테고리</a>
+            <a href="/tags">태그</a>
+          </nav>
+
+          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
+            <input name="sitesearch" type="hidden" value="feeva.github.io">
+            <div>
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
+            </div>
+          </form>
+        </div>
         
       <h1 class="mb-5 fw-bold">프로그래밍 카테고리</h1>
     
@@ -89,7 +99,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2023-05-20T10:30:00.000Z">2023. 5. 20.</time>
+              <time class="local-date" datetime="2023-05-20T10:30:00.000Z">May 20, 2023</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
                | 
@@ -105,7 +115,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/Nr4RBgJDHK-360.webp 360w, /static/resp-img/Nr4RBgJDHK-720.webp 720w, /static/resp-img/Nr4RBgJDHK-800.webp 800w, /static/resp-img/Nr4RBgJDHK-1200.webp 1200w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/Nr4RBgJDHK-360.jpeg 360w, /static/resp-img/Nr4RBgJDHK-720.jpeg 720w, /static/resp-img/Nr4RBgJDHK-800.jpeg 800w, /static/resp-img/Nr4RBgJDHK-1200.jpeg 1200w" sizes="(max-width:800px) 100vw, 1200px"><img alt="TV 동네 탐방" loading="lazy" decoding="async" data-src="../../static/uploads/2023/tv-towns.jpg" src="/static/resp-img/Nr4RBgJDHK-360.jpeg" width="1200" height="723"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/Nr4RBgJDHK-360.webp 360w, /static/resp-img/Nr4RBgJDHK-720.webp 720w, /static/resp-img/Nr4RBgJDHK-800.webp 800w, /static/resp-img/Nr4RBgJDHK-1200.webp 1200w" sizes="(max-width:800px) 100vw, 1200px"><img alt="TV 동네 탐방" loading="lazy" decoding="async" data-src="../../static/uploads/2023/tv-towns.jpg" src="/static/resp-img/Nr4RBgJDHK-360.jpeg" width="1200" height="723" srcset="/static/resp-img/Nr4RBgJDHK-360.jpeg 360w, /static/resp-img/Nr4RBgJDHK-720.jpeg 720w, /static/resp-img/Nr4RBgJDHK-800.jpeg 800w, /static/resp-img/Nr4RBgJDHK-1200.jpeg 1200w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -113,7 +123,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2022-12-22">2022. 12. 22.</time>
+              <time class="local-date" datetime="2022-12-22">Dec 22, 2022</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -132,7 +142,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2020-09-19T14:35:00.000Z">2020. 9. 19.</time>
+              <time class="local-date" datetime="2020-09-19T14:35:00.000Z">Sep 19, 2020</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -150,7 +160,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2020-07-30T18:03:00.000Z">2020. 7. 31.</time>
+              <time class="local-date" datetime="2020-07-30T18:03:00.000Z">Jul 31, 2020</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -168,7 +178,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2020-06-21T11:10:00.000Z">2020. 6. 21.</time>
+              <time class="local-date" datetime="2020-06-21T11:10:00.000Z">Jun 21, 2020</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -183,7 +193,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/V8HqzSWOSG-360.webp 360w, /static/resp-img/V8HqzSWOSG-720.webp 720w, /static/resp-img/V8HqzSWOSG-800.webp 800w, /static/resp-img/V8HqzSWOSG-1200.webp 1200w, /static/resp-img/V8HqzSWOSG-1600.webp 1600w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/V8HqzSWOSG-360.jpeg 360w, /static/resp-img/V8HqzSWOSG-720.jpeg 720w, /static/resp-img/V8HqzSWOSG-800.jpeg 800w, /static/resp-img/V8HqzSWOSG-1200.jpeg 1200w, /static/resp-img/V8HqzSWOSG-1600.jpeg 1600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="워드프레스에서 개츠비로 갈아타다" loading="lazy" decoding="async" data-src="../../static/uploads/2020/gatsby.jpg" src="/static/resp-img/V8HqzSWOSG-360.jpeg" width="1600" height="900"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/V8HqzSWOSG-360.webp 360w, /static/resp-img/V8HqzSWOSG-720.webp 720w, /static/resp-img/V8HqzSWOSG-800.webp 800w, /static/resp-img/V8HqzSWOSG-1200.webp 1200w, /static/resp-img/V8HqzSWOSG-1600.webp 1600w, /static/resp-img/V8HqzSWOSG-2048.webp 2048w" sizes="(max-width:800px) 100vw, 1200px"><img alt="워드프레스에서 개츠비로 갈아타다" loading="lazy" decoding="async" data-src="../../static/uploads/2020/gatsby.jpg" src="/static/resp-img/V8HqzSWOSG-360.jpeg" width="2048" height="1152" srcset="/static/resp-img/V8HqzSWOSG-360.jpeg 360w, /static/resp-img/V8HqzSWOSG-720.jpeg 720w, /static/resp-img/V8HqzSWOSG-800.jpeg 800w, /static/resp-img/V8HqzSWOSG-1200.jpeg 1200w, /static/resp-img/V8HqzSWOSG-1600.jpeg 1600w, /static/resp-img/V8HqzSWOSG-2048.jpeg 2048w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -191,7 +201,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2019-06-09T12:56:51.000Z">2019. 6. 9.</time>
+              <time class="local-date" datetime="2019-06-09T12:56:51.000Z">Jun 9, 2019</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -202,7 +212,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/FMEgh_hsEQ-360.webp 360w, /static/resp-img/FMEgh_hsEQ-720.webp 720w, /static/resp-img/FMEgh_hsEQ-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/FMEgh_hsEQ-360.jpeg 360w, /static/resp-img/FMEgh_hsEQ-720.jpeg 720w, /static/resp-img/FMEgh_hsEQ-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="프로그래밍 글꼴 비교" loading="lazy" decoding="async" data-src="../../static/uploads/2019/06/fira_code_13.png" src="/static/resp-img/FMEgh_hsEQ-360.jpeg" width="800" height="688"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/FMEgh_hsEQ-360.webp 360w, /static/resp-img/FMEgh_hsEQ-720.webp 720w, /static/resp-img/FMEgh_hsEQ-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="프로그래밍 글꼴 비교" loading="lazy" decoding="async" data-src="../../static/uploads/2019/06/fira_code_13.png" src="/static/resp-img/FMEgh_hsEQ-360.jpeg" width="800" height="688" srcset="/static/resp-img/FMEgh_hsEQ-360.jpeg 360w, /static/resp-img/FMEgh_hsEQ-720.jpeg 720w, /static/resp-img/FMEgh_hsEQ-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -210,7 +220,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2018-09-14T08:54:45.000Z">2018. 9. 14.</time>
+              <time class="local-date" datetime="2018-09-14T08:54:45.000Z">Sep 14, 2018</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -225,7 +235,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2017-07-18T06:48:54.000Z">2017. 7. 18.</time>
+              <time class="local-date" datetime="2017-07-18T06:48:54.000Z">Jul 18, 2017</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -242,7 +252,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2017-03-27T01:32:38.000Z">2017. 3. 27.</time>
+              <time class="local-date" datetime="2017-03-27T01:32:38.000Z">Mar 27, 2017</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -253,7 +263,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/GfCat20aUp-360.webp 360w, /static/resp-img/GfCat20aUp-720.webp 720w, /static/resp-img/GfCat20aUp-800.webp 800w, /static/resp-img/GfCat20aUp-1200.webp 1200w, /static/resp-img/GfCat20aUp-1600.webp 1600w, /static/resp-img/GfCat20aUp-2400.webp 2400w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/GfCat20aUp-360.jpeg 360w, /static/resp-img/GfCat20aUp-720.jpeg 720w, /static/resp-img/GfCat20aUp-800.jpeg 800w, /static/resp-img/GfCat20aUp-1200.jpeg 1200w, /static/resp-img/GfCat20aUp-1600.jpeg 1600w, /static/resp-img/GfCat20aUp-2400.jpeg 2400w" sizes="(max-width:800px) 100vw, 1200px"><img alt="프로젝트의 쓴맛" loading="lazy" decoding="async" data-src="../../static/uploads/2017/03/tortoise.jpg" src="/static/resp-img/GfCat20aUp-360.jpeg" width="2400" height="2400"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/GfCat20aUp-360.webp 360w, /static/resp-img/GfCat20aUp-720.webp 720w, /static/resp-img/GfCat20aUp-800.webp 800w, /static/resp-img/GfCat20aUp-1200.webp 1200w, /static/resp-img/GfCat20aUp-1600.webp 1600w, /static/resp-img/GfCat20aUp-2400.webp 2400w" sizes="(max-width:800px) 100vw, 1200px"><img alt="프로젝트의 쓴맛" loading="lazy" decoding="async" data-src="../../static/uploads/2017/03/tortoise.jpg" src="/static/resp-img/GfCat20aUp-360.jpeg" width="2400" height="2400" srcset="/static/resp-img/GfCat20aUp-360.jpeg 360w, /static/resp-img/GfCat20aUp-720.jpeg 720w, /static/resp-img/GfCat20aUp-800.jpeg 800w, /static/resp-img/GfCat20aUp-1200.jpeg 1200w, /static/resp-img/GfCat20aUp-1600.jpeg 1600w, /static/resp-img/GfCat20aUp-2400.jpeg 2400w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -261,7 +271,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2015-09-06T16:13:41.000Z">2015. 9. 7.</time>
+              <time class="local-date" datetime="2015-09-06T16:13:41.000Z">Sep 7, 2015</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -282,7 +292,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2015-06-21T03:19:30.000Z">2015. 6. 21.</time>
+              <time class="local-date" datetime="2015-06-21T03:19:30.000Z">Jun 21, 2015</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -298,7 +308,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2015-02-23T18:22:58.000Z">2015. 2. 24.</time>
+              <time class="local-date" datetime="2015-02-23T18:22:58.000Z">Feb 24, 2015</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -309,7 +319,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/jwo38oQinu-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="커밋 주석은 왜라는 질문에 답할 수 있어야 한다" loading="lazy" decoding="async" data-src="../../static/uploads/2015/02/Matrix_Digital_Rain.jpg" src="/static/resp-img/jwo38oQinu-360.jpeg" width="360" height="360"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/jwo38oQinu-360.webp 360w, /static/resp-img/jwo38oQinu-545.webp 545w" sizes="(max-width:800px) 100vw, 1200px"><img alt="커밋 주석은 왜라는 질문에 답할 수 있어야 한다" loading="lazy" decoding="async" data-src="../../static/uploads/2015/02/Matrix_Digital_Rain.jpg" src="/static/resp-img/jwo38oQinu-360.jpeg" width="545" height="545" srcset="/static/resp-img/jwo38oQinu-360.jpeg 360w, /static/resp-img/jwo38oQinu-545.jpeg 545w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -317,7 +327,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2015-02-07T18:29:50.000Z">2015. 2. 8.</time>
+              <time class="local-date" datetime="2015-02-07T18:29:50.000Z">Feb 8, 2015</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -332,7 +342,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-10-06T06:19:11.000Z">2014. 10. 6.</time>
+              <time class="local-date" datetime="2014-10-06T06:19:11.000Z">Oct 6, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -347,7 +357,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-08-23T15:25:37.000Z">2014. 8. 24.</time>
+              <time class="local-date" datetime="2014-08-23T15:25:37.000Z">Aug 24, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -362,7 +372,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-07-27T06:05:40.000Z">2014. 7. 27.</time>
+              <time class="local-date" datetime="2014-07-27T06:05:40.000Z">Jul 27, 2014</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
                | 
@@ -383,7 +393,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-07-20T15:46:04.000Z">2014. 7. 21.</time>
+              <time class="local-date" datetime="2014-07-20T15:46:04.000Z">Jul 21, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -398,7 +408,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-07-09T17:06:38.000Z">2014. 7. 10.</time>
+              <time class="local-date" datetime="2014-07-09T17:06:38.000Z">Jul 10, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -413,7 +423,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-06-28T13:10:49.000Z">2014. 6. 28.</time>
+              <time class="local-date" datetime="2014-06-28T13:10:49.000Z">Jun 28, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -432,7 +442,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-06-03T16:56:20.000Z">2014. 6. 4.</time>
+              <time class="local-date" datetime="2014-06-03T16:56:20.000Z">Jun 4, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -443,7 +453,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/5NanTTxue--360.webp 360w, /static/resp-img/5NanTTxue--720.webp 720w, /static/resp-img/5NanTTxue--800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/5NanTTxue--360.jpeg 360w, /static/resp-img/5NanTTxue--720.jpeg 720w, /static/resp-img/5NanTTxue--800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="애플 스위프트 (Swift) 프로그램 언어" loading="lazy" decoding="async" data-src="../../static/uploads/2014/06/DSC_1530_verge_super_wide.jpg" src="/static/resp-img/5NanTTxue--360.jpeg" width="800" height="532"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/5NanTTxue--360.webp 360w, /static/resp-img/5NanTTxue--720.webp 720w, /static/resp-img/5NanTTxue--800.webp 800w, /static/resp-img/5NanTTxue--1020.webp 1020w" sizes="(max-width:800px) 100vw, 1200px"><img alt="애플 스위프트 (Swift) 프로그램 언어" loading="lazy" decoding="async" data-src="../../static/uploads/2014/06/DSC_1530_verge_super_wide.jpg" src="/static/resp-img/5NanTTxue--360.jpeg" width="1020" height="679" srcset="/static/resp-img/5NanTTxue--360.jpeg 360w, /static/resp-img/5NanTTxue--720.jpeg 720w, /static/resp-img/5NanTTxue--800.jpeg 800w, /static/resp-img/5NanTTxue--1020.jpeg 1020w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -451,7 +461,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+              <time class="local-date" datetime="2014-04-27T18:42:03.000Z">Apr 28, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -466,7 +476,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+              <time class="local-date" datetime="2014-04-20T09:20:18.000Z">Apr 20, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -481,7 +491,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
+              <time class="local-date" datetime="2014-04-04T15:58:33.000Z">Apr 5, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -496,7 +506,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-03-19T15:30:21.000Z">2014. 3. 20.</time>
+              <time class="local-date" datetime="2014-03-19T15:30:21.000Z">Mar 20, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -515,7 +525,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-02-28T02:53:58.000Z">2014. 2. 28.</time>
+              <time class="local-date" datetime="2014-02-28T02:53:58.000Z">Feb 28, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -530,7 +540,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-02-24T17:37:01.000Z">2014. 2. 25.</time>
+              <time class="local-date" datetime="2014-02-24T17:37:01.000Z">Feb 25, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -545,7 +555,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-02-11T17:30:21.000Z">2014. 2. 12.</time>
+              <time class="local-date" datetime="2014-02-11T17:30:21.000Z">Feb 12, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -564,7 +574,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-01-11T16:35:25.000Z">2014. 1. 12.</time>
+              <time class="local-date" datetime="2014-01-11T16:35:25.000Z">Jan 12, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -582,7 +592,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-12-21T17:35:53.000Z">2013. 12. 22.</time>
+              <time class="local-date" datetime="2013-12-21T17:35:53.000Z">Dec 22, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -598,7 +608,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-12-14T17:38:33.000Z">2013. 12. 15.</time>
+              <time class="local-date" datetime="2013-12-14T17:38:33.000Z">Dec 15, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -615,7 +625,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-12-14T04:05:42.000Z">2013. 12. 14.</time>
+              <time class="local-date" datetime="2013-12-14T04:05:42.000Z">Dec 14, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -630,7 +640,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-30T13:01:38.000Z">2013. 11. 30.</time>
+              <time class="local-date" datetime="2013-11-30T13:01:38.000Z">Nov 30, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -647,7 +657,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-21T16:38:25.000Z">2013. 11. 22.</time>
+              <time class="local-date" datetime="2013-11-21T16:38:25.000Z">Nov 22, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -662,7 +672,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/oGzfgaw0Lp-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="개발 능력은 연차에 비례하지 않는다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/smiley.jpg" src="/static/resp-img/oGzfgaw0Lp-360.jpeg" width="360" height="263"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/oGzfgaw0Lp-360.webp 360w, /static/resp-img/oGzfgaw0Lp-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="개발 능력은 연차에 비례하지 않는다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/smiley.jpg" src="/static/resp-img/oGzfgaw0Lp-360.jpeg" width="640" height="469" srcset="/static/resp-img/oGzfgaw0Lp-360.jpeg 360w, /static/resp-img/oGzfgaw0Lp-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -670,7 +680,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-15T14:26:42.000Z">2013. 11. 15.</time>
+              <time class="local-date" datetime="2013-11-15T14:26:42.000Z">Nov 15, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -687,7 +697,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-09T08:13:55.000Z">2013. 11. 9.</time>
+              <time class="local-date" datetime="2013-11-09T08:13:55.000Z">Nov 9, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -706,7 +716,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-02T15:18:04.000Z">2013. 11. 3.</time>
+              <time class="local-date" datetime="2013-11-02T15:18:04.000Z">Nov 3, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -718,7 +728,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/k8HNcG4Txg-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="초급 개발자 딱지를 떼려면 이 정도는 해야 한다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/evolution.jpg" src="/static/resp-img/k8HNcG4Txg-360.jpeg" width="360" height="165"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/k8HNcG4Txg-360.webp 360w, /static/resp-img/k8HNcG4Txg-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="초급 개발자 딱지를 떼려면 이 정도는 해야 한다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/evolution.jpg" src="/static/resp-img/k8HNcG4Txg-360.jpeg" width="640" height="294" srcset="/static/resp-img/k8HNcG4Txg-360.jpeg 360w, /static/resp-img/k8HNcG4Txg-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -726,7 +736,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-10-19T03:52:59.000Z">2013. 10. 19.</time>
+              <time class="local-date" datetime="2013-10-19T03:52:59.000Z">Oct 19, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -740,7 +750,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/k4lS9rkENx-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="속담으로 풀어보는 프로젝트 관리" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/배보다배꼽.png" src="/static/resp-img/k4lS9rkENx-360.jpeg" width="360" height="104"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/k4lS9rkENx-360.webp 360w, /static/resp-img/k4lS9rkENx-603.webp 603w" sizes="(max-width:800px) 100vw, 1200px"><img alt="속담으로 풀어보는 프로젝트 관리" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/배보다배꼽.png" src="/static/resp-img/k4lS9rkENx-360.jpeg" width="603" height="175" srcset="/static/resp-img/k4lS9rkENx-360.jpeg 360w, /static/resp-img/k4lS9rkENx-603.jpeg 603w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -748,7 +758,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-10-08T10:23:40.000Z">2013. 10. 8.</time>
+              <time class="local-date" datetime="2013-10-08T10:23:40.000Z">Oct 8, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -760,7 +770,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/bMiyUbZUIO-360.webp 360w, /static/resp-img/bMiyUbZUIO-720.webp 720w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/bMiyUbZUIO-360.jpeg 360w, /static/resp-img/bMiyUbZUIO-720.jpeg 720w" sizes="(max-width:800px) 100vw, 1200px"><img alt="이클립스 Validation 답답증" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/eclipse_validating.png" src="/static/resp-img/bMiyUbZUIO-360.jpeg" width="720" height="234"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/bMiyUbZUIO-360.webp 360w, /static/resp-img/bMiyUbZUIO-720.webp 720w" sizes="(max-width:800px) 100vw, 1200px"><img alt="이클립스 Validation 답답증" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/eclipse_validating.png" src="/static/resp-img/bMiyUbZUIO-360.jpeg" width="720" height="234" srcset="/static/resp-img/bMiyUbZUIO-360.jpeg 360w, /static/resp-img/bMiyUbZUIO-720.jpeg 720w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -768,7 +778,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-10-06T08:47:24.000Z">2013. 10. 6.</time>
+              <time class="local-date" datetime="2013-10-06T08:47:24.000Z">Oct 6, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -783,7 +793,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time>
+              <time class="local-date" datetime="2013-09-29T16:53:54.000Z">Sep 30, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -798,7 +808,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-09-22T08:41:45.000Z">2013. 9. 22.</time>
+              <time class="local-date" datetime="2013-09-22T08:41:45.000Z">Sep 22, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -813,7 +823,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-09-15T10:45:54.000Z">2013. 9. 15.</time>
+              <time class="local-date" datetime="2013-09-15T10:45:54.000Z">Sep 15, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -830,7 +840,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-08-29T16:33:55.000Z">2013. 8. 30.</time>
+              <time class="local-date" datetime="2013-08-29T16:33:55.000Z">Aug 30, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -847,7 +857,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-08-01T15:52:59.000Z">2013. 8. 2.</time>
+              <time class="local-date" datetime="2013-08-01T15:52:59.000Z">Aug 2, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -860,7 +870,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/9uvmUbSbPd-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="짝 프로그래밍의 힘" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/aviation-cockpit.jpg" src="/static/resp-img/9uvmUbSbPd-360.jpeg" width="360" height="288"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/9uvmUbSbPd-360.webp 360w, /static/resp-img/9uvmUbSbPd-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="짝 프로그래밍의 힘" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/aviation-cockpit.jpg" src="/static/resp-img/9uvmUbSbPd-360.jpeg" width="640" height="512" srcset="/static/resp-img/9uvmUbSbPd-360.jpeg 360w, /static/resp-img/9uvmUbSbPd-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -868,7 +878,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-07-16T16:27:49.000Z">2013. 7. 17.</time>
+              <time class="local-date" datetime="2013-07-16T16:27:49.000Z">Jul 17, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -884,7 +894,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-07-15T16:16:29.000Z">2013. 7. 16.</time>
+              <time class="local-date" datetime="2013-07-15T16:16:29.000Z">Jul 16, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -901,7 +911,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-21T17:00:08.000Z">2013. 6. 22.</time>
+              <time class="local-date" datetime="2013-06-21T17:00:08.000Z">Jun 22, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -918,7 +928,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-15T06:48:34.000Z">2013. 6. 15.</time>
+              <time class="local-date" datetime="2013-06-15T06:48:34.000Z">Jun 15, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -934,7 +944,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-11T11:36:24.000Z">2013. 6. 11.</time>
+              <time class="local-date" datetime="2013-06-11T11:36:24.000Z">Jun 11, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -955,7 +965,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-24T07:44:18.000Z">2013. 5. 24.</time>
+              <time class="local-date" datetime="2013-05-24T07:44:18.000Z">May 24, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -970,7 +980,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
+              <time class="local-date" datetime="2013-05-19T17:29:24.000Z">May 20, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -985,7 +995,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
+              <time class="local-date" datetime="2013-05-12T15:51:14.000Z">May 13, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -997,7 +1007,7 @@ Node http-server 모듈을 활용하여
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/6Skb187diA-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="접근성을 고려한 JavaScript 사용" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/a11y.png" src="/static/resp-img/6Skb187diA-360.jpeg" width="360" height="333"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/6Skb187diA-360.webp 360w, /static/resp-img/6Skb187diA-509.webp 509w" sizes="(max-width:800px) 100vw, 1200px"><img alt="접근성을 고려한 JavaScript 사용" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/a11y.png" src="/static/resp-img/6Skb187diA-360.jpeg" width="509" height="472" srcset="/static/resp-img/6Skb187diA-360.jpeg 360w, /static/resp-img/6Skb187diA-509.jpeg 509w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -1005,7 +1015,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time>
+              <time class="local-date" datetime="2013-04-28T05:06:50.000Z">Apr 28, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1020,7 +1030,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-14T08:16:18.000Z">2013. 4. 14.</time>
+              <time class="local-date" datetime="2013-04-14T08:16:18.000Z">Apr 14, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1035,7 +1045,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-10T06:00:47.000Z">2013. 4. 10.</time>
+              <time class="local-date" datetime="2013-04-10T06:00:47.000Z">Apr 10, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1054,7 +1064,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-04T07:36:35.000Z">2013. 4. 4.</time>
+              <time class="local-date" datetime="2013-04-04T07:36:35.000Z">Apr 4, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1070,7 +1080,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time>
+              <time class="local-date" datetime="2013-03-28T22:49:35.000Z">Mar 29, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1085,7 +1095,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-24T15:09:20.000Z">2013. 3. 25.</time>
+              <time class="local-date" datetime="2013-03-24T15:09:20.000Z">Mar 25, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1100,7 +1110,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-21T02:39:50.000Z">2013. 3. 21.</time>
+              <time class="local-date" datetime="2013-03-21T02:39:50.000Z">Mar 21, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1117,7 +1127,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-13T14:36:04.000Z">2013. 3. 13.</time>
+              <time class="local-date" datetime="2013-03-13T14:36:04.000Z">Mar 13, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1133,7 +1143,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-06T16:52:22.000Z">2013. 3. 7.</time>
+              <time class="local-date" datetime="2013-03-06T16:52:22.000Z">Mar 7, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1152,7 +1162,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2009-07-24T07:12:27.000Z">2009. 7. 24.</time>
+              <time class="local-date" datetime="2009-07-24T07:12:27.000Z">Jul 24, 2009</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -1180,7 +1190,7 @@ Node http-server 모듈을 활용하여
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2009-04-08T08:17:34.000Z">2009. 4. 8.</time>
+              <time class="local-date" datetime="2009-04-08T08:17:34.000Z">Apr 8, 2009</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               

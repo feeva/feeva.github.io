@@ -107,7 +107,8 @@ FEFF
 <pre class="language-javascript"><code class="language-javascript">text <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\u00a0\u3000]+|[\s\u00a0\u3000]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3>그 밖에...</h3>
 <p>자바스크립트에는 문자열의 앞뒤 공백을 제거하는 <code>trim</code> 함수가 정의돼 있는데 이게 IE8 이하에 없어서 우리 프로젝트에서는 직접 공백 제거 처리를 하고 있었다. 사실 jQuery에도 <code>trim</code> 함수가 있기 때문에 걔네들은 어떻게 하고 있는지 찾아봤다. 아래는 많이 사용하는 버전 중 하나인 <a title="jQuery 1.8.3 Core" href="https://github.com/jquery/jquery/blob/ab409d14bc6db42b4af3ba753be1b55fe8f897d8/src/core.js" target="_blank">1.8.3</a>에 있는 <code>trim</code> 함수의 원형이다.</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Make sure we trim BOM and NBSP (here's looking at you, Safari 5.0 and IE)</span><br>rtrim <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span></code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Make sure we trim BOM and NBSP (here's looking at you, Safari 5.0 and IE)</span>
+rtrim <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span></code></pre>
 <p>Safari 5.0과 IE 너네 땜에 BOM과 NBSP는 별도로 추가해서 처리한다고 주석에 나와 있다. 여기도 <code>\u3000</code>은 처리하지 않으므로 우리 프로젝트에서 jQuery로 <code>trim</code>해도 IE 8은 계속 문제가 될 수 밖에 없었을 것이다. (그런데 <code>\uFEFF</code>는 왜 공백으로 치는 것이지?)</p>
 <h3>자바(Java)는 어떨까?</h3>
 <p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#trim()"><code>String#trim</code></a> 메서드의 경우는 주석을 보면 <code>\u0020</code>, 즉 빈칸 이하의 글자들을 제거한다고 나와 있다. 헛, 그렇다면 유니코드에 공백이라고 정의되지 않은 제어 문자도 제거한다는!!??</p>
@@ -131,7 +132,7 @@ FEFF
 
   <div class="post-footer">
     <div class="post-footer-date">
-      게시일 - <time datetime="2013-12-21T17:35:53.000Z">2013. 12. 22.</time>
+      게시일 - <time class="local-date" datetime="2013-12-21T17:35:53.000Z">2013. 12. 22.</time>
     </div>
 
     <ul class="post-tags"><li><a href="/tags/java">Java</a></li><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/공백">공백</a></li><li><a href="/tags/유니코드">유니코드</a></li><li><a href="/tags/자바">자바</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/제어문자">제어문자</a></li><li><a href="/tags/인터넷-익스플로러">인터넷 익스플로러</a></li></ul>

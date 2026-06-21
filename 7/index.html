@@ -43,34 +43,21 @@
       <h1>Nothing New Under the Sun</h1>
       <p class="h4">溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다</p>
     </section>
-
-    <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
-      <input name="sitesearch" type="hidden" value="feeva.github.io">
-      <div>
-        <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
-      </div>
-    </form>
   </div>
   
 
   <main class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 order-2 order-md-1">
       <div class="sidebar mt-3 px-md-3 py-4 pe-md-5">
         <div>
           <img src="/static/images/photo.jpg" class="author-photo" width="75" height="75" alt="이동련">
         </div>
         <h5 class="author-name my-4">이동련</h5>
-        <p style="font-size: 92%; color: #aaa;">
-          꿈은 살아있다! 온고지신을 생각하면서도 새로운 것을 찾아 두리번거리는 개발자. 새롭고 좋은 것은 써봐야겠지만 얼리어답터는 아닌 느린 개혁자.
+        <p class="author-description">
+          오늘도 세상 탐구<br>
+          느끼고 배우고 사랑하고 노력하기
         </p>
-
-        <ul class="page-links list-unstyled mt-5">
-          <li><a href="/">전체 글 목록</a></li>
-          <li><a href="/categories">카테고리</a></li>
-          <li><a href="/tags">태그</a></li>
-          <li><a href="/pages/about">내 소개</a></li>
-        </ul>
+        <a class="author-about" href="/pages/about">내 소개</a>
 
         <ul class="social list-unstyled mt-5">
           <li>
@@ -96,14 +83,50 @@
         </ul>
       </div>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 order-1 order-md-2">
       <div class="content mt-3 ps-md-3 py-4">
+        <div class="home-nav mb-4">
+          <nav class="primary-links" aria-label="주요 메뉴">
+            <a href="/">전체 글 목록</a>
+            <a href="/categories">카테고리</a>
+            <a href="/tags">태그</a>
+          </nav>
+
+          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
+            <input name="sitesearch" type="hidden" value="feeva.github.io">
+            <div>
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
+            </div>
+          </form>
+        </div>
         
       <ul class="list-unstyled post-list">
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-21T17:00:08.000Z">2013. 6. 22.</time>
+              <time class="local-date" datetime="2013-07-05T16:43:15.000Z">Jul 6, 2013</time>
+              
+                <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
+              
+            </div>
+            <a href="/posts/고객의-운영-데이터를-날려본-적이-있는가/">
+              <h2 class="h3 my-2">고객의 운영 데이터를 날려본 적이 있는가?</h2>
+              <p class="my-3">난 있다. 창피한 일이지만 10여년 전 어떤 골프장 웹사이트 개발로 바쁠 때 운영 데이터베이스 작업 중 테이블 하나를 날려버렸었다.
+그땐 의욕이 앞서고 안정성에 대한 개념이 별로 없어서 개발용 데이터베이스를 따로 만들지 않고 운영 데이터베이스에 직접 붙어서 작업을 했다. 다행히 백업 테이블이 있고 고객이 수기로도 관리하던 사항이라 시간이 좀 들더라도 복구가 가능했지만 그런 대비책이 없었더라면 어떡했을까 지금도 생각해보면 아찔하다.
+</p>
+
+              
+                  <div class="poster">
+                    <picture><source type="image/webp" srcset="/static/resp-img/hcqU-rxnr7-360.webp 360w, /static/resp-img/hcqU-rxnr7-474.webp 474w" sizes="(max-width:800px) 100vw, 1200px"><img alt="고객의 운영 데이터를 날려본 적이 있는가?" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/The_Scream-e1373043295972.jpg" src="/static/resp-img/hcqU-rxnr7-360.jpeg" width="474" height="437" srcset="/static/resp-img/hcqU-rxnr7-360.jpeg 360w, /static/resp-img/hcqU-rxnr7-474.jpeg 474w" sizes="(max-width:800px) 100vw, 1200px"></picture>
+                  </div>
+                
+            </a>
+          </li>
+        
+          <li class="mb-5">
+            <div class="post-meta">
+              <time class="local-date" datetime="2013-06-21T17:00:08.000Z">Jun 22, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -120,7 +143,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-15T06:48:34.000Z">2013. 6. 15.</time>
+              <time class="local-date" datetime="2013-06-15T06:48:34.000Z">Jun 15, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -136,7 +159,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-11T11:36:24.000Z">2013. 6. 11.</time>
+              <time class="local-date" datetime="2013-06-11T11:36:24.000Z">Jun 11, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -157,7 +180,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-02T06:12:36.000Z">2013. 6. 2.</time>
+              <time class="local-date" datetime="2013-06-02T06:12:36.000Z">Jun 2, 2013</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
               
@@ -170,7 +193,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/RPet7fiabu-360.webp 360w, /static/resp-img/RPet7fiabu-720.webp 720w, /static/resp-img/RPet7fiabu-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/RPet7fiabu-360.jpeg 360w, /static/resp-img/RPet7fiabu-720.jpeg 720w, /static/resp-img/RPet7fiabu-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="제이드가든과 소양댐" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/garden2.jpg" src="/static/resp-img/RPet7fiabu-360.jpeg" width="800" height="600"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/RPet7fiabu-360.webp 360w, /static/resp-img/RPet7fiabu-720.webp 720w, /static/resp-img/RPet7fiabu-800.webp 800w, /static/resp-img/RPet7fiabu-1024.webp 1024w" sizes="(max-width:800px) 100vw, 1200px"><img alt="제이드가든과 소양댐" loading="lazy" decoding="async" data-src="../../static/uploads/2013/06/garden2.jpg" src="/static/resp-img/RPet7fiabu-360.jpeg" width="1024" height="768" srcset="/static/resp-img/RPet7fiabu-360.jpeg 360w, /static/resp-img/RPet7fiabu-720.jpeg 720w, /static/resp-img/RPet7fiabu-800.jpeg 800w, /static/resp-img/RPet7fiabu-1024.jpeg 1024w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -178,7 +201,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-01T18:31:40.000Z">2013. 6. 2.</time>
+              <time class="local-date" datetime="2013-06-01T18:31:40.000Z">Jun 2, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -198,7 +221,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-24T07:44:18.000Z">2013. 5. 24.</time>
+              <time class="local-date" datetime="2013-05-24T07:44:18.000Z">May 24, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -213,7 +236,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-22T02:38:47.000Z">2013. 5. 22.</time>
+              <time class="local-date" datetime="2013-05-22T02:38:47.000Z">May 22, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -229,7 +252,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
+              <time class="local-date" datetime="2013-05-19T17:29:24.000Z">May 20, 2013</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -244,7 +267,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-13T02:59:39.000Z">2013. 5. 13.</time>
+              <time class="local-date" datetime="2013-05-13T02:59:39.000Z">May 13, 2013</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
               
@@ -257,27 +280,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/21nBrNR5iU-360.webp 360w, /static/resp-img/21nBrNR5iU-720.webp 720w, /static/resp-img/21nBrNR5iU-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/21nBrNR5iU-360.jpeg 360w, /static/resp-img/21nBrNR5iU-720.jpeg 720w, /static/resp-img/21nBrNR5iU-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="스승의 날 선물 받다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/선물2.jpg" src="/static/resp-img/21nBrNR5iU-360.jpeg" width="800" height="600"></picture>
-                  </div>
-                
-            </a>
-          </li>
-        
-          <li class="mb-5">
-            <div class="post-meta">
-              <time datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
-              
-                <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
-              
-            </div>
-            <a href="/posts/접근성을-고려한-javascript-사용/">
-              <h2 class="h3 my-2">접근성을 고려한 JavaScript 사용</h2>
-              <p class="my-3">웹 접근성(Accessibility)을 고려할 때 자바스크립트(JavaScript) 사용에 대해 다시 좀 보기로 했다. 그 동안 공공 프로젝트를 여러 차례 하면서 우리나라 웹 접근성 표준에 대해 익히 알고 있었는데 오늘 이걸 다시 거들떠 봐야겠다는 생각이 들었다. 웹 접근성에 있어서 JavaScript에 대한 오해 JavaScript에 대한 웹 접근성을 고려하기 위한 "표준"을 우연찮게 다시 보게 됐는데 이상한 내용이 있었다. 우리나라의 웹 접근성에 대해 사실상 "표준"을 제시하고 있는 정보화진흥원의 웹 접근성 연구소에서 기술한 다음과 같은 내용이 문제다.
-</p>
-
-              
-                  <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/6Skb187diA-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="접근성을 고려한 JavaScript 사용" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/a11y.png" src="/static/resp-img/6Skb187diA-360.jpeg" width="360" height="333"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/21nBrNR5iU-360.webp 360w, /static/resp-img/21nBrNR5iU-720.webp 720w, /static/resp-img/21nBrNR5iU-800.webp 800w, /static/resp-img/21nBrNR5iU-1024.webp 1024w" sizes="(max-width:800px) 100vw, 1200px"><img alt="스승의 날 선물 받다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/선물2.jpg" src="/static/resp-img/21nBrNR5iU-360.jpeg" width="1024" height="768" srcset="/static/resp-img/21nBrNR5iU-360.jpeg 360w, /static/resp-img/21nBrNR5iU-720.jpeg 720w, /static/resp-img/21nBrNR5iU-800.jpeg 800w, /static/resp-img/21nBrNR5iU-1024.jpeg 1024w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>

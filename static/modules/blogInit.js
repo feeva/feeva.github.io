@@ -17,6 +17,25 @@ document.querySelectorAll('.image-grid p').forEach(p => {
     p.remove()
 });
 
+const blogTimeZone = 'Asia/Seoul';
+const dateFormatter = new Intl.DateTimeFormat(navigator.languages, {
+  timeZone: blogTimeZone,
+  dateStyle: 'medium',
+});
+
+document.querySelectorAll('time.local-date').forEach(time => {
+  const value = time.getAttribute('datetime');
+  if (!value) return;
+
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(value)
+    ? new Date(`${value}T00:00:00+09:00`)
+    : new Date(value);
+
+  if (Number.isNaN(date.getTime())) return;
+
+  time.textContent = dateFormatter.format(date).replace(/\.$/, '');
+});
+
 // 이미지 슬라이더
 const images = Array.from(document.querySelectorAll('.post-content img'));
 let imageSlider;

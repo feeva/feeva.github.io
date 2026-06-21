@@ -43,34 +43,21 @@
       <h1>Nothing New Under the Sun</h1>
       <p class="h4">溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다</p>
     </section>
-
-    <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
-      <input name="sitesearch" type="hidden" value="feeva.github.io">
-      <div>
-        <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
-      </div>
-    </form>
   </div>
   
 
   <main class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 order-2 order-md-1">
       <div class="sidebar mt-3 px-md-3 py-4 pe-md-5">
         <div>
           <img src="/static/images/photo.jpg" class="author-photo" width="75" height="75" alt="이동련">
         </div>
         <h5 class="author-name my-4">이동련</h5>
-        <p style="font-size: 92%; color: #aaa;">
-          꿈은 살아있다! 온고지신을 생각하면서도 새로운 것을 찾아 두리번거리는 개발자. 새롭고 좋은 것은 써봐야겠지만 얼리어답터는 아닌 느린 개혁자.
+        <p class="author-description">
+          오늘도 세상 탐구<br>
+          느끼고 배우고 사랑하고 노력하기
         </p>
-
-        <ul class="page-links list-unstyled mt-5">
-          <li><a href="/">전체 글 목록</a></li>
-          <li><a href="/categories">카테고리</a></li>
-          <li><a href="/tags">태그</a></li>
-          <li><a href="/pages/about">내 소개</a></li>
-        </ul>
+        <a class="author-about" href="/pages/about">내 소개</a>
 
         <ul class="social list-unstyled mt-5">
           <li>
@@ -96,14 +83,44 @@
         </ul>
       </div>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 order-1 order-md-2">
       <div class="content mt-3 ps-md-3 py-4">
+        <div class="home-nav mb-4">
+          <nav class="primary-links" aria-label="주요 메뉴">
+            <a href="/">전체 글 목록</a>
+            <a href="/categories">카테고리</a>
+            <a href="/tags">태그</a>
+          </nav>
+
+          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
+            <input name="sitesearch" type="hidden" value="feeva.github.io">
+            <div>
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
+            </div>
+          </form>
+        </div>
         
       <ul class="list-unstyled post-list">
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-06-28T13:10:49.000Z">2014. 6. 28.</time>
+              <time class="local-date" datetime="2014-07-09T17:06:38.000Z">Jul 10, 2014</time>
+              
+                <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
+              
+            </div>
+            <a href="/posts/mongodb-university-강의-1강-개요/">
+              <h2 class="h3 my-2">MongoDB University 강의 1강 - 개요</h2>
+              <p class="my-3">MongoDB University에서 자바 개발자를 위한 MongoDB 강좌를 들었다. 시작한지 꽤 됐지만 바쁜 핑계로 아직도 끝내진 못했는데 정리 삼아 올려본다. 서너달에 한번씩 여러 강좌를 순환하므로 관심있다면 수강해보길 권한다.</p>
+
+              
+            </a>
+          </li>
+        
+          <li class="mb-5">
+            <div class="post-meta">
+              <time class="local-date" datetime="2014-06-28T13:10:49.000Z">Jun 28, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -122,7 +139,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-06-03T16:56:20.000Z">2014. 6. 4.</time>
+              <time class="local-date" datetime="2014-06-03T16:56:20.000Z">Jun 4, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -133,7 +150,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/5NanTTxue--360.webp 360w, /static/resp-img/5NanTTxue--720.webp 720w, /static/resp-img/5NanTTxue--800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/5NanTTxue--360.jpeg 360w, /static/resp-img/5NanTTxue--720.jpeg 720w, /static/resp-img/5NanTTxue--800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="애플 스위프트 (Swift) 프로그램 언어" loading="lazy" decoding="async" data-src="../../static/uploads/2014/06/DSC_1530_verge_super_wide.jpg" src="/static/resp-img/5NanTTxue--360.jpeg" width="800" height="532"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/5NanTTxue--360.webp 360w, /static/resp-img/5NanTTxue--720.webp 720w, /static/resp-img/5NanTTxue--800.webp 800w, /static/resp-img/5NanTTxue--1020.webp 1020w" sizes="(max-width:800px) 100vw, 1200px"><img alt="애플 스위프트 (Swift) 프로그램 언어" loading="lazy" decoding="async" data-src="../../static/uploads/2014/06/DSC_1530_verge_super_wide.jpg" src="/static/resp-img/5NanTTxue--360.jpeg" width="1020" height="679" srcset="/static/resp-img/5NanTTxue--360.jpeg 360w, /static/resp-img/5NanTTxue--720.jpeg 720w, /static/resp-img/5NanTTxue--800.jpeg 800w, /static/resp-img/5NanTTxue--1020.jpeg 1020w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -141,7 +158,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-05-06T05:07:57.000Z">2014. 5. 6.</time>
+              <time class="local-date" datetime="2014-05-06T05:07:57.000Z">May 6, 2014</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
               
@@ -156,7 +173,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
+              <time class="local-date" datetime="2014-05-01T18:13:03.000Z">May 2, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -168,7 +185,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/WDLp1WVXPi-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="구글 Analytics를 통해 본 브라우저 점유율" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/GA201404_MC_All.png" src="/static/resp-img/WDLp1WVXPi-360.jpeg" width="360" height="276"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/WDLp1WVXPi-360.webp 360w, /static/resp-img/WDLp1WVXPi-580.webp 580w" sizes="(max-width:800px) 100vw, 1200px"><img alt="구글 Analytics를 통해 본 브라우저 점유율" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/GA201404_MC_All.png" src="/static/resp-img/WDLp1WVXPi-360.jpeg" width="580" height="445" srcset="/static/resp-img/WDLp1WVXPi-360.jpeg 360w, /static/resp-img/WDLp1WVXPi-580.jpeg 580w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -176,7 +193,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-30T18:20:13.000Z">2014. 5. 1.</time>
+              <time class="local-date" datetime="2014-04-30T18:20:13.000Z">May 1, 2014</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
               
@@ -187,7 +204,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/0jt3Tw_KAH-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="생각해라, 그리고 후회할 일을 해라" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/just_my_imagination_by_midnightfrog-d62tz77.png" src="/static/resp-img/0jt3Tw_KAH-360.jpeg" width="360" height="505"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/0jt3Tw_KAH-360.webp 360w, /static/resp-img/0jt3Tw_KAH-600.webp 600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="생각해라, 그리고 후회할 일을 해라" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/just_my_imagination_by_midnightfrog-d62tz77.png" src="/static/resp-img/0jt3Tw_KAH-360.jpeg" width="600" height="842" srcset="/static/resp-img/0jt3Tw_KAH-360.jpeg 360w, /static/resp-img/0jt3Tw_KAH-600.jpeg 600w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -195,7 +212,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+              <time class="local-date" datetime="2014-04-27T18:42:03.000Z">Apr 28, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -210,7 +227,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+              <time class="local-date" datetime="2014-04-20T09:20:18.000Z">Apr 20, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -225,7 +242,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-20T09:16:32.000Z">2014. 4. 20.</time>
+              <time class="local-date" datetime="2014-04-20T09:16:32.000Z">Apr 20, 2014</time>
               
                 <span class="category"><a href="/categories/살아있음">살아있음</a></span>
               
@@ -242,7 +259,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
+              <time class="local-date" datetime="2014-04-04T15:58:33.000Z">Apr 5, 2014</time>
               
                 <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
               
@@ -252,25 +269,6 @@
               <p class="my-3">최근 참여한 프로젝트가 얼마 전에 끝났다. 매번 프로젝트가 끝날 때마다 다음 프로젝트는 더 잘하자고 생각하면서도 지난 프로젝트의 교훈을 잘 활용하지 못하는 것 같다. 이번에는 오랜만에 한번 정리해보기로 했다.</p>
 
               
-            </a>
-          </li>
-        
-          <li class="mb-5">
-            <div class="post-meta">
-              <time datetime="2014-03-19T15:30:21.000Z">2014. 3. 20.</time>
-              
-                <span class="category"><a href="/categories/프로그래밍">프로그래밍</a></span>
-              
-            </div>
-            <a href="/posts/안드로이드와-ios-웹킷-브라우저의-차이점/">
-              <h2 class="h3 my-2">안드로이드와 iOS 웹킷 브라우저의 차이점</h2>
-              <p class="my-3">최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 웹킷(WebKit) 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까? </p>
-
-              
-                  <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/y6RMqW26db-215.webp 215w" sizes="(max-width:800px) 100vw, 1200px"><img alt="안드로이드와 iOS 웹킷 브라우저의 차이점" loading="lazy" decoding="async" data-src="../../static/uploads/2014/03/Webkit_Logo.png" src="/static/resp-img/y6RMqW26db-215.jpeg" width="215" height="174"></picture>
-                  </div>
-                
             </a>
           </li>
         

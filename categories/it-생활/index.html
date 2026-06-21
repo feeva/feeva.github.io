@@ -39,22 +39,17 @@
   
 
   <main class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 order-2 order-md-1">
       <div class="sidebar mt-3 px-md-3 py-4 pe-md-5">
         <div>
           <img src="/static/images/photo.jpg" class="author-photo" width="75" height="75" alt="이동련">
         </div>
         <h5 class="author-name my-4">이동련</h5>
-        <p style="font-size: 92%; color: #aaa;">
-          꿈은 살아있다! 온고지신을 생각하면서도 새로운 것을 찾아 두리번거리는 개발자. 새롭고 좋은 것은 써봐야겠지만 얼리어답터는 아닌 느린 개혁자.
+        <p class="author-description">
+          오늘도 세상 탐구<br>
+          느끼고 배우고 사랑하고 노력하기
         </p>
-
-        <ul class="page-links list-unstyled mt-5">
-          <li><a href="/">전체 글 목록</a></li>
-          <li><a href="/categories">카테고리</a></li>
-          <li><a href="/tags">태그</a></li>
-          <li><a href="/pages/about">내 소개</a></li>
-        </ul>
+        <a class="author-about" href="/pages/about">내 소개</a>
 
         <ul class="social list-unstyled mt-5">
           <li>
@@ -80,8 +75,23 @@
         </ul>
       </div>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 order-1 order-md-2">
       <div class="content mt-3 ps-md-3 py-4">
+        <div class="home-nav mb-4">
+          <nav class="primary-links" aria-label="주요 메뉴">
+            <a href="/">전체 글 목록</a>
+            <a href="/categories">카테고리</a>
+            <a href="/tags">태그</a>
+          </nav>
+
+          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
+            <input name="sitesearch" type="hidden" value="feeva.github.io">
+            <div>
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
+            </div>
+          </form>
+        </div>
         
       <h1 class="mb-5 fw-bold">IT 생활 카테고리</h1>
     
@@ -89,7 +99,29 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2020-07-09T14:40:00.000Z">2020. 7. 9.</time>
+              <time class="local-date" datetime="2026-06-21T11:30:00.000Z">Jun 21, 2026</time>
+              
+                <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
+              
+            </div>
+            <a href="/posts/맥-동네로-새로-이사-오셨어요/">
+              <h2 class="h3 my-2">맥 동네로 새로 이사 오셨어요?</h2>
+              <p class="my-3">여전히 PC 사용자 중 마이크로소프트 윈도 사용자가 압도적으로 많지만 이런저런 이유로 맥으로 넘어오는 사용자들이 있다.
+나도 처음엔 어색하고 불편했지만 어느덧 맥 전용 사용자가 됐고 이제 막 맥으로 이사온 윈도 사용자를 위해 
+알면 좋은 것들을 정리해보기로 한다.
+</p>
+
+              
+                  <div class="poster">
+                    <picture><source type="image/webp" srcset="/static/resp-img/gwxMEFo5eB-360.webp 360w, /static/resp-img/gwxMEFo5eB-720.webp 720w, /static/resp-img/gwxMEFo5eB-800.webp 800w, /static/resp-img/gwxMEFo5eB-1200.webp 1200w, /static/resp-img/gwxMEFo5eB-1600.webp 1600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="맥 동네로 새로 이사 오셨어요?" loading="lazy" decoding="async" data-src="../../static/uploads/2026/macos-screen.jpg" src="/static/resp-img/gwxMEFo5eB-360.jpeg" width="1600" height="1200" srcset="/static/resp-img/gwxMEFo5eB-360.jpeg 360w, /static/resp-img/gwxMEFo5eB-720.jpeg 720w, /static/resp-img/gwxMEFo5eB-800.jpeg 800w, /static/resp-img/gwxMEFo5eB-1200.jpeg 1200w, /static/resp-img/gwxMEFo5eB-1600.jpeg 1600w" sizes="(max-width:800px) 100vw, 1200px"></picture>
+                  </div>
+                
+            </a>
+          </li>
+        
+          <li class="mb-5">
+            <div class="post-meta">
+              <time class="local-date" datetime="2020-07-09T14:40:00.000Z">Jul 9, 2020</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -107,7 +139,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2017-07-18T06:48:54.000Z">2017. 7. 18.</time>
+              <time class="local-date" datetime="2017-07-18T06:48:54.000Z">Jul 18, 2017</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -124,7 +156,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2017-05-19T00:40:18.000Z">2017. 5. 19.</time>
+              <time class="local-date" datetime="2017-05-19T00:40:18.000Z">May 19, 2017</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -135,7 +167,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/7Af10C9GRK-360.webp 360w, /static/resp-img/7Af10C9GRK-720.webp 720w, /static/resp-img/7Af10C9GRK-800.webp 800w, /static/resp-img/7Af10C9GRK-1200.webp 1200w, /static/resp-img/7Af10C9GRK-1600.webp 1600w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/7Af10C9GRK-360.jpeg 360w, /static/resp-img/7Af10C9GRK-720.jpeg 720w, /static/resp-img/7Af10C9GRK-800.jpeg 800w, /static/resp-img/7Af10C9GRK-1200.jpeg 1200w, /static/resp-img/7Af10C9GRK-1600.jpeg 1600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="윈도 10 대기 화면의 멋진 장소들" loading="lazy" decoding="async" data-src="../../static/uploads/2016/09/west-bow-street-in-edinburgh-scotland.jpg" src="/static/resp-img/7Af10C9GRK-360.jpeg" width="1600" height="900"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/7Af10C9GRK-360.webp 360w, /static/resp-img/7Af10C9GRK-720.webp 720w, /static/resp-img/7Af10C9GRK-800.webp 800w, /static/resp-img/7Af10C9GRK-1200.webp 1200w, /static/resp-img/7Af10C9GRK-1600.webp 1600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="윈도 10 대기 화면의 멋진 장소들" loading="lazy" decoding="async" data-src="../../static/uploads/2016/09/west-bow-street-in-edinburgh-scotland.jpg" src="/static/resp-img/7Af10C9GRK-360.jpeg" width="1600" height="900" srcset="/static/resp-img/7Af10C9GRK-360.jpeg 360w, /static/resp-img/7Af10C9GRK-720.jpeg 720w, /static/resp-img/7Af10C9GRK-800.jpeg 800w, /static/resp-img/7Af10C9GRK-1200.jpeg 1200w, /static/resp-img/7Af10C9GRK-1600.jpeg 1600w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -143,7 +175,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2016-04-26T00:33:08.000Z">2016. 4. 26.</time>
+              <time class="local-date" datetime="2016-04-26T00:33:08.000Z">Apr 26, 2016</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -158,7 +190,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2015-09-06T16:13:41.000Z">2015. 9. 7.</time>
+              <time class="local-date" datetime="2015-09-06T16:13:41.000Z">Sep 7, 2015</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -179,7 +211,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-12-21T18:54:45.000Z">2014. 12. 22.</time>
+              <time class="local-date" datetime="2014-12-21T18:54:45.000Z">Dec 22, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -194,7 +226,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-08-31T18:28:40.000Z">2014. 9. 1.</time>
+              <time class="local-date" datetime="2014-08-31T18:28:40.000Z">Sep 1, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -207,7 +239,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/NZhkAJYTRs-360.webp 360w, /static/resp-img/NZhkAJYTRs-720.webp 720w, /static/resp-img/NZhkAJYTRs-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/NZhkAJYTRs-360.jpeg 360w, /static/resp-img/NZhkAJYTRs-720.jpeg 720w, /static/resp-img/NZhkAJYTRs-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="지역별 아파트 실거래가 분석" loading="lazy" decoding="async" data-src="../../static/uploads/2014/09/아파트_매매_전국_2014_567.png" src="/static/resp-img/NZhkAJYTRs-360.jpeg" width="800" height="823"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/NZhkAJYTRs-360.webp 360w, /static/resp-img/NZhkAJYTRs-720.webp 720w, /static/resp-img/NZhkAJYTRs-800.webp 800w, /static/resp-img/NZhkAJYTRs-1179.webp 1179w" sizes="(max-width:800px) 100vw, 1200px"><img alt="지역별 아파트 실거래가 분석" loading="lazy" decoding="async" data-src="../../static/uploads/2014/09/아파트_매매_전국_2014_567.png" src="/static/resp-img/NZhkAJYTRs-360.jpeg" width="1179" height="1213" srcset="/static/resp-img/NZhkAJYTRs-360.jpeg 360w, /static/resp-img/NZhkAJYTRs-720.jpeg 720w, /static/resp-img/NZhkAJYTRs-800.jpeg 800w, /static/resp-img/NZhkAJYTRs-1179.jpeg 1179w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -215,7 +247,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-07-11T15:35:55.000Z">2014. 7. 12.</time>
+              <time class="local-date" datetime="2014-07-11T15:35:55.000Z">Jul 12, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -226,7 +258,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/RsIiWXUXa0-360.webp 360w, /static/resp-img/RsIiWXUXa0-720.webp 720w, /static/resp-img/RsIiWXUXa0-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/RsIiWXUXa0-360.jpeg 360w, /static/resp-img/RsIiWXUXa0-720.jpeg 720w, /static/resp-img/RsIiWXUXa0-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="로봇이나 컴퓨터가 사람들의 일자리를 뺏을까?" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/franz_steiner_personal_robot_02.jpg" src="/static/resp-img/RsIiWXUXa0-360.jpeg" width="800" height="531"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/RsIiWXUXa0-360.webp 360w, /static/resp-img/RsIiWXUXa0-720.webp 720w, /static/resp-img/RsIiWXUXa0-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="로봇이나 컴퓨터가 사람들의 일자리를 뺏을까?" loading="lazy" decoding="async" data-src="../../static/uploads/2014/07/franz_steiner_personal_robot_02.jpg" src="/static/resp-img/RsIiWXUXa0-360.jpeg" width="800" height="531" srcset="/static/resp-img/RsIiWXUXa0-360.jpeg 360w, /static/resp-img/RsIiWXUXa0-720.jpeg 720w, /static/resp-img/RsIiWXUXa0-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -234,7 +266,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
+              <time class="local-date" datetime="2014-05-01T18:13:03.000Z">May 2, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -246,7 +278,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/WDLp1WVXPi-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="구글 Analytics를 통해 본 브라우저 점유율" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/GA201404_MC_All.png" src="/static/resp-img/WDLp1WVXPi-360.jpeg" width="360" height="276"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/WDLp1WVXPi-360.webp 360w, /static/resp-img/WDLp1WVXPi-580.webp 580w" sizes="(max-width:800px) 100vw, 1200px"><img alt="구글 Analytics를 통해 본 브라우저 점유율" loading="lazy" decoding="async" data-src="../../static/uploads/2014/05/GA201404_MC_All.png" src="/static/resp-img/WDLp1WVXPi-360.jpeg" width="580" height="445" srcset="/static/resp-img/WDLp1WVXPi-360.jpeg 360w, /static/resp-img/WDLp1WVXPi-580.jpeg 580w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -254,7 +286,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-12-31T18:31:11.000Z">2014. 1. 1.</time>
+              <time class="local-date" datetime="2013-12-31T18:31:11.000Z">Jan 1, 2014</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -269,7 +301,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-12-14T17:38:33.000Z">2013. 12. 15.</time>
+              <time class="local-date" datetime="2013-12-14T17:38:33.000Z">Dec 15, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -286,7 +318,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-11-21T16:38:25.000Z">2013. 11. 22.</time>
+              <time class="local-date" datetime="2013-11-21T16:38:25.000Z">Nov 22, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -301,7 +333,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/oGzfgaw0Lp-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="개발 능력은 연차에 비례하지 않는다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/smiley.jpg" src="/static/resp-img/oGzfgaw0Lp-360.jpeg" width="360" height="263"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/oGzfgaw0Lp-360.webp 360w, /static/resp-img/oGzfgaw0Lp-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="개발 능력은 연차에 비례하지 않는다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/11/smiley.jpg" src="/static/resp-img/oGzfgaw0Lp-360.jpeg" width="640" height="469" srcset="/static/resp-img/oGzfgaw0Lp-360.jpeg 360w, /static/resp-img/oGzfgaw0Lp-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -309,7 +341,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-10-19T03:52:59.000Z">2013. 10. 19.</time>
+              <time class="local-date" datetime="2013-10-19T03:52:59.000Z">Oct 19, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
                | 
@@ -323,7 +355,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/k4lS9rkENx-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="속담으로 풀어보는 프로젝트 관리" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/배보다배꼽.png" src="/static/resp-img/k4lS9rkENx-360.jpeg" width="360" height="104"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/k4lS9rkENx-360.webp 360w, /static/resp-img/k4lS9rkENx-603.webp 603w" sizes="(max-width:800px) 100vw, 1200px"><img alt="속담으로 풀어보는 프로젝트 관리" loading="lazy" decoding="async" data-src="../../static/uploads/2013/10/배보다배꼽.png" src="/static/resp-img/k4lS9rkENx-360.jpeg" width="603" height="175" srcset="/static/resp-img/k4lS9rkENx-360.jpeg 360w, /static/resp-img/k4lS9rkENx-603.jpeg 603w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -331,7 +363,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-08-05T14:25:01.000Z">2013. 8. 5.</time>
+              <time class="local-date" datetime="2013-08-05T14:25:01.000Z">Aug 5, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -343,7 +375,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/dpHbbYMk_l-360.webp 360w, /static/resp-img/dpHbbYMk_l-720.webp 720w, /static/resp-img/dpHbbYMk_l-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><source type="image/jpeg" srcset="/static/resp-img/dpHbbYMk_l-360.jpeg 360w, /static/resp-img/dpHbbYMk_l-720.jpeg 720w, /static/resp-img/dpHbbYMk_l-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="네이버 지식인에서 영웅 등급 되다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/08/네이버-지식인-영웅.png" src="/static/resp-img/dpHbbYMk_l-360.jpeg" width="800" height="255"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/dpHbbYMk_l-360.webp 360w, /static/resp-img/dpHbbYMk_l-720.webp 720w, /static/resp-img/dpHbbYMk_l-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="네이버 지식인에서 영웅 등급 되다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/08/네이버-지식인-영웅.png" src="/static/resp-img/dpHbbYMk_l-360.jpeg" width="800" height="255" srcset="/static/resp-img/dpHbbYMk_l-360.jpeg 360w, /static/resp-img/dpHbbYMk_l-720.jpeg 720w, /static/resp-img/dpHbbYMk_l-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -351,7 +383,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-07-05T16:43:15.000Z">2013. 7. 6.</time>
+              <time class="local-date" datetime="2013-07-05T16:43:15.000Z">Jul 6, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -364,7 +396,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/hcqU-rxnr7-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="고객의 운영 데이터를 날려본 적이 있는가?" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/The_Scream-e1373043295972.jpg" src="/static/resp-img/hcqU-rxnr7-360.jpeg" width="360" height="331"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/hcqU-rxnr7-360.webp 360w, /static/resp-img/hcqU-rxnr7-474.webp 474w" sizes="(max-width:800px) 100vw, 1200px"><img alt="고객의 운영 데이터를 날려본 적이 있는가?" loading="lazy" decoding="async" data-src="../../static/uploads/2013/07/The_Scream-e1373043295972.jpg" src="/static/resp-img/hcqU-rxnr7-360.jpeg" width="474" height="437" srcset="/static/resp-img/hcqU-rxnr7-360.jpeg 360w, /static/resp-img/hcqU-rxnr7-474.jpeg 474w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -372,7 +404,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-06-01T18:31:40.000Z">2013. 6. 2.</time>
+              <time class="local-date" datetime="2013-06-01T18:31:40.000Z">Jun 2, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -392,7 +424,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-22T02:38:47.000Z">2013. 5. 22.</time>
+              <time class="local-date" datetime="2013-05-22T02:38:47.000Z">May 22, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -408,7 +440,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-10T07:04:34.000Z">2013. 5. 10.</time>
+              <time class="local-date" datetime="2013-05-10T07:04:34.000Z">May 10, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -420,7 +452,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/biY-W-QWYs-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="못 살겠다 갈아보자 -  Chrome에서 Firefox로 갈아타다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/firefox_logo.jpg" src="/static/resp-img/biY-W-QWYs-360.jpeg" width="360" height="370"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/biY-W-QWYs-360.webp 360w, /static/resp-img/biY-W-QWYs-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="못 살겠다 갈아보자 -  Chrome에서 Firefox로 갈아타다" loading="lazy" decoding="async" data-src="../../static/uploads/2013/05/firefox_logo.jpg" src="/static/resp-img/biY-W-QWYs-360.jpeg" width="640" height="658" srcset="/static/resp-img/biY-W-QWYs-360.jpeg 360w, /static/resp-img/biY-W-QWYs-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -428,7 +460,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-05-07T07:05:23.000Z">2013. 5. 7.</time>
+              <time class="local-date" datetime="2013-05-07T07:05:23.000Z">May 7, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -450,7 +482,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-26T16:42:48.000Z">2013. 4. 27.</time>
+              <time class="local-date" datetime="2013-04-26T16:42:48.000Z">Apr 27, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -462,7 +494,7 @@
 
               
                   <div class="poster">
-                    <picture><source type="image/webp" srcset="/static/resp-img/m49uqwYYuE-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="기본" loading="lazy" decoding="async" data-src="../../static/uploads/2013/04/client.png" src="/static/resp-img/m49uqwYYuE-360.jpeg" width="360" height="235"></picture>
+                    <picture><source type="image/webp" srcset="/static/resp-img/m49uqwYYuE-360.webp 360w, /static/resp-img/m49uqwYYuE-600.webp 600w" sizes="(max-width:800px) 100vw, 1200px"><img alt="기본" loading="lazy" decoding="async" data-src="../../static/uploads/2013/04/client.png" src="/static/resp-img/m49uqwYYuE-360.jpeg" width="600" height="392" srcset="/static/resp-img/m49uqwYYuE-360.jpeg 360w, /static/resp-img/m49uqwYYuE-600.jpeg 600w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                   </div>
                 
             </a>
@@ -470,7 +502,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-04-20T07:31:42.000Z">2013. 4. 20.</time>
+              <time class="local-date" datetime="2013-04-20T07:31:42.000Z">Apr 20, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -487,7 +519,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-03-12T05:37:48.000Z">2013. 3. 12.</time>
+              <time class="local-date" datetime="2013-03-12T05:37:48.000Z">Mar 12, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
@@ -503,7 +535,7 @@
         
           <li class="mb-5">
             <div class="post-meta">
-              <time datetime="2013-02-17T17:41:40.000Z">2013. 2. 18.</time>
+              <time class="local-date" datetime="2013-02-17T17:41:40.000Z">Feb 18, 2013</time>
               
                 <span class="category"><a href="/categories/IT 생활">IT 생활</a></span>
               
