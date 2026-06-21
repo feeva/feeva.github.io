@@ -38,9 +38,12 @@
   </head>
   <body>
     <div class="post-layout">
-  <a href="/" class="home-link">전체 게시물</a>
+  <a href="/" class="home-link">전체 글 목록</a>
 
   <h1>접근성을 고려한 JavaScript 사용</h1>
+
+  <div class="post-header-meta">
+    <time class="local-date" datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
   <div class="post-content">
     <p>웹 접근성(Accessibility)을 고려할 때 자바스크립트(JavaScript) 사용에 대해 다시 좀 보기로 했다. 그 동안 공공 프로젝트를 여러 차례 하면서 우리나라 웹 접근성 표준에 대해 익히 알고 있었는데 오늘 이걸 다시 거들떠 봐야겠다는 생각이 들었다.</p>
@@ -197,11 +200,35 @@
   </div>
 
   <div class="post-footer">
-    <div class="post-footer-date">
-      게시일 - <time class="local-date" datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
-    </div>
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title">같은 카테고리의 글</h2>
+        <ul><li>
+              <a href="/posts/TV-동네-탐방/">TV 동네 탐방</a>
+              <time class="local-date" datetime="2023-05-20T10:30:00.000Z">2023. 5. 20.</time>
+            </li><li>
+              <a href="/posts/자바-람다-스트림-사용-주의점/">자바에서 람다, 스트림을 사용할 때 주의할 점</a>
+              <time class="local-date" datetime="2022-12-22">2022. 12. 22.</time>
+            </li><li>
+              <a href="/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/">스프링 부트 웹앱에 HTTPS 프록시 붙이기</a>
+              <time class="local-date" datetime="2020-09-19T14:35:00.000Z">2020. 9. 19.</time>
+            </li><li>
+              <a href="/posts/d3로-그린-이마트-개점-애니메이션/">d3로 그린 이마트 개점 애니메이션</a>
+              <time class="local-date" datetime="2020-07-30T18:03:00.000Z">2020. 7. 31.</time>
+            </li><li>
+              <a href="/posts/Gastby로-갈아타다/">워드프레스에서 개츠비로 갈아타다</a>
+              <time class="local-date" datetime="2020-06-21T11:10:00.000Z">2020. 6. 21.</time>
+            </li></ul>
+      </section>
+    
 
-    <ul class="post-tags"><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/접근성">접근성</a></li></ul>
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/javascript">JavaScript</a></li><li><a href="/tags/자바스크립트">자바스크립트</a></li><li><a href="/tags/접근성">접근성</a></li></ul>
+      </section>
+    
   </div>
 </div>
 

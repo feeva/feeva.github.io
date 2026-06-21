@@ -48,9 +48,12 @@
   </head>
   <body>
     <div class="post-layout">
-  <a href="/" class="home-link">전체 게시물</a>
+  <a href="/" class="home-link">전체 글 목록</a>
 
   <h1>애니메이션 easing에 숨은 비밀</h1>
+
+  <div class="post-header-meta">
+    <time class="local-date" datetime="2015-02-07T18:29:50.000Z">2015. 2. 8.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
   <div class="post-content">
     <p>UI 애니메이션을 코딩할 때 꼭 들어가는 양념 같은 게 있다. easing. 우리 말로는 한 마디로 옮기기 힘들어 풀어서 말하자면 애니메이션 흐름을 매끄럽게 이어주기 위해 동작 속도를 조절하는 것이다. (경제 용어에서는 quantitative easing을 &quot;양적 완화&quot;로 옮기기는 한다.)</p>
@@ -118,11 +121,35 @@ jQuery(function($) {
   </div>
 
   <div class="post-footer">
-    <div class="post-footer-date">
-      게시일 - <time class="local-date" datetime="2015-02-07T18:29:50.000Z">2015. 2. 8.</time>
-    </div>
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title">같은 카테고리의 글</h2>
+        <ul><li>
+              <a href="/posts/TV-동네-탐방/">TV 동네 탐방</a>
+              <time class="local-date" datetime="2023-05-20T10:30:00.000Z">2023. 5. 20.</time>
+            </li><li>
+              <a href="/posts/자바-람다-스트림-사용-주의점/">자바에서 람다, 스트림을 사용할 때 주의할 점</a>
+              <time class="local-date" datetime="2022-12-22">2022. 12. 22.</time>
+            </li><li>
+              <a href="/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/">스프링 부트 웹앱에 HTTPS 프록시 붙이기</a>
+              <time class="local-date" datetime="2020-09-19T14:35:00.000Z">2020. 9. 19.</time>
+            </li><li>
+              <a href="/posts/d3로-그린-이마트-개점-애니메이션/">d3로 그린 이마트 개점 애니메이션</a>
+              <time class="local-date" datetime="2020-07-30T18:03:00.000Z">2020. 7. 31.</time>
+            </li><li>
+              <a href="/posts/Gastby로-갈아타다/">워드프레스에서 개츠비로 갈아타다</a>
+              <time class="local-date" datetime="2020-06-21T11:10:00.000Z">2020. 6. 21.</time>
+            </li></ul>
+      </section>
+    
 
-    <ul class="post-tags"><li><a href="/tags/easing">easing</a></li><li><a href="/tags/jquery">jQuery</a></li><li><a href="/tags/ui-애니메이션">UI 애니메이션</a></li></ul>
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/easing">easing</a></li><li><a href="/tags/jquery">jQuery</a></li><li><a href="/tags/ui-애니메이션">UI 애니메이션</a></li></ul>
+      </section>
+    
   </div>
 </div>
 

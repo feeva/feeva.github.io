@@ -41,8 +41,7 @@ img {
   font-weight: bold;
 }
 
-.post-layout > a,
-.post-footer a {
+.post-layout > a {
   display: inline-block;
   height: 2.5rem;
   line-height: 2.2rem;
@@ -57,6 +56,31 @@ img {
   position: relative;
   top: 1rem;
   left: 1rem;
+}
+.post-header-meta {
+  max-width: 42rem;
+  margin: -0.5rem auto 2.5rem auto;
+  padding: 0 1rem;
+  color: #999;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.post-header-meta a {
+  color: #d97811;
+  text-decoration: none;
+}
+.post-header-meta a:hover {
+  text-decoration: underline;
+}
+.post-categories::before {
+  content: "·";
+  margin: 0 0.5rem;
+  color: #bbb;
+}
+.post-categories a + a::before {
+  content: "|";
+  margin: 0 0.45rem;
+  color: #bbb;
 }
 
 .post-content,
@@ -181,10 +205,6 @@ figcaption a {
   font-style: italic;
   color: #999;
 }
-.post-footer ul li {
-  padding: 0 0.3rem;
-  margin-bottom: 0.6rem;
-}
 
 #disqus_thread {
   max-width: 44rem;
@@ -192,6 +212,42 @@ figcaption a {
   padding: 1rem;
 }
 
+.related-posts,
+.post-tag-section {
+  padding-top: 1.4rem;
+  border-top: 1px solid #eee;
+}
+.related-posts h2,
+.post-tag-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.related-posts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.related-posts li {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+.related-posts a {
+  color: #333;
+  text-decoration: none;
+}
+.related-posts a:hover {
+  color: #d97811;
+  text-decoration: underline;
+}
+.related-posts time {
+  flex: 0 0 auto;
+  color: #999;
+  font-size: 0.9rem;
+}
 .post-tags {
   list-style: none;
   margin: 1rem -0.6rem;
@@ -201,6 +257,21 @@ figcaption a {
   display: inline-block;
   margin: 0.6rem 0.3rem;
   padding: 0 0.3rem;
+}
+.post-tags a {
+  display: inline-block;
+  height: 2.2rem;
+  line-height: 2rem;
+  padding: 0 1rem;
+  border: 1px solid #ddd;
+  border-radius: 1.1rem;
+  color: #222;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.post-tags a:hover {
+  border-color: #f7a046;
+  color: #d97811;
 }
 
 /*
@@ -236,6 +307,7 @@ figcaption a {
     center;
   background-size: cover;
   background-blend-mode: darken;
+  background-position: center center;
 }
 .collection .home-nav {
   display: flex;
@@ -460,6 +532,13 @@ figcaption a {
 @media screen and (max-width: 920px) {
   .page-link {
     padding: 0.2rem 0.5rem;
+  }
+  .related-posts li {
+    display: block;
+  }
+  .related-posts time {
+    display: block;
+    margin-top: 0.1rem;
   }
   .collection section.poster {
     align-items: flex-start;

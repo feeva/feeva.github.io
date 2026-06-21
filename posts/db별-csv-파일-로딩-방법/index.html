@@ -36,9 +36,12 @@
   </head>
   <body>
     <div class="post-layout">
-  <a href="/" class="home-link">전체 게시물</a>
+  <a href="/" class="home-link">전체 글 목록</a>
 
   <h1>DB별 CSV 파일 로딩 방법</h1>
+
+  <div class="post-header-meta">
+    <time class="local-date" datetime="2014-08-23T15:25:37.000Z">2014. 8. 24.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
 
   <div class="post-content">
     <p>개발하면서 심심치 않게 CSV 파일을 데이터베이스에 부어 넣어야 하는 경우가 생긴다. 시스템을 처음 구축하면서 초기 데이터를 만들어 넣는다든가 뱃치성 작업으로 외부 시스템과 연동한다든지 할 때 등이다. 그래서 한번 DB별 CSV 파일 로딩 방법을 정리해야겠다는 생각이 들었다. 보다 체계적인 설명이나 자세한 옵션들은 역시나 사용 설명서를 참고하도록 한다.</p>
@@ -132,11 +135,35 @@ trailing nullcols
   </div>
 
   <div class="post-footer">
-    <div class="post-footer-date">
-      게시일 - <time class="local-date" datetime="2014-08-23T15:25:37.000Z">2014. 8. 24.</time>
-    </div>
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title">같은 카테고리의 글</h2>
+        <ul><li>
+              <a href="/posts/TV-동네-탐방/">TV 동네 탐방</a>
+              <time class="local-date" datetime="2023-05-20T10:30:00.000Z">2023. 5. 20.</time>
+            </li><li>
+              <a href="/posts/자바-람다-스트림-사용-주의점/">자바에서 람다, 스트림을 사용할 때 주의할 점</a>
+              <time class="local-date" datetime="2022-12-22">2022. 12. 22.</time>
+            </li><li>
+              <a href="/posts/스프링-부트-웹앱에-HTTPS-프록시-붙이기/">스프링 부트 웹앱에 HTTPS 프록시 붙이기</a>
+              <time class="local-date" datetime="2020-09-19T14:35:00.000Z">2020. 9. 19.</time>
+            </li><li>
+              <a href="/posts/d3로-그린-이마트-개점-애니메이션/">d3로 그린 이마트 개점 애니메이션</a>
+              <time class="local-date" datetime="2020-07-30T18:03:00.000Z">2020. 7. 31.</time>
+            </li><li>
+              <a href="/posts/Gastby로-갈아타다/">워드프레스에서 개츠비로 갈아타다</a>
+              <time class="local-date" datetime="2020-06-21T11:10:00.000Z">2020. 6. 21.</time>
+            </li></ul>
+      </section>
+    
 
-    <ul class="post-tags"><li><a href="/tags/csv">CSV</a></li><li><a href="/tags/h2">H2</a></li><li><a href="/tags/mysql">MySQL</a></li><li><a href="/tags/oracle">Oracle</a></li><li><a href="/tags/데이터베이스">데이터베이스</a></li><li><a href="/tags/오라클">오라클</a></li></ul>
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/csv">CSV</a></li><li><a href="/tags/h2">H2</a></li><li><a href="/tags/mysql">MySQL</a></li><li><a href="/tags/oracle">Oracle</a></li><li><a href="/tags/데이터베이스">데이터베이스</a></li><li><a href="/tags/오라클">오라클</a></li></ul>
+      </section>
+    
   </div>
 </div>
 
