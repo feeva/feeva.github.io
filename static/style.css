@@ -20789,6 +20789,12 @@ img {
   max-width: 100%;
   height: auto;
 }
+hr {
+  border: none;
+  border-top: 2px solid #eee;
+  margin: 3rem auto;
+  width: 8rem;
+}
 
 .collection main,
 .post-layout {

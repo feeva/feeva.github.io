@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://feeva.github.io/sitemap.xml
-Sitemap: https://feeva.github.io/sitemap-new.xml
+Sitemap: https://abcbox.kr/sitemap.xml
