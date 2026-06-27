@@ -1,6 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
   font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
   font-size: 13pt;
+  font-weight: 400;
   color: #555;
 }
 h1,
@@ -9,12 +17,17 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   color: black;
+  font-weight: 500;
+  line-height: 1.2;
 }
 code {
   font-family:
     'Roboto mono', Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono',
     'Courier New', 'Noto Sans KR', monospace;
+  font-size: 1rem;
 }
 pre code {
   font-size: 12pt;
@@ -32,6 +45,18 @@ img {
   max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
+}
+.collection main {
+  display: flex;
+  flex-wrap: wrap;
+}
+.collection .sidebar-col {
+  width: 100%;
+  order: 2;
+}
+.collection .content-col {
+  width: 100%;
+  order: 1;
 }
 .post-layout > h1 {
   margin: 1.8rem auto;
@@ -101,6 +126,7 @@ img {
 }
 
 .post-content > p {
+  margin-top: 0;
   margin-bottom: 2rem;
 }
 .post-content h2,
@@ -158,16 +184,24 @@ img {
   background-color: #1e1e1e;
   color: #d4d4d4;
 }
-.post-content pre kbd {
+kbd {
   display: inline-block;
-  padding: 3px 5px;
+  padding: 2px 6px;
+  font-family: 'Roboto Mono', Menlo, monospace;
+  font-size: 0.85em;
   color: #444d56;
-  line-height: 12px;
+  line-height: 1.4;
   vertical-align: middle;
   background-color: #fafbfc;
   border: 1px solid #d1d5da;
   border-radius: 4px;
   box-shadow: inset 0 -1px 0 #d1d5da;
+}
+.post-content pre kbd {
+  background-color: #2d2d2d;
+  color: #ccc;
+  border-color: #555;
+  box-shadow: inset 0 -1px 0 #555;
 }
 .post-content p > img,
 .post-content picture img,
@@ -313,6 +347,10 @@ figcaption a {
 /*
  컬렉션 페이지
  */
+.collection .poster-subtitle {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
 .collection section.poster {
   position: relative;
   padding: 0 1.25rem;
@@ -352,6 +390,7 @@ figcaption a {
   justify-content: space-between;
   flex-wrap: wrap;
   padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid #eee;
 }
 .collection .primary-links {
@@ -405,6 +444,26 @@ figcaption a {
 
 .collection .sidebar {
   position: relative;
+  padding: 1rem;
+}
+.collection .author-name {
+  font-size: 1.25rem;
+  margin: 1.2rem 0;
+}
+.collection .social {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+.collection .social li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.collection .content {
+  padding: 1.5rem 1rem;
 }
 
 .collection .author-photo {
@@ -444,9 +503,6 @@ figcaption a {
   text-align: center;
   border: 1px solid #ddd;
 }
-.collection .social li a {
-  line-height: 1.8rem;
-}
 .collection .social svg {
   display: inline-block;
   width: 1em;
@@ -465,6 +521,26 @@ figcaption a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
+}
+.collection .content h1 {
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+.collection .post-list,
+.collection .collections {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.collection .post-list > li {
+  margin-bottom: 3rem;
+}
+.collection .post-list a h2 {
+  margin: 0.5rem 0;
+  font-size: 1.75rem;
+}
+.collection .post-list a p {
+  margin: 0.75rem 0;
 }
 .collection .post-list .post-meta {
   font-size: 12pt;
@@ -512,6 +588,74 @@ figcaption a {
   text-decoration: none;
 }
 
+/* 페이지네이션 */
+.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+}
+.pagination li a {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.pagination li a:hover {
+  background: #f7f7f7;
+  border-color: #bbb;
+}
+.pagination li[aria-current] a {
+  background: #4682b4;
+  border-color: #4682b4;
+  color: white;
+}
+.pagination li.disabled a {
+  color: #bbb;
+  border-color: #eee;
+  pointer-events: none;
+}
+
+/* 태그 뱃지 */
+.tag-badge {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  margin: 0.2rem 0.15rem;
+  border-radius: 2em;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: #f0f0f0;
+  color: #555;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.tag-badge.tag-md {
+  font-size: 1rem;
+  background: #e0e8f0;
+  color: #4682b4;
+}
+.tag-badge.tag-lg {
+  font-size: 1.05rem;
+  background: #ccdde8;
+  color: #336090;
+}
+.tag-badge.tag-xl {
+  font-size: 1.1rem;
+  background: #4682b4;
+  color: white;
+}
+.tag-badge:hover {
+  background: #f7a046;
+  color: white;
+}
+
 /* 반응형 */
 @media screen and (min-width: 920px) {
   body {
@@ -551,6 +695,26 @@ figcaption a {
     font-size: 12pt;
   }
 
+  .collection .sidebar-col {
+    width: 33.333%;
+    order: 1;
+  }
+  .collection .content-col {
+    width: 66.666%;
+    order: 2;
+  }
+  .collection .sidebar {
+    padding: 1.5rem 3rem 1.5rem 1rem;
+  }
+  .collection .author-name {
+    margin: 1.5rem 0;
+  }
+  .collection .social {
+    margin-top: 3rem;
+  }
+  .collection .content {
+    padding: 1.5rem 0 1.5rem 2.5rem;
+  }
   .collection section.poster {
     height: 280px;
   }
@@ -566,7 +730,7 @@ figcaption a {
     width: 0.5px;
     height: 34rem;
     top: 20px;
-    right: 5px;
+    right: 1.25rem;
     bottom: 0;
   }
 }
@@ -618,6 +782,15 @@ figcaption a {
   }
 }
 @media screen and (max-width: 920px) {
+  .collection .post-list a h2 {
+    font-size: calc(1.3rem + 0.6vw);
+  }
+  .pagination {
+    gap: 0 !important;
+  }
+  .pagination li a {
+    padding: 0.3rem 0.5rem;
+  }
   .page-link {
     padding: 0.2rem 0.5rem;
   }
@@ -657,16 +830,6 @@ figcaption a {
   .collection form.search input,
   .collection form.search input:focus {
     width: 100%;
-  }
-  .collection .sidebar {
-    padding-top: 1rem !important;
-  }
-  .collection .author-name {
-    margin-top: 1.2rem !important;
-    margin-bottom: 1.2rem !important;
-  }
-  .collection .social {
-    margin-top: 2rem !important;
   }
 }
 
