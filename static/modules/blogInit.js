@@ -199,6 +199,18 @@ const onEsc = (e) => {
 };
 document.documentElement.addEventListener('keydown', onEsc);
 
+// 맨 위로 버튼
+const backToTopBtn = document.getElementById('back-to-top');
+if (backToTopBtn) {
+  const onScroll = () => {
+    backToTopBtn.classList.toggle('visible', window.scrollY >= 400);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 // 이전에 설치된 서비스 워커 제거
 navigator.serviceWorker.getRegistrations().then((registrations) => {
   for (let registration of registrations) {

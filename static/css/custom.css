@@ -183,6 +183,7 @@ img {
   border-radius: 0.3em;
   background-color: #1e1e1e;
   color: #d4d4d4;
+  white-space: pre-wrap;
 }
 kbd {
   display: inline-block;
@@ -317,6 +318,34 @@ figcaption a {
   flex: 0 0 auto;
   color: #999;
   font-size: 0.9rem;
+}
+.related-posts li[aria-current] span {
+  color: #d97811;
+  font-weight: 600;
+}
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: #d97811;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+#back-to-top.visible {
+  opacity: 0.85;
+  pointer-events: auto;
+}
+#back-to-top.visible:hover {
+  opacity: 1;
 }
 .post-tags {
   list-style: none;
