@@ -123,6 +123,25 @@ if (postToc && tocNav && headings.length >= 5) {
 // 이미지 슬라이더
 const images = Array.from(document.querySelectorAll('.post-content img'));
 let imageSlider;
+
+const closeSlider = () => {
+  const slider = document.querySelector('#postImageSlider');
+  if (!slider || slider.style.display === 'none') return;
+  slider.style.opacity = 0;
+  setTimeout(() => (slider.style.display = 'none'), 250);
+};
+
+const openSlider = () => {
+  const slider = document.getElementById('postImageSlider');
+  slider.style.display = '';
+  requestAnimationFrame(() => (slider.style.opacity = 1));
+  history.pushState({ lightboxOpen: true }, '');
+};
+
+window.addEventListener('popstate', (e) => {
+  if (!e.state?.lightboxOpen) closeSlider();
+});
+
 images.forEach((img, idx) => {
   img.style.cursor = 'pointer';
   img.addEventListener('click', (e) => {
@@ -130,11 +149,8 @@ images.forEach((img, idx) => {
     e.stopPropagation();
 
     if (imageSlider) {
-      imageSlider.activeIndex = idx;
-      document.querySelector('#postImageSlider').style.display = '';
-      requestAnimationFrame(
-        () => (document.getElementById('postImageSlider').style.opacity = 1),
-      );
+      imageSlider.slideTo(idx, 0);
+      openSlider();
     } else {
       const html = `
         <div
@@ -162,17 +178,14 @@ images.forEach((img, idx) => {
           <div class="swiper-pagination"></div>
           <div
             class="swiper-close" tabindex="0" role="button" aria-label="닫기" aria-disabled="false"
-            onclick="
-              document.querySelector('#postImageSlider').style.opacity = 0;
-              setTimeout(() => document.querySelector('#postImageSlider').style.display = 'none', 250);
-            "
           >✕</div>
         </div>
       `;
       document.body.insertAdjacentHTML('beforeend', html);
-      requestAnimationFrame(
-        () => (document.getElementById('postImageSlider').style.opacity = 1),
-      );
+
+      document.querySelector('.swiper-close').addEventListener('click', () => {
+        history.back();
+      });
 
       imageSlider = new Swiper('#postImageSlider', {
         initialSlide: idx,
@@ -187,14 +200,16 @@ images.forEach((img, idx) => {
           clickable: true,
         },
       });
+
+      history.pushState({ lightboxOpen: true }, '');
     }
   });
 });
+
 const onEsc = (e) => {
   const slider = document.querySelector('#postImageSlider');
-  if (e.key === 'Escape' && slider) {
-    slider.style.opacity = 0;
-    setTimeout(() => (slider.style.display = 'none'), 250);
+  if (e.key === 'Escape' && slider && slider.style.display !== 'none') {
+    history.back();
   }
 };
 document.documentElement.addEventListener('keydown', onEsc);
