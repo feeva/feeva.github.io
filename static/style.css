@@ -20782,6 +20782,9 @@ code {
 pre code {
   font-size: 12pt;
 }
+a {
+  text-underline-offset: 0.18em;
+}
 a.badge {
   text-decoration: none;
 }
