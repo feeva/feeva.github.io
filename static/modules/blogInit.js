@@ -201,7 +201,7 @@ images.forEach((img, idx) => {
         },
       });
 
-      history.pushState({ lightboxOpen: true }, '');
+      openSlider();
     }
   });
 });
