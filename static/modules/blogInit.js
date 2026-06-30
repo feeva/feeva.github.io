@@ -190,7 +190,9 @@ images.forEach((img, idx) => {
       imageSlider = new Swiper('#postImageSlider', {
         initialSlide: idx,
         zoom: true,
-        lazy: true,
+        lazy: {
+          loadPrevNext: true,
+        },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

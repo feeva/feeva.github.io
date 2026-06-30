@@ -95,12 +95,12 @@
 <h3>정적인 자원이 원격지(다른 컴퓨터)에 있는 경우</h3>
 <p><strong>마지막으로 정적인 자원이 자바 컨텍스트가 위치한 컴퓨터와는 다른 컴퓨터에 있는 경우를 알아보자.</strong> 이 경우는 좀 번거롭지만 정적인 자원의 경로 앞에 원격지의 주소를 일일이 붙여주는 수 밖에 없다.</p>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-...
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://123.45.67.89/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
-...
+  ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://123.45.67.89/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  ...
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 <p>원격지의 주소는 개발 중 바뀔 수도 있고 운영 서버로 최종 배포할 때도 바뀔 가능성이 많으므로 스프링 같은 프레임웍이나 JSTL을 사용한다면 원격지 주소를 설정 파일 같은 곳에서 변수로 뽑아오는 것이 편리하다.</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${resourcePath}/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${resourcePath}/img/category/abc123_on.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
 <p>이상으로 글을 마치며 디자인팀과 개발팀의 조화로운 프로젝트 진행을 꿈꿔본다. 😉</p>
 
     </div>
@@ -110,7 +110,7 @@
     
       <section class="post-tag-section" aria-label="태그">
         <h2>태그</h2>
-        <ul class="post-tags"><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/톰캣">톰캣</a></li><li><a href="/tags/apache">Apache</a></li></ul>
+        <ul class="post-tags"><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/톰캣">톰캣</a></li></ul>
       </section>
     
 

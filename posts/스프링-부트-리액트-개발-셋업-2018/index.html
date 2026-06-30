@@ -102,11 +102,11 @@
 <pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">http</span><span class="token punctuation">:</span>
     <span class="token key atrule">encoding</span><span class="token punctuation">:</span>
-      <span class="token key atrule">charset</span><span class="token punctuation">:</span>    UTF<span class="token punctuation">-</span><span class="token number">8</span>
+      <span class="token key atrule">charset</span><span class="token punctuation">:</span> UTF<span class="token punctuation">-</span><span class="token number">8</span>
   <span class="token key atrule">mvc</span><span class="token punctuation">:</span>
     <span class="token key atrule">view</span><span class="token punctuation">:</span>
-      <span class="token key atrule">prefix</span><span class="token punctuation">:</span>     /jsp/
-      <span class="token key atrule">suffix</span><span class="token punctuation">:</span>     .jsp
+      <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /jsp/
+      <span class="token key atrule">suffix</span><span class="token punctuation">:</span> .jsp
 <span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">tomcat</span><span class="token punctuation">:</span>
     <span class="token key atrule">uri-encoding</span><span class="token punctuation">:</span> UTF<span class="token punctuation">-</span><span class="token number">8</span></code></pre>
@@ -128,33 +128,36 @@ d:\myweb.test&gt;npm i @babel/core @babel/preset-env @babel/preset-react babel-l
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token literal-property property">context</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src/main/jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token string">'./MainPage.jsx'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">page1</span><span class="token operator">:</span> <span class="token string">'./Page1Page.jsx'</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">devtool</span><span class="token operator">:</span> <span class="token string">'sourcemaps'</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname<span class="token punctuation">,</span>
-        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'./src/main/webapp/js/react/[name].bundle.js'</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span>
-            <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.jsx?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-            <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(node_modules)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-            <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
-                <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                    <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'@babel/preset-env'</span><span class="token punctuation">,</span> <span class="token string">'@babel/preset-react'</span> <span class="token punctuation">]</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-            <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-            <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span> <span class="token punctuation">]</span>
-        <span class="token punctuation">}</span> <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
+  <span class="token literal-property property">context</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src/main/jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token string">'./MainPage.jsx'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">page1</span><span class="token operator">:</span> <span class="token string">'./Page1Page.jsx'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">devtool</span><span class="token operator">:</span> <span class="token string">'sourcemaps'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname<span class="token punctuation">,</span>
+    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'./src/main/webapp/js/react/[name].bundle.js'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.jsx?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(node_modules)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'@babel/preset-env'</span><span class="token punctuation">,</span> <span class="token string">'@babel/preset-react'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <p>내용은 다음과 같다.</p>
 <ul>
@@ -185,22 +188,27 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 
 <span class="token punctuation">}</span></code></pre>
 <p>그리고 이번엔 <code>src/main/webapp/jsp</code> 경로 아래에 <code>page.jsp</code>라는 파일을 만든다. webpack에서 만들어낼 <code>[페이지 이름].bundle.js</code>에 해당하는 스크립트를 불러들이는 부분이 들어가 있다. 또한 React의 최상위 요소가 되는 div도 들어가 있다.</p>
-<pre class="language-html"><code class="language-html">&lt;%@ page language="java" contentType="text/html; charset=utf-8"
-%>
+<pre class="language-html"><code class="language-html">&lt;%@ page language="java" contentType="text/html; charset=utf-8" %>
 <span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>${pageName}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>root<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/react/${pageName}.bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 <p>이번엔 <code>src/main/webapp/css/custom.css</code> 파일을 만든다. webpack에서 CSS도 로딩되게 설정했으므로 나중에 이 파일이 웹페이지에 잘 포함됐는지 확인해볼 수 있다.</p>
-<pre class="language-css"><code class="language-css"><span class="token selector">.main</span> <span class="token punctuation">{</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 24px<span class="token punctuation">;</span> <span class="token property">border-bottom</span><span class="token punctuation">:</span> solid 1px black<span class="token punctuation">;</span> <span class="token punctuation">}</span>
-<span class="token selector">.page1</span> <span class="token punctuation">{</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span> <span class="token property">background-color</span><span class="token punctuation">:</span> yellow<span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<pre class="language-css"><code class="language-css"><span class="token selector">.main</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 24px<span class="token punctuation">;</span>
+  <span class="token property">border-bottom</span><span class="token punctuation">:</span> solid 1px black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.page1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> yellow<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h2> 클라이언트 코드 개발</h2>
 <p>이제 JSX 파일을 작성할 차례다. <code>src/main/jsx</code> 폴더 아래에 아래와 같이 별 의미는 없지만 내용을 구별할 수 있게 자바스크립트 클래스를 작성한다. css 파일을 import하는 게 보이는데 개인적으로 CSS 파일은 JavaScript 위에서 import하는 걸 선호한다.</p>
 <p><code>MainPage.jsx</code>:</p>
@@ -210,14 +218,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">MainPage</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
-
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"main"</span><span class="token operator">></span>메인 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"main"</span><span class="token operator">></span>메인 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>MainPage<span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>MainPage <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><code>Page1Page.jsx</code>:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'../webapp/css/custom.css'</span><span class="token punctuation">;</span>
 
@@ -225,14 +231,12 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Page1Page</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
-
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"page1"</span><span class="token operator">></span>Page1 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"page1"</span><span class="token operator">></span>Page1 페이지<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Page1Page<span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Page1Page <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2>클라이언트 스크립트 빌드</h2>
 <p>webpack을 실행하면 바로 클라이언트 스크립트가 빌드되지만 JSX 파일 수정시에 자동으로 지속적으로 빌드되는 것이 필요하다. 이를 위해 webpack에는 watch 명령이 준비돼 있다. VSC 터미널에서 아래 명령을 실행해준다. 개발시에는 -d 옵션을 붙이고 운영 환경에서는 -p 옵션으로 바꾸도록 한다.</p>
 <pre><code>node_modules\.bin\webpack --watch -d
@@ -253,7 +257,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
     
       <section class="post-tag-section" aria-label="태그">
         <h2>태그</h2>
-        <ul class="post-tags"><li><a href="/tags/스프링-부트">스프링 부트</a></li><li><a href="/tags/spring-boot">Spring Boot</a></li><li><a href="/tags/리액트">리액트</a></li><li><a href="/tags/react">React</a></li><li><a href="/tags/jsp">JSP</a></li></ul>
+        <ul class="post-tags"><li><a href="/tags/스프링">스프링</a></li><li><a href="/tags/spring">Spring</a></li><li><a href="/tags/리액트">리액트</a></li><li><a href="/tags/react">React</a></li><li><a href="/tags/jsp">JSP</a></li></ul>
       </section>
     
 

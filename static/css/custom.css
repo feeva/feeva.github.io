@@ -564,6 +564,16 @@ figcaption a {
   margin-bottom: 2rem;
   font-weight: bold;
 }
+.collection .content h1 .category-label {
+  font-size: 0.8em;
+  font-weight: normal;
+  color: #888;
+  vertical-align: middle;
+}
+.collection .content h1 .tag-hash {
+  color: #d97811;
+  margin-right: 0.05em;
+}
 .collection .post-list,
 .collection .collections {
   list-style: none;
@@ -890,6 +900,9 @@ figcaption a {
   height: auto;
   max-width: 99%;
   max-height: 99%;
+}
+#postImageSlider .swiper-slide img.swiper-lazy:not(.swiper-lazy-loaded) {
+  color: transparent;
 }
 #postImageSlider figcaption {
   position: absolute;

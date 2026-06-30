@@ -74,7 +74,7 @@
         <span class="token class-name">WriteListener</span> listener <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WriteListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token annotation punctuation">@Override</span>
             <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onWritePossible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
-                <span class="token comment">// 3. Write to output stream </span>
+                <span class="token comment">// 3. Write to output stream</span>
                 <span class="token class-name">ServletOutputStream</span> output <span class="token operator">=</span> asyncContext<span class="token punctuation">.</span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>output<span class="token punctuation">.</span><span class="token function">isReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     output<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -171,7 +171,7 @@
     
       <section class="post-tag-section" aria-label="태그">
         <h2>태그</h2>
-        <ul class="post-tags"><li><a href="/tags/el">EL</a></li><li><a href="/tags/jsp">JSP</a></li><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/서블릿">서블릿</a></li><li><a href="/tags/웹소켓">웹소켓</a></li><li><a href="/tags/톰캣">톰캣</a></li></ul>
+        <ul class="post-tags"><li><a href="/tags/jsp">JSP</a></li><li><a href="/tags/tomcat">Tomcat</a></li><li><a href="/tags/서블릿">서블릿</a></li><li><a href="/tags/톰캣">톰캣</a></li></ul>
       </section>
     
 

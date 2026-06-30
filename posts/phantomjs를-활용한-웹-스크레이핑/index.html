@@ -61,7 +61,7 @@
 <p><strong>오늘의 프로그램 요리를 위한 첫번째 재료는 <a title="PhantomJS" href="http://phantomjs.org/" target="_blank">PhantomJS</a> 되겠다</strong>.애플 사파리(Safari) 및 구글 크롬(Chrome) 웹브라우저의 렌더링 엔진인 <a title="WebKit" href="http://www.webkit.org/" target="_blank">WebKit</a>을 활용한 “Headless” 브라우저로서 자바스크립트(JavaScript)을 사용해 UI 없이 명령행으로 웹페이지를 조작할 수 있다. 모질라 파이어폭스(Firefox)의 엔진인 <a title="Gecko" href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko" target="_blank">Gecko</a> 기반의 <a title="SlimerJS" href="http://slimerjs.org/index.html" target="_blank">SlimerJS</a>도 마찬가지 방식이다. 이 글에서는 PhantomJS를 사용해보기로 한다.</p>
 <p>먼저 PhantomJS에서 기본적으로 제공되는 <a title="PhantomJS 화면 캡처 예제" href="http://phantomjs.org/screen-capture.html" target="_blank">예제 중에 웹 페이지를 캡처</a>해 저장하는 스크립트가 있다.</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> page <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpage'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'http://github.com/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'http://github.com/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   page<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'github.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
@@ -106,36 +106,36 @@ page<span class="token punctuation">.</span><span class="token function">open</s
 page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> scrape<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">scrape</span><span class="token punctuation">(</span><span class="token parameter">status</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">!=</span> <span class="token string">'success'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'웹페이지 열기 오류: '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">!=</span> <span class="token string">'success'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'웹페이지 열기 오류: '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>index <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> contentSelectors<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> clipRect <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> contentSelectors<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token operator">++</span>i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>clipRect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      page<span class="token punctuation">.</span>clipRect <span class="token operator">=</span> clipRect<span class="token punctuation">;</span>
+      page<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>saveTo <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> index <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">'.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
 
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>index <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  url <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span>href <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> nextLinkSelector<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> contentSelectors<span class="token punctuation">.</span>length<span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">var</span> clipRect <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> contentSelectors<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">>=</span> maxPages <span class="token operator">||</span> <span class="token operator">!</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-        <span class="token operator">++</span>i<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>clipRect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            page<span class="token punctuation">.</span>clipRect <span class="token operator">=</span> clipRect<span class="token punctuation">;</span>
-            page<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>saveTo <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> index <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">'.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    url <span class="token operator">=</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">selector</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> o <span class="token operator">?</span> o<span class="token punctuation">.</span>href <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> nextLinkSelector<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">>=</span> maxPages <span class="token operator">||</span> <span class="token operator">!</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        phantom<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> scrape<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  page<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> scrape<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>위의 스크립트는 원하는 컨텐트를 이미지로 저장하는 것인데 텍스트를 추출해 텍스트 파일로 저장할 경우는 파일 API를 사용한 처리도 필요하고 조금 더 복잡해진다.</p>
 <p>이제 위 스크립트를 <code>scrape.js</code>라는 파일명으로 저장했다면 다음과 같이 실행함으로써 captures 폴더에 png 이미지들이 저장된다.</p>
@@ -151,7 +151,7 @@ page<span class="token punctuation">.</span><span class="token function">open</s
     
       <section class="post-tag-section" aria-label="태그">
         <h2>태그</h2>
-        <ul class="post-tags"><li><a href="/tags/phantomjs">PhantomJS</a></li><li><a href="/tags/웹-스크레이핑">웹 스크레이핑</a></li></ul>
+        <ul class="post-tags"><li><a href="/tags/node-js">Node JS</a></li></ul>
       </section>
     
 
