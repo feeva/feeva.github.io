@@ -20977,6 +20977,9 @@ kbd {
   display: block;
   max-width: 100%;
 }
+.post-content .image-grid img {
+  object-fit: cover;
+}
 figcaption {
   margin: 9px 0;
   text-align: center;
@@ -21458,9 +21461,6 @@ figcaption a {
 @media screen and (min-width: 920px) {
   body {
     font-size: 14pt;
-  }
-  .collection {
-    font-size: 13pt;
   }
   .post-layout > h1 {
     font-size: 2.8rem;
