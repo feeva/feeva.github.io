@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
   <head>
+    
+    
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>다양한 경우의 HTTP 요청 여부 정리 - Nothing New Under the Sun</title>
@@ -8,15 +11,18 @@
     <meta name="description" content="웹페이지를 개발하다 보면 이러저러한 개체에 대해 브라우저가 서버에 HTTP 요청을 정말 할까하고 궁금한 경우가 있다. 예를 들어 display: none; 스타일을 줘서 보이지 않는 이미지도 서버에서 받아올까 하는 궁금증이다.
 일전에 이러한 궁금증에 대한 다양한 사례를 퀴즈로 풀어보는 외국 사이트가 떠서 나도 좀 풀어봤다(이 사이트는 프로그램적으로도 참신하게 잘 만든 사이트다. 꼭 크롬에서 보기 바란다). 무지 어려웠다. W3C의 HTML이나 CSS 명세서에 없는 사항인 경우도 있고 브라우저마다 실제 구현도 다른데 그걸 어떻게 많이 맞추겠나.
 ">
-    <link rel="canonical" href="https://abcbox.kr/posts/다양한-경우의-http-요청-여부-정리/">
+    <link rel="canonical" href="https://abcbox.kr/posts/%EB%8B%A4%EC%96%91%ED%95%9C-%EA%B2%BD%EC%9A%B0%EC%9D%98-http-%EC%9A%94%EC%B2%AD-%EC%97%AC%EB%B6%80-%EC%A0%95%EB%A6%AC/">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="다양한 경우의 HTTP 요청 여부 정리">
-    <meta property="og:url" content="https://abcbox.kr/posts/다양한-경우의-http-요청-여부-정리/">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/%EB%8B%A4%EC%96%91%ED%95%9C-%EA%B2%BD%EC%9A%B0%EC%9D%98-http-%EC%9A%94%EC%B2%AD-%EC%97%AC%EB%B6%80-%EC%A0%95%EB%A6%AC/">
     <meta property="og:description" content="웹페이지를 개발하다 보면 이러저러한 개체에 대해 브라우저가 서버에 HTTP 요청을 정말 할까하고 궁금한 경우가 있다. 예를 들어 display: none; 스타일을 줘서 보이지 않는 이미지도 서버에서 받아올까 하는 궁금증이다.
 일전에 이러한 궁금증에 대한 다양한 사례를 퀴즈로 풀어보는 외국 사이트가 떠서 나도 좀 풀어봤다(이 사이트는 프로그램적으로도 참신하게 잘 만든 사이트다. 꼭 크롬에서 보기 바란다). 무지 어려웠다. W3C의 HTML이나 CSS 명세서에 없는 사항인 경우도 있고 브라우저마다 실제 구현도 다른데 그걸 어떻게 많이 맞추겠나.
 ">
     <meta property="og:image" content="">
     <meta property="og:type" content="article">
+
+    
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,7 +127,7 @@ link<span class="token punctuation">.</span>href <span class="token operator">=<
     
       <section class="post-tag-section" aria-label="태그">
         <h2>태그</h2>
-        <ul class="post-tags"><li><a href="/tags/http">HTTP</a></li><li><a href="/tags/html">HTML</a></li></ul>
+        <ul class="post-tags"><li><a href="/tags/http/">HTTP</a></li><li><a href="/tags/html/">HTML</a></li></ul>
       </section>
     
 
