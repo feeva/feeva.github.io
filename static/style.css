@@ -20973,7 +20973,8 @@ kbd {
 }
 .post-content .image-block,
 .post-content iframe,
-.post-content .image-grid {
+.post-content .image-grid,
+.post-content .full-width-block {
   display: block;
   max-width: 100%;
 }
@@ -21000,6 +21001,9 @@ figcaption a {
 .post-content blockquote p:last-child {
   margin-bottom: 0;
 }
+.post-content blockquote p:first-child {
+  margin-bottom: 1em;
+}
 .post-content .image-grid,
 .post-content .image-grid p {
   display: flex;
@@ -21024,7 +21028,7 @@ figcaption a {
 .post-content td,
 .post-content th {
   padding: 3px 9px;
-  font-size: 1.1rem;
+  font-weight: 500;
 }
 .post-content th {
   background: #4682b4;
@@ -21629,6 +21633,16 @@ figcaption a {
   .collection form.search input:focus {
     width: 100%;
   }
+
+  .post-content .full-width-block {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .post-content .full-width-block table th,
+  .post-content .full-width-block table td {
+    white-space: nowrap;
+  }
 }
 
 #postImageSlider {
@@ -21641,6 +21655,7 @@ figcaption a {
   background: rgba(0, 0, 0, 0.9);
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
+  z-index: 200;
 }
 #postImageSlider .swiper-slide {
   overflow: hidden;
