@@ -242,17 +242,17 @@ figcaption a {
 }
 .post-content blockquote {
   max-width: 44rem;
-  margin: 1rem auto 2rem auto;
-  padding: 1rem;
+  margin: 1rem auto;
+  padding: 0.75rem 1.25rem;
   border-left: 10px solid #ccc;
   background: #f9f9f9;
   font-family: Georgia, 'Times New Roman', Times, 'Noto Serif KR', serif;
 }
-.post-content blockquote p:last-child {
-  margin-bottom: 0;
+.post-content blockquote p {
+  margin: 0;
 }
-.post-content blockquote p:first-child {
-  margin-bottom: 1em;
+.post-content blockquote p + p {
+  margin-top: 1em;
 }
 .post-content .image-grid,
 .post-content .image-grid p {
