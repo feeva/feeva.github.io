@@ -20888,10 +20888,22 @@ hr {
   margin-top: 0;
   margin-bottom: 2rem;
 }
+.post-content > details {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+.post-content details[open] summary {
+  margin-bottom: 0.75rem;
+}
+.post-content details > :not(summary) {
+  padding-left: 1.25rem;
+  color: #555;
+  font-size: 0.95em;
+}
 .post-content h2,
 .post-content h3 {
-  margin-top: 3.6rem;
-  margin-bottom: 0.9rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
   scroll-margin-top: 1.5rem;
 }
 .post-toc[hidden] {
@@ -20906,6 +20918,9 @@ hr {
   cursor: pointer;
   font-weight: 700;
   color: #333;
+}
+.post-content summary {
+  cursor: pointer;
 }
 .post-toc nav {
   margin-top: 0.8rem;
@@ -20992,7 +21007,7 @@ figcaption a {
 }
 .post-content blockquote {
   max-width: 44rem;
-  margin: 1rem auto;
+  margin: 1rem auto 2rem;
   padding: 0.75rem 1.25rem;
   border-left: 10px solid #ccc;
   background: #f9f9f9;
@@ -21482,10 +21497,6 @@ figcaption a {
   .post-footer {
     padding: 0;
   }
-  .post-content h2,
-  .post-content h3 {
-    scroll-margin-top: 2rem;
-  }
   .post-content .image-grid > img,
   .post-content .image-grid > picture,
   .post-content .image-grid > figure,
@@ -21573,7 +21584,7 @@ figcaption a {
     border-left: 1px solid #eee;
   }
   .post-toc summary {
-    cursor: default;
+    cursor: pointer;
     font-size: 0.9rem;
   }
   .post-toc nav {
