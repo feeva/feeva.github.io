@@ -84,6 +84,19 @@
     </div>
   </div>
 
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="엔지니어-겸-관리자의-업무"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
   <div class="post-footer">
     
       <section class="post-tag-section" aria-label="태그">
@@ -139,22 +152,25 @@
 
 <button id="back-to-top" aria-label="맨 위로">↑</button>
 
-<div id="disqus_thread"></div>
-<script>
-  /**
-  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-  var disqus_config = function () {
-    this.page.url = "http://start.goodtime.co.kr/2013/04/%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4-%ea%b2%b8-%ea%b4%80%eb%a6%ac%ec%9e%90%ec%9d%98-%ec%97%85%eb%ac%b4/" || location.origin + '/posts/엔지니어-겸-관리자의-업무/';
-    this.page.identifier = '엔지니어-겸-관리자의-업무';
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = 'https://nnus.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-</script>
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="엔지니어-겸-관리자의-업무"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

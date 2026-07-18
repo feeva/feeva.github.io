@@ -136,6 +136,19 @@ jQuery(function($) {
     </div>
   </div>
 
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="애니메이션-easing에-숨은-비밀"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
   <div class="post-footer">
     
       <section class="post-tag-section" aria-label="태그">
@@ -191,22 +204,25 @@ jQuery(function($) {
 
 <button id="back-to-top" aria-label="맨 위로">↑</button>
 
-<div id="disqus_thread"></div>
-<script>
-  /**
-  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-  var disqus_config = function () {
-    this.page.url = "http://start.goodtime.co.kr/2015/02/%ec%95%a0%eb%8b%88%eb%a9%94%ec%9d%b4%ec%85%98-easing%ec%97%90-%ec%88%a8%ec%9d%80-%eb%b9%84%eb%b0%80/" || location.origin + '/posts/애니메이션-easing에-숨은-비밀/';
-    this.page.identifier = '애니메이션-easing에-숨은-비밀';
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = 'https://nnus.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-</script>
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="애니메이션-easing에-숨은-비밀"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
