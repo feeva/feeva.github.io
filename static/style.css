@@ -423,7 +423,7 @@ hr {
   margin-bottom: 0.75rem;
 }
 .post-content details > :not(summary) {
-  padding-left: 1.25rem;
+  margin-left: 1.25rem;
   color: #555;
   font-size: 0.95em;
 }
@@ -584,7 +584,6 @@ figcaption a {
   font-style: italic;
   color: #999;
 }
-
 
 .related-posts,
 .post-tag-section {
