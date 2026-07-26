@@ -286,6 +286,7 @@ body {
   font-size: 13pt;
   font-weight: 400;
   color: #555;
+  letter-spacing: -0.01em;
 }
 h1,
 h2,
@@ -408,7 +409,8 @@ hr {
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
-  word-break: break-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .post-content > p {
