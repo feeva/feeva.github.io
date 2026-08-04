@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>전국 아파트 매매가, 2014 vs 2026 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="3.3m²(1평)당 아파트 평균 매매가를 2014년과 2026년으로 비교하는 인터랙티브 지도">
+    <link rel="canonical" href="https://abcbox.kr/pages/house-price/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="전국 아파트 매매가, 2014 vs 2026">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/pages/house-price/">
+    <meta property="og:description" content="3.3m²(1평)당 아파트 평균 매매가를 2014년과 2026년으로 비교하는 인터랙티브 지도">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style>.hp-header{padding:20px 24px 8px;text-align:center}.hp-header h1{font-size:22px;margin:0 0 4px}.hp-header .subtitle{color:#666;font-size:14px}.hp-controls{display:flex;justify-content:center;gap:24px;padding:12px 0 4px;flex-wrap:wrap}.hp-control-group{display:inline-flex;border:1px solid #ddd;border-radius:8px;overflow:hidden}.hp-control-group button{border:none;background:#fff;padding:7px 16px;font-size:13px;cursor:pointer;color:#1a1a1a}.hp-control-group button+button{border-left:1px solid #ddd}.hp-control-group button.active{background:#d1495b;color:#fff}.hp-scale-toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1a1a1a;cursor:pointer}.hp-stage{position:relative;width:min(1000px,100%);margin:0 auto}svg#map{width:100%;height:auto;display:block}rect.map-frame{fill:none;stroke:#bbb;stroke-width:1.5px;pointer-events:none}path.feature{stroke:#fff;stroke-width:.5px;cursor:pointer}path.feature:hover{filter:brightness(.82) saturate(1.15)}path.no-data{fill:#eee}#tooltip{position:fixed;pointer-events:none;background:rgba(20,20,20,.6);color:#fff;padding:8px 11px;border-radius:6px;font-size:13px;line-height:1.5;transform:translate(-50%,-120%);opacity:0;transition:opacity 80ms;white-space:nowrap;z-index:10}#tooltip.visible{opacity:1}#tooltip b{font-size:13.5px}.hp-legend{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0 22px}.hp-legend-bar{width:300px;height:12px;border-radius:3px}.hp-legend-labels{width:300px;display:flex;justify-content:space-between;font-size:11px;color:#666}.hp-hint{text-align:center;color:#666;font-size:12px;padding-bottom:12px}.hp-notes{box-sizing:border-box;width:min(900px,calc(100% - 32px));margin:0 auto 28px;padding:14px 16px;border:1px solid #e2e2e2;border-radius:8px;background:#fafafa;color:#555;font-size:13px;line-height:1.65}.hp-notes p{margin:0}.hp-notes p+p{margin-top:6px}.hp-notes a{color:#a52d3e}</style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    
+      <header class="hp-header">
+        <h1>전국 아파트 매매가, 2014 vs 2026</h1>
+        <div class="subtitle">3.3m²(1평)당 평균 매매가 · 국토교통부 실거래가 공개시스템</div>
+      </header>
+
+      <div class="hp-controls">
+        <div class="hp-control-group" id="era-toggle">
+          <button data-era="2014" aria-pressed="false">2014년 5~7월</button>
+          <button data-era="2026" class="active" aria-pressed="true">2026년 5~7월(잠정)</button>
+        </div>
+        <div class="hp-control-group" id="level-toggle">
+          <button data-level="sigungu" class="active" aria-pressed="true">전국 시군구</button>
+          <button data-level="dong" aria-pressed="false">수도권 법정동</button>
+        </div>
+        <label class="hp-scale-toggle">
+          <input type="checkbox" id="relative-scale" />
+          연도별 상대값(그 해 최고가 기준)
+        </label>
+      </div>
+
+      <div class="hp-stage">
+        <svg id="map" viewBox="0 0 960 720"></svg>
+        <div id="tooltip"></div>
+      </div>
+
+      <div class="hp-legend">
+        <div class="hp-legend-bar" id="legend-bar"></div>
+        <div class="hp-legend-labels"><span>0</span><span id="legend-max"></span></div>
+      </div>
+      <div class="hp-hint">마우스 휠/드래그로 확대·이동, 지역에 마우스를 올리면 상세 정보가 표시됩니다.</div>
+      <aside class="hp-notes">
+        <p><strong>읽기 전에:</strong> 각 거래의 매매가를 전용면적으로 나눈 3.3m²당 가격을 지역별로 평균한 명목가격입니다. 물가나 거래된 주택의 구성 차이는 반영하지 않았습니다.</p>
+        <p>2026년 7월분은 2026년 8월 3일에 받은 자료로, 신고기한이 남아 있어 거래건수와 평균가가 바뀔 수 있는 잠정치입니다. 해제된 거래는 제외했습니다. <a href="/posts/아파트-매매가-2014-2026-비교/">비교 글과 해석 방법 보기</a></p>
+        <p>2014년분도 2026년에 다시 받아 같은 방식으로 집계했습니다. 따라서 2014년 당시 게시글에 남은 초기 스냅샷과는 신고·정정 반영 시점의 차이로 수치가 다릅니다.</p>
+      </aside>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+      <script src="https://d3js.org/d3.v7.min.js"></script>
+      <script type="module" src="/static/modules/house-price/house-price.js"></script>
+    
+  </body>
+</html>
