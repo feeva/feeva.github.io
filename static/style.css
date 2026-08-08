@@ -524,6 +524,7 @@ kbd {
 }
 .post-content .image-grid img {
   object-fit: cover;
+  margin: 0;
 }
 figcaption {
   margin: 9px 0;
@@ -548,18 +549,22 @@ figcaption a {
 .post-content blockquote p + p {
   margin-top: 1em;
 }
+.post-content .image-grid {
+  margin-bottom: 2rem;
+}
 .post-content .image-grid,
 .post-content .image-grid p {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  column-gap: 1.5%;
+  row-gap: 15px;
+  justify-content: center;
 }
 .post-content .image-grid > img,
 .post-content .image-grid > picture,
 .post-content .image-grid > figure,
 .post-content .image-grid p > img {
   width: 49%;
-  margin: 0 0 10px;
 }
 .post-content iframe,
 .post-content table {
@@ -1030,7 +1035,6 @@ figcaption a {
   .post-content .image-grid > figure,
   .post-content .image-grid p > img {
     width: 32%;
-    margin: 0 0 20px;
   }
   figcaption {
     font-size: 12pt;
