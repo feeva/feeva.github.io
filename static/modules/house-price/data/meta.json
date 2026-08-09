@@ -1,0 +1,224 @@
+{
+  "eras": {
+    "2014": {
+      "label": "2014년 5~7월",
+      "totalDeals": 138011,
+      "topSigungu": [
+        {
+          "label": "서울특별시 강남구",
+          "count": 1191,
+          "avgPricePerPyeong": 3324.1
+        },
+        {
+          "label": "서울특별시 서초구",
+          "count": 990,
+          "avgPricePerPyeong": 2995.6
+        },
+        {
+          "label": "경기도 과천시",
+          "count": 94,
+          "avgPricePerPyeong": 2903.8
+        },
+        {
+          "label": "서울특별시 송파구",
+          "count": 1026,
+          "avgPricePerPyeong": 2670.9
+        },
+        {
+          "label": "서울특별시 용산구",
+          "count": 260,
+          "avgPricePerPyeong": 2377.6
+        },
+        {
+          "label": "서울특별시 광진구",
+          "count": 305,
+          "avgPricePerPyeong": 2113
+        },
+        {
+          "label": "서울특별시 마포구",
+          "count": 518,
+          "avgPricePerPyeong": 2021.6
+        },
+        {
+          "label": "경기도 성남시 분당구",
+          "count": 1351,
+          "avgPricePerPyeong": 1988.7
+        },
+        {
+          "label": "서울특별시 종로구",
+          "count": 122,
+          "avgPricePerPyeong": 1974.7
+        },
+        {
+          "label": "서울특별시 중구",
+          "count": 138,
+          "avgPricePerPyeong": 1974.5
+        }
+      ],
+      "topDong": [
+        {
+          "label": "서울특별시 강남구 개포동",
+          "count": 198,
+          "avgPricePerPyeong": 4372.7
+        },
+        {
+          "label": "서울특별시 강남구 압구정동",
+          "count": 78,
+          "avgPricePerPyeong": 4123.5
+        },
+        {
+          "label": "서울특별시 서초구 반포동",
+          "count": 201,
+          "avgPricePerPyeong": 3938.5
+        },
+        {
+          "label": "서울특별시 중구 회현동1가",
+          "count": 2,
+          "avgPricePerPyeong": 3839.4
+        },
+        {
+          "label": "서울특별시 송파구 잠실동",
+          "count": 213,
+          "avgPricePerPyeong": 3738.1
+        },
+        {
+          "label": "서울특별시 영등포구 영등포동1가",
+          "count": 1,
+          "avgPricePerPyeong": 3662.2
+        },
+        {
+          "label": "경기도 과천시 중앙동",
+          "count": 14,
+          "avgPricePerPyeong": 3653.8
+        },
+        {
+          "label": "서울특별시 영등포구 영등포동4가",
+          "count": 3,
+          "avgPricePerPyeong": 3618.2
+        },
+        {
+          "label": "서울특별시 강남구 대치동",
+          "count": 173,
+          "avgPricePerPyeong": 3413.4
+        },
+        {
+          "label": "서울특별시 용산구 용산동5가",
+          "count": 2,
+          "avgPricePerPyeong": 3403.3
+        }
+      ],
+      "maxSigunguValue": 3324.1,
+      "maxDongValue": 4372.7
+    },
+    "2026": {
+      "label": "2026년 5~7월",
+      "totalDeals": 131862,
+      "topSigungu": [
+        {
+          "label": "서울특별시 강남구",
+          "count": 779,
+          "avgPricePerPyeong": 11520.6
+        },
+        {
+          "label": "서울특별시 서초구",
+          "count": 640,
+          "avgPricePerPyeong": 10644.2
+        },
+        {
+          "label": "경기도 과천시",
+          "count": 84,
+          "avgPricePerPyeong": 9478.2
+        },
+        {
+          "label": "서울특별시 송파구",
+          "count": 1062,
+          "avgPricePerPyeong": 8781.9
+        },
+        {
+          "label": "서울특별시 용산구",
+          "count": 263,
+          "avgPricePerPyeong": 8362.8
+        },
+        {
+          "label": "서울특별시 성동구",
+          "count": 411,
+          "avgPricePerPyeong": 7963
+        },
+        {
+          "label": "경기도 성남시 분당구",
+          "count": 1319,
+          "avgPricePerPyeong": 7245.3
+        },
+        {
+          "label": "서울특별시 마포구",
+          "count": 507,
+          "avgPricePerPyeong": 6600
+        },
+        {
+          "label": "서울특별시 광진구",
+          "count": 336,
+          "avgPricePerPyeong": 6500.2
+        },
+        {
+          "label": "서울특별시 강동구",
+          "count": 884,
+          "avgPricePerPyeong": 6335.1
+        }
+      ],
+      "topDong": [
+        {
+          "label": "서울특별시 강남구 압구정동",
+          "count": 67,
+          "avgPricePerPyeong": 18163.1
+        },
+        {
+          "label": "서울특별시 서초구 반포동",
+          "count": 122,
+          "avgPricePerPyeong": 16226.8
+        },
+        {
+          "label": "서울특별시 서초구 잠원동",
+          "count": 105,
+          "avgPricePerPyeong": 15897.2
+        },
+        {
+          "label": "서울특별시 용산구 보광동",
+          "count": 7,
+          "avgPricePerPyeong": 15118.4
+        },
+        {
+          "label": "서울특별시 송파구 잠실동",
+          "count": 200,
+          "avgPricePerPyeong": 13242.5
+        },
+        {
+          "label": "서울특별시 강남구 개포동",
+          "count": 138,
+          "avgPricePerPyeong": 13150.4
+        },
+        {
+          "label": "서울특별시 강남구 수서동",
+          "count": 50,
+          "avgPricePerPyeong": 12422.6
+        },
+        {
+          "label": "서울특별시 강남구 대치동",
+          "count": 83,
+          "avgPricePerPyeong": 12038
+        },
+        {
+          "label": "서울특별시 강남구 삼성동",
+          "count": 76,
+          "avgPricePerPyeong": 11593.2
+        },
+        {
+          "label": "서울특별시 강남구 일원동",
+          "count": 44,
+          "avgPricePerPyeong": 11268.3
+        }
+      ],
+      "maxSigunguValue": 11520.6,
+      "maxDongValue": 18163.1
+    }
+  }
+}
