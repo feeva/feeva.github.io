@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>사고도 없는데 왜 막히지? 교통 정체를 시뮬레이션해보자 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="운전하다 보면 다양한 정체 상황을 보게 된다. 그런데 두 가지 상황은 의문이 들었다.
+왜 오르막이나 터널 앞에서 정체가 될까? 또 합류 도로에서 느려지는 건 당연하지만
+80킬로로 달리다 10킬로까지 느려지는 게 맞나?
+오르막과 합류 도로에서 어떻게 큰 정체가 발생하는지 시뮬레이션을 만들어봤다.
+">
+    <link rel="canonical" href="https://abcbox.kr/posts/%EA%B5%90%ED%86%B5-%EC%A0%95%EC%B2%B4-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="사고도 없는데 왜 막히지? 교통 정체를 시뮬레이션해보자">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/%EA%B5%90%ED%86%B5-%EC%A0%95%EC%B2%B4-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98/">
+    <meta property="og:description" content="운전하다 보면 다양한 정체 상황을 보게 된다. 그런데 두 가지 상황은 의문이 들었다.
+왜 오르막이나 터널 앞에서 정체가 될까? 또 합류 도로에서 느려지는 건 당연하지만
+80킬로로 달리다 10킬로까지 느려지는 게 맞나?
+오르막과 합류 도로에서 어떻게 큰 정체가 발생하는지 시뮬레이션을 만들어봤다.
+">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="article">
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style></style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 글 목록</a>
+
+  <h1>사고도 없는데 왜 막히지? 교통 정체를 시뮬레이션해보자</h1>
+
+  <div class="post-header-meta">
+    <time class="local-date" datetime="2026-08-16T04:30:00.000Z">2026. 8. 16.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a><a href="/categories/살아있음/">살아있음</a></span></div>
+
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>운전하다 보면 잘 이해가 안 가는 정체 상황이 있다. 사고도 없고 차선이 줄어든 것도 아닌데 오르막이나
+터널 앞에서는 서행하는 경우가 많다. 또한 합류 도로는 차량이 늘어나므로 정체가 이해되긴 하지만
+두 차로가 한 차로로 합쳐진 만큼만 속도가 줄어야 할 것 같은데 실제로는 훨씬 심하게 막힌다. 왜일까?</p>
+<p>결론부터 말하자면 두 상황 모두 작은 감속이 정체를 일으킨다.
+뒤차는 앞차 상황에 따라 반응하는 데 약간이라도 시간이 걸리므로 안전거리를 만들려고 좀 더 감속할 수 있다.
+감속이 차례로 증폭되면 차의 진행 방향과 반대로 <strong>정체는 파동처럼 뒤로 전달된다.</strong></p>
+<p>아래에 이러한 시뮬레이션 두 개를 만들어봤다. 여러 조건을 바꿔 상황을 만들 수 있고
+속도를 바꿔가며 관찰할 수 있다. 도로의 길이는 400m라고 가정한 상황이다.</p>
+<link rel="stylesheet" href="/static/modules/traffic-flow/traffic-flow.css">
+<div class="traffic-demo full-width-block" data-traffic-demo>
+  <header class="traffic-demo__header">
+    <p class="traffic-demo__eyebrow">INTERACTIVE TRAFFIC LAB</p>
+    <h2>어떻게 작은 감속이 정체라는 결과로 나타날까?</h2>
+  </header>
+  <div class="traffic-demo__tabs" role="tablist" aria-label="교통 상황 선택">
+    <button class="traffic-demo__tab" id="traffic-tab-hill" role="tab" type="button" aria-selected="true" aria-controls="traffic-panel-hill">오르막</button>
+    <button class="traffic-demo__tab" id="traffic-tab-merge" role="tab" type="button" aria-selected="false" aria-controls="traffic-panel-merge" tabindex="-1">합류 도로</button>
+  </div>
+  <section class="traffic-demo__panel" id="traffic-panel-hill" role="tabpanel" aria-labelledby="traffic-tab-hill" data-scenario="hill">
+    <div class="traffic-demo__stage">
+      <canvas aria-label="오르막 구간을 달리는 차량 애니메이션">이 브라우저에서는 교통 애니메이션을 표시할 수 없습니다.</canvas>
+      <div class="traffic-demo__legend" aria-hidden="true">
+        <span class="is-fast">빠름</span><span class="is-slow">감속</span><span class="is-jam">정체</span>
+      </div>
+    </div>
+    <div class="traffic-demo__metrics" aria-live="polite">
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">평균 속도</span><strong class="traffic-demo__metric-value" data-metric="average">-</strong></div>
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">최저 속도</span><strong class="traffic-demo__metric-value" data-metric="minimum">-</strong></div>
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">현재 상태</span><strong class="traffic-demo__metric-value" data-metric="state">-</strong></div>
+    </div>
+    <div class="traffic-demo__controls" aria-label="오르막 시뮬레이션 설정">
+      <div class="traffic-demo__control">
+        <label for="hill-inflow">유입량 <output data-output="inflow"></output></label>
+        <input id="hill-inflow" data-control="inflow" data-suffix="대/분" type="range" min="14" max="34" value="30">
+      </div>
+      <div class="traffic-demo__control">
+        <label for="hill-grade">오르막 영향 <output data-output="grade"></output></label>
+        <input id="hill-grade" data-control="grade" data-suffix=" km/h" type="range" min="0" max="15" value="10">
+      </div>
+      <div class="traffic-demo__control">
+        <label for="hill-time">시뮬레이션 속도 <output data-output="timeScale"></output></label>
+        <input id="hill-time" data-control="timeScale" data-suffix="×" type="range" min="1" max="4" step="1" value="2">
+      </div>
+      <div class="traffic-demo__actions">
+        <button class="traffic-demo__button traffic-demo__button--primary" data-action="play" type="button" aria-pressed="true">일시정지</button>
+        <button class="traffic-demo__button" data-action="reset" type="button">초기화</button>
+        <label class="traffic-demo__switch-label"><input data-control="waves" type="checkbox" checked> 감속 파동 표시</label>
+      </div>
+    </div>
+    <div class="traffic-demo__chart-wrap"><span>평균 속도 변화</span><svg class="traffic-demo__chart" viewBox="0 0 300 44" preserveAspectRatio="none" aria-label="시간에 따른 평균 속도"></svg></div>
+    <p class="traffic-demo__summary">오르막에서 차 몇 대의 속도가 약간 줄어도 뒤차는 더 반응할 수 있다. 오르막 정상에 다다른 차는 다시 빨라지지만 감속 파동은 상류로 전파된다. 그래서 원인 지점보다 앞까지 정체가 이어지게 된다.</p>
+  </section>
+  <section class="traffic-demo__panel" id="traffic-panel-merge" role="tabpanel" aria-labelledby="traffic-tab-merge" data-scenario="merge" hidden>
+    <div class="traffic-demo__stage">
+      <canvas aria-label="진입 램프에서 편도 1차로 본선으로 합류하는 차량 애니메이션">이 브라우저에서는 교통 애니메이션을 표시할 수 없습니다.</canvas>
+      <div class="traffic-demo__legend" aria-hidden="true">
+        <span class="is-fast">빠름</span><span class="is-slow">감속</span><span class="is-jam">정체</span>
+      </div>
+    </div>
+    <div class="traffic-demo__metrics" aria-live="polite">
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">평균 속도</span><strong class="traffic-demo__metric-value" data-metric="average">-</strong></div>
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">최저 속도</span><strong class="traffic-demo__metric-value" data-metric="minimum">-</strong></div>
+      <div class="traffic-demo__metric"><span class="traffic-demo__metric-label">현재 상태</span><strong class="traffic-demo__metric-value" data-metric="state">-</strong></div>
+    </div>
+    <div class="traffic-demo__controls" aria-label="합류 도로 시뮬레이션 설정">
+      <div class="traffic-demo__control">
+        <label for="merge-main">본선 유입량 <output data-output="mainInflow"></output></label>
+        <input id="merge-main" data-control="mainInflow" data-suffix="대/분" type="range" min="5" max="15" value="12">
+      </div>
+      <div class="traffic-demo__control">
+        <label for="merge-inflow">합류 유입량 <output data-output="inflow"></output></label>
+        <input id="merge-inflow" data-control="inflow" data-suffix="대/분" type="range" min="5" max="15" value="10">
+      </div>
+      <div class="traffic-demo__control">
+        <label for="merge-time">시뮬레이션 속도 <output data-output="timeScale"></output></label>
+        <input id="merge-time" data-control="timeScale" data-suffix="×" type="range" min="1" max="4" step="1" value="2">
+      </div>
+      <div class="traffic-demo__actions">
+        <button class="traffic-demo__button traffic-demo__button--primary" data-action="play" type="button" aria-pressed="true">일시정지</button>
+        <button class="traffic-demo__button" data-action="reset" type="button">초기화</button>
+        <label class="traffic-demo__switch-label"><input data-control="waves" type="checkbox" checked> 감속 파동 표시</label>
+      </div>
+    </div>
+    <div class="traffic-demo__chart-wrap"><span>평균 속도 변화</span><svg class="traffic-demo__chart" viewBox="0 0 300 44" preserveAspectRatio="none" aria-label="시간에 따른 평균 속도"></svg></div>
+    <p class="traffic-demo__summary">차들은 서로 앞뒤 공간을 확인하며 합류하려고 천천히 움직인다. 교통량이 수용치를 넘으면 결국 정체가 발생한다.</p>
+  </section>
+</div>
+<script type="module" src="/static/modules/traffic-flow/traffic-flow.js"></script>
+<h2>정체는 뒤로 전파한다</h2>
+<p>난 비전공자지만 교통공학에 대해 찾아보니 차들은 모두 앞을 향해 움직이지만 감속 지점은 반대 방향으로 이동한다고 한다.
+반응이 전파되는 방향이 차량 진행 방향과 반대가 된다는 것이다. 이를 <strong>충격파(shock wave)</strong> 또는
+<strong>유령 정체(phantom traffic jam)</strong> 라고 부른다.</p>
+<p>그래서 그게 맞는지 위 시뮬레이션을 만들어 확인해봤다. 느리게 가는 차들(빨간색)이 나타나는 위치를 보면
+감속 파동이 차들의 진행 방향과 반대로 이동하는 걸 볼 수 있다.</p>
+<p>교통량이 적을 때는 앞차가 느려져 뒤차도 느려졌을 때 계속 진행할 여유가 있다.
+하지만 차가 많은 상황에선 같은 감속에도 여유 공간이 없다. 한 차의 살짝 브레이크가 뒤에서는 급제동이 될 수 있다.
+급제동한 차가 다시 속도를 높이는 동안 차 간격도 벌어져 도로를 통과할 수 있는 차량 수가 줄어든다.</p>
+<h2>오르막과 터널 앞에서 감속이 발생한다</h2>
+<p>기본값 상태에서 시뮬레이션을 지켜보면 20초가 지났을 때 이미 최저 속도가 30킬로 아래로 떨어진다. 그리고 좀 더 지켜보면
+정체차들이 쭉 늘어서게 된다.</p>
+<p>오르막에서는 가속 페달을 더 밟아야 속도를 유지할 수 있다. 그런데 실제로는 운전자가 그만큼
+밟지 않는 경우가 많다. 그래서 오르막 구간 전체의 흐름이 조금씩 느려지고
+교통량이 많다면 차선이 줄지 않아도 이 정도 교란만으로 정체가 시작된다.</p>
+<p>어느 오르막이나 그럴 수 있지만 특히 서해대교나 인천대교처럼 경사를 오래 타고 올라가는 오르막일수록 이런 정체가 많았다.
+명절 때처럼 교통량이 많을 때는 대교 한참 전부터 정체가 시작되곤 한다.
+가속 페달을 더 밟지 않으면 속도가 조금씩 줄고 그게 누적되면 뒷차는 브레이크를 밟는 상황까지 가게 된다.
+그래서 오르막 정상에서는 제 속도가 나더라도 오르막 한참 전부터 정체가 이어질 수 있다.</p>
+<p>터널도 비슷하다. 특히 우리나라는 오르막에 터널이 있는 경우가 많아 더 그렇다. 터널 입구가 가까워지면 시야가 좁아지고 조명이
+바뀌면서 운전자는 가속 페달을 덜 밟아 결과적으로 감속하는 경우가 많다. 오르막처럼 눈에 보이는
+경사가 없더라도 정체가 발생하는 과정은 같다.</p>
+<p>중요한 건 교통량이다. 시뮬레이션의 유입량을 20 정도로 바꾸고 [초기화]를 눌러보자. 일부 감속은 있지만 정체가 발생하지는 않는다.</p>
+<h2>합류 자체가 정체다</h2>
+<p>난 합류 도로를 보면 이런 의문이 들었다. 두 차로에서 오던 차가 한 차로로 합쳐지니
+속도도 그 정도만 줄어야 하는 거 아닌가? 시속 80킬로로 달리다가 10킬로 미만으로 떨어지는 건
+너무 심하잖아. 하지만 한 번 정체가 발생하면 이건 아주 흔한 일이다.</p>
+<p>일단 합류차는 본선 속도에 맞춰 합류하는 게 원칙이지만 본선 차량 흐름도 봐야 하고
+차로 변경도 해야 하므로 속도가 흔들리게 된다. 이런 속도 저하가 결국 앞서 오르막처럼 파동을 일으키게 된다.</p>
+<p>이 역시 교통량이 문제로, 본선이 한산하면 합류차가 들어와 속도가 흔들리더라도 충분히 정상 소통이 된다.
+하지만 본선이 이미 어느 정도 차가 지나가고 있다면 서로 양보하면서 끼어들 수 있도록 브레이크를 밟게 된다.</p>
+<p>위 시뮬레이션에서 유입량을 낮추면 합류점에서 느려지더라도 계속 원활히 소통이 되지만 유입량을 늘리면
+어느 순간 평균 속도가 완만하게가 아니라 급격하게 떨어진다.
+도로가 감당할 수 있는 임계치를 넘는 것이다. 차량 수가 두 배가 된다고 속도가 반으로
+줄어드는 게 아니라 이 임계치를 넘으면서 도로의 수용 능력이 무너지는 것이다.
+그래서 일단 정체가 시작되면 오르막과 마찬가지로 뒤로 길게 정체가 이어진다.</p>
+<h2>한 번 정체가 시작되면 잘 안 풀린다</h2>
+<p>한 번 정체가 시작되면 도로가 처리할 수 있는 임계치를 넘은 것이기 때문에 정체가 계속 유지된다.
+정체가 풀리려면 정체 구간에서 빠져나가는 차량 수가 새로 들어오는 차량 수보다 많아야 하는데
+유출량이 적다 보니 유입량이 더 많은 상황이 계속되는 것이다.</p>
+<p>그래서 위 시뮬레이션에서 정체가 발생한 후에는 인위적으로 유입량을 확 낮춰 줘야 정체가 풀린다.</p>
+<hr>
+<p>처음 궁금했던 두 가지 의문 해소! 여러분은 혹시 다른 궁금증이 있는가?</p>
+
+    </div>
+  </div>
+
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="교통-정체-시뮬레이션"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
+  <div class="post-footer">
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/교통/">교통</a></li><li><a href="/tags/시뮬레이션/">시뮬레이션</a></li><li><a href="/tags/javascript/">JavaScript</a></li></ul>
+      </section>
+    
+
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title">주변 글</h2>
+        <ul><li aria-current="page">
+              
+                <span>사고도 없는데 왜 막히지? 교통 정체를 시뮬레이션해보자</span>
+              
+              <time class="local-date" datetime="2026-08-16T04:30:00.000Z">2026. 8. 16.</time>
+            </li><li >
+              
+                <a href="/posts/아파트-상속-등기/">아파트 상속 등기 직접 하기: 필요 서류, 취득세, 국민주택채권</a>
+              
+              <time class="local-date" datetime="2026-08-11T15:30:00.000Z">2026. 8. 12.</time>
+            </li><li >
+              
+                <a href="/posts/아파트-매매가-2014-2026-비교/">12년 전과 비교한 아파트 매매가, 벌어진 격차</a>
+              
+              <time class="local-date" datetime="2026-08-09T10:00:00.000Z">2026. 8. 9.</time>
+            </li><li >
+              
+                <a href="/posts/쏘나타-배터리-교체/">요즘엔 차 배터리도 집에서 받아 직접 교체한다</a>
+              
+              <time class="local-date" datetime="2026-08-08T08:00:00.000Z">2026. 8. 8.</time>
+            </li></ul>
+      </section>
+    
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="맨 위로">↑</button>
+
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="교통-정체-시뮬레이션"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
