@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>톰캣의 컨텍스트 외부로 경로 매핑하는 방법 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2014-04-27T18:42:03.000Z">
+    <meta property="article:modified_time" content="2014-04-27T18:42:03.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"톰캣의 컨텍스트 외부로 경로 매핑하는 방법","description":"일반적으로 웹 프로젝트를 진행해보면 디자인은 디자인팀에서, 프로그램은 프로그램 개발팀에서 별개로 진행하게 되어 별개의 산출물이 만들어진다. 그래서 개발팀의 프로젝트 소스에 디자인 산출물, 예를 들어 이미지나 CSS 파일을 일일이 받아 넣기가 곤란하거나 효율상 넣지 않기로 하는 경우가 대체적인 프로젝트 흐름이다. 이럴 때 개발팀에서 톰캣의 컨텍스트 외부로 경로 매핑하는 방법이 필요해진다.","url":"https://abcbox.kr/posts/%ED%86%B0%EC%BA%A3%EC%9D%98-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%99%B8%EB%B6%80%EB%A1%9C-%EA%B2%BD%EB%A1%9C-%EB%A7%A4%ED%95%91%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%ED%86%B0%EC%BA%A3%EC%9D%98-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%99%B8%EB%B6%80%EB%A1%9C-%EA%B2%BD%EB%A1%9C-%EB%A7%A4%ED%95%91%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2014-04-27T18:42:03.000Z","dateModified":"2014-04-27T18:42:03.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -49,7 +55,11 @@
   <h1>톰캣의 컨텍스트 외부로 경로 매핑하는 방법</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -142,37 +152,37 @@
               
                 <a href="/posts/전문가들이-말하는-생산성-팁/">전문가들이 말하는 생산성 팁</a>
               
-              <time class="local-date" datetime="2014-05-06T05:07:57.000Z">2014. 5. 6.</time>
+              <time datetime="2014-05-06T05:07:57.000Z">2014. 5. 6.</time>
             </li><li >
               
                 <a href="/posts/구글-analytics를-통해-본-브라우저-점유율/">구글 Analytics를 통해 본 브라우저 점유율</a>
               
-              <time class="local-date" datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
+              <time datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
             </li><li >
               
                 <a href="/posts/생각해라-그리고-후회할-일을-해라/">생각해라, 그리고 후회할 일을 해라</a>
               
-              <time class="local-date" datetime="2014-04-30T18:20:13.000Z">2014. 5. 1.</time>
+              <time datetime="2014-04-30T18:20:13.000Z">2014. 5. 1.</time>
             </li><li aria-current="page">
               
                 <span>톰캣의 컨텍스트 외부로 경로 매핑하는 방법</span>
               
-              <time class="local-date" datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+              <time datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
             </li><li >
               
                 <a href="/posts/css-counter로-다단계-순번-만들기/">CSS counter로 다단계 순번 만들기</a>
               
-              <time class="local-date" datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+              <time datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
             </li><li >
               
                 <a href="/posts/세월호-사고-같은-후진국형-사고는-제발-이제-그만/">세월호 사고 같은 후진국형 사고는 제발 이제 그만</a>
               
-              <time class="local-date" datetime="2014-04-20T09:16:32.000Z">2014. 4. 20.</time>
+              <time datetime="2014-04-20T09:16:32.000Z">2014. 4. 20.</time>
             </li><li >
               
                 <a href="/posts/지난-프로젝트의-교훈/">지난 프로젝트의 교훈</a>
               
-              <time class="local-date" datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
+              <time datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
             </li></ul>
       </section>
     

@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>물리 시뮬레이션을 위한 Verlet 적산법 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 Wikipedia 글의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 천이 찢어지는 애니메이션, 거미줄의 흔들림 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! JavaScript(자바스크립트)로 물리 운동을 시뮬레이션하다니!">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2013-04-28T05:06:50.000Z">
+    <meta property="article:modified_time" content="2013-04-28T05:06:50.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"물리 시뮬레이션을 위한 Verlet 적산법","description":"Verlet 적산법(integration, 계속해서 상태 변화가 있고 그 값을 누적해 더한다는 말)은 Wikipedia 글의 첫 줄에 밝힌 것처럼 뉴턴(Newton)의 운동 방정식을 적산하기 위한 수치 해석법이다. 이미 18세기부터 사용되었지만 1960년대에 프랑스 사람인 Verlet가 분자 운동학에서 많이 사용했다 해서 Verlet 적산법이라고 많이 부른다. (Verlet의 발음은 프랑스어라 익숙치 않지만 [vɛʁˈlɛ], 즉 베흘레와 유사한 것 같다. 외래어 표기법상으로는 베를레가 맞을 것 같다.)이미 HTML5가 나오면서 canvas에서 애니메이션 등 다양한 그림 기법이 시도됐는데 최근에는 천이 찢어지는 애니메이션, 거미줄의 흔들림 등 물리적 운동 효과를 canvas에서 보이고 있다. 세상에나! JavaScript(자바스크립트)로 물리 운동을 시뮬레이션하다니!","url":"https://abcbox.kr/posts/%EB%AC%BC%EB%A6%AC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9C%84%ED%95%9C-verlet-%EC%A0%81%EC%82%B0%EB%B2%95/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%EB%AC%BC%EB%A6%AC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9C%84%ED%95%9C-verlet-%EC%A0%81%EC%82%B0%EB%B2%95/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2013-04-28T05:06:50.000Z","dateModified":"2013-04-28T05:06:50.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -61,7 +67,11 @@
   <h1>물리 시뮬레이션을 위한 Verlet 적산법</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -311,37 +321,37 @@ $$</p>
               
                 <a href="/posts/접근성을-고려한-javascript-사용/">접근성을 고려한 JavaScript 사용</a>
               
-              <time class="local-date" datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
+              <time datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
             </li><li >
               
                 <a href="/posts/못-살겠다-갈아보자-chrome에서-firefox로-갈아타다/">못 살겠다 갈아보자 -  Chrome에서 Firefox로 갈아타다</a>
               
-              <time class="local-date" datetime="2013-05-10T07:04:34.000Z">2013. 5. 10.</time>
+              <time datetime="2013-05-10T07:04:34.000Z">2013. 5. 10.</time>
             </li><li >
               
                 <a href="/posts/옵티머스g-단점/">옵티머스G 단점</a>
               
-              <time class="local-date" datetime="2013-05-07T07:05:23.000Z">2013. 5. 7.</time>
+              <time datetime="2013-05-07T07:05:23.000Z">2013. 5. 7.</time>
             </li><li aria-current="page">
               
                 <span>물리 시뮬레이션을 위한 Verlet 적산법</span>
               
-              <time class="local-date" datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time>
+              <time datetime="2013-04-28T05:06:50.000Z">2013. 4. 28.</time>
             </li><li >
               
                 <a href="/posts/기본/">기본</a>
               
-              <time class="local-date" datetime="2013-04-26T16:42:48.000Z">2013. 4. 27.</time>
+              <time datetime="2013-04-26T16:42:48.000Z">2013. 4. 27.</time>
             </li><li >
               
                 <a href="/posts/엔지니어-겸-관리자의-업무/">엔지니어 겸 관리자의 업무</a>
               
-              <time class="local-date" datetime="2013-04-20T07:31:42.000Z">2013. 4. 20.</time>
+              <time datetime="2013-04-20T07:31:42.000Z">2013. 4. 20.</time>
             </li><li >
               
                 <a href="/posts/2013년-여의도-벚꽃/">2013년 여의도 벚꽃</a>
               
-              <time class="local-date" datetime="2013-04-17T04:07:14.000Z">2013. 4. 17.</time>
+              <time datetime="2013-04-17T04:07:14.000Z">2013. 4. 17.</time>
             </li></ul>
       </section>
     

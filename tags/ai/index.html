@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AI - Nothing New Under the Sun</title>
@@ -17,6 +16,8 @@
     <meta property="og:description" content="느끼고 배우고 기록하는 공간, IT부터 일상까지, ABC부터 AI까지 탐구하는 블로그">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
 
     
 
@@ -57,7 +58,7 @@
           오늘도 세상 탐구<br>
           느끼고 배우고 사랑하고 노력하기
         </p>
-        <a class="author-about" href="/pages/about">블로그 소개</a>
+        <a class="author-about" rel="author" href="/pages/about/">블로그 소개</a>
 
         
           <div
@@ -101,10 +102,9 @@
             <a href="/tags/">태그</a>
           </nav>
 
-          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
-            <input name="sitesearch" type="hidden" value="abcbox.kr">
+          <form class="search" role="search" action="https://duckduckgo.com/" autocomplete="off" data-search-site="abcbox.kr">
             <div>
-              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="DuckDuckGo로 블로그 검색" aria-controls="top-search">
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
             </div>
           </form>
@@ -124,15 +124,15 @@
             
           </div>
           <a href="/posts/두-도시-이야기-번역/">
-            <h2>두 도시 이야기 번역 비교 2 - AI와 내 번역 포함</h2>
+            <h2>두 도시 이야기 새로운 번역 비교 - AI와 내가 번역한다면</h2>
             <p>예전에 찰스 디킨스의 『두 도시 이야기』 번역 비교 글을 썼었다.
-이번에는 AI라는 좋은 도구가 있어 AI에게 직접 번역을 시켜보고
-또 원문이 공개돼 있으니 내가 직접 번역해보기로 했다.
+이번에는 새로 출간된 번역본도 비교하고 AI라는 좋은 도구가 있으니 AI에게 번역을 시켜보고
+또 원문이 공개돼 있으니 나도 직접 번역해보기로 했다.
 </p>
 
             
                 <div class="poster">
-                  <picture><source type="image/webp" srcset="/static/resp-img/mzzLek8-zW-360.webp 360w, /static/resp-img/mzzLek8-zW-720.webp 720w, /static/resp-img/mzzLek8-zW-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="두 도시 이야기 번역 비교 2 - AI와 내 번역 포함" loading="lazy" decoding="async" data-src="../../static/uploads/2026/T2C_The_Wine-Shop.jpg" src="/static/resp-img/mzzLek8-zW-360.jpeg" width="800" height="623" srcset="/static/resp-img/mzzLek8-zW-360.jpeg 360w, /static/resp-img/mzzLek8-zW-720.jpeg 720w, /static/resp-img/mzzLek8-zW-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"></picture>
+                  <picture><source type="image/webp" srcset="/static/resp-img/mzzLek8-zW-360.webp 360w, /static/resp-img/mzzLek8-zW-720.webp 720w, /static/resp-img/mzzLek8-zW-800.webp 800w" sizes="(max-width:800px) 100vw, 1200px"><img alt="두 도시 이야기 새로운 번역 비교 - AI와 내가 번역한다면" loading="lazy" decoding="async" data-src="../../static/uploads/2026/T2C_The_Wine-Shop.jpg" src="/static/resp-img/mzzLek8-zW-360.jpeg" width="800" height="623" srcset="/static/resp-img/mzzLek8-zW-360.jpeg 360w, /static/resp-img/mzzLek8-zW-720.jpeg 720w, /static/resp-img/mzzLek8-zW-800.jpeg 800w" sizes="(max-width:800px) 100vw, 1200px"></picture>
                 </div>
               
           </a>
@@ -260,6 +260,7 @@ AI 배우기가 뭘 배우는 건지 한번 알아보자.
   
   <script type="module" src="/static/modules/subscribe.js"></script>
 
+<script type="module" src="/static/modules/siteSearch.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

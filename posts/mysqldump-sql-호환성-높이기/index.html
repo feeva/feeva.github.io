@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>mysqldump SQL 호환성 높이기 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="mysqldump를 사용해 SQL 스크립트를 만들어낼 때 여러가지 목적이 있겠지만 다른 데이터베이스와의 호환성을 염두에 두는 경우가 종종 있다. 예를 들어 MySQL을 개발용으로만 사용하고 다른 데이터베이스를 실운영용으로 사용하는 경우가 있을 수 있다.데이터베이스간의 호환성 문제는 단순한 문제가 아니므로 이 글에서는 일단 mysqldump 명령만을 주제로 SQL 호환성을 최대한 높이는 방법을 알아보자. mysqldump로 결과물을 어느 정도 호환성 있게만 만들어도 많은 수고를 줄일 수 있다. 우선 mysqldump는 다음과 같은 형식으로 명령을 실행한다.```sqldump [옵션] [DB명 [테이블명 ...]]```">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2013-03-28T22:49:35.000Z">
+    <meta property="article:modified_time" content="2013-03-28T22:49:35.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"mysqldump SQL 호환성 높이기","description":"mysqldump를 사용해 SQL 스크립트를 만들어낼 때 여러가지 목적이 있겠지만 다른 데이터베이스와의 호환성을 염두에 두는 경우가 종종 있다. 예를 들어 MySQL을 개발용으로만 사용하고 다른 데이터베이스를 실운영용으로 사용하는 경우가 있을 수 있다.데이터베이스간의 호환성 문제는 단순한 문제가 아니므로 이 글에서는 일단 mysqldump 명령만을 주제로 SQL 호환성을 최대한 높이는 방법을 알아보자. mysqldump로 결과물을 어느 정도 호환성 있게만 만들어도 많은 수고를 줄일 수 있다. 우선 mysqldump는 다음과 같은 형식으로 명령을 실행한다.```sqldump [옵션] [DB명 [테이블명 ...]]```","url":"https://abcbox.kr/posts/mysqldump-sql-%ED%98%B8%ED%99%98%EC%84%B1-%EB%86%92%EC%9D%B4%EA%B8%B0/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/mysqldump-sql-%ED%98%B8%ED%99%98%EC%84%B1-%EB%86%92%EC%9D%B4%EA%B8%B0/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2013-03-28T22:49:35.000Z","dateModified":"2013-03-28T22:49:35.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -49,7 +55,11 @@
   <h1>mysqldump SQL 호환성 높이기</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -171,37 +181,37 @@
               
                 <a href="/posts/온라인-타이머/">온라인 타이머</a>
               
-              <time class="local-date" datetime="2013-04-14T08:16:18.000Z">2013. 4. 14.</time>
+              <time datetime="2013-04-14T08:16:18.000Z">2013. 4. 14.</time>
             </li><li >
               
                 <a href="/posts/java와-php/">Java와 PHP</a>
               
-              <time class="local-date" datetime="2013-04-10T06:00:47.000Z">2013. 4. 10.</time>
+              <time datetime="2013-04-10T06:00:47.000Z">2013. 4. 10.</time>
             </li><li >
               
                 <a href="/posts/git을-사용해보자-1-git-개념/">Git을 사용해보자 - 1. Git 개념</a>
               
-              <time class="local-date" datetime="2013-04-04T07:36:35.000Z">2013. 4. 4.</time>
+              <time datetime="2013-04-04T07:36:35.000Z">2013. 4. 4.</time>
             </li><li aria-current="page">
               
                 <span>mysqldump SQL 호환성 높이기</span>
               
-              <time class="local-date" datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time>
+              <time datetime="2013-03-28T22:49:35.000Z">2013. 3. 29.</time>
             </li><li >
               
                 <a href="/posts/자바스크립트-배열-길이/">자바스크립트 배열 길이</a>
               
-              <time class="local-date" datetime="2013-03-24T15:09:20.000Z">2013. 3. 25.</time>
+              <time datetime="2013-03-24T15:09:20.000Z">2013. 3. 25.</time>
             </li><li >
               
                 <a href="/posts/자바스크립트-디버깅-개체-속성-보기/">자바스크립트 디버깅 - 개체 속성 보기</a>
               
-              <time class="local-date" datetime="2013-03-21T02:39:50.000Z">2013. 3. 21.</time>
+              <time datetime="2013-03-21T02:39:50.000Z">2013. 3. 21.</time>
             </li><li >
               
                 <a href="/posts/자동차박물관에서-이런-차가-좋았다/">자동차박물관에서 이런 차가 좋았다</a>
               
-              <time class="local-date" datetime="2013-03-18T16:26:48.000Z">2013. 3. 19.</time>
+              <time datetime="2013-03-18T16:26:48.000Z">2013. 3. 19.</time>
             </li></ul>
       </section>
     

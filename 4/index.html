@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nothing New Under the Sun - 溫故之新 – 사실 우린 모든 걸 다 알면서 늘 새롭게 배운다</title>
@@ -17,6 +16,8 @@
     <meta property="og:description" content="느끼고 배우고 기록하는 공간, IT부터 일상까지, ABC부터 AI까지 탐구하는 블로그">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
 
     
 
@@ -63,7 +64,7 @@
           오늘도 세상 탐구<br>
           느끼고 배우고 사랑하고 노력하기
         </p>
-        <a class="author-about" href="/pages/about">블로그 소개</a>
+        <a class="author-about" rel="author" href="/pages/about/">블로그 소개</a>
 
         
           <div
@@ -107,16 +108,30 @@
             <a href="/tags/">태그</a>
           </nav>
 
-          <form class="search" role="search" action="https://www.google.com/search" autocomplete="off">
-            <input name="sitesearch" type="hidden" value="abcbox.kr">
+          <form class="search" role="search" action="https://duckduckgo.com/" autocomplete="off" data-search-site="abcbox.kr">
             <div>
-              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="Search" aria-controls="top-search">
+              <input name="q" type="text" placeholder="검색…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field" aria-label="DuckDuckGo로 블로그 검색" aria-controls="top-search">
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z" fill="#bbb"></path></svg>
             </div>
           </form>
         </div>
         
     <ul class="post-list">
+      
+        <li>
+          <div class="post-meta">
+            <time class="local-date" datetime="2014-12-21T18:54:45.000Z">Dec 22, 2014</time>
+            
+              <span class="category"><a href="/categories/it-생활/">IT 생활</a></span>
+            
+          </div>
+          <a href="/posts/클래시-오브-클랜-게임에서-즉시-완료를-효율적으로/">
+            <h2>클래시 오브 클랜 게임에서 즉시 완료를 효율적으로 하려면</h2>
+            <p>몇 달간 클래시 오브 클랜에 꽤 빠져있다. 사실 이 게임을 많이 할 뿐 아니라 급기야 어제는 "현질"까지 해버렸다. 어제 실수로 500개나 되는 보석을 허무하게 써버리는 일이 발생했다. "장식품" 중 동상들이 뭔가 하고 보다가 어떤 것은 살 수 있는 상태길래 아무 생각 없이 눌러서 사버린 것이다. 그게 보석을 써버린 것임을 알고 나서 한동안 멍해졌다. 그 동안 게임에 돈을 들인 적 없이 열심히 보석 1000개를 모아서 "장인"을 살 꿈에 부풀어 있었는데 그걸 날리다니!! 결국 다시 만회하는 방법은 "현질"밖에 없다는 생각에 4.99달러를 결제하고 말았다.</p>
+
+            
+          </a>
+        </li>
       
         <li>
           <div class="post-meta">
@@ -273,25 +288,6 @@
           </a>
         </li>
       
-        <li>
-          <div class="post-meta">
-            <time class="local-date" datetime="2014-06-28T13:10:49.000Z">Jun 28, 2014</time>
-            
-              <span class="category"><a href="/categories/프로그래밍/">프로그래밍</a></span>
-            
-          </div>
-          <a href="/posts/알아두면-편리한-자바-유틸리티-클래스들/">
-            <h2>알아두면 편리한 자바 유틸리티 클래스들</h2>
-            <p>프로젝트를 하다보면 비슷한 기능들이 자주 사용되는 경우가 있고 개발자들은 흔히 이런 기능들을 스태틱(static) 메서드로 만들어 유틸리티 클래스를 만들곤 한다. 그런데 이런 유틸리티 기능들이 사실 우리가 이미 사용하는 오픈소스 프레임웍이나 라이브러리에 포함된 경우가 상당히 많다. 또한 개발자가 나름 만든 클래스에는 버그가 숨어 있는 경우도 많아서 가급적 검증된 라이브러리를 사용하는 게 훨씬 낫다. 이번 글에서는 알아두면 편리한 자바 유틸리티 클래스들 에 대해 찾아보았다.</p>
-
-            
-                <div class="poster">
-                  <picture><source type="image/webp" srcset="/static/resp-img/oxgL1ln7UT-300.webp 300w" sizes="(max-width:800px) 100vw, 1200px"><img alt="알아두면 편리한 자바 유틸리티 클래스들" loading="lazy" decoding="async" data-src="../../static/uploads/2014/06/tools.png" src="/static/resp-img/oxgL1ln7UT-300.jpeg" width="300" height="300"></picture>
-                </div>
-              
-          </a>
-        </li>
-      
     </ul>
 
     
@@ -353,6 +349,7 @@
   
   <script type="module" src="/static/modules/subscribe.js"></script>
 
+<script type="module" src="/static/modules/siteSearch.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

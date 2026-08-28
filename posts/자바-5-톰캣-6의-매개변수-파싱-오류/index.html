@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>자바 5 + 톰캣 6의 매개변수 파싱 오류 - Nothing New Under the Sun</title>
@@ -19,6 +18,13 @@
 요즘 내가 진행 중인 웹 프로젝트가 있는데 운영 환경이 자바 버전 5에 제우스를 사용하는 환경이다. 개발 환경도 그에 맞추는 게 맞으므로 자바 버전은 5를 사용하는데 서블릿 컨테이너는 별 문제가 없겠지 생각하고 톰캣(Tomcat) 버전 6을 사용하기로 했다. 원칙적으로 서블릿 버전, JSP 버전도 운영 환경에 맞춰서 선택해야겠지만 요즘엔 아파치 톰캣 사이트에 가보면 6 버전 미만은 창고에 쳐박힌지 오래다. (여기서 창고란 메뉴 항목 중 Archives, 즉 보관소를 말한다) ">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2013-07-16T16:27:49.000Z">
+    <meta property="article:modified_time" content="2013-07-16T16:27:49.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"자바 5 + 톰캣 6의 매개변수 파싱 오류","description":"어제 오늘 시간을 많이 잡아먹고 해결한 문제가 있어서 기록으로 남겨볼까 한다.\n요즘 내가 진행 중인 웹 프로젝트가 있는데 운영 환경이 자바 버전 5에 제우스를 사용하는 환경이다. 개발 환경도 그에 맞추는 게 맞으므로 자바 버전은 5를 사용하는데 서블릿 컨테이너는 별 문제가 없겠지 생각하고 톰캣(Tomcat) 버전 6을 사용하기로 했다. 원칙적으로 서블릿 버전, JSP 버전도 운영 환경에 맞춰서 선택해야겠지만 요즘엔 아파치 톰캣 사이트에 가보면 6 버전 미만은 창고에 쳐박힌지 오래다. (여기서 창고란 메뉴 항목 중 Archives, 즉 보관소를 말한다) ","url":"https://abcbox.kr/posts/%EC%9E%90%EB%B0%94-5-%ED%86%B0%EC%BA%A3-6%EC%9D%98-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%EC%9E%90%EB%B0%94-5-%ED%86%B0%EC%BA%A3-6%EC%9D%98-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%ED%8C%8C%EC%8B%B1-%EC%98%A4%EB%A5%98/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2013-07-16T16:27:49.000Z","dateModified":"2013-07-16T16:27:49.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -51,7 +57,11 @@
   <h1>자바 5 + 톰캣 6의 매개변수 파싱 오류</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2013-07-16T16:27:49.000Z">2013. 7. 17.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2013-07-16T16:27:49.000Z">2013. 7. 17.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -118,37 +128,37 @@
               
                 <a href="/posts/네이버-지식인에서-영웅-등급-되다/">네이버 지식인에서 영웅 등급 되다</a>
               
-              <time class="local-date" datetime="2013-08-05T14:25:01.000Z">2013. 8. 5.</time>
+              <time datetime="2013-08-05T14:25:01.000Z">2013. 8. 5.</time>
             </li><li >
               
                 <a href="/posts/짝-프로그래밍의-힘/">짝 프로그래밍의 힘</a>
               
-              <time class="local-date" datetime="2013-08-01T15:52:59.000Z">2013. 8. 2.</time>
+              <time datetime="2013-08-01T15:52:59.000Z">2013. 8. 2.</time>
             </li><li >
               
                 <a href="/posts/소유냐-존재냐-한국말에-밴-어색한-말투/">소유냐 존재냐 - 한국말에 밴 어색한 말투</a>
               
-              <time class="local-date" datetime="2013-07-20T17:41:25.000Z">2013. 7. 21.</time>
+              <time datetime="2013-07-20T17:41:25.000Z">2013. 7. 21.</time>
             </li><li aria-current="page">
               
                 <span>자바 5 + 톰캣 6의 매개변수 파싱 오류</span>
               
-              <time class="local-date" datetime="2013-07-16T16:27:49.000Z">2013. 7. 17.</time>
+              <time datetime="2013-07-16T16:27:49.000Z">2013. 7. 17.</time>
             </li><li >
               
                 <a href="/posts/sts-3-3-며칠-사용-후-리뷰/">STS 3.3 며칠 사용 후 리뷰</a>
               
-              <time class="local-date" datetime="2013-07-15T16:16:29.000Z">2013. 7. 16.</time>
+              <time datetime="2013-07-15T16:16:29.000Z">2013. 7. 16.</time>
             </li><li >
               
                 <a href="/posts/고객의-운영-데이터를-날려본-적이-있는가/">고객의 운영 데이터를 날려본 적이 있는가?</a>
               
-              <time class="local-date" datetime="2013-07-05T16:43:15.000Z">2013. 7. 6.</time>
+              <time datetime="2013-07-05T16:43:15.000Z">2013. 7. 6.</time>
             </li><li >
               
                 <a href="/posts/다양한-경우의-http-요청-여부-정리/">다양한 경우의 HTTP 요청 여부 정리</a>
               
-              <time class="local-date" datetime="2013-06-21T17:00:08.000Z">2013. 6. 22.</time>
+              <time datetime="2013-06-21T17:00:08.000Z">2013. 6. 22.</time>
             </li></ul>
       </section>
     

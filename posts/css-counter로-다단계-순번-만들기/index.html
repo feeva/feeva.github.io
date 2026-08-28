@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CSS counter로 다단계 순번 만들기 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="HTML의 순서 있는 목록(ordered list)에는 자동으로 번호가 붙게 돼 있다. 그런데 이 번호라는 게 기본 상태에서는 1, 2, 3,...이고 CSS의 list-style-type을 사용하면 숫자대신 알파벳이나 로마자를 사용할 수는 있기는 하지만 해당 단계에 대해서만 표시하고 다단계는 되지 않는다. 오늘은 CSS counter로 다단계 순번 만들기를 알아보자.">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2014-04-20T09:20:18.000Z">
+    <meta property="article:modified_time" content="2014-04-20T09:20:18.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CSS counter로 다단계 순번 만들기","description":"HTML의 순서 있는 목록(ordered list)에는 자동으로 번호가 붙게 돼 있다. 그런데 이 번호라는 게 기본 상태에서는 1, 2, 3,...이고 CSS의 list-style-type을 사용하면 숫자대신 알파벳이나 로마자를 사용할 수는 있기는 하지만 해당 단계에 대해서만 표시하고 다단계는 되지 않는다. 오늘은 CSS counter로 다단계 순번 만들기를 알아보자.","url":"https://abcbox.kr/posts/css-counter%EB%A1%9C-%EB%8B%A4%EB%8B%A8%EA%B3%84-%EC%88%9C%EB%B2%88-%EB%A7%8C%EB%93%A4%EA%B8%B0/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/css-counter%EB%A1%9C-%EB%8B%A4%EB%8B%A8%EA%B3%84-%EC%88%9C%EB%B2%88-%EB%A7%8C%EB%93%A4%EA%B8%B0/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2014-04-20T09:20:18.000Z","dateModified":"2014-04-20T09:20:18.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -49,7 +55,11 @@
   <h1>CSS counter로 다단계 순번 만들기</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -198,37 +208,37 @@
               
                 <a href="/posts/구글-analytics를-통해-본-브라우저-점유율/">구글 Analytics를 통해 본 브라우저 점유율</a>
               
-              <time class="local-date" datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
+              <time datetime="2014-05-01T18:13:03.000Z">2014. 5. 2.</time>
             </li><li >
               
                 <a href="/posts/생각해라-그리고-후회할-일을-해라/">생각해라, 그리고 후회할 일을 해라</a>
               
-              <time class="local-date" datetime="2014-04-30T18:20:13.000Z">2014. 5. 1.</time>
+              <time datetime="2014-04-30T18:20:13.000Z">2014. 5. 1.</time>
             </li><li >
               
                 <a href="/posts/톰캣의-컨텍스트-외부로-경로-매핑하는-방법/">톰캣의 컨텍스트 외부로 경로 매핑하는 방법</a>
               
-              <time class="local-date" datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
+              <time datetime="2014-04-27T18:42:03.000Z">2014. 4. 28.</time>
             </li><li aria-current="page">
               
                 <span>CSS counter로 다단계 순번 만들기</span>
               
-              <time class="local-date" datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
+              <time datetime="2014-04-20T09:20:18.000Z">2014. 4. 20.</time>
             </li><li >
               
                 <a href="/posts/세월호-사고-같은-후진국형-사고는-제발-이제-그만/">세월호 사고 같은 후진국형 사고는 제발 이제 그만</a>
               
-              <time class="local-date" datetime="2014-04-20T09:16:32.000Z">2014. 4. 20.</time>
+              <time datetime="2014-04-20T09:16:32.000Z">2014. 4. 20.</time>
             </li><li >
               
                 <a href="/posts/지난-프로젝트의-교훈/">지난 프로젝트의 교훈</a>
               
-              <time class="local-date" datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
+              <time datetime="2014-04-04T15:58:33.000Z">2014. 4. 5.</time>
             </li><li >
               
                 <a href="/posts/안드로이드와-ios-웹킷-브라우저의-차이점/">안드로이드와 iOS 웹킷 브라우저의 차이점</a>
               
-              <time class="local-date" datetime="2014-03-19T15:30:21.000Z">2014. 3. 20.</time>
+              <time datetime="2014-03-19T15:30:21.000Z">2014. 3. 20.</time>
             </li></ul>
       </section>
     

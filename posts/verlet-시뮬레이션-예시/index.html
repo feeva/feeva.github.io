@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Verlet 시뮬레이션 예시 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="지난 번에 Verlet 적산법 개념 설명에 이어 시뮬레이션 예시를 만들어봤다. 중력가속도만 적용되는 단순한 상황인 경우만 놓고 보니 아주 자연스러운 애니메이션이 만들어졌다. 또한 혼자서만 움직이는 게 아니라 입자를 마우스로 잡아 움직일 수 있게, 즉 인터랙티브하게 만들어봤다. 아래 예시는 IE9 이상 및 기타 최신 브라우저에서 볼 수 있다. ">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2013-05-19T17:29:24.000Z">
+    <meta property="article:modified_time" content="2013-05-19T17:29:24.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Verlet 시뮬레이션 예시","description":"지난 번에 Verlet 적산법 개념 설명에 이어 시뮬레이션 예시를 만들어봤다. 중력가속도만 적용되는 단순한 상황인 경우만 놓고 보니 아주 자연스러운 애니메이션이 만들어졌다. 또한 혼자서만 움직이는 게 아니라 입자를 마우스로 잡아 움직일 수 있게, 즉 인터랙티브하게 만들어봤다. 아래 예시는 IE9 이상 및 기타 최신 브라우저에서 볼 수 있다. ","url":"https://abcbox.kr/posts/verlet-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%88%EC%8B%9C/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/verlet-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%88%EC%8B%9C/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2013-05-19T17:29:24.000Z","dateModified":"2013-05-19T17:29:24.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -49,7 +55,11 @@
   <h1>Verlet 시뮬레이션 예시</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -114,37 +124,37 @@
               
                 <a href="/posts/제안서-작업도-프로젝트다/">제안서 작업도 프로젝트다</a>
               
-              <time class="local-date" datetime="2013-06-01T18:31:40.000Z">2013. 6. 2.</time>
+              <time datetime="2013-06-01T18:31:40.000Z">2013. 6. 2.</time>
             </li><li >
               
                 <a href="/posts/git을-사용해보자-2-git-원격-저장소-ssh-연결/">Git을 사용해보자 - 2. Git 원격 저장소 - SSH 연결</a>
               
-              <time class="local-date" datetime="2013-05-24T07:44:18.000Z">2013. 5. 24.</time>
+              <time datetime="2013-05-24T07:44:18.000Z">2013. 5. 24.</time>
             </li><li >
               
                 <a href="/posts/문제는-비전이었다-텀블러/">문제는 비전이었다 - 텀블러</a>
               
-              <time class="local-date" datetime="2013-05-22T02:38:47.000Z">2013. 5. 22.</time>
+              <time datetime="2013-05-22T02:38:47.000Z">2013. 5. 22.</time>
             </li><li aria-current="page">
               
                 <span>Verlet 시뮬레이션 예시</span>
               
-              <time class="local-date" datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
+              <time datetime="2013-05-19T17:29:24.000Z">2013. 5. 20.</time>
             </li><li >
               
                 <a href="/posts/스승의-날-선물-받다/">스승의 날 선물 받다</a>
               
-              <time class="local-date" datetime="2013-05-13T02:59:39.000Z">2013. 5. 13.</time>
+              <time datetime="2013-05-13T02:59:39.000Z">2013. 5. 13.</time>
             </li><li >
               
                 <a href="/posts/접근성을-고려한-javascript-사용/">접근성을 고려한 JavaScript 사용</a>
               
-              <time class="local-date" datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
+              <time datetime="2013-05-12T15:51:14.000Z">2013. 5. 13.</time>
             </li><li >
               
                 <a href="/posts/못-살겠다-갈아보자-chrome에서-firefox로-갈아타다/">못 살겠다 갈아보자 -  Chrome에서 Firefox로 갈아타다</a>
               
-              <time class="local-date" datetime="2013-05-10T07:04:34.000Z">2013. 5. 10.</time>
+              <time datetime="2013-05-10T07:04:34.000Z">2013. 5. 10.</time>
             </li></ul>
       </section>
     

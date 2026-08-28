@@ -3,7 +3,6 @@
   <head>
     
     
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>자바에서 메일 보내는 방법 - Nothing New Under the Sun</title>
@@ -17,6 +16,13 @@
     <meta property="og:description" content="최근에 우리 회사 새내기 개발자가 e메일 보내기에 대해 약간이나마 어려움을 느낀 것 같길래 자바에서 e메일 보내는 방법을 다시 한번 정리해볼 필요가 있겠다는 생각이 들었다. 이 글에서는 JavaMail API, 스프링 API, 기타 방법으로 e메일을 발신하는 방법을 알아보기로 한다. 자바 메일 보내기">
     <meta property="og:image" content="https://abcbox.kr/static/images/poster.jpg">
     <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2013-09-29T16:53:54.000Z">
+    <meta property="article:modified_time" content="2013-09-29T16:53:54.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"자바에서 메일 보내는 방법","description":"최근에 우리 회사 새내기 개발자가 e메일 보내기에 대해 약간이나마 어려움을 느낀 것 같길래 자바에서 e메일 보내는 방법을 다시 한번 정리해볼 필요가 있겠다는 생각이 들었다. 이 글에서는 JavaMail API, 스프링 API, 기타 방법으로 e메일을 발신하는 방법을 알아보기로 한다. 자바 메일 보내기","url":"https://abcbox.kr/posts/%EC%9E%90%EB%B0%94-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%EC%9E%90%EB%B0%94-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0/"},"image":["https://abcbox.kr/static/images/poster.jpg"],"datePublished":"2013-09-29T16:53:54.000Z","dateModified":"2013-09-29T16:53:54.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
 
     
 
@@ -49,7 +55,11 @@
   <h1>자바에서 메일 보내는 방법</h1>
 
   <div class="post-header-meta">
-    <time class="local-date" datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time><span class="post-categories"><a href="/categories/프로그래밍/">프로그래밍</a></span></div>
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
 
   <div class="post-main">
     <details class="post-toc" aria-label="글 목차" hidden>
@@ -167,37 +177,37 @@ helper<span class="token punctuation">.</span><span class="token function">addAt
               
                 <a href="/posts/속담으로-풀어보는-프로젝트-관리/">속담으로 풀어보는 프로젝트 관리</a>
               
-              <time class="local-date" datetime="2013-10-19T03:52:59.000Z">2013. 10. 19.</time>
+              <time datetime="2013-10-19T03:52:59.000Z">2013. 10. 19.</time>
             </li><li >
               
                 <a href="/posts/이클립스-validation-답답증/">이클립스 Validation 답답증</a>
               
-              <time class="local-date" datetime="2013-10-08T10:23:40.000Z">2013. 10. 8.</time>
+              <time datetime="2013-10-08T10:23:40.000Z">2013. 10. 8.</time>
             </li><li >
               
                 <a href="/posts/추천-시스템-입문-2강-개인화되지-않은-추천/">추천 시스템 입문 2강 - 개인화되지 않은 추천</a>
               
-              <time class="local-date" datetime="2013-10-06T08:47:24.000Z">2013. 10. 6.</time>
+              <time datetime="2013-10-06T08:47:24.000Z">2013. 10. 6.</time>
             </li><li aria-current="page">
               
                 <span>자바에서 메일 보내는 방법</span>
               
-              <time class="local-date" datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time>
+              <time datetime="2013-09-29T16:53:54.000Z">2013. 9. 30.</time>
             </li><li >
               
                 <a href="/posts/자바-리스트와-맵의-성능-비교/">자바 리스트와 맵의 성능 비교</a>
               
-              <time class="local-date" datetime="2013-09-22T08:41:45.000Z">2013. 9. 22.</time>
+              <time datetime="2013-09-22T08:41:45.000Z">2013. 9. 22.</time>
             </li><li >
               
                 <a href="/posts/에스컬레이터에서-뛰거나-걷지-마시오/">에스컬레이터에서 뛰거나 걷지 마시오</a>
               
-              <time class="local-date" datetime="2013-09-22T07:02:50.000Z">2013. 9. 22.</time>
+              <time datetime="2013-09-22T07:02:50.000Z">2013. 9. 22.</time>
             </li><li >
               
                 <a href="/posts/추천-시스템-입문-1강/">추천 시스템 입문 1강</a>
               
-              <time class="local-date" datetime="2013-09-15T10:45:54.000Z">2013. 9. 15.</time>
+              <time datetime="2013-09-15T10:45:54.000Z">2013. 9. 15.</time>
             </li></ul>
       </section>
     
