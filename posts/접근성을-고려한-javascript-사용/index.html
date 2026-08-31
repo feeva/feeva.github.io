@@ -141,7 +141,6 @@
 <h3>클라이언트측 스크립팅 기법 예시</h3>
 <h4>SCR2: 키보드와 마우스 이벤트 핸들러를 중복 사용하기</h4>
 <p>이 기법 예시에서는 웹 접근성 지침 2.1 키보드 접근 가능에 대한 성공 예시를 보여준다. 어떤 꾸밈 이미지를 바꿔주는 이벤트를 처리할 때 마우스와 포커스 이벤트를 줌으로써 키보드도 충분히 지원하게 하는 것이다. 아래와 같이 하면 키보드로 포커스를 주거나 마우스로 이동하거나 하면 이미지가 바뀌게 된다.</p>
-<p><a id="aScr2" style="border: none;" href="#"><img id="imgScr2" style="border: none;" alt="" src="/static/uploads/programs/img/s_login_off.png" /></a></p>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>aScr2<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>imgScr2<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>img/s_login_off.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> aScr2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'aScr2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> imgScr2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'imgScr2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -220,9 +219,6 @@ aScr2<span class="token punctuation">.</span>onblur <span class="token operator"
 <h3>정리하자면...</h3>
 <p>일부 기법만 예시로 봤지만 예시뿐 아니라 W3C의 웹 접근성 지침을 보자면 JavaScript는 가깝지만 먼 당신이 아니라 웹 페이지를 유용하게 만들 수 있는 적극적인 기술로 인지되고 있음이 분명하다. 국내의 정보화진흥원에서 제정한 웹 접근성 표준처럼 컨텐트 저작할 때의 표준뿐만 아니라 ARIA와 같이 RIA를 만들 때 웹 접근성을 고려하기 위한 기술적 표준도 고려함으로써 제대로된 웹 접근성을 만족할 수 있을 것으로 생각된다.</p>
 <p>정리하자면… 참 공부할 게 많다. ARIA는 또 다음 기회에 공부해보기로 하자.</p>
-<script type="text/javascript" src="/programs/wcag-examples.js">// <![CDATA[
-// ...
-// ]]></script>
 
     </div>
   </div>
