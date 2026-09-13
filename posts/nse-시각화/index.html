@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>나비에-스토크스 방정식이 뭐길래 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="OpenAI가 유체 역학에서 유명한 나비에-스토크스 방정식의 난제에 대한 해법을 구했다고 발표했다.
+나비에-스토크스 방정식과 그 난제가 어떤 것인지 알아보고
+방정식을 활용한 유체 시뮬레이션을 구현해봤다.
+">
+    <link rel="canonical" href="https://abcbox.kr/posts/nse-%EC%8B%9C%EA%B0%81%ED%99%94/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="나비에-스토크스 방정식이 뭐길래">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/nse-%EC%8B%9C%EA%B0%81%ED%99%94/">
+    <meta property="og:description" content="OpenAI가 유체 역학에서 유명한 나비에-스토크스 방정식의 난제에 대한 해법을 구했다고 발표했다.
+나비에-스토크스 방정식과 그 난제가 어떤 것인지 알아보고
+방정식을 활용한 유체 시뮬레이션을 구현해봤다.
+">
+    <meta property="og:image" content="https://abcbox.kr/static/uploads/2026/nse-oil.jpg">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2026-09-13T03:30:00.000Z">
+    <meta property="article:modified_time" content="2026-09-13T03:30:00.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"나비에-스토크스 방정식이 뭐길래","description":"OpenAI가 유체 역학에서 유명한 나비에-스토크스 방정식의 난제에 대한 해법을 구했다고 발표했다.\n나비에-스토크스 방정식과 그 난제가 어떤 것인지 알아보고\n방정식을 활용한 유체 시뮬레이션을 구현해봤다.\n","url":"https://abcbox.kr/posts/nse-%EC%8B%9C%EA%B0%81%ED%99%94/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/nse-%EC%8B%9C%EA%B0%81%ED%99%94/"},"image":["https://abcbox.kr/static/uploads/2026/nse-oil.jpg"],"datePublished":"2026-09-13T03:30:00.000Z","dateModified":"2026-09-13T03:30:00.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style></style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+        },
+        CommonHTML: {
+          scale: 86,
+        },
+      });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 글 목록</a>
+
+  <h1>나비에-스토크스 방정식이 뭐길래</h1>
+
+  <div class="post-header-meta">
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2026-09-13T03:30:00.000Z">2026. 9. 13.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/살아있음/">살아있음</a><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
+
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>OpenAI가 새 AI 모델인 GPT‑6 Astra를 발표했는데 얼마 후 중요한 추가 소식이 나왔다.
+오랫동안 풀리지 않은 &quot;나비에-스토크스 존재성과 매끄러움 문제&quot;의 해법을
+내부 AI 시스템으로 구했다고 <a href="https://openai.com/index/navier-stokes-solution/">발표한 것</a>이다.</p>
+<p>대학 때 유체 역학을 배우면서 나비에-스토크스 방정식을 간단히 배우긴 했는데
+전공과 거리가 있는 일을 하는 현재는 호기심으로 다시 알아보기로 했다.
+예전에 <a href="/posts/%EB%AC%BC%EB%A6%AC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9C%84%ED%95%9C-verlet-%EC%A0%81%EC%82%B0%EB%B2%95/">Verlet 적산법에 대해 쓴 글</a> 이래로 이제는 개인용 컴퓨터에서
+유체 애니메이션 정도야 쉽게 하는 시대니까 말이다.</p>
+<h2>나비에-스토크스 방정식도 $F = ma$에서 나왔다</h2>
+<p>알다시피 뉴턴의 운동 법칙은 물체에 힘을 가하면 가속도가 생긴다는 것으로 힘을 물체의 질량으로 나누면
+가속도를 구할 수 있다거나 질량에 가속도를 곱한 값이 힘이다 등으로 표현한다. 힘이 여럿일 경우
+아래와 같이 표현할 수 있다. 가속도와 힘은 벡터, 질량은 스칼라다.</p>
+<div class="math-display" style="overflow-x:auto">$$
+m\mathbf{a}=\sum \mathbf{F}
+$$</div>
+<p>공기, 물 같은 유체도 같은 법칙을 따르지만 고체처럼 하나하나 독립적인 형태가 아니기 때문에
+유체가 차지하는 공간의 각 위치에 벡터가 있다고 보고 이를 <strong>속도장</strong>이라고 한다.</p>
+<p>나비에-스토크스 방정식은 여러 사람이 공동으로 기여하여 정립된 것인데 그 이름은 프랑스의 클로드루이 나비에,
+영국의 조지 스토크스에서 유래한 것이다. 밀도가 일정하고 압축되지 않는 유체의 나비에-스토크스 방정식은 아래와 같다.</p>
+<div class="math-display" style="overflow-x:auto">$$
+\rho\left(
+\frac{\partial\mathbf{u}}{\partial t}
++(\mathbf{u}\cdot\nabla)\mathbf{u}
+\right)
+=-\nabla p
++\mu\nabla^2\mathbf{u}
++\mathbf{f},
+\qquad \nabla\cdot\mathbf{u}=0
+$$</div>
+<p>좌변이 $m\mathbf{a}$에 해당하여 <strong>유체의 질량밀도에 가속도를 곱한 것이고</strong> 우변은 $\sum \mathbf{F}$에 해당하여
+<strong>유체에 작용하는 여러 힘</strong>을 나타낸다.</p>
+<table>
+<thead>
+<tr>
+<th>기호 및 항</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\rho$</td>
+<td>유체의 밀도(부피당 질량). 밀도가 일정한 경우이므로 상수다.</td>
+</tr>
+<tr>
+<td>$\mathbf{u}$</td>
+<td>유체의 위치마다 계산되는 속도 벡터</td>
+</tr>
+<tr>
+<td>$\partial\mathbf{u}/\partial t$</td>
+<td>시간에 대한 속도 변화율, 즉 (국소) 가속도</td>
+</tr>
+<tr>
+<td>$\nabla$</td>
+<td>“나블라” - 그레이디언트/발산을 만드는 미분 연산자</td>
+</tr>
+<tr>
+<td>$(\mathbf{u}\cdot\nabla)\mathbf{u}$</td>
+<td>유체가 이동하면서 다른 위치의 속도에 영향 주는 가속도. 속도 자체가 속도의 변화를 결정하는 비선형 항.</td>
+</tr>
+<tr>
+<td>$-\nabla p$</td>
+<td>압력이 높은 곳에서 낮은 곳으로 유체를 미는 힘</td>
+</tr>
+<tr>
+<td>$\mu\nabla^2\mathbf{u}$</td>
+<td>점성의 힘. $\mu$는 점성 계수를 의미하며 유체의 끈적한 정도를 나타냄</td>
+</tr>
+<tr>
+<td>$\mathbf{f}$</td>
+<td>중력($\rho\mathbf{g}$)이나 부력 등 기타 다른 힘</td>
+</tr>
+<tr>
+<td>$\nabla\cdot\mathbf{u}=0$</td>
+<td>유입, 유출 유량이 같아 0이 된다는 것으로 유체 부피가 줄거나 팽창하지 않는다는 조건.</td>
+</tr>
+</tbody>
+</table>
+<p>압축이 가능한 유체인 경우는 밀도도 시간 함수가 되어 또 다른 비선형 항이 추가되기 때문에 복잡해진다.</p>
+<h2>어떤 난제가 있었는가</h2>
+<p>나비에-스토크스 방정식으로 유체의 다양한 면모를 계산할 수 있다.
+항공기 설계나 일기 예보 등에서 유체의 흐름을 계산하여 우리 일상에까지 영향을 주는
+결과는 수없이 많다. 그럼 OpenAI가 해법을 구한 난제란 건 어떤 것일까?</p>
+<p>클레이 수학연구소라는 단체에서 선정한 21세기 수학계에 기여할 수 있는 난제 7개 중 하나를 말하며
+방정식이 쓰인 19세기 이래로 아직도 우리의 이해도는 낮다는 데서 출발한다.</p>
+<p>공식적인 <a href="https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf">문제 설명</a>에서는
+방정식의 3차원 적용 시 가정한 몇 가지 조건을 만족하는 해가 존재하는지에 대해 네 가지 중 하나는 증명하라고 요구하고 있다.</p>
+<blockquote>
+<p>(A) Existence and smoothness of Navier–Stokes solutions on $\mathbb{R}^3$<br>
+(B) Existence and smoothness of Navier–Stokes solutions in $\mathbb{R}^3/\mathbb{Z}^3$<br>
+(C) Breakdown of Navier–Stokes solutions on $\mathbb{R}^3$<br>
+(D) Breakdown of Navier–Stokes solutions on $\mathbb{R}^3/\mathbb{Z}^3$<br></p>
+</blockquote>
+<p>OpenAI에서는 문제에 대해 아래와 같이 설명한다.</p>
+<blockquote>
+<p>Specifically, can the Navier–Stokes equations for a three-dimensional incompressible fluid with constant density develop a “singularity,”
+even when the motion starts smoothly? Here, a singularity means the dynamics
+lead to speeds in the fluid growing without bound within a finite amount of time.</p>
+</blockquote>
+<p>즉, 유체 속도가 유한한 시간 안에 무한히 빨라지는 특이점이 만들어질 수 있냐는 것이다.
+현실에서 유체 속도는 무한대가 될 수 없기 때문에 이 지점부터 방정식은 유체 해석에
+적합하지 않다. 클레이 연구소는 이를 붕괴(breakdown)라고 표현했다.</p>
+<p>OpenAI는 앞서 C, D에 해당하는 증명, 즉 특이점이 생길 수 있다는 쪽으로 발표했다.
+처음에는 정지해 있던 매끄러운 유체에
+매끄러운 외력을 가했을 때 전체 에너지는 유한하게 남아 있는데도 유한한 시간 안에
+유체의 속도가 무한히 커지는 예를 구성했다고 설명한다.</p>
+<!--
+그 흐름은 소용돌이가 안쪽으로 감기면서 가늘고 길게 늘어나는 모양이다.
+중심 영역은 점점 작아지고 회전은 빨라진다. 가속도와 압력, 이류와 점성은 각각 매우 커지지만
+정교하게 상쇄되어 바깥에서 가하는 힘 자체는 끝까지 매끄럽게 유지된다.
+-->
+<p>OpenAI는 “Astra보다 강력한 내부 모델을 사용하여” 이 문제를 증명했다고 발표했지만
+실제로 해결한 게 맞는지에 대해서는 수학계 검증에 상당 시간이 필요하다고 한다.</p>
+<h2>나비에-스토크스 애니메이션 갤러리</h2>
+<p>일반인 입장에서 나비에-스토크스 방정식을 연구하는 게 목적은 아니고
+그래서 방정식으로 뭘 할 수 있는지가 더 큰 관심사라 AI를 사용해 몇 가지를 구현해봤다.</p>
+<p>3차원은 2차원보다 훨씬 복잡해지기 때문에 단순화한 2차원 실험으로 만들었고
+마우스나 터치로 인터랙션이 가능하게 했다. 위 난제에서 특이점은 3차원인 경우이기 때문에
+이 데모들에서는 특이점이 안오니 안심.</p>
+<p>인터넷으로 찾아보면 나비에-스토크스 방정식 기반으로 다양한 유체 애니메이션 라이브러리와 알고리듬이 있는데
+아래 구현은 그중 유명한 <a href="https://www.dgp.toronto.edu/public_user/stam/reality/Research/pdf/jgt01.pdf">Jos Stam의 논문</a>을 바탕으로 한 것이다.</p>
+<link rel="stylesheet" href="/static/modules/nse-gallery/nse-gallery.css">
+<div class="nse-gallery" data-nse-gallery>
+  <figure class="nse-gallery__item" data-demo="smoke">
+    <canvas width="108" height="72" tabindex="0" aria-label="연기 애니메이션"></canvas>
+    <figcaption><strong>소용돌이치는 연기</strong> 연기의 흐름을 보여 준다. 박스 안을 클릭, 드래그하여 연기를 추가해보자.</figcaption>
+  </figure>
+  <figure class="nse-gallery__item" data-demo="viscosity">
+    <canvas width="108" height="72" tabindex="0" aria-label="낮은 점성과 높은 점성의 흐름 비교 애니메이션"></canvas>
+    <figcaption><strong>점성이 다른 잉크</strong> 왼쪽은 점성이 낮아 움직임이 빠르고 오른쪽은 점성이 높아 빨리 둔해진다.</figcaption>
+  </figure>
+  <figure class="nse-gallery__item" data-demo="buoyancy">
+    <canvas width="108" height="72" tabindex="0" aria-label="따뜻한 연기가 위로 올라가는 애니메이션"></canvas>
+    <figcaption><strong>따뜻한 연기와 부력</strong> 연기가 상방향 외력을 받아 위로 올라간다. 약간의 흔들림이 더해져 연기 흐름이 좌우로 휜다.</figcaption>
+  </figure>
+</div>
+<script type="module" src="/static/modules/nse-gallery/nse-gallery.js"></script>
+<p>참고로 동작 줄이기 설정을 사용하는 기기에서는 애니메이션이 정지된 그림으로 표시된다.</p>
+<p>인터넷에는 본격적으로 구현한 애니메이션이 꽤 있다. 마치 기름이 퍼지는 것 같은 현상을 화려하게 표현한
+<a href="https://paveldogreat.github.io/WebGL-Fluid-Simulation/">예시</a>도 그중 하나.</p>
+<hr>
+<p>나비에-스토크스 방정식을 시각적으로 확인할 수 있어 재미있는 기회였다. 개발자로서
+업무적으로 사용할 영역은 아니지만 옛날 배웠던 전공 과목 내용이 뉴스에 나와 반가웠다.</p>
+<p>방정식에서 말하는 &quot;특이점&quot;과는 다르지만 AI가 차츰 사람의 능력을 넘어서 이해할 수 없는 영역까지 도달하는
+사례가 계속 나오는 것 같다. AI가 자체적으로 발전, 진화하는 특이점이 오는 날이 멀지 않았다고 하는데
+과학은, 인류는 어떻게 영향받을까?</p>
+
+    </div>
+  </div>
+
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="nse-시각화"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
+  <div class="post-footer">
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/수치-해석/">수치 해석</a></li><li><a href="/tags/ai/">AI</a></li><li><a href="/tags/시뮬레이션/">시뮬레이션</a></li><li><a href="/tags/애니메이션/">애니메이션</a></li></ul>
+      </section>
+    
+
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title"><a href="/categories/살아있음/">살아있음</a> <span aria-hidden="true">|</span> <a href="/categories/프로그래밍/">프로그래밍</a> 카테고리 최신 글
+        </h2>
+        <ul><li>
+              <a href="/posts/오디세이-영화/">&lt;오디세이&gt;로 본 크리스토퍼 놀란의 공통 주제</a>
+              <time datetime="2026-09-06T15:00:00.000Z">2026. 9. 7.</time>
+            </li><li>
+              <a href="/posts/어린-시절의-향수-동화책/">어린 시절을 소환할 수 있다면 100만 원쯤이야?</a>
+              <time datetime="2026-09-05T04:00:00.000Z">2026. 9. 5.</time>
+            </li><li>
+              <a href="/posts/뭐가-중헌디/">뭣이 중헌디~ 엉뚱한 돌 다리를 건너는 건 아닌가?</a>
+              <time datetime="2026-08-28T16:00:00.000Z">2026. 8. 29.</time>
+            </li><li>
+              <a href="/posts/두-도시-이야기-번역/">두 도시 이야기 새로운 번역 비교 - AI와 내가 번역한다면</a>
+              <time datetime="2026-08-23T06:00:00.000Z">2026. 8. 23.</time>
+            </li><li>
+              <a href="/posts/적립식-자산배분-전환/">적립식 투자 다음엔? 자산배분!</a>
+              <time datetime="2026-08-22T08:00:00.000Z">2026. 8. 22.</time>
+            </li></ul>
+      </section>
+    
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="맨 위로">↑</button>
+
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="nse-시각화"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
