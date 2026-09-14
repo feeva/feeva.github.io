@@ -63,7 +63,7 @@ const makeUniqueHeadingId = (value) => {
   return count === 1 ? base : `${base}-${count}`;
 };
 
-if (postToc && tocNav && headings.length >= 5) {
+if (postToc && tocNav && headings.length >= 4) {
   const links = headings.map((heading) => {
     heading.id = makeUniqueHeadingId(
       heading.id || slugifyHeading(heading.textContent || ''),
