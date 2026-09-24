@@ -1237,8 +1237,19 @@ figcaption a {
     overflow-x: auto;
   }
 
+  .post-content .full-width-block table {
+    width: max-content;
+  }
+
   .post-content .full-width-block table th,
   .post-content .full-width-block table td {
+    max-width: 90vw;
+    max-width: 90dvw;
+  }
+
+  .post-content .full-width-block table th:first-child,
+  .post-content .full-width-block table td:first-child {
+    max-width: none;
     white-space: nowrap;
   }
 }
