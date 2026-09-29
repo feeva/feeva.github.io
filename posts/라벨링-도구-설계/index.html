@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>두 번 일하지 않도록 라벨링 도구 설계하기 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="사진 인식 AI의 학습 데이터를 만들기 위해 사람이 정답을 확정하는 라벨링 도구가 필요하다.
+사진 수천 장을 여러 번 리뷰하는 시행착오에서 나온 설계 방안을 정리해본다.
+">
+    <link rel="canonical" href="https://abcbox.kr/posts/%EB%9D%BC%EB%B2%A8%EB%A7%81-%EB%8F%84%EA%B5%AC-%EC%84%A4%EA%B3%84/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="두 번 일하지 않도록 라벨링 도구 설계하기">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/%EB%9D%BC%EB%B2%A8%EB%A7%81-%EB%8F%84%EA%B5%AC-%EC%84%A4%EA%B3%84/">
+    <meta property="og:description" content="사진 인식 AI의 학습 데이터를 만들기 위해 사람이 정답을 확정하는 라벨링 도구가 필요하다.
+사진 수천 장을 여러 번 리뷰하는 시행착오에서 나온 설계 방안을 정리해본다.
+">
+    <meta property="og:image" content="https://abcbox.kr/static/uploads/2026/labeling-tool-desk.jpg">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2026-09-29T05:00:00.000Z">
+    <meta property="article:modified_time" content="2026-09-29T05:00:00.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"두 번 일하지 않도록 라벨링 도구 설계하기","description":"사진 인식 AI의 학습 데이터를 만들기 위해 사람이 정답을 확정하는 라벨링 도구가 필요하다.\n사진 수천 장을 여러 번 리뷰하는 시행착오에서 나온 설계 방안을 정리해본다.\n","url":"https://abcbox.kr/posts/%EB%9D%BC%EB%B2%A8%EB%A7%81-%EB%8F%84%EA%B5%AC-%EC%84%A4%EA%B3%84/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%EB%9D%BC%EB%B2%A8%EB%A7%81-%EB%8F%84%EA%B5%AC-%EC%84%A4%EA%B3%84/"},"image":["https://abcbox.kr/static/uploads/2026/labeling-tool-desk.jpg"],"datePublished":"2026-09-29T05:00:00.000Z","dateModified":"2026-09-29T05:00:00.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style></style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 글 목록</a>
+
+  <h1>두 번 일하지 않도록 라벨링 도구 설계하기</h1>
+
+  <div class="post-header-meta">
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2026-09-29T05:00:00.000Z">2026. 9. 29.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a></nav></div>
+
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p><a href="/posts/%EC%82%AC%EC%A7%84-%EC%9D%B8%EC%8B%9D-AI-%EC%84%A4%EB%AA%85/">지난 글</a>에서 AI의 두뇌를 만들려면 사진마다 정답을 붙이는 &quot;라벨링&quot;이 필요하고
+이 작업은 손이 많이 간다고 했다.</p>
+<p>AI 코딩이 일반화됐기 때문에 라벨링 도구 자체는 금방 만들 수 있다.
+사진을 하나씩 보면서 라벨을 고르는 화면이고 라벨 종류는 뭐가 있고 저장은 어떻게 하도록
+만들어 달라고 하면 된다.</p>
+<p>문제는 화면을 만든 뒤에 나왔다. 경험이 부족한 상태로 사진을 리뷰하면서 라벨 기준과 기록 방식을 바꾸다가
+이미 봤던 수천 장을 다시 리뷰하는 일이 반복됐다. 이번 글에서는 그런 시행착오를 줄이기 위한 라벨링 도구 설계 방안을 정리해본다.</p>
+<h2>1. 수천 장을 왜 몇 번이나 다시 봤나</h2>
+<p>솔직히 말하면 이 프로젝트에서 이미지 수천 장 리뷰를 열댓 번은 반복했다. 이유는 크게 네 가지였다.</p>
+<p><strong>설계가 흔들렸다.</strong> 라벨을 어떻게 나눌지, 리뷰 결과를 어떻게 저장할지 등이 몇 번 바뀌었다.
+&quot;부적합&quot;과 “기타” 라벨은 처음에는 학습에서 뺐다가 나중에는 다시 넣기로 했다. 리뷰 결과도 처음에는 JSON
+파일에 저장하다가 하루에 등록되는 건수를 파악하고 나서야 DB로 옮겼다. 이것 자체가 리뷰를 다시 하게 만든 건
+아니지만 여러 방침과 형식으로 만든 결과가 섞이면서 어느 결과를 믿어야 할지 가려내기 어려워졌다.
+라벨 체계, 라벨별 학습 사용 여부, 하루 유입량과 그에 맞는 저장 방식은 리뷰를 시작하기 전에 정해야 한다.</p>
+<p><strong>라벨링 기준이 흔들렸다.</strong> 제일 큰 문제는 라벨 하나로 구별하기 모호한 사진이었다.
+차량 앞과 차량 옆을 구별하는 라벨링이 있다고 하자. 차량 앞과 옆이 다 보이게 비스듬히 찍은
+사진이면 어떤 기준으로 앞, 옆으로 판정할까?</p>
+<p>사람에게는 명확하지 않은 라벨이라도 납득할 수준의 일관된 추론 결과가 나온다면 모델 성능이
+좋아질 것이라 판단하여 라벨링 기준을 몇 번 바꿔봤다. 앞과 옆 중 더 넓게 나온 걸 답으로 하기도 하고
+사진 가운데에 잡힌 면을 답으로 하기도 하고 아예 학습에서 제외해보기도 했다.</p>
+<p>또한 이런 문제 자체가 먼저 리뷰를 해봐야 파악되니 닭이 먼저냐
+달걀이 먼저냐의 문제가 되기도 했다. 리뷰를 하다 보면 기준이 나중에 나오고 반대로
+기준을 먼저 정한 뒤 리뷰를 하다 보면 기준이 흔들린다.</p>
+<p>그러다 보니 기준이 바뀔 때마다 전체를 다시 리뷰하는 우매한 작업을 했다. 기준이 바뀌어서 영향을 받는 것만
+구분해놓으면 될 걸 말이다. 헷갈리는 사례에 <strong>플래그를 달아두고</strong> 기준이
+정해지거나 재학습할 때 플래그가 달린 것부터 다시 봤으면 됐다.</p>
+<p><strong>고객도 답을 모른다.</strong> 헷갈리는 사례는 업무 담당자에게 물어도 명확하지 않은 경우가 많다.
+그래서 비슷한 사진인데 어떤 건 &quot;모호함&quot;으로 학습에서 배제되고 어떤 건 &quot;기타&quot;로 학습되는 식으로 처리가 갈렸다.
+시간이나 사람을 많이 들인다고 효율적이지 않아서 우리는 리뷰어를 한 명으로
+정하기로 했다. 개발자나 고객 사이에 의견이 달라도 리뷰 수행 자체는 리뷰어 한 사람에게 맡기기로 한 것이다.
+리뷰어가 여럿이면 같은 사진을 서로 다르게 판정해서 나중에 맞추느라 다시 보는 혼란을 피하도록 했다.</p>
+<p><strong>모델이 바뀌고 추론 판정이 바뀐다.</strong> AI 모델을 재학습해서 버전이 올라가면 일부 사진의 예측 결과가 달라진다.
+이 역시 새 모델에 따른 차이만 리뷰하면 되는데 그런 체계가 준비되지 않은 상태에서
+모든 사진을 다시 사람이 리뷰했다.</p>
+<p>네 가지 모두 도구만으로 혼란이 해결되지는 않는다. 상황이 바뀌어 다시 리뷰할 때 <strong>볼 개수를 줄이도록</strong> 도구를
+만들어 두는 것이 필요하다. 아래는 그런 관점에서 챙겨야 할 것들이다.</p>
+<h2>2. 라벨링 도구의 목적은 정답 목록을 사람이 확정하는 것이다</h2>
+<p>사람이 리뷰하는 이미지는 일부 또는 전부에 AI 모델이 예측한 라벨이 붙어 있을 수 있다.
+이때 <strong>모델의 예측은 참고값일 뿐 정답이 아니기 때문에</strong> 사람이 정답을 맞춰 넣는 것이고
+아래와 같이 리뷰 상태를 관리하게 했다.</p>
+<table>
+<thead>
+<tr>
+<th>상태</th>
+<th>의미</th>
+<th>학습 사용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>미검토(Unreviewed)</td>
+<td>아직 사람이 보지 않음</td>
+<td>제외</td>
+</tr>
+<tr>
+<td>승인(Approved)</td>
+<td>사람이 최종 라벨을 확정함</td>
+<td>사용</td>
+</tr>
+<tr>
+<td>모호함(Ambiguous)</td>
+<td>사진은 정상이나 판단 불가 또는 기준 보완 필요</td>
+<td>제외</td>
+</tr>
+<tr>
+<td>건너뜀(Skipped)</td>
+<td>리뷰 대상에서 보류 또는 학습 제외</td>
+<td>제외</td>
+</tr>
+</tbody>
+</table>
+<p>라벨링 도구의 목적에 따라 이런 기준을 정해야 하고 명확히 사람이 승인한 이미지만 학습
+데이터로 사용해야 한다.</p>
+<h2>3. 리뷰할 땐 한 번에 한 가지만 판단하라</h2>
+<p>프로젝트 초기에 나와 동료는 사전 라벨링된 사진 9,000장을 반씩 나눠서 리뷰했다. 그런데 중간에
+보니 동료가 훨씬 빨리 진행하고 있었다.
+알고 보니 동료는 전체를 순서대로 보는 게 아니라 <strong>유형별로 필터를 걸어서 한 유형씩</strong> 리뷰했다.</p>
+<p>순서대로 보면 사진마다 “이건 차량 앞인가 옆인가…” 등
+라벨의 선택값을 매번 새로 판단해야 한다. 반면 &quot;차량 앞&quot;으로 예측된 사진만 모아서 보면 질문이
+“이게 차량 앞이 맞나?” 하나로 줄어든다. 대부분은 맞으니 빠르게 넘기고 튀는 사진만 눈에 들어온다.
+사람의 인식은 여러 가지를 동시에 판단할 때보다 한 가지만 판단할 때 훨씬 빠르다.</p>
+<p>필터 기능은 처음부터 화면에 넣었던 기능이다. 나는 그걸 검색용으로만 생각했고 동료는 작업에
+활용했다는 차이가 있다.
+그래서 리뷰 화면은 처음부터 “필터로 줄인 목록을 순서대로 처리하는” 흐름으로 설계하는 게 좋다.</p>
+<p>아래와 같이 여러 필터와 키보드 단축키 등 편의 기능을 넣도록 한다.</p>
+<ul>
+<li><strong>모델 예측 라벨, 리뷰 상태, 품질 문제, 고객·파일 기준</strong> 필터와 검색</li>
+<li>필터 결과를 목록으로 표시하고 위아래 화살표 키로 이동</li>
+<li>라벨 각각에 숫자 키 지정, 승인·모호함·건너뜀·회전 각각에 대해 알파벳 키 지정</li>
+<li>필터 결과 전체를 한 번에 변경하는 <strong>일괄 처리</strong> 기능</li>
+</ul>
+<p><figure><picture><source type="image/webp" srcset="/static/resp-img/eFaxWT67t4-360.webp 360w, /static/resp-img/eFaxWT67t4-720.webp 720w, /static/resp-img/eFaxWT67t4-800.webp 800w, /static/resp-img/eFaxWT67t4-1200.webp 1200w" sizes="(max-width:800px) 100vw, 1200px"><img alt="실제 우리가 만들어 쓴 리뷰 화면" loading="lazy" decoding="async" data-src="../../static/uploads/2026/labeling-tool-desk.jpg" src="/static/resp-img/eFaxWT67t4-360.jpeg" width="1200" height="675" srcset="/static/resp-img/eFaxWT67t4-360.jpeg 360w, /static/resp-img/eFaxWT67t4-720.jpeg 720w, /static/resp-img/eFaxWT67t4-800.jpeg 800w, /static/resp-img/eFaxWT67t4-1200.jpeg 1200w" sizes="(max-width:800px) 100vw, 1200px"></picture><figcaption>실제 우리가 만들어 쓴 리뷰 화면</figcaption></figure></p>
+<h2>4. 이미지를 확대·축소·이동해서 볼 수 있어야 한다</h2>
+<p>리뷰 대상 사진은 가급적 원본 수준으로 확대해서 볼 수 있어야 한다. 사람이 리뷰하므로
+좀 더 잘 판단할 수 있어야 하기 때문이다. 반면에 학습 모델에 투입하는
+이미지는 300x300 등 상당히 작은 이미지로 줄이게 되므로 사람과 기계가 보는
+이미지의 크기가 차이가 날 수 있다. 사람이 보는 이미지와 모델이 보는 이미지는
+목적이 다르다.</p>
+<p>우리의 경우 리뷰 이미지는 긴 변 기준 1,600픽셀 정도로 따로 저장했고
+UI에서는 마우스 휠로 확대, 축소하고 끌어서 이동할 수 있게 했다.
+원본 이미지는 크게는 7,000~8,000픽셀까지도 자주 나왔는데 1,600이면 확대로 충분히 세부 영역 판별이 가능했기 때문이다.</p>
+<h2>5. 회전은 생각보다 자주 필요하다</h2>
+<p>프로젝트 요건상 카메라로 찍은 사진을 받다 보니 사진이 옆으로 누워 있거나 거꾸로 보이는 일이 흔했다.
+예를 들어,</p>
+<ul>
+<li>사진의 방향 정보(EXIF orientation)가 누락되거나 무시된 경우</li>
+<li>서류를 책상 위에 놓고 비스듬히 찍는 경우(스마트폰 방향이 맞지 않게 된 경우)</li>
+</ul>
+<p>그래서 리뷰 화면에서 키 하나를 눌러 90도씩 돌릴 수 있게 했다.</p>
+<p>여기서 신경 쓸 점은 <strong>회전이 화면 표시에서 끝나면 안 된다</strong>는 것이다. 방향을 바로 잡은 사진이 학습에도
+바로 잡은 상태로 들어가야 한다. 그래서 리뷰어가 회전하면 원본은 그대로 두고 회전된 이미지를 새로 저장한 뒤
+리뷰 결과가 새 이미지를 가리키게 했다. 원본을 덮어쓰지 않아야 나중에 무슨 일이 있었는지 추적할 수 있다.</p>
+<h2>6. 품질을 기계적으로 판단하여 마커 붙이기</h2>
+<p>기본적으로 사진 분류 모델이 하는 일은 &quot;이 사진이 어떤 유형인가&quot;지 &quot;이 사진이 판단할 만한 사진인가&quot;는 아니다.
+예를 들어 차량 앞, 차량 옆이라는 라벨링을 해야 한다면 백지 사진을 줘도 차량 앞 또는 옆 중 하나의 결과 밖에 나오지 않는다.</p>
+<p>그래서 모델 추론과 별개로 이미지 자체의 품질을 계산하는 <strong>품질 마커</strong>를 붙였다. 밝기,
+채도, 선명도, 여백 같은 단순한 수치로 판정하는 규칙이다. 이때 <strong>대상 업무와 이미지의 종류에 따라 마커가
+달라야 한다</strong>. 모든 사례에 적용할 규칙은 없다.</p>
+<table>
+<thead>
+<tr>
+<th>대상</th>
+<th>품질 마커 예시</th>
+<th>판정 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>일반 사진</td>
+<td>흐림</td>
+<td>윤곽선이 얼마나 분명한지 수치화함</td>
+</tr>
+<tr>
+<td>일반 사진</td>
+<td>어두움</td>
+<td>평균 밝기가 기준 미만</td>
+</tr>
+<tr>
+<td>일반 사진</td>
+<td>흑백, 저채도</td>
+<td>RGB 채널 간 차이가 거의 없음</td>
+</tr>
+<tr>
+<td>일반 사진</td>
+<td>빈 이미지</td>
+<td>거의 한 가지 색으로 채워짐 (렌즈 가림 등)</td>
+</tr>
+<tr>
+<td>일반 사진</td>
+<td>문서 촬영</td>
+<td>흰 종이 여백이 사진 가장자리 3면 이상에 닿음</td>
+</tr>
+<tr>
+<td>서류</td>
+<td>빈 페이지</td>
+<td>글자(잉크) 비율이 기준 미만</td>
+</tr>
+<tr>
+<td>서류</td>
+<td>서류가 아닌 이미지</td>
+<td>흰 용지 픽셀 비율이 기준 미만</td>
+</tr>
+<tr>
+<td>공통</td>
+<td>저해상도, 방향 보정됨</td>
+<td>해상도 기준 미달, 자동 회전 적용 여부</td>
+</tr>
+</tbody>
+</table>
+<p>같은 &quot;흰 여백&quot;이라도 일반 사진에서는 문제 신호지만 서류에서는 정상일 수 있다. 반대로 서류인데 흰 용지가 거의 없으면
+서류가 아닌 사진일 가능성이 높다. 그래서 사진용 마커와 서류용 마커를 따로 설계해야 한다.</p>
+<p>이렇게 붙인 품질 마커는 리뷰 도구에서 필터 조건으로 사용하면 편리하다. &quot;흑백
+사진만 보기&quot;로 걸러서 한꺼번에 &quot;부적합&quot;으로 처리할 수 있다. 한편 품질 마커가 잘못
+판정한 경우도 있을 수 있으니 품질 마커의 신뢰성을 고려해서 처리해야 한다.
+예를 들어 빈 페이지로 판정된 서류가 실제로는 글자가 연하게 인쇄된 정상 서류였을 수 있다.</p>
+<h2>7. 모든 사진을 볼 수 없다면 위험한 것부터 본다</h2>
+<p>프로젝트 초기에는 학습용 사진 몇천 장이 주어져서 나와 동료가 전부 리뷰했다.
+그런데 운영을 시작하니 하루 2,000개가 넘는 이미지가 들어왔고 리뷰어 한 명이 매일 전부 보는 건 불가능했다.
+그래서 <strong>위험 기반 리뷰</strong>로 설계를 바꿨다.</p>
+<p>예를 들어 예측 확률이 낮은 사진, 이전 모델과 판정이 달라진 사진, 품질 마커가 붙은 사진,
+새로 등장한 유형을 우선 보도록 이미지를 분류하는 방식이다.</p>
+<p>핵심은 모든 건을 동등하게 보지 말고 문제가 있을 가능성이 높은 건부터 보는 것이다.
+이 내용은 길어지기 때문에 다음 기회에 다시 다뤄보기로 한다.</p>
+<h2>8. 정답만 저장하지 말고 판단 근거도 저장하기</h2>
+<p>라벨은 당연히 저장하지만 &quot;왜 그렇게 판단했는지&quot;도 남기는 것이 좋다.
+우리는 처음에 사유를 선택사항으로 했는데 나중에 원인별로 분석하려고 보니 사유가 빈 사진이 400장이 훨씬 넘었다.
+결국 다시 한 장씩 사유를 채우게 됐다.</p>
+<p>지금은 “부적합”, “기타” 같은 분류 라벨, “모호함”, “건너뜀” 같은 리뷰 상태에 대해 사유를
+필수로 넣게 하고 필터로 나중에 다시 찾아볼 수 있게 했다.</p>
+<p>그 밖에도 누가 언제 판단했고 이전 판단은 무엇이었는지(변경 이력), 회전한 경우 원본과 보정 이미지의 위치,
+학습용으로 내보낸 라벨 묶음의 버전과 메모를 남겼다.</p>
+<h2>정리: AI가 코딩은 쉽게 해도 사람이 원하는 건 모른다</h2>
+<p>리뷰 화면은 AI가 빠르게 코딩해줄 수 있다. 하지만 AI는 사람이 수천 장을 리뷰할 때 무엇이 문제고
+무엇이 불편한지 모른다.</p>
+<p>라벨링 도구를 만든다면 아래를 먼저 정리하길 권한다.</p>
+<ol>
+<li>라벨 체계, 라벨별 학습 사용 여부, 하루 유입량에 맞는 저장 방식을 정한다.</li>
+<li>헷갈리는 사례는 &quot;모호함&quot;이나 사유로 표시해 두고 기준이 바뀌면 그것만 다시 본다.</li>
+<li>예측 유형, 상태, 품질로 필터링해서 한 번에 한 가지만 볼 수 있게 구현하고 단축키, 일괄 처리 등 편의 기능을 넣는다.</li>
+<li>리뷰 이미지를 확대, 축소, 이동, 회전해서 볼 수 있게 하고 회전 결과는 학습 데이터로까지 사용할 수 있게 한다.</li>
+<li>유형별 품질 마커를 기계적으로 계산해 필터에 사용한다.</li>
+<li>리뷰할 양이 많다면 위험 기반 리뷰와 같은 전략을 세워서 순서를 정한다.</li>
+<li>결정에 대한 사유와 이력을 남기도록 한다.</li>
+</ol>
+<p>처음 몇백 장은 설계한 사람이 직접 리뷰해보는 게 좋다. 도구의 문제는 직접 써봐야 보이고
+그걸 일찍 발견할수록 다시 하는 일이 줄어든다.</p>
+
+    </div>
+  </div>
+
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="라벨링-도구-설계"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
+  <div class="post-footer">
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/ai/">AI</a></li><li><a href="/tags/라벨링/">라벨링</a></li></ul>
+      </section>
+    
+
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title"><a href="/categories/프로그래밍/">프로그래밍</a> 카테고리 최신 글
+        </h2>
+        <ul><li>
+              <a href="/posts/AI로-돈-벌기-실험-2/">AI로 돈 벌기 실험 2 - 첫 번째 제품 markbit 출시, 아직은 조용</a>
+              <time datetime="2026-09-27T03:00:00.000Z">2026. 9. 27.</time>
+            </li><li>
+              <a href="/posts/nse-시각화/">나비에-스토크스 방정식이 뭐길래</a>
+              <time datetime="2026-09-13T03:30:00.000Z">2026. 9. 13.</time>
+            </li><li>
+              <a href="/posts/교통-정체-시뮬레이션/">사고도 없는데 왜 막히지? 교통 정체를 시뮬레이션해보자</a>
+              <time datetime="2026-08-16T04:30:00.000Z">2026. 8. 16.</time>
+            </li><li>
+              <a href="/posts/아파트-매매가-2014-2026-비교/">12년 전과 비교한 아파트 매매가, 벌어진 격차</a>
+              <time datetime="2026-08-09T10:00:00.000Z">2026. 8. 9.</time>
+            </li><li>
+              <a href="/posts/사진-인식-AI-설명/">사진 인식 AI는 어떻게 만들까 - 도시 사진 인식을 예시로</a>
+              <time datetime="2026-08-01T06:00:00.000Z">2026. 8. 1.</time>
+            </li></ul>
+      </section>
+    
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="맨 위로">↑</button>
+
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="라벨링-도구-설계"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
