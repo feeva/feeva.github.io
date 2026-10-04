@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>시스템이 있다면 어딘가는 뚫린다 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="심심하면 보안 관련 뉴스가 뜬다. 방화벽을 설치하고 보안 프로그램을 깔면 안전할까?
+왜 계속 뚫리는지, 그리고 뚫린 뒤 피해를 줄이는 일이 왜 더 중요한지 알아본다.
+">
+    <link rel="canonical" href="https://abcbox.kr/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%94%98%EA%B0%80%EB%8A%94-%EB%9A%AB%EB%A6%B0%EB%8B%A4/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="시스템이 있다면 어딘가는 뚫린다">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%94%98%EA%B0%80%EB%8A%94-%EB%9A%AB%EB%A6%B0%EB%8B%A4/">
+    <meta property="og:description" content="심심하면 보안 관련 뉴스가 뜬다. 방화벽을 설치하고 보안 프로그램을 깔면 안전할까?
+왜 계속 뚫리는지, 그리고 뚫린 뒤 피해를 줄이는 일이 왜 더 중요한지 알아본다.
+">
+    <meta property="og:image" content="https://abcbox.kr/static/uploads/2026/castle-gate.jpg">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2026-10-04T04:30:00.000Z">
+    <meta property="article:modified_time" content="2026-10-04T04:30:00.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"시스템이 있다면 어딘가는 뚫린다","description":"심심하면 보안 관련 뉴스가 뜬다. 방화벽을 설치하고 보안 프로그램을 깔면 안전할까?\n왜 계속 뚫리는지, 그리고 뚫린 뒤 피해를 줄이는 일이 왜 더 중요한지 알아본다.\n","url":"https://abcbox.kr/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%94%98%EA%B0%80%EB%8A%94-%EB%9A%AB%EB%A6%B0%EB%8B%A4/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%94%98%EA%B0%80%EB%8A%94-%EB%9A%AB%EB%A6%B0%EB%8B%A4/"},"image":["https://abcbox.kr/static/uploads/2026/castle-gate.jpg"],"datePublished":"2026-10-04T04:30:00.000Z","dateModified":"2026-10-04T04:30:00.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style></style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 글 목록</a>
+
+  <h1>시스템이 있다면 어딘가는 뚫린다</h1>
+
+  <div class="post-header-meta">
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2026-10-04T04:30:00.000Z">2026. 10. 4.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a><a href="/categories/it-생활/">IT 생활</a></nav></div>
+
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>일반인도 알 만한 보안 관련 뉴스가 갈수록 자주 뜨는 것 같다. 쿠팡 개인정보 유출 사태가 있었고 어제는
+국내 금융회사 여러 곳에서 <a href="https://www.nocutnews.co.kr/news/6586913">개인정보 유출 사고</a>가 발생했다.
+얼마 전에는 OpenAI가 공개한 AI Astra가 사람의 단계별 지시 없이도 취약점을 찾아 악용할 수 있는 수준에 도달했다는
+<a href="https://zdnet.co.kr/view/?no=20260902095623">발표</a>도 있었다.</p>
+<p>기업들은 방화벽, 백신, 침입탐지시스템 같은 보안 제품에 계속 투자하고 모든 IT 프로젝트에도 보안은 빠지지 않는 요구사항이다.
+그런데 왜 계속 뚫릴까?</p>
+<h2>뚫을 곳이 많으니 뚫는 방법도 많다</h2>
+<p>웹사이트 하나를 만들어도 구성 요소가 엄청 많다. API 서버와 데이터베이스가 있다.
+개발자는 다양한 개발 도구를 사용하고 배포 서버가 결과물을 운영 환경에 올린다.
+사내/사외 클라우드를 사용할 수도 있고 오픈소스 라이브러리도 수십, 수백 개는 들어간다.</p>
+<p>이 모든 것들이 공격 지점이 될 수 있다.</p>
+<p>뚫는 방법도 다양하다. 남의 계정을 탈취하는 방법만 해도 이렇게 많다.</p>
+<ul>
+<li><strong>피싱</strong>: 가짜 사이트나 메일로 사람을 속여서 로그인 정보를 입력하게 한다.</li>
+<li><strong>무차별 대입</strong>: 가능한 모든 비밀번호를 넣어보며 맞는 것을 찾는다.</li>
+<li><strong>유출된 비밀번호 활용</strong>: 다른 사이트에서 유출된 비밀번호를 그대로 넣어본다.</li>
+<li><strong>키로깅</strong>: 악성코드를 설치해 키보드 입력을 기록한다.</li>
+<li><strong>로그인 상태 가로채기</strong>: 비밀번호를 몰라도 이미 로그인된 브라우저의 정보를 훔쳐 그 사람인 척한다.</li>
+</ul>
+<p>심지어는 같은 사무실에 있는 다른 사람의 키보드 소리를 분석해 어떤 키를 눌렀는지 추정하는 방법도 가능하다고 한다.
+또한 Timing Attack이라고 해서 서버가 로그인을 처리하는 미세한 시간 차이를 분석해 비밀번호를 알아내는 방법도 있다.</p>
+<p>계정 탈취는 한 가지 예일 뿐이다. 웹 개발자라면 한 번쯤 들어봤을
+<a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>은 웹에서 가장 흔한 취약점 유형만 추린 목록이다.
+공격자가 실제로 사용하는 기법을 200여 가지로 분류한 <a href="https://attack.mitre.org/">MITRE ATT&amp;CK</a>도 있고
+제품이나 소프트웨어에서 발견된 취약점을 모아둔 <a href="https://cve.org">CVE 데이터베이스</a>는 현재 38만 건이 넘었다.</p>
+<h2>작은 구멍 하나가 전체 시스템을 무너뜨릴 수 있다</h2>
+<p>공격 지점이 많다 보니 아주 작은 취약점 하나가 전체 시스템을 뚫는 데 사용될 수 있다.</p>
+<p>내 시스템만 잘 지킨다고 되는 일도 아니다. 시스템에서 사용하는 라이브러리나 개발 도구, 업데이트 서버가
+공격당하면 그 프로그램을 사용하는 수많은 시스템으로 공격이 퍼진다. 이른바 <strong>공급망 공격</strong>이다.
+2020년 SolarWinds 사건에서는 공격자가 네트워크 관리 프로그램의 정식 업데이트에 악성코드를 심었고
+그 업데이트를 믿고 설치한 약 1만 8천 곳의 기업과 정부 기관이 한꺼번에 위험에 노출됐다.</p>
+<p>영화에서는 해커가 키보드 몇 번 두드리고 서버를 장악하지만 실제로는 목적 달성을 위해 상당한 공을 들이는 경우가 많다.
+2024년의 xz 백도어 사건이 예시다. 공격자는 리눅스에서 많이 사용되는 압축 라이브러리 프로젝트에
+2년 가까이 성실한 기여자로 활동하며 신뢰를 쌓았는데 관리 권한을 얻은 뒤 원격 접속을 뚫는 코드를 심었다고 한다.
+로그인이 0.5초쯤 느려진 것을 이상하게 여긴 개발자 한 명이 아니었다면 그대로 전 세계 서버에 배포될 뻔했다.</p>
+<p>공격자가 뚫고 들어와도 바로 사고를 일으키는 것이 아니라 오랫동안 숨어 있으면서 한 단계씩 더 중요한 시스템으로 옮겨간다.
+사고가 터지기 전까지는 공격자가 들어왔는지조차 모르고 있다가 나중에 한 번에 크게 당한다.
+이렇게 특정 대상을 노리고 오래 공을 들이는 공격을 <strong>지능형 지속 위협(APT)</strong> 이라고 한다.</p>
+<h2>보안은 막는다는 개념을 벗어난 지 오래다</h2>
+<p>시스템의 목적은 데이터를 주고받고 처리하는 것이다 보니 그 목적 자체가 보안과 상충된다.
+아무도 들어오지 못하게 완전히 막아버리면 시스템을 쓸 수 없다.</p>
+<p>도시에 비유하면 이렇다. 100% 자급자족하는 도시가 아니라면 어떤 식으로든 바깥과 왕래해야 한다.
+방어를 위해 성벽을 둘러싸도 성문은 열어둬야 하고 땅굴을 파거나 담을 넘어오는 것까지 다 막을 수는 없다.</p>
+<p><picture><source type="image/webp" srcset="/static/resp-img/vyHRjGLlwz-360.webp 360w, /static/resp-img/vyHRjGLlwz-640.webp 640w" sizes="(max-width:800px) 100vw, 1200px"><img alt="" loading="lazy" decoding="async" data-src="../../static/uploads/2026/castle-gate.jpg" src="/static/resp-img/vyHRjGLlwz-360.jpeg" width="640" height="356" srcset="/static/resp-img/vyHRjGLlwz-360.jpeg 360w, /static/resp-img/vyHRjGLlwz-640.jpeg 640w" sizes="(max-width:800px) 100vw, 1200px"></picture></p>
+<p>그래서 요즘 보안은 막는 것을 포함해 관리하고 대응하는 범위로 확장된다.
+침투할 수 있는 지점 전체를 <strong>공격 표면</strong>이라고 부르는데 이 표면이 어디까지인지 파악하고 줄이는 것이 출발점이다.</p>
+<p>미국 국립표준기술연구소(NIST)의 사이버보안 프레임워크는 보안 활동을 여섯 가지로 나눈다.</p>
+<blockquote>
+<p>관리 체계(Govern), 식별(Identify), 보호(Protect), 탐지(Detect), 대응(Respond), 복구(Recover)</p>
+<p>— NIST Cybersecurity Framework 2.0</p>
+</blockquote>
+<p>여섯 가지 중 우리가 흔히 생각하는 &quot;막는다&quot;에 해당하는 것은 보호 하나뿐이다.
+나머지는 무엇을 지켜야 하는지 아는 것, 뚫렸다는 사실을 찾아내는 것, 그리고 뚫린 뒤에 수습하는 것이다.</p>
+<h2>뚫리지 않는 것보다 뚫린 뒤가 더 중요하다</h2>
+<p>뉴스에는 개인정보 유출 사고가 많이 보도되지만 보안 사고의 피해는 정보 유출에만 그치지 않는다.</p>
+<p>금융 자산을 훔치거나 서버를 장악해 다른 곳을 공격하는 경유지로 이용할 수도 있다.
+기업의 설계도나 연구 자료를 빼갈 수도 있고 데이터를 암호화한 뒤 돈을 요구할 수도 있다.</p>
+<p>내 경우 윈도 서버에 원격으로 작업하다가 그 서버의 데이터베이스가 랜섬웨어에 당한 것을 발견한 적이 있다.
+테이블을 열어보니 &quot;암호화를 풀려면 비트코인을 보내라&quot;는 메시지가 들어 있었다.
+리눅스 서버에 루트킷이 설치된 것을 발견한 적도 몇 번 있다. 루트킷은 침입한 흔적을 숨기면서
+관리자 권한을 계속 쥐고 있게 해주는 악성 프로그램이다. 눈에 띄는 피해가 없었던 걸 보면
+아마도 다른 곳을 공격하는 경유 서버로 쓰였던 게 아닐까 싶다.</p>
+<p>더 찾아내기 어려운 것은 <strong>데이터를 조작하는 공격</strong>이다.</p>
+<p>계좌번호나 거래 금액, 제품 검사 결과를 조금씩 변경한다면 한동안 발견하지 못할 수도 있다.
+시험 성적 시스템에서 점수를 바꾸는 것도 그렇다.</p>
+<p>보안의 세 가지 목표에 기밀성, 무결성, 가용성이라는 개념이 있다. 정보가 새지 않아야 하고 데이터가
+몰래 바뀌지 않아야 하고 필요할 때 시스템을 쓸 수 있어야 한다는 뜻이다.
+정보를 훔치는 것뿐 아니라 데이터를 바꾸거나 시스템을 못 쓰게 만드는 것 역시 보안 침해다.</p>
+<p>중요한 것은 모든 침입을 100% 막겠다는 목표보다 <strong>뚫렸을 때 피해를 어디까지 잡을 것인가</strong>다.</p>
+<p>예를 들어,</p>
+<ul>
+<li>계정 하나가 탈취되더라도 모든 시스템에 접근할 수는 없게 한다. (최소 권한)</li>
+<li>PC 한 대가 감염되어도 다른 서버로 자유롭게 이동하지 못하게 한다. (네트워크 분리)</li>
+<li>데이터베이스가 유출되어도 중요한 데이터는 바로 읽을 수 없게 한다. (암호화)</li>
+<li>시스템 하나를 격리하더라도 다른 시스템으로 서비스를 계속할 수 있게 한다. (이중화)</li>
+<li>운영 시스템이 망가져도 복구할 수 있게 한다. (백업)</li>
+</ul>
+<p>이런 식으로 한 지점의 침해가 전체 시스템의 붕괴로 이어지지 않게 만드는 것이 중요하다.
+보안에서는 이를 <strong>폭발 반경(Blast Radius)을 줄인다</strong>고 표현한다.</p>
+<p>쿠팡 사태도 알려진 바로는 퇴사한 직원이 갖고 있던 인증 키가 계속 유효했던 것이 원인이었다.
+열쇠 하나가 새는 일은 어느 회사에서나 일어날 수 있다.
+문제는 그 열쇠 하나로 열리는 문이 너무 많았다는 것이다.</p>
+<h2>보안은 위험을 없애는 일이 아니라 관리하는 일이다</h2>
+<p>새로운 소프트웨어와 서비스가 등장할수록 공격할 곳도 늘어난다.
+이제는 AI까지 공격과 방어에 사용되기 시작했으니 공격 방법과 취약점은 계속 늘어날 것이다.</p>
+<p>모든 시스템을 똑같은 수준으로 보호할 수도 없다. 중요한 시스템에는 더 많은 자원을 쓰고
+그렇지 않은 곳에는 그만큼 적게 쓸 수밖에 없다. 결국 보안은 한정된 비용과 인력 안에서
+<strong>공격 가능성과 피해 규모를 관리하는 일</strong>이 될 것이다.</p>
+<p>시스템이 있는 한 어딘가는 뚫릴 수 있다. 중요한 것은 그 작은 구멍 하나가 전체 시스템을 무너뜨리는 구멍이 되지 않게 만드는 것이다.</p>
+
+    </div>
+  </div>
+
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="시스템이-있다면-어딘가는-뚫린다"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
+  <div class="post-footer">
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/보안/">보안</a></li><li><a href="/tags/해킹/">해킹</a></li><li><a href="/tags/개발/">개발</a></li></ul>
+      </section>
+    
+
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title"><a href="/categories/프로그래밍/">프로그래밍</a> <span aria-hidden="true">|</span> <a href="/categories/it-생활/">IT 생활</a> 카테고리 최신 글
+        </h2>
+        <ul><li>
+              <a href="/posts/라벨링-도구-설계/">두 번 일하지 않도록 라벨링 도구 설계하기</a>
+              <time datetime="2026-09-29T05:00:00.000Z">2026. 9. 29.</time>
+            </li><li>
+              <a href="/posts/AI로-돈-벌기-실험-2/">AI로 돈 벌기 실험 2 - 첫 번째 제품 markbit 출시, 아직은 조용</a>
+              <time datetime="2026-09-27T03:00:00.000Z">2026. 9. 27.</time>
+            </li><li>
+              <a href="/posts/AI로-돈-벌기-실험-1/">AI로 돈 벌기 실험 1 - 성공 사례 배우기</a>
+              <time datetime="2026-09-24T02:00:00.000Z">2026. 9. 24.</time>
+            </li><li>
+              <a href="/posts/nse-시각화/">나비에-스토크스 방정식이 뭐길래</a>
+              <time datetime="2026-09-13T03:30:00.000Z">2026. 9. 13.</time>
+            </li><li>
+              <a href="/posts/M6-갈아탈-가치가-있을까/">맥 미니 M4에서 M6로 갈아탈 가치가 있을지 고민했다</a>
+              <time datetime="2026-08-30T08:00:00.000Z">2026. 8. 30.</time>
+            </li></ul>
+      </section>
+    
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="맨 위로">↑</button>
+
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="시스템이-있다면-어딘가는-뚫린다"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
