@@ -68,12 +68,12 @@
     </details>
 
     <div class="post-content">
-      <p>최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 <a title="웹킷 오픈소스 프로젝트" href="http://www.webkit.org/" target="_blank">웹킷(WebKit)</a> 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까?</p>
+      <p>최근에 모바일웹 프로젝트를 하면서 알게된 안드로이드와 iOS 웹킷 브라우저의 차이점을 개발자 입장에서 정리해볼까 한다. 안드로이드, iOS(아이폰, 아이패드)의 웹브라우저는 모두 <a title="웹킷 오픈소스 프로젝트" href="https://www.webkit.org/" target="_blank">웹킷(WebKit)</a> 기반 브라우저라 모바일웹을 개발할 때 브라우저별 차이가 별로 없이 쉽게 개발할 수 있을까?</p>
 <!--more-->
 <p>PC에서는 크롬(Chrome), 파이어폭스(Firefox), 인터넷 익스플로러(Internet Explorer), 사파리, 오페라 등 다양한 브라우저가 있는 데다가 다들 알다시피 IE 구 버전이 웹 표준을 지키지 않아 데스크톱 웹을 개발할 때 개발자들은 종종 골치를 썩곤 한다. 반면에 모바일웹은 시장이 거의 안드로이드와 iOS로 양분화되어 고객이 두 가지만을 타겟으로 하는데다가 둘 다 웹킷 기반의 브라우저를 기본으로 하므로 기능 차이가 별로 없다고 할 수 있다. 그래서 개발이 쉬울 거라고 생각했는데…</p>
 <p>하지만 웬걸! 나름대로 브라우저간 차이가 있는데 그 차이가 명확하지 않아 고생할 수 밖에 없었다.</p>
 <h3>터치 이벤트 처리의 차이</h3>
-<p>원래는 프로젝트에서<a title="jQuery mobile" href="http://jquerymobile.com/" target="_blank"> jQuery Mobile</a>을 사용하려고 했다. 그런데 jQuery의 유명세와 다르게 jQuery 모바일 라이브러리는 실망스러웠다. 달력이나 시간 선택 컨트롤도 없고 이미지 슬라이더로 사용할 위젯이나 이벤트도 마땅치 않았다. <a title="jQuery Mobile 스와이프 데모" href="http://demos.jquerymobile.com/1.4.2/transitions/swipe-page/seoul.html" target="_blank">스와이프 데모를 보면</a> 터치와 함께 이미지가 움직이는 게 아니라 터치가 다 지나가면 이미지가 움직이는, 즉 따로 노는 방식이었다.</p>
+<p>원래는 프로젝트에서<a title="jQuery mobile" href="https://jquerymobile.com/" target="_blank"> jQuery Mobile</a>을 사용하려고 했다. 그런데 jQuery의 유명세와 다르게 jQuery 모바일 라이브러리는 실망스러웠다. 달력이나 시간 선택 컨트롤도 없고 이미지 슬라이더로 사용할 위젯이나 이벤트도 마땅치 않았다. <a title="jQuery Mobile 스와이프 데모" href="https://demos.jquerymobile.com/1.4.2/transitions/swipe-page/seoul.html" target="_blank">스와이프 데모를 보면</a> 터치와 함께 이미지가 움직이는 게 아니라 터치가 다 지나가면 이미지가 움직이는, 즉 따로 노는 방식이었다.</p>
 <p>또 프로젝트에서 요구하는 이미지 슬라이더는 처음 이미지부터 끝 이미지까지 다 보면 더 이상 슬라이딩이 안되는 방식이 아니라 무한 회전해야 하는 방식이었기 때문에 마지막 이미지를 처음 이미지와 연결시켜 보여주는 조작이 필요했다. 이런 이미지 슬라이더는 찾을 수가 없었다. 그래서 기간 초과의 위험을 감수하고 직접 터치 이벤트를 받아 이미지 슬라이더를 구동하는 루틴을 제작했다. 여러 날의 시행착오 끝에 다음과 같은 차이점을 알게 됐다.</p>
 <ul>
 <li>안드로이드 웹브라우저의 터치 이벤트에서는 <code>changedTouches</code> 객체가 매번 새롭게 생성되어 들어오는데 사파리 브라우저에서는 같은 객체에서 값만 바뀌어 들어온다.</li>
@@ -83,7 +83,7 @@
 <h3><code>&lt;a href&gt;</code>에서의 자바스크립트 사용</h3>
 <p>간혹 개발자 중에 <code>href</code>에서 <code>javascript:</code>를 사용하고 주소가 넘어가지 않도록 <code>return false</code>를 하는 경우가 있는데 이게 사파리에서는 먹지 않는다. 반드시 <code>onclick</code>과 같은 이벤트에서 자바스크립트를 넣고 <code>return false</code>를 해야 한다.</p>
 <h3><code>&lt;iframe&gt;</code> 스크롤</h3>
-<p>안드로이드에서는 <code>&lt;iframe&gt;</code>이 들어있더라도 터치 스크롤에 아무 문제가 없다. 그런데 사파리는 그게 잘 안된다. 다행히 iOS 5부터는 <code>&lt;iframe&gt;</code>을 감싸는 <code>&lt;div&gt;</code> 태그에다가 <a title="모바일 사파리에서의 iframe 스크롤" href="http://stackoverflow.com/a/8214891/122681" target="_blank">다음과 같은 CSS를 줌으로써</a> 스크롤이 가능해졌다.</p>
+<p>안드로이드에서는 <code>&lt;iframe&gt;</code>이 들어있더라도 터치 스크롤에 아무 문제가 없다. 그런데 사파리는 그게 잘 안된다. 다행히 iOS 5부터는 <code>&lt;iframe&gt;</code>을 감싸는 <code>&lt;div&gt;</code> 태그에다가 <a title="모바일 사파리에서의 iframe 스크롤" href="https://stackoverflow.com/a/8214891/122681" target="_blank">다음과 같은 CSS를 줌으로써</a> 스크롤이 가능해졌다.</p>
 <pre class="language-css"><code class="language-css"><span class="token property">-webkit-overflow-scrolling</span><span class="token punctuation">:</span> touch<span class="token punctuation">;</span></code></pre>
 <h3>스크롤링, 스크롤바의 차이</h3>
 <p>모바일 웹브라우저마다 스크롤링 방식, 스크롤바의 처리가 차이가 난다. 어떤 브라우저는 자체적인 도구 모음이 하단에 나타났다 사라지기도 하고 어떤 브라우저는 끝까지 스크롤하면 더 이상 움직이지 않는 경우가 있는 반면 어떤 브라우저는 빈 영역이 고무줄처럼 늘어나 보이기도 한다. 이 과정에서 웹페이지의 어떤 부분은 스크롤이 돼야 하는데 안되기도 한다. 또 어떤 브라우저는 스크롤바가 2중으로 나타났다가 사라지기도 한다.</p>

@@ -101,7 +101,7 @@ Content-Transfer-Coding: binary
 </ul>
 <p>프로그램적으로 생성하는 다운로드는 위의 것들이 가장 일반적이라 하겠다. 다른 형식은 MIME 유형에 대해 검색 등을 활용해보기 바란다.</p>
 <h3>4. 플래시 파일의 다운로드 또는 인라인 보기</h3>
-<p>플래시 파일(.swf)을 프로그램적으로 다운로드할 경우 파일을 직접 다운로드하는 것이 아니라 웹페이지에서 포함된 형태로 간접적으로 다운로드하게 하려면 얼마전에 보안상 바뀐 기준으로 인해(<a href="http://www.adobe.com/devnet/flashplayer/articles/fplayer10_security_changes_02.html">http://www.adobe.com/devnet/flashplayer/articles/fplayer10_security_changes_02.html</a>) Content-Disposition을 attachment가 아니라 inline으로 해야 한다.</p>
+<p>플래시 파일(.swf)을 프로그램적으로 다운로드할 경우 파일을 직접 다운로드하는 것이 아니라 웹페이지에서 포함된 형태로 간접적으로 다운로드하게 하려면 얼마전에 보안상 바뀐 기준으로 인해(<a href="https://www.adobe.com/devnet/flashplayer/articles/fplayer10_security_changes_02.html">https://www.adobe.com/devnet/flashplayer/articles/fplayer10_security_changes_02.html</a>) Content-Disposition을 attachment가 아니라 inline으로 해야 한다.</p>
 <pre><code>Content-Disposition: inline; filename=&quot;파일명&quot;
 </code></pre>
 <h3>5. 예시</h3>

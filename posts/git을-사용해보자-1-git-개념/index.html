@@ -70,12 +70,12 @@
     </details>
 
     <div class="post-content">
-      <p>분산 버전 관리 시스템(DVCS)인 <a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>이 나온지 벌써 몇 년이 지나 개발자들에게서 상당한 호응을 받고 있지만 난(또는 우리 회사) 본격적인 사용은 미루고 있었다. 얼마 전부터 제대로 해보자고 이것저것 해보고 있는데 이제 블로그에도 한번 정리삼아 올려보기로 한다. Git을 사용해보자 첫번째 주제로 Git 개념부터 꺼내기로 한다. 이 다음에는 기회되는 대로 Eclipse Git, Git 셸 명령, GitHub, Git 작업 패턴 등을 다뤄보기로 한다.</p>
+      <p>분산 버전 관리 시스템(DVCS)인 <a title="Git - 분산 버전 관리 시스템" href="https://git-scm.com/" target="_blank">Git</a>이 나온지 벌써 몇 년이 지나 개발자들에게서 상당한 호응을 받고 있지만 난(또는 우리 회사) 본격적인 사용은 미루고 있었다. 얼마 전부터 제대로 해보자고 이것저것 해보고 있는데 이제 블로그에도 한번 정리삼아 올려보기로 한다. Git을 사용해보자 첫번째 주제로 Git 개념부터 꺼내기로 한다. 이 다음에는 기회되는 대로 Eclipse Git, Git 셸 명령, GitHub, Git 작업 패턴 등을 다뤄보기로 한다.</p>
 <p><figure><picture><source type="image/webp" srcset="/static/resp-img/PlwZa7jQK3-360.webp 360w" sizes="(max-width:800px) 100vw, 1200px"><img alt="Git 학습" loading="lazy" decoding="async" data-src="../../static/uploads/2013/04/git.jpg" src="/static/resp-img/PlwZa7jQK3-360.jpeg" width="360" height="282"></picture><figcaption>Git 학습</figcaption></figure></p>
 <!--more-->
 <h3>Git 개념 소개</h3>
-<p><a title="Git - 분산 버전 관리 시스템" href="http://git-scm.com/" target="_blank">Git</a>은 자유 오픈 소스로서 분산 버전 관리 시스템이라고 하는 것이다. 많이 사용되는 버전 관리 시스템인 Subversion이나 CVS, ClearCase 등이 중앙의 저장소를 두고 개발자들이 붙어 작업하는 것과 달리 개발자 각자의 버전 관리에 방점을 두고 있으며 이에 따라 서버와의 잦은 업데이트/커밋 통신이 감소하고 개인이 임의로 소스를 브랜칭하여 시험하고 병합하는 게 간편하게 이루어지는 등의 장점이 생긴다. 반면에 새로운 개념을 다수 도입했기 때문에 기존 버전 관리에 익숙한 상태에서는 좀 공부를 해서 &quot;패러다임 전환&quot;을 해야만 Git을 제대로 사용할 수 있다.</p>
-<p>다음은 <a title="git 장점" href="http://git-scm.com/about" target="_blank">Git 공식 사이트에서 밝히고 있는 장점</a>이다.</p>
+<p><a title="Git - 분산 버전 관리 시스템" href="https://git-scm.com/" target="_blank">Git</a>은 자유 오픈 소스로서 분산 버전 관리 시스템이라고 하는 것이다. 많이 사용되는 버전 관리 시스템인 Subversion이나 CVS, ClearCase 등이 중앙의 저장소를 두고 개발자들이 붙어 작업하는 것과 달리 개발자 각자의 버전 관리에 방점을 두고 있으며 이에 따라 서버와의 잦은 업데이트/커밋 통신이 감소하고 개인이 임의로 소스를 브랜칭하여 시험하고 병합하는 게 간편하게 이루어지는 등의 장점이 생긴다. 반면에 새로운 개념을 다수 도입했기 때문에 기존 버전 관리에 익숙한 상태에서는 좀 공부를 해서 &quot;패러다임 전환&quot;을 해야만 Git을 제대로 사용할 수 있다.</p>
+<p>다음은 <a title="git 장점" href="https://git-scm.com/about" target="_blank">Git 공식 사이트에서 밝히고 있는 장점</a>이다.</p>
 <ul>
 	<li>Git은 브랜칭과 병합을 적극 권장한다. 모든 버전 관리는 기본적으로 로컬에서 이루어지므로 브랜칭을 실행하는 데 단 몇 초도 안 걸리며 개발자가 프로젝트 소스를 여러 브랜치로 분기하고 전환하면서 다양한 실험(?)을 하는 데 아주 간편하다. 원격지로 병합할 때도 어떤 브랜치를 병합할 것인지 자유로이 선택할 수 있다.</li>
 	<li>Git은 빠르다. 중앙에서 관리하는 버전 관리 시스템은 개발자가 계속 네트웍으로 통신해야 하지만 Git은 기본적으로 로컬에서 관리되기 때문이다. 네트웍으로 통신할 때도 Git은 Subversion보다 월등한 속도를 보여준다. (협업을 위해 중앙 서버를 두는 경우로 구성하더라도 상당 부분 네트웍 통신이 감소한다.)</li>
@@ -85,7 +85,7 @@
 	<li>GPLv2 라이선스이므로 사용상에는 아무 제약이 없으며 넓게 얘기해서 Git 소스를 수정한 경우 수정 소스를 GPL로 공개해야 한다는 제한만 있다.</li>
 </ul>
 <h3>Git 학습</h3>
-<p>Git은 다른 버전 관리 시스템보다 상대적으로 혼자 공부하기 어려우나 내가 권장하는 것은 Code School의 <a title="Try Git" href="http://www.codeschool.com/courses/try-git" target="_blank">Git 따라하기</a> 강의를 통해 학습하는 것이다. 이 강의를 통해 다음과 같이 git 개념을 학습할 수 있다.</p>
+<p>Git은 다른 버전 관리 시스템보다 상대적으로 혼자 공부하기 어려우나 내가 권장하는 것은 Code School의 <a title="Try Git" href="https://www.codeschool.com/courses/try-git" target="_blank">Git 따라하기</a> 강의를 통해 학습하는 것이다. 이 강의를 통해 다음과 같이 git 개념을 학습할 수 있다.</p>
 <ul>
 	<li><span style="line-height: 15px;">저장소 만들기</span></li>
 	<li>커밋</li>
@@ -94,7 +94,7 @@
 	<li>병합</li>
 	<li>원격지로의 작업</li>
 </ul>
-<p>위 강의를 따라하는 것에 만족 못한다면 직접 실제 환경에서 Git 명령을 쳐가며 해보려면 Git을 설치해야 하는데 Debian 계열(Ubuntu 등) 리눅스에서는 <code>apt-get install git</code> 명령으로, RedHat 계열(CentOS 등) 리눅스에서는 <code>yum install git</code> 명령으로 설치할 수 있고 윈도에서는 <a title="윈도용 GitHub" href="http://windows.github.com/" target="_blank">GitHub</a>를 권장한다(설치 후 바탕 화면을 보면 GitShell이 있어서 똑같이 명령 행으로 실행할 수 있다). 다음에 GUI에 대해서도 다루겠지만 개념적으로는 이렇게도 공부해보길 권한다.</p>
+<p>위 강의를 따라하는 것에 만족 못한다면 직접 실제 환경에서 Git 명령을 쳐가며 해보려면 Git을 설치해야 하는데 Debian 계열(Ubuntu 등) 리눅스에서는 <code>apt-get install git</code> 명령으로, RedHat 계열(CentOS 등) 리눅스에서는 <code>yum install git</code> 명령으로 설치할 수 있고 윈도에서는 <a title="윈도용 GitHub" href="https://windows.github.com/" target="_blank">GitHub</a>를 권장한다(설치 후 바탕 화면을 보면 GitShell이 있어서 똑같이 명령 행으로 실행할 수 있다). 다음에 GUI에 대해서도 다루겠지만 개념적으로는 이렇게도 공부해보길 권한다.</p>
 <p>이제 &quot;Git 따라하기&quot;의 내용을 풀어보자.</p>
 <h3>Git 저장소 만들기</h3>
 <p>Git으로 버전 관리를 시작하려면 저장소를 만들어야 한다. 어디에? 로컬에!</p>
