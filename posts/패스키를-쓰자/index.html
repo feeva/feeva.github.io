@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>패스키를 쓰자 - 복잡한 비밀번호보다 PIN 여섯 자리가 안전한 이유 - Nothing New Under the Sun</title>
+
+    <meta name="description" content="웹사이트에서는 비밀번호를 어렵고 복잡하게 만들라고 하는데 그러면 안전할까?
+금융권 해킹, 개인정보 유출 등으로 어수선한 지금 패스키를 써보자.
+">
+    <link rel="canonical" href="https://abcbox.kr/posts/%ED%8C%A8%EC%8A%A4%ED%82%A4%EB%A5%BC-%EC%93%B0%EC%9E%90/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="패스키를 쓰자 - 복잡한 비밀번호보다 PIN 여섯 자리가 안전한 이유">
+    <meta property="og:site_name" content="Nothing New Under the Sun">
+    <meta property="og:url" content="https://abcbox.kr/posts/%ED%8C%A8%EC%8A%A4%ED%82%A4%EB%A5%BC-%EC%93%B0%EC%9E%90/">
+    <meta property="og:description" content="웹사이트에서는 비밀번호를 어렵고 복잡하게 만들라고 하는데 그러면 안전할까?
+금융권 해킹, 개인정보 유출 등으로 어수선한 지금 패스키를 써보자.
+">
+    <meta property="og:image" content="https://abcbox.kr/static/uploads/2026/auth-blues.jpg">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="article:published_time" content="2026-10-10T07:00:00.000Z">
+    <meta property="article:modified_time" content="2026-10-10T07:00:00.000Z">
+    <meta property="article:author" content="이동련">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"패스키를 쓰자 - 복잡한 비밀번호보다 PIN 여섯 자리가 안전한 이유","description":"웹사이트에서는 비밀번호를 어렵고 복잡하게 만들라고 하는데 그러면 안전할까?\n금융권 해킹, 개인정보 유출 등으로 어수선한 지금 패스키를 써보자.\n","url":"https://abcbox.kr/posts/%ED%8C%A8%EC%8A%A4%ED%82%A4%EB%A5%BC-%EC%93%B0%EC%9E%90/","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcbox.kr/posts/%ED%8C%A8%EC%8A%A4%ED%82%A4%EB%A5%BC-%EC%93%B0%EC%9E%90/"},"image":["https://abcbox.kr/static/uploads/2026/auth-blues.jpg"],"datePublished":"2026-10-10T07:00:00.000Z","dateModified":"2026-10-10T07:00:00.000Z","author":{"@type":"Person","name":"이동련","url":"https://abcbox.kr/pages/about/"}}</script>
+    
+
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style></style>
+    <link rel="icon" href="/static/images/favicon.svg">
+
+    
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM55VYB3XV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SM55VYB3XV');
+    </script>
+    
+  </head>
+  <body>
+    <div class="post-layout">
+  <a href="/" class="home-link">전체 글 목록</a>
+
+  <h1>패스키를 쓰자 - 복잡한 비밀번호보다 PIN 여섯 자리가 안전한 이유</h1>
+
+  <div class="post-header-meta">
+    <div class="post-byline">
+      <a class="post-author" rel="author" href="/pages/about/">이동련</a>
+      <span class="post-meta-separator" aria-hidden="true">·</span>
+      <time class="post-published" datetime="2026-10-10T07:00:00.000Z">2026. 10. 10.</time>
+    </div><nav class="post-categories" aria-label="글 카테고리"><a href="/categories/프로그래밍/">프로그래밍</a><a href="/categories/it-생활/">IT 생활</a></nav></div>
+
+  <div class="post-main">
+    <details class="post-toc" aria-label="글 목차" hidden>
+      <summary>목차</summary>
+      <nav aria-label="글 목차"></nav>
+    </details>
+
+    <div class="post-content">
+      <p>며칠 전 쓴 <a href="../%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%B4-%EC%9E%88%EB%8B%A4%EB%A9%B4-%EC%96%B4%EB%94%98%EA%B0%80%EB%8A%94-%EB%9A%AB%EB%A6%B0%EB%8B%A4/">시스템 보안</a> 글에서
+언급했지만 금융권 해킹, 개인정보 유출 등으로 보안에 대해 다시 한번 경각심을
+가질 시기인 것 같다. 이번 글에서는 개인 사용자로서
+보안의 기본이 되는 비밀번호 안전에 대해 알아보려고 한다.</p>
+<p>웹사이트에서 로그인 비밀번호를 저장할 때는 원래의 비밀번호를 알 수 없는 해시값으로 저장한다. 이를 공격자가 탈취하면
+해싱된 문자열에서 무차별 대입 방식(브루트 포스)으로 원래 비밀번호를 알아내야 하는데
+GPU 등 컴퓨터 성능이 좋아지면서 맞추는 시간이 크게 단축되고 있다.</p>
+<p>“<a href="https://www.security.org/how-secure-is-my-password/">How Secure Is My Password</a>”
+같은 웹사이트에서 비밀번호를 테스트해보자. 단순 추정이지만 비밀번호를 깨는 데 걸리는 시간이 아래와 같다.</p>
+<table>
+<thead>
+<tr>
+<th>비밀번호 예시</th>
+<th>깨는 데 걸리는 시간</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>영단어 - <code>advanced</code></td>
+<td>5초</td>
+</tr>
+<tr>
+<td>한국어 단어 - <code>dyrnfmxm</code> (“요구르트”)</td>
+<td>5초</td>
+</tr>
+<tr>
+<td>한국어 단어 + 숫자 + 기호 - <code>dyrnfmxm1*</code></td>
+<td>1개월</td>
+</tr>
+<tr>
+<td>대소문자 + 숫자 + 기호 12자리 - <code>vfBGr4T%hyJU</code></td>
+<td>3만4천년</td>
+</tr>
+<tr>
+<td>의도적으로 틀린 소문자 문구 14자리 - <code>random sambles</code></td>
+<td>10만년</td>
+</tr>
+</tbody>
+</table>
+<p>비밀번호에 기호를 넣고 길이를 늘리면 깨는 시간이 급격히 늘어난다. 그러면 비밀번호만 길고 복잡하게 만들면 안전할까?</p>
+<h2>비밀번호 유출은 문제의 시작일 뿐이다</h2>
+<p>비밀번호를 깨는 작업이 생각보다 쉽지 않으니 공격자는 지난 글에서도 언급한 다른 방법들을 사용하여
+계정을 탈취한다.</p>
+<ul>
+<li><strong>유출된 비밀번호 재사용(크리덴셜 스터핑)</strong>: 다른 사이트에서 유출된 아이디와 비밀번호를 그대로 넣어본다.</li>
+<li><strong>피싱</strong>: 가짜 사이트에 피해자가 직접 입력하게 만든다.</li>
+<li><strong>키로깅</strong>: 악성코드가 키보드 입력을 기록한다.</li>
+</ul>
+<p>즉, 사용자가 입력하는 비밀번호 자체를 알아낸다. 따라서 비밀번호가 8자리든 30자리든 차이가 없다.
+특히 대부분의 사람들이 비밀번호 하나로 여러 웹사이트에 로그인하니 한 곳이 뚫리면
+다른 곳도 쉽게 털리게 된다.</p>
+<p>결국 비밀번호는 아무리 길고 복잡하게 만들어봤자 일단 털리면 끝이다. 구조적인 문제인 것이다.
+<strong>나만 알아야 하는 비밀을 로그인할 때마다 상대방에게 넘겨주는</strong> 과정을 거치니 악의적인 해커가 끼어드는
+여지가 생긴다.</p>
+<h2>OTP는 어떨까?</h2>
+<p>요즘엔 2단계 인증도 많이 쓰인다. 비밀번호뿐 아니라 문자 메시지나 OTP 앱에 뜨는 여섯 자리 숫자를 추가로 입력한다.
+크리덴셜 스터핑은 이 방식으로 거의 막을 수 있다.</p>
+<p>하지만 OTP 번호도 결국 <strong>내가 입력해서 넘겨야 한다</strong>. 일정 시간(30초)마다 갱신될 뿐 넘겨준다는 구조는 같다.</p>
+<ul>
+<li>해커가 가짜 사이트를 만들어 놓고 사용자가 잘못 들어와 비밀번호와 OTP를 입력하게 만든다.</li>
+<li>악성 앱, 원격 제어 등 다양한 방법으로 가로챌 수 있다.</li>
+<li>문자 인증의 경우는 유심 칩 복제 등으로 가로챌 수 있다.</li>
+</ul>
+<p>OTP는 비밀번호보다 훨씬 안전하지만 약점을 <strong>보완</strong>할 뿐 없애지는 않는다.</p>
+<h2>소셜 로그인은 위험 지점을 옮겼다</h2>
+<p>“구글로 로그인”, “카카오로 로그인” 같은 소셜 로그인은 방식이 다르다. 대개 OAuth 로그인이라고 부르는 방식으로
+웹사이트에 비밀번호를 만들지 않고 구글 같은 알려진 업체가 사용자를 대신 확인해준다.</p>
+<p>로그인하려는 사이트가 내 비밀번호를 갖고 있지 않으니 그곳의 데이터가 털려도 유출될 비밀번호가 없다.
+(물론 개인정보가 털리는 건 다른 문제다.)
+사이트마다 다르게 비밀번호를 만들 필요도 없다. 큰 회사의 보안 수준을 믿으면 되니 대체로 안심하게 된다.</p>
+<p>하지만 위험을 없앤 게 아니라 <strong>위험 지점을 좀더 안전한 곳으로 옮긴 것</strong>이다.</p>
+<ul>
+<li>구글 계정 하나가 뚫리면 그 계정으로 가입한 모든 사이트가 위험하다.</li>
+<li>구글 로그인 방식이 여전히 비밀번호라면 가짜 구글 로그인 화면이나 다른 공격에 털릴 수 있다.</li>
+<li>계정이 정지되거나 서비스에 장애가 나면 연동한 사이트 전부 못 들어간다.</li>
+</ul>
+<p>소셜 로그인은 인증 방식을 바꾸긴 했지만 비밀번호나 다른 인증 정보를 넘기는 방식은 여전히 남아 있다.</p>
+<h2>그럼 패스키는 뭐가 다를까?</h2>
+<p>나는 패스키를 컴퓨터 로그인할 때 처음 봤는데 웹에서도 사용되는 걸 보고
+'PC에서 사용하던 걸 어떻게 웹에서 쓰지?'라고 신기해했다. 알고 보니
+플랫폼에 상관없는 <a href="https://fidoalliance.org/passkeys-2/?lang=ko">표준이 정립돼 있고</a>
+웹에서도 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API">WebAuthn</a>으로 이미 수년 전에 API가 나와 있다.</p>
+<p>윈도 로그인 방식 중 PIN이라는 여섯 자리 숫자를 입력하는 방식이 있는데 그게 패스키와 같은 방식이다.
+PIN은 기기 안의 보안 칩에 들어 있는 패스키를 사용하도록 여는 수단이며 웹사이트로 보내는
+비밀번호가 아니다. 직접 기기를 가지고 있어야 하며 기기 밖으로 나가지 않기 때문에 안전하다.
+또한 시도 횟수 제한이 있어서 몇 번 실패하면 기기가 잠기니 무작정 재시도할 수가 없다.</p>
+<p>패스키를 등록하면 내 기기에는 개인키가, 웹사이트에는 짝이 되는 공개키만 저장된다.
+로그인할 때는 웹사이트가 보낸 값을 내 기기가 개인키로 서명해 돌려준다.</p>
+<p>그래서 앞서의 방법에서 발생하던 구조적인 문제가 풀린다.</p>
+<ul>
+<li>서버로 보내는 비밀번호가 없으며 서명을 가로채더라도 다음 로그인에 재사용할 수 없다.</li>
+<li>사이트마다 키가 다르니 한 곳에서 유출돼도 다른 곳에 쓸 수 없다.</li>
+<li>사이트에는 공개키만 있으니 DB가 털려도 유출된 공개키만으로는 로그인할 수 없다.</li>
+<li>패스키는 등록한 사이트의 주소와 묶여 있어 가짜 사이트에서는 동작하지 않는다.</li>
+</ul>
+<p>마지막이 가장 큰 차이다. 비밀번호나 OTP는 사람이 속으면 같이 뚫리지만
+패스키는 기기가 주소를 확인하기 때문에 사람이 속더라도 같은 패스키로 열리지 않는다.</p>
+<p>기기를 갖고 있어야 하고 지문이나 PIN도 통과해야 하니 그 자체로 다중 인증이기도 하다.</p>
+<h2>현재는 패스키가 가장 추천된다</h2>
+<div class="full-width-block">
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th style="text-align:center">무차별 대입</th>
+<th style="text-align:center">유출된 비밀번호 재사용</th>
+<th style="text-align:center">피싱</th>
+<th style="text-align:center">사이트 DB 유출</th>
+<th>약점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>짧은 비밀번호</td>
+<td style="text-align:center">✕</td>
+<td style="text-align:center">✕</td>
+<td style="text-align:center">✕</td>
+<td style="text-align:center">✕</td>
+<td>기본적으로 보안에 취약</td>
+</tr>
+<tr>
+<td>30자리 비밀번호</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">△</td>
+<td style="text-align:center">✕</td>
+<td style="text-align:center">△</td>
+<td>무차별 대입 외에는 취약</td>
+</tr>
+<tr>
+<td>비밀번호 + OTP</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">△</td>
+<td style="text-align:center">△</td>
+<td>실시간 피싱, 문자 가로채기</td>
+</tr>
+<tr>
+<td>소셜 로그인</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">△</td>
+<td style="text-align:center">△</td>
+<td style="text-align:center">○</td>
+<td>계정 하나 털리면 다른 곳도 위험</td>
+</tr>
+<tr>
+<td>패스키</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>기기 분실, 복구 경로</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>현재 많이 권장되는 방법은 소셜 로그인 + 패스키 방식이다. 구글, 카카오 같은 인증 수단 자체에 패스키를 걸어놓으면
+해당 인증을 사용하는 웹사이트들도 같이 안전해지는 효과가 있다. 소셜 로그인을 사용하지 않는 사이트라면
+패스키를 우선 설정하되 그것도 안 되면 OTP 등의 2단계 인증, 그것도 안 되면 길이가 긴
+비밀번호를 사용하도록 한다.</p>
+<p>당장 내 휴대폰, 컴퓨터에서 패스키를 설정하자. 구글이나 삼성, 카카오 등에서 패스키 설정을 찾아 기기와
+연동하면 된다. 인증 제공자마다 방식이 다르지만 이미 기기에 인증하고 있을 것이므로 설정은 간단하게 끝난다.
+구글의 경우 <a href="https://support.google.com/accounts/answer/13548313?hl=ko">도움말</a>을 참고하면 되며
+<a href="https://myaccount.google.com/signinoptions/passkeys">패스키 설정 페이지</a>에서 등록할 수 있다.</p>
+<p><a href="https://fidoalliance.org/passkey-adoption-doubles-in-2024-more-than-15-billion-online-accounts-can-leverage-passkeys/">FIDO 얼라이언스에 따르면</a>
+이미 2024년에 전 세계적으로 150억 개 이상의 계정이 패스키를 사용할 수 있다고 한다.
+<a href="https://www.khan.co.kr/article/202504021425001">국내에서도 빠르게 확산하고 있다</a>.</p>
+<h2>패스키의 약점</h2>
+<p>패스키는 비밀번호 같은 직접적인 인증 정보를 서버에서 내 기기로 옮긴 것이니 위험을 내 기기가 지게 된다.
+핸드폰에만 패스키가 있는데 그걸 잃어버리면 로그인할 방법도 사라진다.</p>
+<p>대부분의 사이트는 비밀번호 로그인과 문자 등을 사용한 계정/비밀번호 찾기가 있는데
+이게 양날의 검이다. 핸드폰을 잃어버렸을 땐 이걸 사용해야 하지만 비밀번호가
+서버에 저장되는 문제가 있다. 따라서 공격자가 패스키 대신 비밀번호의 취약점을
+악용할 뒷문을 열어놓는 셈이 된다.</p>
+<p>그래서 비밀번호는 없애고 패스키만 사용한다면 다음과 같이 대비해두는 게 좋다.</p>
+<ul>
+<li><strong>패스키를 한 기기에만 두지 않는다.</strong> 구글 비밀번호 관리자나 아이클라우드 키체인으로 동기화하거나 폰과 PC에 각각 등록한다.</li>
+<li><strong>복구 코드가 있으면 별도 보관한다.</strong> 서비스에서 복구 코드를 제공한다면 안전하게 보관해둔다.</li>
+</ul>
+<p>복구 정보를 받을 <strong>복구용 메일과 전화번호는 당연히 현재 잘 사용 중인 것이어야 한다.</strong></p>
+<p>그래도 문제가 있다면 안드로이드나 아이폰에 따라 기기 자체의 보안, 복구 수단이 있으니 활용해야 한다.</p>
+<h2>정리</h2>
+<p>패스키가 확산되면서 그동안 다양하게 발전해온 인증 수단에 또 하나의 안전한 장치를
+추가했다고 볼 수 있다. 다른 인증 수단과 달리 비밀 정보를 내 기기와 계정에만 넣어두기 때문인데
+내 기기는 그만큼 더 중요한 물건이 된다.</p>
+<p>오늘부터 패스키를 사용해보자. 그리고 패스키를 사용하는 핸드폰이나 노트북은 더욱
+소중히 가지고 다니자.</p>
+
+    </div>
+  </div>
+
+  
+    <section
+      id="post-reactions"
+      class="post-reactions"
+      aria-labelledby="post-reactions-title"
+      data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+      data-post-id="패스키를-쓰자"
+    >
+      <h2 id="post-reactions-title">이 글은 어땠나요?</h2>
+      <p class="reactions-loading" aria-live="polite">반응을 불러오는 중입니다.</p>
+    </section>
+  
+
+  <div class="post-footer">
+    
+      <section class="post-tag-section" aria-label="태그">
+        <h2>태그</h2>
+        <ul class="post-tags"><li><a href="/tags/보안/">보안</a></li><li><a href="/tags/인증/">인증</a></li></ul>
+      </section>
+    
+
+    
+    
+      <section class="related-posts" aria-labelledby="related-posts-title">
+        <h2 id="related-posts-title"><a href="/categories/프로그래밍/">프로그래밍</a> <span aria-hidden="true">|</span> <a href="/categories/it-생활/">IT 생활</a> 카테고리 최신 글
+        </h2>
+        <ul><li>
+              <a href="/posts/시스템이-있다면-어딘가는-뚫린다/">시스템이 있다면 어딘가는 뚫린다</a>
+              <time datetime="2026-10-04T04:30:00.000Z">2026. 10. 4.</time>
+            </li><li>
+              <a href="/posts/라벨링-도구-설계/">두 번 일하지 않도록 라벨링 도구 설계하기</a>
+              <time datetime="2026-09-29T05:00:00.000Z">2026. 9. 29.</time>
+            </li><li>
+              <a href="/posts/AI로-돈-벌기-실험-2/">AI로 돈 벌기 실험 2 - 첫 번째 제품 markbit 출시, 아직은 조용</a>
+              <time datetime="2026-09-27T03:00:00.000Z">2026. 9. 27.</time>
+            </li><li>
+              <a href="/posts/AI로-돈-벌기-실험-1/">AI로 돈 벌기 실험 1 - 성공 사례 배우기</a>
+              <time datetime="2026-09-24T02:00:00.000Z">2026. 9. 24.</time>
+            </li><li>
+              <a href="/posts/nse-시각화/">나비에-스토크스 방정식이 뭐길래</a>
+              <time datetime="2026-09-13T03:30:00.000Z">2026. 9. 13.</time>
+            </li></ul>
+      </section>
+    
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="맨 위로">↑</button>
+
+
+  <section
+    id="comments"
+    class="comments"
+    aria-labelledby="comments-title"
+    data-api-url="https://abcbox-comments.0kymmx.workers.dev"
+    data-post-id="패스키를-쓰자"
+    data-turnstile-site-key="0x4AAAAAAD4LB9h5zuofng3s"
+  >
+    <h2 id="comments-title">댓글</h2>
+    <p class="comments-loading" aria-live="polite">댓글을 불러오는 중입니다.</p>
+  </section>
+  
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  
+  <script src="/static/vendor/markdown-it.min.js"></script>
+  <script type="module" src="/static/modules/reactions.js"></script>
+  <script type="module" src="/static/modules/comments.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module" src="/static/modules/blogInit.js"></script>
+    
+  </body>
+</html>
