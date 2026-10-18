@@ -5,6 +5,22 @@ if (root) {
   const siteKey = root.dataset.turnstileSiteKey;
   let widgetId = null;
   let turnstileToken = "";
+  // 외부 스크립트는 실제로 필요할 때 한 번만 불러온다.
+  const loadScript = (src) => {
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing?.dataset.loaded) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const script = existing || document.createElement("script");
+      script.addEventListener("load", () => { script.dataset.loaded = "true"; resolve(); }, { once: true });
+      script.addEventListener("error", () => { script.remove(); reject(new Error(`${src}를 불러오지 못했습니다.`)); }, { once: true });
+      if (!existing) {
+        script.src = src;
+        script.async = true;
+        document.head.append(script);
+      }
+    });
+  };
+  const TURNSTILE_URL = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
   const element = (tag, options = {}) => {
     const node = document.createElement(tag);
@@ -108,6 +124,7 @@ if (root) {
           },
         });
       };
+      loadScript(TURNSTILE_URL).catch((error) => console.error(error));
       queueMicrotask(renderTurnstile);
     }
 

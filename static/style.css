@@ -1282,8 +1282,37 @@ figcaption a {
   position: absolute;
   left: 1rem;
   top: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  filter: drop-shadow(1px 1px 2px black);
+  max-width: calc(100% - 5rem);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+}
+/* 흰 바탕 이미지 위에서도 보이도록 단추에 어두운 반투명 배경을 깐다. */
+#postImageSlider .swiper-button-prev,
+#postImageSlider .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+  transition: background 0.15s;
+}
+#postImageSlider .swiper-button-prev:hover,
+#postImageSlider .swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+#postImageSlider .swiper-button-prev::after,
+#postImageSlider .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+#postImageSlider .swiper-button-prev::after {
+  margin-right: 2px;
+}
+#postImageSlider .swiper-button-next::after {
+  margin-left: 2px;
 }
 #postImageSlider .swiper-close {
   z-index: 1;
@@ -1293,7 +1322,8 @@ figcaption a {
   padding: 0 0.3rem;
   border: solid 1px rgba(255, 255, 255, 0.7);
   border-radius: 3px;
-  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: bold;
   cursor: pointer;
 }
@@ -1322,7 +1352,6 @@ code .highlight-line:before {
   width: 3em;
 }
 */
-
 
 .post-reactions {
   max-width: 40rem;
