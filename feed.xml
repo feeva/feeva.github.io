@@ -5,7 +5,85 @@
     <description>느끼고 배우고 기록하는 공간, IT부터 일상까지, ABC부터 AI까지 탐구하는 블로그</description>
     <language>ko</language>
     <atom:link href="https://abcbox.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 15 Nov 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 22 Nov 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>AI 시스템의 실수 2%는 어떻게 챙기면 좋을까?</title>
+      <link>https://abcbox.kr/posts/AI-%EC%98%A4%EB%A5%98-2%ED%8D%BC%EC%84%BC%ED%8A%B8/</link>
+      <guid isPermaLink="true">https://abcbox.kr/posts/AI-%EC%98%A4%EB%A5%98-2%ED%8D%BC%EC%84%BC%ED%8A%B8/</guid>
+      <pubDate>Sun, 22 Nov 2026 12:00:00 GMT</pubDate>
+      <dc:creator>이동련</dc:creator>
+      <category>프로그래밍</category>
+      <category>IT 생활</category>
+      <description>&lt;p&gt;우리나라 어느 도시의 지하철 안내 챗봇에 아래와 같이 질문했다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;교통카드 잔액은 어디서 환불할 수 있어?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;11월 22일 현재 답변은 아래와 같다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;XX페이(교통카드) 잔액은 역 내 고객안내센터(고객안내기)에서 환불 요청이 가능합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;하지만 실제는 아니다. 홈페이지에는 빨간 글씨로 &amp;quot;공사는 교통카드 잔액 환불업무를 취급하지 않음&amp;quot;이라고 써 있다. 편의점에 가야 한다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://abcbox.kr/static/resp-img/6WAuW7H9tt-360.webp 360w, https://abcbox.kr/static/resp-img/6WAuW7H9tt-640.webp 640w&quot; sizes=&quot;(max-width:800px) 100vw, 1200px&quot; /&gt;&lt;img alt=&quot;챗봇에선 그랬는데...&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; data-src=&quot;../../static/uploads/2026/subway-chatbot-refund.jpg&quot; src=&quot;https://abcbox.kr/static/resp-img/6WAuW7H9tt-360.jpeg&quot; width=&quot;640&quot; height=&quot;360&quot; srcset=&quot;https://abcbox.kr/static/resp-img/6WAuW7H9tt-360.jpeg 360w, https://abcbox.kr/static/resp-img/6WAuW7H9tt-640.jpeg 640w&quot; sizes=&quot;(max-width:800px) 100vw, 1200px&quot; /&gt;&lt;/picture&gt;&lt;figcaption&gt;챗봇에선 그랬는데...&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;요즘 챗봇에 질문을 던지면 대부분 답을 잘한다. 하지만 답이 있는 문서를 못 찾거나, 대체로 맞는 답에 틀린 조건이 하나 섞이거나, 예전 규정을 알려주는 경우가 있을 수 있다.&lt;/p&gt;
+&lt;p&gt;AI는 실수를 할 수 있다지만 고객은 관심이 없다. 자신이 물어본 질문에 제대로 답했는지가 중요할 뿐이다.
+특히 잘못된 안내를 믿고 행동했다면 그 한 번의 실수가 서비스 전체에 대한 불신으로 이어질 수 있다.&lt;/p&gt;
+&lt;p&gt;질문 100개 중 98개를 맞히더라도 틀린 두 개가 예를 들어 하루 문의의 10%라면 정확도는 98%가 아니라 90%가 된다.&lt;/p&gt;
+&lt;h2&gt;AI의 오류는 어디를 봐야 할까?&lt;/h2&gt;
+&lt;p&gt;내가 챗봇 담당자라고 하자. 오류가 있는지는 어디를 봐야 할까?&lt;/p&gt;
+&lt;p&gt;챗봇이 일반적인 RAG 방식(관련 문서나 자료를 AI 기반으로 찾고 처리하는 방식)이라면 우선 어떤 자료를 넘겼는지 봐야 한다.
+새 자료를 올렸는데 아직 반영이 안 된 거라면 문서 갱신 과정을 확인해야 한다.
+검색 설정, 답변 모델의 지시문(프롬프트) 등을 확인해야 할 수도 있다.&lt;/p&gt;
+&lt;p&gt;입력부터 출력까지 단선적인 데이터 흐름 같지만 오류가 끼어들어갈 여지는 참 다양하다.
+원천 데이터 자체의 오류, 데이터 갱신의 문제, 데이터 구조의 문제, RAG 적용상의 문제 등.&lt;/p&gt;
+&lt;p&gt;챗봇도 그렇지만 &lt;a href=&quot;https://abcbox.kr/posts/%EC%82%AC%EC%A7%84-%EC%9D%B8%EC%8B%9D-AI-%EC%84%A4%EB%AA%85/&quot;&gt;사진 분류 모델 예&lt;/a&gt;를 보자. 이 AI 시스템은
+분류 유형별로 많은 사진 자료를 학습시켜야 한다. 그런데 새로운 사진이 들어온다면?
+예를 들어 차량을 구별하는 모델이라 우리나라에서 흔한 차량 사진을 학습시켰는데
+새로운 수입 차량이 많아졌다든가 야간 사진이 늘어난다든가 하면 정확도가 떨어질 수 있다.
+시간에 따른 AI 품질 저하는 피하기 어렵다.
+다른 경우지만 난 이런저런 이유로 지난 프로젝트에서 &lt;a href=&quot;https://abcbox.kr/posts/%EB%9D%BC%EB%B2%A8%EB%A7%81-%EB%8F%84%EA%B5%AC-%EC%84%A4%EA%B3%84/&quot;&gt;사진 수천 장을 여러 번 다시 봤다&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;일반 업무 시스템에서도 원인을 찾다 보면 데이터까지 확인할 때가 있다.
+AI 시스템에서는 코드나 모델에 문제가 없어도 참고하는 문서가 달라지거나 예전과 다른 사진이 많이 들어오면서 답이 틀릴 수 있다.
+그래서 배포할 때마다 테스트하는 것과 별개로 운영 중에도 실제로 어떤 답이 나가는지 계속 봐야 한다.&lt;/p&gt;
+&lt;h2&gt;뭘 계속 지켜봐야 할까?&lt;/h2&gt;
+&lt;p&gt;규정을 안내하는 챗봇이라면 최신 문서가 검색되는지, 찾은 문서가 답변의 근거가 맞는지, 답변이 지금 적용하는 규정과 맞는지 확인해야 할 것이다.
+예전 자료를 그대로 옮겼다면 문서에 근거해서 답한 건 맞지만 지금 고객에게는 틀린 안내다.
+사진 분류는 전체 정확도에 더해 야간 사진처럼 특정 조건에서 찍은 사진을 얼마나 잘 맞히는지도 봐야 할 수 있다.
+AI의 판단이 사람에게 영향을 주는 업무에서는 특정 집단에서 오판이 더 많이 나오는지,
+잘못된 판단이 큰 피해로 이어질 수 있는 경우 어떻게 대응할지도 봐야 한다.&lt;/p&gt;
+&lt;p&gt;그래서 우리나라를 비롯해 여러 나라가 AI 시스템의 안전성에 대한 점검, 모니터링 체계를 요구한다.
+예: &lt;a href=&quot;https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&amp;amp;lsJoLnkSeq=1031810741&quot;&gt;인공지능기본법 제32조&lt;/a&gt;
+및 관련 규정들&lt;/p&gt;
+&lt;p&gt;앞서 예를 든 지하철 운임이나 환불을 안내하는 챗봇이라면 아래 같은 점검을 해보는 게 좋다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;배포 전에 자주 묻는 질문을 다시 해본다.&lt;/strong&gt; 자주 들어오는 질문, 최근 바뀐 항목처럼 중요도가 높은 질문을 모아
+챗봇이 어떤 답을 해야 하는지 적어둔다. 챗봇에 따라서는 상담원 연결이나 콜센터 안내도 포함될 수 있다.
+이렇게 질문을 테스트하여 전에 잘 답하던 걸 계속 잘 답하는지 확인한다. (이게 회귀 테스트다.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;실제로 응답한 내용을 남겨야 한다.&lt;/strong&gt; 나중에 답이 왜 그렇게 나왔는지 보려면 질문과 답변 외에 어떤 버전의 문서를 근거로 답했는지도 남겨둬야 한다.
+모든 걸 모니터링할 수는 없으므로 일부 대화를 무작위로 뽑아 정기적으로 보고 최근에 규정이 바뀐 항목이라든가 사용자가 신고한 답변은 따로 챙겨보도록 한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;틀렸던 질문을 다음 테스트에 넣는다.&lt;/strong&gt; 예전 안내문 때문에 환불 조건을 잘못 알려줬다면 최신 문서가 검색되도록 고치는 건 기본이다.
+고친 뒤에는 이 질문을 테스트에 넣어 다음에 검색 설정을 바꿨을 때 다시 틀리지 않는지 확인한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;챗봇이 어떤 문서를 근거로 했는지 기록으로 남겨두면 나중에 답변과 나란히 놓고 볼 수 있다.
+&lt;strong&gt;LangSmith&lt;/strong&gt;나 &lt;strong&gt;MLflow의 생성형 AI 기능&lt;/strong&gt;을 쓰면 이 기록을 남기고 가져온 문서에 답변의 근거가 있는지도 자동으로 평가할 수 있다.
+예전 규정을 가져왔다면 답변이 그 문서와 맞더라도 최신 규정과 맞는지는 따로 확인해야 한다.
+&lt;a href=&quot;https://docs.langchain.com/langsmith/evaluation-types&quot;&gt;LangSmith 평가 문서&lt;/a&gt; · &lt;a href=&quot;https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/rag/&quot;&gt;MLflow RAG 평가 문서&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;아직 직접 써보진 않았지만 요즘 들어오는 데이터가 예전과 달라졌는지 보려면 &lt;strong&gt;Evidently&lt;/strong&gt; 같은 도구를 쓸 수 있다고 한다.
+사진 분류 모델에 요즘 야간 사진이 많이 들어온다는 걸 알게 됐다면 그 사진을 일부 뽑아서 사람이 붙인 정답과 모델의 분류 결과를 비교해볼 수 있다.
+&lt;a href=&quot;https://docs.evidentlyai.com/metrics/preset_data_drift&quot;&gt;Evidently 데이터 드리프트&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;점검과 별개로 오류에 대한 안전장치를 두는 것도 필요하다. 답변에 근거 문서 링크와 기준일을 함께 보여주거나 확신이 낮은 질문은 상담원 연결로 넘기는 식이다.&lt;/p&gt;
+&lt;h2&gt;코딩은 빨라져도 시간이 더 걸리는 것&lt;/h2&gt;
+&lt;p&gt;AI로 인해 코딩이 빨라지고 원하는 결과물을 빨리 얻는 것 같지만 그게 다일까?
+요즘은 코딩 도구에 챗봇을 만들어달라고 하면 (옛날보다는 훨씬) 빨리 될 정도로 AI 코딩 성능이 좋다.&lt;/p&gt;
+&lt;p&gt;그런데 잔액 환불 규정이 바뀌었다면 AI가 그걸 알고 자동으로 고쳐주는 시스템이 돼 있을까?
+대부분의 업무는 사람의 개입이 필요하다. 오류를 발견하는 걸 사람이 일일이 해야 한다면
+시간과 노력이 훨씬 더 필요할 것이다.&lt;/p&gt;
+&lt;p&gt;챗봇을 만든 팀은 업무 규정의 직접적인 담당자가 아니므로 오류를 직접 알기 쉽지 않다.
+규정 안내가 잘못 나간 건 상담팀이 먼저 알 수 있지만 챗봇이 어떤 근거 문서를 가지고 있었는지는 보통 개발팀에 물어봐야 한다.
+이런 일련의 과정이 시스템까지 반영되는 걸 자동화하지 않으면 시간은 계속 흘러간다.&lt;/p&gt;
+&lt;p&gt;AI 시스템의 품질, 안전성 점검과 그에 따른 수정, 보완은 일이 생기면 그때그때 대응할 일이 아니다.
+챗봇이 교통카드 잔액 환불을 잘못 안내하고 있는 걸 언제까지 방치할까 궁금하다.&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>2026년 현재 어떤 데이터베이스가 좋은가?</title>
       <link>https://abcbox.kr/posts/2026%EB%85%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/</link>
@@ -2802,129 +2880,6 @@ TRF가 있는데 글로벌 선진국 주식과 국내 채권을 70:30처럼 유�
 &lt;p&gt;그래서 위 시뮬레이션에서 정체가 발생한 후에는 인위적으로 유입량을 확 낮춰 줘야 정체가 풀린다.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;처음 궁금했던 두 가지 의문 해소! 여러분은 혹시 다른 궁금증이 있는가?&lt;/p&gt;
-</description>
-    </item>
-    <item>
-      <title>아파트 상속 등기 직접 하기: 필요 서류, 취득세, 국민주택채권</title>
-      <link>https://abcbox.kr/posts/%EC%95%84%ED%8C%8C%ED%8A%B8-%EC%83%81%EC%86%8D-%EB%93%B1%EA%B8%B0/</link>
-      <guid isPermaLink="true">https://abcbox.kr/posts/%EC%95%84%ED%8C%8C%ED%8A%B8-%EC%83%81%EC%86%8D-%EB%93%B1%EA%B8%B0/</guid>
-      <pubDate>Tue, 11 Aug 2026 15:30:00 GMT</pubDate>
-      <dc:creator>이동련</dc:creator>
-      <category>살아있음</category>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;정정 (2026년 11월)&lt;/strong&gt; 처음에 &amp;quot;등기 서류는 부동산 소재지 등기소를 방문해야 한다&amp;quot;고 썼는데 틀린 내용이었다.
-2025년 1월 31일부터 &lt;strong&gt;상속·유증으로 인한 등기는 관할 등기소가 아닌 전국 어느 등기소에서나 신청할 수 있다&lt;/strong&gt;
-(&lt;a href=&quot;https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B6%80%EB%8F%99%EC%82%B0%EB%93%B1%EA%B8%B0%EB%B2%95/%EC%A0%9C7%EC%A1%B0%EC%9D%983&quot;&gt;부동산등기법 제7조의3&lt;/a&gt;).
-그러니 상속 등기라면 집이나 직장에서 가까운 등기소로 가면 된다. 아래 본문의 해당 부분도 고쳤다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;엄마가 돌아가신 지 두 달이 넘었다. 갑작스러운 이별이라 아직도 실감이 나지 않고 문득
-엄마 보러 가야할 것 같은 기분이 들 때가 있다. 무거운 마음을 다잡고 상속 등기를 진행한 이야기를 해본다.&lt;/p&gt;
-&lt;p&gt;동생들이 법무사에 맡기고 알아서 진행할 줄 알았더니 위임장 받고 서류 발급받아
-넘겨주는 거 자체가 일이라고 잘 안되는 모양이었다. 아버지 돌아가신 후 내가 상속 등기를 이미 해봐서
-이번에도 법무사에 맡기지 않고 셀프 등기를 하기로 했다.&lt;/p&gt;
-&lt;h2&gt;상속 등기 어렵지 않다&lt;/h2&gt;
-&lt;p&gt;이미 우리나라는 전자정부를 표방하고 있어 여러 민원 업무가 인터넷으로 가능한데
-3년 전 아버지가 돌아가셨을 때와 비교해도 또 다르다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;인터넷 발급이 가능한 서류가 많다.&lt;/strong&gt; 등기부등본, 건축물대장, 토지대장, 등본 등 개인 관련 서류는 대부분 인터넷으로 발급된다.
-다만 본인서명사실확인서(인감 대신할 경우), 사망자의 제적등본과 주민등록 초본, 친양자입양관계증명서는 여전히 주민센터 방문이 필요하다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;등기소가 생각보다 많다.&lt;/strong&gt; 등기소 위치는
-&lt;a href=&quot;https://data.iros.go.kr/rp/ro/openRgsOfficeInfrm.do&quot;&gt;등기정보광장&lt;/a&gt;에서 쉽게 확인 가능하다.
-일반적인 등기는 부동산 소재지 관할 등기소에 내야 하지만 &lt;strong&gt;상속·유증 등기는 관할과 상관없이 전국 어느 등기소에서나 접수&lt;/strong&gt;할 수 있다(2025년 1월 31일 시행).
-우리의 경우 전에는 오산 등기소였다가 이제 수원·화성 등기소(수원지방법원등기국)가 새로 생겨 그쪽으로 다녀왔다.
-상속 부동산이 여러 지역에 흩어져 있어도 한 등기소에서 접수할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;이 글은 내가 직접 처리하며 겪은 경험담이며 2026년 8월 기준 사항이다. 상속 등기 자체를 해설한
-&lt;a href=&quot;https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&amp;amp;csmSeq=566&amp;amp;ccfNo=3&amp;amp;cciNo=3&amp;amp;cnpClsNo=1&amp;amp;search_put=&quot;&gt;생활법령정보&lt;/a&gt;가
-따로 있으니 보다 세부적인 내용은 확인이 필요하다.&lt;/p&gt;
-&lt;h2&gt;주택 상속등기 절차 6단계&lt;/h2&gt;
-&lt;p&gt;상속은 부동산만 있는 게 아니라 예금, 보험, 주식, 자동차, 심지어 세금 체납까지 다 포함이다.
-정부24에서 &amp;quot;안심상속 원스톱서비스&amp;quot;로 검색하면 금융, 부동산, 자동차, 세금, 국민연금 등을 한 번에 조회할 수 있는 서비스가 있다.
-아래는 그 중 &lt;strong&gt;주택(아파트) 등기 상속&lt;/strong&gt;에 관한 절차만 나열해봤다. (채무가 재산보다 많거나 그 규모를 모를 경우는 등기 전에
-상속 포기, 한정승인을 검토해야 한다.)&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;지분을 어떻게 나눌 것인지 결정해야 한다.&lt;/strong&gt;
-법적으로 배우자의 상속분은 자녀 하나의 상속분의 1.5배로 정해져있다(1.5:1 비율).
-이와 다르게 하려면 상속인 전원이 협의서를 작성하고 인감 증명(또는 본인서명사실확인서)을 첨부해야 한다.
-우리는 아버지 유산 상속 때 엄마와 자식 하나의 지분을 2:1로 하느라 협의 상속으로 진행했다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;필요한 서류를 발급받는다.&lt;/strong&gt; 아래 &amp;quot;필요 서류&amp;quot;에 정리했다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;취득세를 신고하고 납부한다.&lt;/strong&gt; 취득일자는 피상속인 사망일 기준이고 등기 신청 전에 납부를 마쳐야 영수증을
-첨부할 수 있다. 자세한 내용은 아래 &amp;quot;취득세&amp;quot;에 정리했다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;국민주택채권을 매입한다.&lt;/strong&gt; 등기 신청서에 채권 매입 영수증의 발행번호를 기재해야 해서 접수 전에 미리 계산해서 사둬야 한다.
-계산법은 아래 &amp;quot;국민주택채권 매입&amp;quot;에 정리했다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;등기신청서를 작성해 등기소에 접수한다.&lt;/strong&gt; 준비한 서류와 등기신청서, 취득세 영수증을 함께 제출한다.
-직접 등기소 방문이 필요하며 별도의 등기 수수료도 납부해야 한다. 상속 등기는 관할이 아닌 가까운 등기소에 내도 된다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;등기필정보와 등기완료통지서를 받으면 끝난다.&lt;/strong&gt; 접수할 때 처리 기간을 안내받게 되며(대개 열흘)
-우편으로 받을 것인지 직접 찾으러 올 것인지 선택한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;여기서부터는 필요 서류와 취득세, 채권 매입에 대해 좀더 자세히 정리해본다.&lt;/p&gt;
-&lt;h2&gt;주택 상속등기 필요서류&lt;/h2&gt;
-&lt;p&gt;서류들이 발급 사이트가 여러 곳으로 분산돼있어 한 번 들어갔을 때 다 받아야 한다. 안 그러면 왔다 갔다를 반복하느라 번거롭다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;부동산 등기부등본(등기사항증명서)&lt;/strong&gt;&lt;br /&gt;
-등기부등본은 제출용은 아니고 부동산 정보를 파악하기 위한 용도다. 아래 건축물대장, 토지대장만으로 충분할 수 있으므로 필수는 아니다.
-&lt;a href=&quot;https://www.iros.go.kr/&quot;&gt;대법원 인터넷등기소&lt;/a&gt; 또는 무인민원발급기에서 가능하며 열람 700원, 발급 1,000원이다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;건축물대장, 토지대장(대지권등록부)&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&quot;https://www.gov.kr/&quot;&gt;정부24&lt;/a&gt;에서 발급. 아파트는 건물 유형에서 &amp;quot;집합(아파트, 연립 등)&amp;quot;을 선택하고 동/호수까지
-정확히 입력해야 한다. 또한 토지대장은 대지권등록부로 선택해서 발급한다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;상속인, 피상속인(돌아가신 분) 전원의 가족관계증명서, 기본증명서, 주민등록초본&lt;/strong&gt;&lt;br /&gt;
-가족관계증명서, 기본증명서는 대법원 &lt;a href=&quot;https://efamily.scourt.go.kr/index.jsp&quot;&gt;가족관계등록시스템&lt;/a&gt;에서 발급받을 수 있고
-초본은 &lt;a href=&quot;https://www.gov.kr/&quot;&gt;정부24&lt;/a&gt;에서 발급받는다. 단, 사망자의 초본은 말소 상태라 주민센터 방문이 필요하다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;피상속인의 제적등본(전 제적등본 포함), 친양자입양관계증명서, 입양증명서, 혼인관계증명서&lt;/strong&gt;&lt;br /&gt;
-친양자입양관계증명서는 엄격한 개인정보라 주민센터 방문이 필요하고 나머지는 가족관계등록시스템에서 발급받는다.
-하지만 돌아가신 분의 제적등본은 왜인지 인터넷에서 선택할 수 없었다. 전 제적등본도 필요하고 관계 확인, 호주 정보 등
-다양한 이유로 안될 수가 있다고 하여 난 주민센터에서 발급 받았다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;협의 상속인 경우 인감증명서 또는 본인서명사실확인서&lt;/strong&gt;&lt;br /&gt;
-난 인감 도장을 잃어버려서 인감증명 대신 본인서명사실확인서를 뗐는데 이게 인감증명과 동일한 효력을 가지고
-서로 병용도 가능하다는 걸 이번에 알았다. &lt;strong&gt;본인서명사실확인서는 주민센터를 직접 방문&lt;/strong&gt;해야 하며
-인감증명도 상속등기용이라면 주민센터 방문이 필요하다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;협의 상속인 경우 상속재산분할협의서&lt;/strong&gt;&lt;br /&gt;
-상속 지분을 법적 비율이 아닌 별도로 정하는 경우 작성하여 날인/서명하고 제출해야 한다. 형식은 자유이며
-협의 사실을 명확히 알 수 있도록 또박또박 작성하면 된다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;등기신청서&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&quot;https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&amp;amp;csmSeq=566&amp;amp;ccfNo=3&amp;amp;cciNo=3&amp;amp;cnpClsNo=3&amp;amp;search_put=&quot;&gt;신청서&lt;/a&gt;를 직접 작성해야 한다.
-등기소에 가면 등기 신청 유형에 따라 적절한 양식을 주므로 그에 맞춰 작성하면 쉽다.
-등기부등본 표제부의 주소, 면적, 구조를 그대로 작성해야 하며 국민주택채권 발행 번호, 취득세 금액 등을 정확히 입력해야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;서류는 아니지만 당연히 신청자의 신분증이 필요하고 아래 취득세 납부 영수증과 등기신청 수수료 영수필확인서도 제출해야 한다.&lt;/p&gt;
-&lt;h2&gt;상속 취득세율과 납부&lt;/h2&gt;
-&lt;p&gt;취득세는 상속 등기 단계 중 좀 헷갈린 부분이다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;취득일자는 피상속인의 사망일&lt;/strong&gt;로 본다. 또한 사망일이 속한 달의 말일부터 6개월 이내에 신고, 납부해야 한다.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.wetax.go.kr/&quot;&gt;위택스&lt;/a&gt;에서는 &lt;strong&gt;공동으로 소유했던 주택의 일부 지분을 상속받는 경우 신고가 안 된다.&lt;/strong&gt;
-구청 세무과를 직접 방문해야 했다. 반대로 전체 지분을 상속받는다면 위택스로 신고, 납부하면 된다.&lt;/li&gt;
-&lt;li&gt;위택스를 보면 취득세 감면 사유가 많이 있는데 대부분 농어촌 관련이다. 해당 여부 확인이 필요하다.&lt;/li&gt;
-&lt;li&gt;주택을 공동으로 상속받으면 지분이 많은 사람을 소유자로 본다. 지분이 다 같다면 해당 주소지 거주자, 그것도 같다면
-연장자 순으로 판단한다. 그 상속인이 상속으로 1가구 1주택 소유가 되는 경우 취득세 0.8%의 세율 특례를 받을 수 있다.
-지방교육세 0.16%가 추가되므로 결과적으로 0.96%가 된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;우리의 경우 과세표준 1억 7천만 원에 거주자인 동생이 소유자로 판단되면서 1주택자 요건으로 2.8%에서 0.8%로 세율 특례를 받고 지방교육세
-0.16%로 27만 원을 더해 총 163만 원을 납부했다. 적용 요건은 사람마다 다를 수 있으니 관할 구청 세무과에 납부하면서 확인이 필요하다.&lt;/p&gt;
-&lt;p&gt;납부 후 영수증 또는 납부확인서를 받아 서류에 첨부해야 한다.&lt;/p&gt;
-&lt;h2&gt;국민주택채권 매입&lt;/h2&gt;
-&lt;p&gt;국민주택채권은 부동산을 상속·취득할 때 의무적으로 사야 하는데 직접 계산해서 매입해야 한다.
-거래 은행 웹사이트에서 국민주택채권 매입 메뉴를 찾아들어가면 된다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;취득세 납부서에 기재된 시가표준액을 확인한다.&lt;/li&gt;
-&lt;li&gt;시가표준액에 지역별 요율을 곱해 매입 금액을 계산한다. 요율은 예를 들어 시가표준액이 5천만 원 이상 1억 5천만 원 미만인 경우
-서울 및 광역시는 2.8%, 그 외 지역은 2.5%다. 자세한 사항은 &lt;a href=&quot;https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&amp;amp;csmSeq=566&amp;amp;ccfNo=3&amp;amp;cciNo=3&amp;amp;cnpClsNo=1&amp;amp;search_put=&quot;&gt;생활법령정보&lt;/a&gt;를 참고한다.&lt;/li&gt;
-&lt;li&gt;계산한 금액만큼 채권을 매입한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;채권을 몇 년씩 들고 있는 건 부담이라 보통은 매입 즉시 매도한다. 이때 매도가격은 매입가격과 차이가 발생하는데
-매일 변동하는 채권 할인율 때문이며 결과적으로 매도하더라도 일부 비용 부담이 발생한다.
-내가 거래하는 은행은 이미 자동으로 매도하도록 만들어져 있어서 매도 후 부담 비용만 내면 되게 돼 있었다.&lt;/p&gt;
-&lt;p&gt;채권을 매입했으면 영수증의 발행번호를 등기소의 등기신청서에 기입하면 된다.&lt;/p&gt;
-&lt;h2&gt;참고 사항&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;등기소에 “등기 신청 안내” 사무실이 있다. 등기신청서 양식을 인쇄해주고 작성, 준비한 서류를 검토해주므로 거쳐가면 편리하다.&lt;/li&gt;
-&lt;li&gt;등기 수수료는 등기신청서 &lt;strong&gt;제출 전에&lt;/strong&gt; 수수료 납부 기계에 납부하고 확인 서류를 발급받아 내야 한다.
-금액은 상속의 경우 부동산별로 2만원이라고 안내 직원분이 알려주셨는데 기계에는 선택에 없기 때문에 직접 입력하고 납부했다.&lt;br /&gt;
-근거: &lt;a href=&quot;https://law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1026952977&quot;&gt;수수료 규칙&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;서류 하나하나는 별거 아닌데 발급 방법이 다 다르고 형제들과 맞춰야 하는 일정까지 겹치니 생각보다 오래
-걸린다. 비슷한 상황이라면 서두르지 말고 필요 서류부터 목록으로 정리해두는 걸 추천한다. 한 번 잘 해보면
-생각보다 어렵지 않다는 걸 알게 될 것이다.&lt;/p&gt;
 </description>
     </item>
   </channel>
